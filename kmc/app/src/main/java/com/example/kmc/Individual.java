@@ -17,6 +17,7 @@ public class Individual {
     String village;
     String mandal;
     String district;
+    String dbAccount;
 
 
     public Individual(){}
@@ -29,7 +30,7 @@ public class Individual {
         this.psUpload = psUpload;
     }
 
-    public Individual(String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district) {
+    public Individual(String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district,String dbAccount) {
         this.name = name;
         this.fatherName = fatherName;
         this.age = age;
@@ -44,7 +45,16 @@ public class Individual {
         this.village=village;
         this.mandal=mandal;
         this.district=district;
+        this.dbAccount=dbAccount;
 
+    }
+
+    public String getDbAccount() {
+        return dbAccount;
+    }
+
+    public void setDbAccount(String dbAccount) {
+        this.dbAccount = dbAccount;
     }
 
     public String getVillage() {

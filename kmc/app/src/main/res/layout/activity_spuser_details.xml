@@ -39,6 +39,18 @@
                 android:id="@+id/HouseNumber"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"/>
+            <TextView
+                android:id="@+id/village"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:id="@+id/mandal"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:id="@+id/district"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
 
 
             <TextView

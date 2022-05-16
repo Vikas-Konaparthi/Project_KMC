@@ -1,5 +1,6 @@
 package com.example.kmc;
 
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -15,23 +16,23 @@ import com.example.kmc.SPLogin.SPUserDetails;
 
 import java.util.ArrayList;
 
-public class myadapter2 extends RecyclerView.Adapter<myadapter2.myviewholder>
+public class myadapter3 extends RecyclerView.Adapter<myadapter3.myviewholder>
 {
     ArrayList<Individual> datalist;
 
-    public myadapter2(ArrayList<Individual> datalist) {
+    public myadapter3(ArrayList<Individual> datalist) {
         this.datalist = datalist;
     }
 
     @NonNull
     @Override
-    public myadapter2.myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public myadapter3.myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerow,parent,false);
-        return new myadapter2.myviewholder(view);
+        return new myadapter3.myviewholder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull myviewholder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull myadapter3.myviewholder holder, @SuppressLint("RecyclerView") int position) {
         holder.t1.setText(datalist.get(position).getName());
 
         holder.t1.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +62,7 @@ public class myadapter2 extends RecyclerView.Adapter<myadapter2.myviewholder>
 
 
 
+
     @Override
     public int getItemCount() {
         return datalist.size();
@@ -75,3 +77,4 @@ public class myadapter2 extends RecyclerView.Adapter<myadapter2.myviewholder>
         }
     }
 }
+

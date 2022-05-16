@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kmc">
         <activity
+            android:name=".SOLogin.SOZone"
+            android:exported="false" />
+        <activity
+            android:name=".login.SOLogin"
+            android:exported="false" />
+        <activity
             android:name=".SPLogin.SPUserDetails"
             android:exported="false" />
         <activity

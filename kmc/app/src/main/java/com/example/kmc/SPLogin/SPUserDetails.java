@@ -36,6 +36,9 @@ public class SPUserDetails extends AppCompatActivity {
     public TextView individualHouseNo;
     public TextView individualAadhar;
     public TextView individualPhno;
+    public TextView individualVillage;
+    public TextView individualMandal;
+    public TextView individualDistrict;
     public TextView individualPreferredUnit;
     public TextView individualBankName;
     public TextView individualBankAccNo;
@@ -61,6 +64,9 @@ public class SPUserDetails extends AppCompatActivity {
         individualFatherName=(TextView) findViewById(R.id.FatherName);
         individualAge=(TextView) findViewById(R.id.Age);
         individualHouseNo=(TextView) findViewById(R.id.HouseNumber);
+        individualVillage=(TextView) findViewById(R.id.village);
+        individualMandal=(TextView) findViewById(R.id.mandal);
+        individualDistrict=(TextView) findViewById(R.id.district);
         individualAadhar=(TextView) findViewById(R.id.AadharNumber);
         individualPhno=(TextView) findViewById(R.id.MobileNumber);
         individualPreferredUnit=(TextView) findViewById(R.id.Preferredunit);
@@ -71,6 +77,9 @@ public class SPUserDetails extends AppCompatActivity {
         individualFatherName.setText("Father Name: "+getIntent().getStringExtra("ufname").toString());
         individualAge.setText("Age : "+getIntent().getStringExtra("uAge").toString());
         individualHouseNo.setText("House Number: "+getIntent().getStringExtra("uHnumber").toString());
+        individualVillage.setText("Village: "+getIntent().getStringExtra("uVillage").toString());
+        individualMandal.setText("Mandal: "+getIntent().getStringExtra("uMandal").toString());
+        individualDistrict.setText("District: "+getIntent().getStringExtra("uDistrict").toString());
         individualAadhar.setText("Aadhar Number: "+getIntent().getStringExtra("uAadharNumber").toString());
         individualPhno.setText("Mobile Number: "+getIntent().getStringExtra("uMobileNo").toString());
         individualPreferredUnit.setText("Preferred Unit: "+getIntent().getStringExtra("uPreferredUnit").toString());
