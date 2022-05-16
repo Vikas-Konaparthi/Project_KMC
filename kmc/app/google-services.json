@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1061459827674",
+    "project_id": "telangana-dalit-bandhu",
+    "storage_bucket": "telangana-dalit-bandhu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061459827674:android:c0f4eb757efdc5216bfee3",
+        "android_client_info": {
+          "package_name": "com.example.kmc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061459827674-7a9qmht666uaq69e0stivr8dls9cm37g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApU0YecJPIeAWDChCHKL0Kn-W-na3Ceag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1061459827674-7a9qmht666uaq69e0stivr8dls9cm37g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
