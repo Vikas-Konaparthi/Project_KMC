@@ -50,6 +50,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>
               i.putExtra("uPreferredUnit",datalist.get(position).getPreferredUnit());
               i.putExtra("uBankName",datalist.get(position).getBankName());
               i.putExtra("uBankAccNumber",datalist.get(position).getBankAccNo());
+              i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
 
 
               i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

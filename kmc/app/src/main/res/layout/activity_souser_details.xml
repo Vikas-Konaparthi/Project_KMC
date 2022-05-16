@@ -29,10 +29,10 @@
 
 
 
-    <TextView
-        android:id="@+id/Age"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"/>
+            <TextView
+                android:id="@+id/Age"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
 
 
             <TextView
@@ -92,6 +92,17 @@
                 android:text="Document"
                 android:layout_below="@id/password"
                 android:onClick="document"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                style="?attr/materialButtonOutlinedStyle"
+                />
+            <Button
+                android:id="@+id/addDocument"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Document"
+                android:layout_below="@id/password"
+                android:onClick="addDocument"
                 android:layout_marginTop="30dp"
                 android:gravity="center"
                 style="?attr/materialButtonOutlinedStyle"

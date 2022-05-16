@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kmc.PSLogin.userDetails;
+import com.example.kmc.SOLogin.SOUserDetails;
 import com.example.kmc.SPLogin.SPUserDetails;
 
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class myadapter3 extends RecyclerView.Adapter<myadapter3.myviewholder>
         holder.t1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(holder.t1.getContext(), SPUserDetails.class);
+                Intent i = new Intent(holder.t1.getContext(), SOUserDetails.class);
                 i.putExtra("uname",datalist.get(position).getName());
                 i.putExtra("ufname",datalist.get(position).getFatherName());
                 i.putExtra("uAge",datalist.get(position).getAge());

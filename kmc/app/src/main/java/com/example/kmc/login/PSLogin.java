@@ -52,8 +52,8 @@ public class PSLogin extends AppCompatActivity {
                     if(pass.equals(documentSnapshot.getString("password"))){
                         Intent i = new Intent(PSLogin.this, PSZone.class);
                         i.putExtra("zone",documentSnapshot.getString("zone"));
-                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(i);
+                        finish();
 
                     }else{
                         Toast.makeText(PSLogin.this, "Incorrect Password", Toast.LENGTH_SHORT).show();

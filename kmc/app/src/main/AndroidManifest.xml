@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kmc">
         <activity
+            android:name=".SOLogin.SOUserDetails"
+            android:exported="false" />
+        <activity
             android:name=".SOLogin.SOZone"
             android:exported="false" />
         <activity

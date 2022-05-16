@@ -1,8 +1,7 @@
-package com.example.kmc.SPLogin;
-
-import static android.content.ContentValues.TAG;
+package com.example.kmc.SOLogin;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,29 +9,31 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.kmc.PSLogin.userDetails;
+import com.example.kmc.PSLogin.addIndividual;
 import com.example.kmc.R;
+import com.example.kmc.SPLogin.SPUserDetails;
+import com.example.kmc.SPLogin.SPZone;
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class SPUserDetails extends AppCompatActivity {
+public class SOUserDetails extends AppCompatActivity {
 
     public TextView individualName;
     public TextView individualFatherName;
@@ -47,8 +48,8 @@ public class SPUserDetails extends AppCompatActivity {
     public TextView individualBankName;
     public TextView individualBankAccNo;
     public TextView individualPSUpload;
-    private TextInputEditText individualSPRemarks;
-
+    private TextInputEditText individualSORemarks;
+    String my_url;
     Button approve;
     Button reject;
     String approved;
@@ -62,12 +63,16 @@ public class SPUserDetails extends AppCompatActivity {
     String preferredunit;
     String bankName;
     String bankACCNumber;
-    String spRemarks;
+    String soRemarks;
+
+    StorageReference storageReference;
+    Uri image_uri = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_spuser_details);
+        setContentView(R.layout.activity_souser_details);
         db= FirebaseFirestore.getInstance();
         individualName  = (TextView) findViewById(R.id.IndividualName);
         individualFatherName=(TextView) findViewById(R.id.FatherName);
@@ -82,7 +87,7 @@ public class SPUserDetails extends AppCompatActivity {
         individualBankName=(TextView) findViewById(R.id.BankName);
         individualBankAccNo=(TextView) findViewById(R.id.BankACCNumber);
         individualPSUpload=(TextView) findViewById(R.id.psUpload);
-        individualSPRemarks=(TextInputEditText) findViewById(R.id.remarks);
+        individualSORemarks=(TextInputEditText) findViewById(R.id.remarks);
         approve=(Button)findViewById(R.id.approve);
         reject=(Button)findViewById(R.id.reject);
         individualName.setText("Name: "+getIntent().getStringExtra("uname").toString());
@@ -99,7 +104,7 @@ public class SPUserDetails extends AppCompatActivity {
         individualBankAccNo.setText("Bank Account Number: "+getIntent().getStringExtra("uBankAccNumber").toString());
         aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
 
-        individualSPRemarks.addTextChangedListener(new TextWatcher() {
+        individualSORemarks.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -112,25 +117,34 @@ public class SPUserDetails extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                spRemarks= individualSPRemarks.getText().toString();
+                soRemarks= individualSORemarks.getText().toString();
             }
         });
 
 
 
     }
+    public void addDocument(View view) {
+        Intent intent = new Intent();
+        intent.setType("application/pdf");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent,"PDF FILE SELECT"),12);
+    }
     public void enableSubmitIfReady(){
-        boolean isReady = individualSPRemarks.getText().toString().length() > 3;
+        boolean isReady = individualSORemarks.getText().toString().length() > 3;
         approve.setEnabled(isReady);
         reject.setEnabled(isReady);
     }
+
 
     public void document(View view) {
         String url=getIntent().getStringExtra("psUpload").toString();
         Uri uri = Uri.parse(url); // missing 'http://' will cause crashed
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
-          }
+
+    }
+
     public void approve(View view) {
         String approved="yes";
         updateData(aadharNumber,approved);
@@ -141,10 +155,48 @@ public class SPUserDetails extends AppCompatActivity {
         String approved="no";
         updateData(aadharNumber,approved);
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK){
+            image_uri = data.getData();
+            final String timestamp = ""+System.currentTimeMillis();
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+            final String messagePUSHID = timestamp;
+            Toast.makeText(SOUserDetails.this, image_uri.toString(),Toast.LENGTH_SHORT).show();
+            // Here we are uploading the pdf in firebase storage with the name of current time
+            final StorageReference filepath = storageReference.child(messagePUSHID+"."+"pdf");
+            filepath.putFile(image_uri).continueWithTask(new Continuation(){
+                @Override
+                public Object then(@NonNull Task task) throws  Exception{
+                    if(!task.isSuccessful()){
+                        throw task.getException();
+                    }
+                    return filepath.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>(){
+                @Override
+                public void onComplete(@NonNull Task<Uri> task){
+                    if(task.isSuccessful()){
+                        Uri uri = task.getResult();
+                        my_url = uri.toString();
+                        Toast.makeText(SOUserDetails.this,"File Uploaded Successfully",Toast.LENGTH_SHORT).show();
+//                        Intent i = new Intent(Intent.ACTION_VIEW);
+//                        i.setData(Uri.parse(my_url));
+//                        startActivity(i);
+                    }else{
+                        Toast.makeText(SOUserDetails.this,"Upload Failed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+    }
+
     private void updateData(String aadharNumber, String approved) {
         Map<String, Object> individualInfo = new HashMap<String, Object>();
-        individualInfo.put("spApproved", approved.trim());
-        individualInfo.put("sp_remarks", spRemarks.trim());
+        individualInfo.put("secOfficerUpload", my_url);
+        individualInfo.put("secOfficerApproved", approved);
+        individualInfo.put("so_remarks", soRemarks);
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -159,24 +211,23 @@ public class SPUserDetails extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
-                                    Toast.makeText(SPUserDetails.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(SPUserDetails.this,SPZone.class);
+                                    Toast.makeText(SOUserDetails.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(SOUserDetails.this, SOZone.class);
                                     startActivity(intent);
                                     finish();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(SPUserDetails.this, "Error occured", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SOUserDetails.this, "Error occured", Toast.LENGTH_SHORT).show();
                         }
                     });
 
                 }else{
 
-                    Toast.makeText(SPUserDetails.this, "Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SOUserDetails.this, "Failed", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
-
 }

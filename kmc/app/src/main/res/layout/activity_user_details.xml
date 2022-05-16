@@ -146,6 +146,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:enabled="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
@@ -217,7 +218,18 @@
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
-
+            <Button
+                android:id="@+id/uploadImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Upload Grounding Image"
+                android:layout_below="@id/password"
+                android:onClick="uploadGrounding"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:enabled="false"
+                style="?attr/materialButtonOutlinedStyle"
+                />
             <Button
                 android:id="@+id/submit"
                 android:layout_width="match_parent"

@@ -120,8 +120,11 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("ctrApproved", "");
             individualInfo.put("secOfficerUpload", "");
             individualInfo.put("secOfficerApproved", "");
+            individualInfo.put("so_remarks", "");
             individualInfo.put("mlaApproved", "");
-            individualInfo.put("remarks", "");
+            individualInfo.put("sp_remarks", "");
+            individualInfo.put("collector_remarks", "");
+            individualInfo.put("grounding_img", "");
             //
             db.collection("individuals").add(individualInfo)
                     .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
@@ -129,8 +132,8 @@ public class addIndividual extends AppCompatActivity {
                         public void onComplete(@NonNull Task<DocumentReference> task) {
                             Toast.makeText(addIndividual.this, "Inserted Successfully", Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(addIndividual.this, PSZone.class);
-                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(i);
+                            finish();
                         }
                     });
         } else {

@@ -29,7 +29,7 @@ public class SPLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         db=FirebaseFirestore.getInstance();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pslogin);
+        setContentView(R.layout.activity_splogin);
 
     }
 
@@ -49,8 +49,8 @@ public class SPLogin extends AppCompatActivity {
                     if(pass.equals(documentSnapshot.getString("password"))){
                         Intent i = new Intent(SPLogin.this, SPZone.class);
                         i.putExtra("zone",documentSnapshot.getString("zone"));
-                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(i);
+                        finish();
 
                     }else{
                         Toast.makeText(SPLogin.this, "Incorrect Password", Toast.LENGTH_SHORT).show();

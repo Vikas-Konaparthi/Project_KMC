@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.kmc.R;
@@ -46,6 +47,9 @@ public class userDetails extends AppCompatActivity {
     String preferredunit;
     String bankName;
     String bankACCNumber;
+    String collectorApproved="";
+
+    Button uploadImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +67,7 @@ public class userDetails extends AppCompatActivity {
         individualPreferredUnit=(TextInputLayout) findViewById(R.id.Preferredunit);
         individualBankName=(TextInputLayout) findViewById(R.id.BankName);
         individualBankAccNo=(TextInputLayout) findViewById(R.id.BankACCNumber);
+        uploadImage=(Button) findViewById(R.id.uploadImage);
         individualName.getEditText().setText(getIntent().getStringExtra("uname").toString());
         individualFatherName.getEditText().setText(getIntent().getStringExtra("ufname").toString());
         individualAge.getEditText().setText(getIntent().getStringExtra("uAge").toString());
@@ -75,6 +80,20 @@ public class userDetails extends AppCompatActivity {
         individualPreferredUnit.getEditText().setText(getIntent().getStringExtra("uPreferredUnit").toString());
         individualBankName.getEditText().setText(getIntent().getStringExtra("uBankName").toString());
         individualBankAccNo.getEditText().setText(getIntent().getStringExtra("uBankAccNumber").toString());
+
+        collectorApproved=getIntent().getStringExtra("uCollectorApproved").toString();
+        if(collectorApproved.equals("yes"))
+        {
+            uploadImage.setEnabled(true);
+        }
+
+
+
+    }
+
+    public void uploadGrounding(View view) {
+    }
+    public void submitButton(View view) {
         indivName = individualName.getEditText().getText().toString();
         fatherName = individualFatherName.getEditText().getText().toString();
         age = individualAge.getEditText().getText().toString();
@@ -84,11 +103,9 @@ public class userDetails extends AppCompatActivity {
         preferredunit = individualPreferredUnit.getEditText().getText().toString();
         bankName = individualBankName.getEditText().getText().toString();
         bankACCNumber = individualBankAccNo.getEditText().getText().toString();
-
-
-    }
-
-    public void submitButton(View view) {
+        village=individualVillage.getEditText().getText().toString();
+        mandal=individualMandal.getEditText().getText().toString();
+        district=individualDistrict.getEditText().getText().toString();
         updateData(aadharNumber,indivName,fatherName,age,houseNumber,mobileNumber,preferredunit, bankName,bankACCNumber);
     }
 
@@ -102,6 +119,9 @@ public class userDetails extends AppCompatActivity {
         individualInfo.put("preferredUnit", preferredUnit.trim());
         individualInfo.put("bankName", bankName.trim());
         individualInfo.put("bankAccNo", bankACCnumber.trim());
+        individualInfo.put("village", village.trim());
+        individualInfo.put("mandal", mandal.trim());
+        individualInfo.put("district", district.trim());
 
 
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)

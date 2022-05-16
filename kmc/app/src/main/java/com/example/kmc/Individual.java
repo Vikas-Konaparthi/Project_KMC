@@ -18,6 +18,9 @@ public class Individual {
     String mandal;
     String district;
     String dbAccount;
+    String sp_remarks;
+    String so_remarks;
+    String ctrApproved;
 
 
     public Individual(){}
@@ -30,7 +33,7 @@ public class Individual {
         this.psUpload = psUpload;
     }
 
-    public Individual(String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district,String dbAccount) {
+    public Individual(String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district,String dbAccount,String sp_remarks,String so_remarks,String ctrApproved) {
         this.name = name;
         this.fatherName = fatherName;
         this.age = age;
@@ -46,7 +49,34 @@ public class Individual {
         this.mandal=mandal;
         this.district=district;
         this.dbAccount=dbAccount;
+        this.sp_remarks=sp_remarks;
+        this.so_remarks=so_remarks;
+        this.ctrApproved=ctrApproved;
 
+    }
+
+    public String getSp_remarks() {
+        return sp_remarks;
+    }
+
+    public void setSp_remarks(String sp_remarks) {
+        this.sp_remarks = sp_remarks;
+    }
+
+    public String getSo_remarks() {
+        return so_remarks;
+    }
+
+    public void setSo_remarks(String so_remarks) {
+        this.so_remarks = so_remarks;
+    }
+
+    public String getCtrApproved() {
+        return ctrApproved;
+    }
+
+    public void setCtrApproved(String ctrApproved) {
+        this.ctrApproved = ctrApproved;
     }
 
     public String getDbAccount() {

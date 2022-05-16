@@ -74,5 +74,6 @@ public class PSZone extends AppCompatActivity {
 
         Intent intent = new Intent(getApplicationContext(), addIndividual.class);
         startActivity(intent);
+        finish();
     }
 }
