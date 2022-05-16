@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:layout_margin="10dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="top">
+
+
+            <TextView
+                android:id="@+id/IndividualName"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+            <TextView
+                android:id="@+id/FatherName"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+            <TextView
+                android:id="@+id/Age"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+            <TextView
+                android:id="@+id/HouseNumber"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:id="@+id/village"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:id="@+id/mandal"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:id="@+id/district"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+
+            <TextView
+                android:id="@+id/AadharNumber"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+
+            <TextView
+                android:id="@+id/MobileNumber"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+
+            <TextView
+                android:id="@+id/Preferredunit"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+            <TextView
+                android:id="@+id/BankName"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+            <TextView
+                android:id="@+id/BankACCNumber"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:id="@+id/spRemark"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:id="@+id/soRemark"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+            <Button
+                android:id="@+id/psDocument"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Panchayat Secretary Document"
+                android:layout_below="@id/password"
+                android:onClick="psdocument"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                style="?attr/materialButtonOutlinedStyle"
+                />
+            <Button
+                android:id="@+id/soDocument"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Section Officer"
+                android:layout_below="@id/password"
+                android:onClick="sodocument"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                style="?attr/materialButtonOutlinedStyle"
+                />
+
+            <Button
+                android:id="@+id/sanction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sanction Amount"
+                android:layout_below="@id/password"
+                android:onClick="sanctionAmount"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                style="?attr/materialButtonOutlinedStyle"
+                />
+            <Button
+                android:id="@+id/approve"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Approve"
+                android:layout_below="@id/password"
+                android:onClick="approve"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:enabled="false"
+                style="?attr/materialButtonOutlinedStyle"
+                />
+            <Button
+                android:id="@+id/reject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Reject"
+                android:layout_below="@id/password"
+                android:onClick="reject"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:enabled="false"
+                style="?attr/materialButtonOutlinedStyle"
+                />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
+

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.kmc.login.Collector_Login;
 import com.example.kmc.login.PSLogin;
 import com.example.kmc.login.SOLogin;
 import com.example.kmc.login.SPLogin;
@@ -48,8 +49,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(i);
                 break;
             case R.id.c4:
-//                i = new Intent(this,notifications.class);
-//                startActivity(i);
+                i = new Intent(this, Collector_Login.class);
+                startActivity(i);
                 break;
         }
 

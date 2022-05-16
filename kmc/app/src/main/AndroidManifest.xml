@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kmc">
         <activity
+            android:name=".CLogin.CollectorUserDetails"
+            android:exported="false" />
+        <activity
             android:name=".SOLogin.SOUserDetails"
             android:exported="false" />
         <activity
@@ -20,6 +23,12 @@
             android:exported="false" />
         <activity
             android:name=".SPLogin.SPUserDetails"
+            android:exported="false" />
+        <activity
+            android:name=".login.Collector_Login"
+            android:exported="false" />
+        <activity
+            android:name=".CLogin.CollectorZone"
             android:exported="false" />
         <activity
             android:name=".PSLogin.userDetails"
