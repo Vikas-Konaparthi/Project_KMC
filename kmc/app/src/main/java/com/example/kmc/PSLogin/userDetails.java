@@ -25,6 +25,9 @@ public class userDetails extends AppCompatActivity {
     public TextInputLayout individualFatherName;
     public TextInputLayout individualAge;
     public TextInputLayout individualHouseNo;
+    public TextInputLayout individualVillage;
+    public TextInputLayout individualMandal;
+    public TextInputLayout individualDistrict;
     public TextInputLayout individualAadhar;
     public TextInputLayout individualPhno;
     public TextInputLayout individualPreferredUnit;
@@ -35,6 +38,9 @@ public class userDetails extends AppCompatActivity {
     String fatherName;
     String age;
     String houseNumber;
+    String village;
+    String mandal;
+    String district;
     String aadharNumber;
     String mobileNumber;
     String preferredunit;
@@ -49,6 +55,9 @@ public class userDetails extends AppCompatActivity {
         individualFatherName=(TextInputLayout) findViewById(R.id.FatherName);
         individualAge=(TextInputLayout) findViewById(R.id.Age);
         individualHouseNo=(TextInputLayout) findViewById(R.id.HouseNumber);
+        individualVillage=(TextInputLayout) findViewById(R.id.village);
+        individualMandal=(TextInputLayout) findViewById(R.id.mandal);
+        individualDistrict=(TextInputLayout) findViewById(R.id.district);
         individualAadhar=(TextInputLayout) findViewById(R.id.AadharNumber);
         individualPhno=(TextInputLayout) findViewById(R.id.MobileNumber);
         individualPreferredUnit=(TextInputLayout) findViewById(R.id.Preferredunit);
@@ -58,6 +67,9 @@ public class userDetails extends AppCompatActivity {
         individualFatherName.getEditText().setText(getIntent().getStringExtra("ufname").toString());
         individualAge.getEditText().setText(getIntent().getStringExtra("uAge").toString());
         individualHouseNo.getEditText().setText(getIntent().getStringExtra("uHnumber").toString());
+        individualVillage.getEditText().setText(getIntent().getStringExtra("uVillage").toString());
+        individualMandal.getEditText().setText(getIntent().getStringExtra("uMandal").toString());
+        individualDistrict.getEditText().setText(getIntent().getStringExtra("uDistrict").toString());
         individualAadhar.getEditText().setText(getIntent().getStringExtra("uAadharNumber").toString());
         individualPhno.getEditText().setText(getIntent().getStringExtra("uMobileNo").toString());
         individualPreferredUnit.getEditText().setText(getIntent().getStringExtra("uPreferredUnit").toString());

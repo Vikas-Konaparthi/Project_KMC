@@ -85,6 +85,54 @@
 
 
         </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/village"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Village"
+            android:layout_below="@id/textView1"
+            android:layout_marginTop="40dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/mandal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Mandal"
+            android:layout_below="@id/textView1"
+            android:layout_marginTop="40dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/district"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter District"
+            android:layout_below="@id/textView1"
+            android:layout_marginTop="40dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/AadharNumber"
@@ -168,6 +216,7 @@
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:id="@+id/upload"
             android:layout_width="match_parent"

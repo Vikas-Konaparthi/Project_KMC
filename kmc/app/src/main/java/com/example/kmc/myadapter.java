@@ -42,6 +42,9 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>
               i.putExtra("ufname",datalist.get(position).getFatherName());
               i.putExtra("uAge",datalist.get(position).getAge());
               i.putExtra("uHnumber",datalist.get(position).getHouseNo());
+              i.putExtra("uVillage",datalist.get(position).getVillage());
+              i.putExtra("uMandal",datalist.get(position).getMandal());
+              i.putExtra("uDistrict",datalist.get(position).getDistrict());
               i.putExtra("uAadharNumber",datalist.get(position).getAadhar());
               i.putExtra("uMobileNo",datalist.get(position).getPhoneNo() );
               i.putExtra("uPreferredUnit",datalist.get(position).getPreferredUnit());

@@ -14,6 +14,9 @@ public class Individual {
     String bankAccNo;
     String psUpload;
     String spApproved;
+    String village;
+    String mandal;
+    String district;
 
 
     public Individual(){}
@@ -26,7 +29,7 @@ public class Individual {
         this.psUpload = psUpload;
     }
 
-    public Individual(String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved) {
+    public Individual(String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district) {
         this.name = name;
         this.fatherName = fatherName;
         this.age = age;
@@ -38,7 +41,34 @@ public class Individual {
         this.bankAccNo = bankAccNo;
         this.psUpload = psPDF;
         this.spApproved=spApproved;
+        this.village=village;
+        this.mandal=mandal;
+        this.district=district;
 
+    }
+
+    public String getVillage() {
+        return village;
+    }
+
+    public void setVillage(String village) {
+        this.village = village;
+    }
+
+    public String getMandal() {
+        return mandal;
+    }
+
+    public void setMandal(String mandal) {
+        this.mandal = mandal;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
     }
 
     public String getSpApproved() {

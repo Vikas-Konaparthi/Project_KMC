@@ -33,6 +33,9 @@ public class addIndividual extends AppCompatActivity {
     public TextInputLayout FatherName;
     public TextInputLayout Age;
     public TextInputLayout HouseNumber;
+    public TextInputLayout Village;
+    public TextInputLayout Mandal;
+    public TextInputLayout District;
     public TextInputLayout AadharNumber;
     public TextInputLayout MobileNumber;
     public TextInputLayout Preferredunit;
@@ -46,6 +49,9 @@ public class addIndividual extends AppCompatActivity {
     String fatherName;
     String age;
     String houseNumber;
+    String village;
+    String mandal;
+    String district;
     String aadharNumber;
     String mobileNumber;
     String preferredunit;
@@ -66,6 +72,9 @@ public class addIndividual extends AppCompatActivity {
         FatherName  = (TextInputLayout) findViewById(R.id.FatherName);
         Age  = (TextInputLayout) findViewById(R.id.Age);
         HouseNumber  = (TextInputLayout) findViewById(R.id.HouseNumber);
+        Village  = (TextInputLayout) findViewById(R.id.village);
+        Mandal  = (TextInputLayout) findViewById(R.id.mandal);
+        District  = (TextInputLayout) findViewById(R.id.district);
         AadharNumber = (TextInputLayout) findViewById(R.id.AadharNumber);
         MobileNumber = (TextInputLayout) findViewById(R.id.MobileNumber);
         Preferredunit = (TextInputLayout) findViewById(R.id.Preferredunit);
@@ -81,6 +90,9 @@ public class addIndividual extends AppCompatActivity {
         fatherName = FatherName.getEditText().getText().toString();
         age = Age.getEditText().getText().toString();
         houseNumber = HouseNumber.getEditText().getText().toString();
+        village = Village.getEditText().getText().toString();
+        mandal = Mandal.getEditText().getText().toString();
+        district = District.getEditText().getText().toString();
         aadharNumber = AadharNumber.getEditText().getText().toString();
         mobileNumber = MobileNumber.getEditText().getText().toString();
         preferredunit = Preferredunit.getEditText().getText().toString();
@@ -93,12 +105,16 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("fatherName", fatherName.trim());
             individualInfo.put("age", age.trim());
             individualInfo.put("houseNo", houseNumber.trim());
+            individualInfo.put("village", village.trim());
+            individualInfo.put("mandal", mandal.trim());
+            individualInfo.put("district", district.trim());
             individualInfo.put("aadhar", aadharNumber.trim());
             individualInfo.put("phoneNo", mobileNumber.trim());
             individualInfo.put("preferredUnit", preferredunit.trim());
             individualInfo.put("bankName", bankName.trim());
             individualInfo.put("bankAccNo", bankACCNumber.trim());
             //
+            individualInfo.put("dbAccount", "");
             individualInfo.put("psUpload", my_url);
             individualInfo.put("spApproved", "");
             individualInfo.put("ctrApproved", "");
