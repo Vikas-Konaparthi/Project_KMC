@@ -42,7 +42,7 @@ public class PSLogin extends AppCompatActivity {
         // click handling code
         String uname= username.getEditText().getText().toString();
         String pass= password.getEditText().getText().toString();
-        Log.d("myTag", uname);
+
         DocumentReference document=db.collection("psofficer").document(uname.trim());
         document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override

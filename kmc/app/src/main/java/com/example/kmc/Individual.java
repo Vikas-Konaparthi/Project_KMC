@@ -13,6 +13,7 @@ public class Individual {
     String bankName;
     String bankAccNo;
     String psUpload;
+    String spApproved;
 
 
     public Individual(){}
@@ -25,7 +26,7 @@ public class Individual {
         this.psUpload = psUpload;
     }
 
-    public Individual(String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF) {
+    public Individual(String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved) {
         this.name = name;
         this.fatherName = fatherName;
         this.age = age;
@@ -36,9 +37,17 @@ public class Individual {
         this.bankName = bankName;
         this.bankAccNo = bankAccNo;
         this.psUpload = psPDF;
+        this.spApproved=spApproved;
+
     }
 
+    public String getSpApproved() {
+        return spApproved;
+    }
 
+    public void setSpApproved(String spApproved) {
+        this.spApproved = spApproved;
+    }
 
     public String getName() {
         return name;
