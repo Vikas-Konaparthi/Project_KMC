@@ -1,4 +1,5 @@
 package com.example.kmc.CLogin;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,10 +8,9 @@ import android.os.Bundle;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
-import com.example.kmc.Individual;
+import com.example.kmc.District;
 import com.example.kmc.R;
-import com.example.kmc.myadapter2;
-import com.example.kmc.myadapter4;
+import com.example.kmc.myadapterMandals;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -18,53 +18,47 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-public class CollectorZone extends AppCompatActivity {
+public class CollectorMandalSelection extends AppCompatActivity {
     public Toolbar toolbar;
-    RecyclerView recyclerView;
-
-    ArrayList<Individual> datalist;
+    String district;
     FirebaseFirestore db;
-    String village;
+    ArrayList<District> datalist;
+    RecyclerView recyclerView;
+    myadapterMandals adapter;
 
-    myadapter4 adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_collectorzone);
+        setContentView(R.layout.activity_collector_mandal_selection);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        datalist=new ArrayList<>();
-        adapter=new myadapter4(datalist);
-        recyclerView.setAdapter(adapter);
-        db=FirebaseFirestore.getInstance();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            village= extras.getString("village");
+            district = extras.getString("district");
         }
-        db.collection("individuals").get()
+        datalist=new ArrayList<>();
+        adapter=new myadapterMandals(datalist, district);
+        recyclerView.setAdapter(adapter);
+
+        db=FirebaseFirestore.getInstance();
+        db.collection(district).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
-                        for(DocumentSnapshot d:list)
-                        {
-                            Individual obj=d.toObject(Individual.class);
-                            if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village.toLowerCase(Locale.ROOT)))
-                            {
-                                if(obj.getSpApproved().equals("yes"))
-                                datalist.add(obj);
-                            }
+                        for(DocumentSnapshot d:list) {
 
+                            District obj = d.toObject(District.class);
+
+                            obj.setUid(d.getId().toString());
+                            datalist.add(obj);
                         }
                         adapter.notifyDataSetChanged();
                     }
+
                 });
 
-        toolbar = findViewById(R.id.toolbar);
-        setActionBar(toolbar);
-
+        Toast.makeText(this, district, Toast.LENGTH_SHORT).show();
     }
 }
-

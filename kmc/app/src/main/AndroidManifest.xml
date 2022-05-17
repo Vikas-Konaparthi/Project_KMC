@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kmc">
         <activity
+            android:name=".CLogin.CollectorVillageSelection"
+            android:exported="false" />
+        <activity
+            android:name=".CLogin.CollectorMandalSelection"
+            android:exported="false" />
+        <activity
             android:name=".CLogin.CollectorUserDetails"
             android:exported="false" />
         <activity

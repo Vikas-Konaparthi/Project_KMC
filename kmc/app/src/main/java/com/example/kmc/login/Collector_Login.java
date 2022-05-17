@@ -8,7 +8,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.kmc.CLogin.CollectorZone;
+import com.example.kmc.CLogin.CollectorMandalSelection;
 import com.example.kmc.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -45,10 +45,10 @@ public class Collector_Login extends AppCompatActivity {
                 if(documentSnapshot.exists())
                 {
                     if(pass.equals(documentSnapshot.getString("password"))){
-                        Intent i = new Intent(Collector_Login.this, CollectorZone.class);
-                        i.putExtra("zone",documentSnapshot.getString("zone"));
-                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        Intent i = new Intent(Collector_Login.this, CollectorMandalSelection.class);
+                        i.putExtra("district",documentSnapshot.getString("District"));
                         startActivity(i);
+                        finish();
 
                     }else{
                         Toast.makeText(Collector_Login.this, "Incorrect Password", Toast.LENGTH_SHORT).show();

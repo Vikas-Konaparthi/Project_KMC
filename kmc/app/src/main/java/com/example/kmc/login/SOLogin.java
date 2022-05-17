@@ -43,7 +43,8 @@ public class SOLogin extends AppCompatActivity {
                 {
                     if(pass.equals(documentSnapshot.getString("password"))){
                         Intent i = new Intent(SOLogin.this, SOZone.class);
-                        i.putExtra("zone",documentSnapshot.getString("zone"));
+                        i.putExtra("mandal",documentSnapshot.getString("mandal"));
+                        i.putExtra("sector",documentSnapshot.getString("sector"));
                         startActivity(i);
                         finish();
 

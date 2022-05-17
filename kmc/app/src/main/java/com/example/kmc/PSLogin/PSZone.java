@@ -63,7 +63,7 @@ public class PSZone extends AppCompatActivity {
                                 {
                                     datalist.add(obj);
                                 }
-                                
+
                             }
                             adapter.notifyDataSetChanged();
                     }

@@ -48,7 +48,8 @@ public class SPLogin extends AppCompatActivity {
                 {
                     if(pass.equals(documentSnapshot.getString("password"))){
                         Intent i = new Intent(SPLogin.this, SPZone.class);
-                        i.putExtra("zone",documentSnapshot.getString("zone"));
+                        i.putExtra("village1",documentSnapshot.getString("village1"));
+                        i.putExtra("village2",documentSnapshot.getString("village2"));
                         startActivity(i);
                         finish();
 

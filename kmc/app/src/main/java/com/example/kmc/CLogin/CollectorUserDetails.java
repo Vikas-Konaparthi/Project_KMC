@@ -102,6 +102,8 @@ public class CollectorUserDetails extends AppCompatActivity {
         aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
 
 
+
+
     }
     public void sanctionAmount(View view) {
         sanctionAmount(aadharNumber);
