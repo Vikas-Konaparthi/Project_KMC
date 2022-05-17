@@ -51,7 +51,7 @@ public class PSLogin extends AppCompatActivity {
                 {
                     if(pass.equals(documentSnapshot.getString("password"))){
                         Intent i = new Intent(PSLogin.this, PSZone.class);
-                        i.putExtra("zone",documentSnapshot.getString("zone"));
+                        i.putExtra("village",documentSnapshot.getString("village"));
                         startActivity(i);
                         finish();
 

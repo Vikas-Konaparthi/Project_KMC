@@ -20,6 +20,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class PSZone extends AppCompatActivity {
 
@@ -30,6 +31,7 @@ public class PSZone extends AppCompatActivity {
     FirebaseFirestore db;
 
     myadapter adapter;
+    String village;
 
 
     @Override
@@ -42,6 +44,13 @@ public class PSZone extends AppCompatActivity {
         adapter=new myadapter(datalist);
         recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String value = extras.getString("village");
+            //The key argument here must match that used in the other activity
+            village=value;
+        }
+
         db.collection("individuals").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -50,7 +59,11 @@ public class PSZone extends AppCompatActivity {
                             for(DocumentSnapshot d:list)
                             {
                                 Individual obj=d.toObject(Individual.class);
-                                datalist.add(obj);
+                                if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village.toLowerCase(Locale.ROOT)))
+                                {
+                                    datalist.add(obj);
+                                }
+                                
                             }
                             adapter.notifyDataSetChanged();
                     }
@@ -58,12 +71,6 @@ public class PSZone extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setActionBar(toolbar);
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            String value = extras.getString("zone");
-            //The key argument here must match that used in the other activity
-            Toast.makeText(this, "hello "+value, Toast.LENGTH_SHORT).show();
-        }
 
 
     }
