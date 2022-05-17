@@ -32,6 +32,8 @@ public class PSZone extends AppCompatActivity {
 
     myadapter adapter;
     String village;
+    String district;
+    String mandal;
 
 
     @Override
@@ -47,9 +49,13 @@ public class PSZone extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String value = extras.getString("village");
-            //The key argument here must match that used in the other activity
             village=value;
+            mandal=extras.getString("mandal");
+            district=extras.getString("district");
+            //The key argument here must match that used in the other activity
+
         }
+
 
         db.collection("individuals").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -80,6 +86,9 @@ public class PSZone extends AppCompatActivity {
 //        startActivity(i);
 
         Intent intent = new Intent(getApplicationContext(), addIndividual.class);
+        intent.putExtra("village",village);
+        intent.putExtra("mandal",mandal);
+        intent.putExtra("district",district);
         startActivity(intent);
         finish();
     }

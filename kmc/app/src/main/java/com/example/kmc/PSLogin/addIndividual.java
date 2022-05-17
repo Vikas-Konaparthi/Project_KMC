@@ -58,6 +58,10 @@ public class addIndividual extends AppCompatActivity {
     String bankName;
     String bankACCNumber;
 
+    String v;
+    String d;
+    String m;
+
     StorageReference storageReference;
     Uri image_uri = null;
 
@@ -81,6 +85,16 @@ public class addIndividual extends AppCompatActivity {
         BankName  = (TextInputLayout) findViewById(R.id.BankName);
         BankACCNumber  = (TextInputLayout) findViewById(R.id.BankACCNumber);
         storageReference= FirebaseStorage.getInstance().getReference();
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            v = extras.getString("village");
+            m=extras.getString("mandal");
+            d=extras.getString("district");
+            //The key argument here must match that used in the other activity
+        }
+        Village.getEditText().setText(v);
+        Mandal.getEditText().setText(m);
+        District.getEditText().setText(d);
 
     }
 
