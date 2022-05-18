@@ -136,8 +136,10 @@ public class CollectorUserDetails extends AppCompatActivity {
             }
         });
         collectorApproved=getIntent().getStringExtra("uCollectorApproved").toString();
+        Toast.makeText(this, collectorApproved, Toast.LENGTH_SHORT).show();
         if(collectorApproved.equals("yes"))
         {
+
             approve.setEnabled(false);
             reject.setEnabled(false);
         }
@@ -150,16 +152,10 @@ public class CollectorUserDetails extends AppCompatActivity {
         release.setEnabled(isReady);
     }
     public void release(View view) {
-
-        Log.d("amount3", approvalAmount);
-        Log.d("amount4", qAmount);
-        Log.d("amount5", dbAccount);
         int amount1=Integer.parseInt(approvalAmount)+Integer.parseInt(qAmount);
         int amount2=Integer.parseInt(dbAccount)-amount1;
-        Log.d("amount1", String.valueOf(amount1));
-        Log.d("amount2", String.valueOf(amount2));
 
-                approvalAmount(aadharNumber,String.valueOf(amount1),String.valueOf(amount2));
+        approvalAmount(aadharNumber,String.valueOf(amount1),String.valueOf(amount2));
     }
     public void sanctionAmount(View view) {
         sanctionAmount(aadharNumber);
@@ -179,20 +175,21 @@ public class CollectorUserDetails extends AppCompatActivity {
     }
     public void approve(View view) {
         String approved="yes";
-        status="In Progress";
+        status="Approved";
         updateData(aadharNumber,approved,status);
     }
 
 
     public void reject(View view) {
         String approved="no";
-        status="rejected";
+        status="Rejected";
         updateData(aadharNumber,approved,status);
     }
     private void updateData(String aadharNumber, String approved,String status) {
         Map<String, Object> individualInfo = new HashMap<String, Object>();
         individualInfo.put("dbAccount", "1000000");
         individualInfo.put("status", status);
+        individualInfo.put("ctrApproved", approved);
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -230,6 +227,7 @@ public class CollectorUserDetails extends AppCompatActivity {
     private void sanctionAmount(String aadharNumber) {
         Map<String, Object> individualInfo = new HashMap<String, Object>();
         individualInfo.put("dbAccount", "1000000");
+        individualInfo.put("status", "Waiting for Section Officer Approval");
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -282,10 +280,8 @@ public class CollectorUserDetails extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
-                                    Toast.makeText(CollectorUserDetails.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(CollectorUserDetails.this, CollectorZone.class);
-                                    startActivity(intent);
-                                    finish();
+                                    Toast.makeText(CollectorUserDetails.this, "Approval Amount: "+amount1, Toast.LENGTH_SHORT).show();
+
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                         @Override

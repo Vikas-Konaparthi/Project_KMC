@@ -1,14 +1,19 @@
 package com.example.kmc.PSLogin;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.kmc.R;
+import com.example.kmc.SOLogin.SOUserDetails;
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -17,6 +22,8 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,6 +55,9 @@ public class userDetails extends AppCompatActivity {
     String bankName;
     String bankACCNumber;
     String collectorApproved="";
+    private final int PICK_IMAGE_REQUEST = 22;
+    String my_url;
+    Uri image_uri = null;
 
     Button uploadImage;
     @Override
@@ -86,12 +96,25 @@ public class userDetails extends AppCompatActivity {
         {
             uploadImage.setEnabled(true);
         }
+        if(collectorApproved.equals("yes"))
+        {
+
+            uploadImage.setEnabled(true);
+        }
 
 
 
     }
 
     public void uploadGrounding(View view) {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(
+                Intent.createChooser(
+                        intent,
+                        "Select Image from here..."),
+                PICK_IMAGE_REQUEST);
     }
     public void submitButton(View view) {
         indivName = individualName.getEditText().getText().toString();
@@ -106,10 +129,10 @@ public class userDetails extends AppCompatActivity {
         village=individualVillage.getEditText().getText().toString();
         mandal=individualMandal.getEditText().getText().toString();
         district=individualDistrict.getEditText().getText().toString();
-        updateData(aadharNumber,indivName,fatherName,age,houseNumber,mobileNumber,preferredunit, bankName,bankACCNumber);
+        updateData(aadharNumber,indivName,fatherName,age,houseNumber,mobileNumber,preferredunit, bankName,bankACCNumber,my_url);
     }
 
-    public void updateData(String aadharNumber,String name,String fname, String age,String houseNo,String mobileNumber,String preferredUnit,String bankName,String bankACCnumber){
+    public void updateData(String aadharNumber,String name,String fname, String age,String houseNo,String mobileNumber,String preferredUnit,String bankName,String bankACCnumber,String my_url){
         Map<String, Object> individualInfo = new HashMap<String, Object>();
         individualInfo.put("name", name.trim());
         individualInfo.put("fatherName", fname.trim());
@@ -122,6 +145,7 @@ public class userDetails extends AppCompatActivity {
         individualInfo.put("village", village.trim());
         individualInfo.put("mandal", mandal.trim());
         individualInfo.put("district", district.trim());
+        individualInfo.put("grounding_img", my_url.trim());
 
 
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
@@ -153,6 +177,41 @@ public class userDetails extends AppCompatActivity {
             }
         });
 
+    }
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK){
+            image_uri = data.getData();
+            final String timestamp = ""+System.currentTimeMillis();
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+            final String messagePUSHID = timestamp;
+            Toast.makeText(userDetails.this, image_uri.toString(),Toast.LENGTH_SHORT).show();
+            // Here we are uploading the pdf in firebase storage with the name of current time
+            final StorageReference filepath = storageReference.child(messagePUSHID+"."+"pdf");
+            filepath.putFile(image_uri).continueWithTask(new Continuation(){
+                @Override
+                public Object then(@NonNull Task task) throws  Exception{
+                    if(!task.isSuccessful()){
+                        throw task.getException();
+                    }
+                    return filepath.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>(){
+                @Override
+                public void onComplete(@NonNull Task<Uri> task){
+                    if(task.isSuccessful()){
+                        Uri uri = task.getResult();
+                        my_url = uri.toString();
+                        Toast.makeText(userDetails.this,"File Uploaded Successfully",Toast.LENGTH_SHORT).show();
+//                        Intent i = new Intent(Intent.ACTION_VIEW);
+//                        i.setData(Uri.parse(my_url));
+//                        startActivity(i);
+                    }else{
+                        Toast.makeText(userDetails.this,"Upload Failed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 
 }

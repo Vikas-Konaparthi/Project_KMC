@@ -139,7 +139,7 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("sp_remarks", "");
             individualInfo.put("collector_remarks", "");
             individualInfo.put("grounding_img", "");
-            individualInfo.put("status", "In Progress");
+            individualInfo.put("status", "Waiting for Special Officer Approval");
             individualInfo.put("approvalAmount", "0");
             //
             db.collection("individuals").add(individualInfo)
