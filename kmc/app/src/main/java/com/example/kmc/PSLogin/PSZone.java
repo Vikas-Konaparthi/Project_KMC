@@ -65,7 +65,9 @@ public class PSZone extends AppCompatActivity {
                             for(DocumentSnapshot d:list)
                             {
                                 Individual obj=d.toObject(Individual.class);
-                                if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village.toLowerCase(Locale.ROOT)))
+                                assert obj != null;
+                                String villageName=obj.getVillage();
+                                if(villageName.toLowerCase(Locale.ROOT).equals(village.toLowerCase(Locale.ROOT)))
                                 {
                                     datalist.add(obj);
                                 }

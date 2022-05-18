@@ -119,6 +119,35 @@
                 android:gravity="center"
                 style="?attr/materialButtonOutlinedStyle"
                 />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Quotation Amount"
+                android:layout_below="@id/document"
+                android:layout_marginTop="30dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:id="@+id/qAmount"
+                    android:enabled="false"
+                    android:layout_height="wrap_content"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:id="@+id/release"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Release Amount"
+                android:layout_below="@id/password"
+                android:onClick="release"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:enabled="false"
+                style="?attr/materialButtonOutlinedStyle"
+                />
             <Button
                 android:id="@+id/approve"
                 android:layout_width="match_parent"

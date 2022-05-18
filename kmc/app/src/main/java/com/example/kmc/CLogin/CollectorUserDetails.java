@@ -45,6 +45,8 @@ public class CollectorUserDetails extends AppCompatActivity {
     public TextView individualSPRemark;
     public TextView individualSORemark;
     private TextInputEditText individualSPRemarks;
+    private TextInputEditText individualQAmount;
+    Button release;
 
     Button approve;
     Button reject;
@@ -61,6 +63,9 @@ public class CollectorUserDetails extends AppCompatActivity {
     String bankACCNumber;
     String spRemarks;
     String soRemarks;
+    String releaseAmount;
+    String collectorApproved;
+    String status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +86,9 @@ public class CollectorUserDetails extends AppCompatActivity {
         individualBankAccNo=(TextView) findViewById(R.id.BankACCNumber);
         individualSPRemark=(TextView) findViewById(R.id.spRemark);
         individualSORemark=(TextView) findViewById(R.id.soRemark);
+        individualQAmount=(TextInputEditText) findViewById(R.id.qAmount);
 
+        release=(Button)findViewById(R.id.release);
         approve=(Button)findViewById(R.id.approve);
         reject=(Button)findViewById(R.id.reject);
         individualName.setText("Name: "+getIntent().getStringExtra("uname").toString());
@@ -100,9 +107,44 @@ public class CollectorUserDetails extends AppCompatActivity {
         individualSORemark.setText("Section Officer Remark: "+getIntent().getStringExtra("uSORemarks").toString());
 
         aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
+        String soApproved=getIntent().getStringExtra("uSOApproved").toString();
+        if(soApproved.equals("yes"))
+        {
+            approve.setEnabled(true);
+            reject.setEnabled(true);
+            individualQAmount.setEnabled(true);
+        }
+        individualQAmount.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                enableReleaseIfReady();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                releaseAmount= individualQAmount.getText().toString();
+            }
+        });
+        collectorApproved=getIntent().getStringExtra("uCollectorApproved").toString();
+        if(collectorApproved.equals("yes"))
+        {
+            approve.setEnabled(false);
+            reject.setEnabled(false);
+        }
 
 
 
+    }
+    public void enableReleaseIfReady(){
+        boolean isReady = individualQAmount.getText().toString().length() > 3;
+        release.setEnabled(isReady);
+    }
+    public void release(View view) {
 
     }
     public void sanctionAmount(View view) {
@@ -123,17 +165,20 @@ public class CollectorUserDetails extends AppCompatActivity {
     }
     public void approve(View view) {
         String approved="yes";
-        updateData(aadharNumber,approved);
+        status="In Progress";
+        updateData(aadharNumber,approved,status);
     }
 
 
     public void reject(View view) {
         String approved="no";
-        updateData(aadharNumber,approved);
+        status="rejected";
+        updateData(aadharNumber,approved,status);
     }
-    private void updateData(String aadharNumber, String approved) {
+    private void updateData(String aadharNumber, String approved,String status) {
         Map<String, Object> individualInfo = new HashMap<String, Object>();
         individualInfo.put("dbAccount", "1000000");
+        individualInfo.put("status", status);
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

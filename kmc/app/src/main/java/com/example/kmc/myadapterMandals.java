@@ -27,7 +27,7 @@ public class myadapterMandals extends RecyclerView.Adapter<myadapterMandals.myvi
     @NonNull
     @Override
     public myadapterMandals.myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerow,parent,false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerow2,parent,false);
         return new myadapterMandals.myviewholder(view);
     }
 

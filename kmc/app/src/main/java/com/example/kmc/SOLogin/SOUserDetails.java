@@ -64,6 +64,8 @@ public class SOUserDetails extends AppCompatActivity {
     String bankName;
     String bankACCNumber;
     String soRemarks;
+    String collectorApproved;
+    String status;
 
     StorageReference storageReference;
     Uri image_uri = null;
@@ -120,6 +122,13 @@ public class SOUserDetails extends AppCompatActivity {
                 soRemarks= individualSORemarks.getText().toString();
             }
         });
+        collectorApproved=getIntent().getStringExtra("uCollectorApproved").toString();
+        if(collectorApproved.equals("yes"))
+        {
+            approve.setEnabled(false);
+            reject.setEnabled(false);
+            individualSORemarks.setEnabled(false);
+        }
 
 
 
@@ -147,13 +156,15 @@ public class SOUserDetails extends AppCompatActivity {
 
     public void approve(View view) {
         String approved="yes";
-        updateData(aadharNumber,approved);
+        status="Waiting for Collector Approval";
+        updateData(aadharNumber,approved,status);
     }
 
 
     public void reject(View view) {
         String approved="no";
-        updateData(aadharNumber,approved);
+        status="rejected";
+        updateData(aadharNumber,approved,status);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -192,11 +203,12 @@ public class SOUserDetails extends AppCompatActivity {
         }
     }
 
-    private void updateData(String aadharNumber, String approved) {
+    private void updateData(String aadharNumber, String approved,String status) {
         Map<String, Object> individualInfo = new HashMap<String, Object>();
         individualInfo.put("secOfficerUpload", my_url);
         individualInfo.put("secOfficerApproved", approved);
         individualInfo.put("so_remarks", soRemarks);
+        individualInfo.put("status", status);
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

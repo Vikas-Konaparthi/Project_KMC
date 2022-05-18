@@ -63,6 +63,8 @@ public class SPUserDetails extends AppCompatActivity {
     String bankName;
     String bankACCNumber;
     String spRemarks;
+    String collectorApproved;
+    String status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +117,14 @@ public class SPUserDetails extends AppCompatActivity {
                 spRemarks= individualSPRemarks.getText().toString();
             }
         });
+        collectorApproved=getIntent().getStringExtra("uCollectorApproved").toString();
+        if(collectorApproved.equals("yes"))
+        {
+            approve.setEnabled(false);
+            reject.setEnabled(false);
+            individualSPRemarks.setEnabled(false);
+        }
+
 
 
 
@@ -133,14 +143,14 @@ public class SPUserDetails extends AppCompatActivity {
           }
     public void approve(View view) {
         String approved="yes";
-        String status="In Progress";
+        status="Waiting for Collector Sanction";
         updateData(aadharNumber,approved,status);
     }
 
 
     public void reject(View view) {
         String approved="no";
-        String status="Rejected";
+        status="Rejected";
         updateData(aadharNumber,approved,status);
     }
     private void updateData(String aadharNumber, String approved,String status) {
