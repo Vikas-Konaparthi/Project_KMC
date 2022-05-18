@@ -133,18 +133,21 @@ public class SPUserDetails extends AppCompatActivity {
           }
     public void approve(View view) {
         String approved="yes";
-        updateData(aadharNumber,approved);
+        String status="In Progress";
+        updateData(aadharNumber,approved,status);
     }
 
 
     public void reject(View view) {
         String approved="no";
-        updateData(aadharNumber,approved);
+        String status="Rejected";
+        updateData(aadharNumber,approved,status);
     }
-    private void updateData(String aadharNumber, String approved) {
+    private void updateData(String aadharNumber, String approved,String status) {
         Map<String, Object> individualInfo = new HashMap<String, Object>();
         individualInfo.put("spApproved", approved.trim());
         individualInfo.put("sp_remarks", spRemarks.trim());
+        individualInfo.put("status", status);
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -178,5 +181,6 @@ public class SPUserDetails extends AppCompatActivity {
             }
         });
     }
+
 
 }

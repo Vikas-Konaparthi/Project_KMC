@@ -22,6 +22,7 @@ public class Individual {
     String so_remarks;
     String ctrApproved;
     String secOfficerUpload;
+    String status;
 
     public String getSecOfficerUpload() {
         return secOfficerUpload;
@@ -41,7 +42,7 @@ public class Individual {
         this.psUpload = psUpload;
     }
 
-    public Individual(String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district,String dbAccount,String sp_remarks,String so_remarks,String ctrApproved,String secOfficerUpload) {
+    public Individual(String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district,String dbAccount,String sp_remarks,String so_remarks,String ctrApproved,String secOfficerUpload,String status) {
         this.name = name;
         this.fatherName = fatherName;
         this.age = age;
@@ -61,7 +62,16 @@ public class Individual {
         this.so_remarks=so_remarks;
         this.ctrApproved=ctrApproved;
         this.secOfficerUpload=secOfficerUpload;
+        this.status=status;
 
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getSp_remarks() {

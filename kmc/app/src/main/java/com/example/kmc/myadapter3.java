@@ -35,6 +35,8 @@ public class myadapter3 extends RecyclerView.Adapter<myadapter3.myviewholder>
     @Override
     public void onBindViewHolder(@NonNull myadapter3.myviewholder holder, @SuppressLint("RecyclerView") int position) {
         holder.t1.setText(datalist.get(position).getName());
+        holder.t2.setText(datalist.get(position).getStatus());
+
 
         holder.t1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,9 +74,11 @@ public class myadapter3 extends RecyclerView.Adapter<myadapter3.myviewholder>
     class myviewholder extends RecyclerView.ViewHolder
     {
         TextView t1;
+        TextView t2;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             t1=itemView.findViewById(R.id.t1);
+            t2=itemView.findViewById(R.id.t2);
         }
     }
 }

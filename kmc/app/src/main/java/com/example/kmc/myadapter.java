@@ -2,6 +2,7 @@ package com.example.kmc;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.kmc.PSLogin.userDetails;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.text.BreakIterator;
 import java.util.ArrayList;
 
 public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>
@@ -33,6 +35,8 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, @SuppressLint("RecyclerView") int position) {
       holder.t1.setText(datalist.get(position).getName());
+        holder.t2.setText(datalist.get(position).getStatus());
+
 
       holder.t1.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -66,10 +70,12 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>
 
     class myviewholder extends RecyclerView.ViewHolder
     {
-       TextView t1;
+        TextView t1;
+        TextView t2;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             t1=itemView.findViewById(R.id.t1);
+            t2=itemView.findViewById(R.id.t2);
         }
     }
 }
