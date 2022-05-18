@@ -140,6 +140,7 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("collector_remarks", "");
             individualInfo.put("grounding_img", "");
             individualInfo.put("status", "In Progress");
+            individualInfo.put("approvalAmount", "0");
             //
             db.collection("individuals").add(individualInfo)
                     .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {

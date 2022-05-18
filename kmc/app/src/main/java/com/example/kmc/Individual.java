@@ -24,6 +24,7 @@ public class Individual {
     String secOfficerUpload;
     String status;
     String secOfficerApproved;
+    String approvalAmount;
 
 
     public String getSecOfficerUpload() {
@@ -44,7 +45,7 @@ public class Individual {
         this.psUpload = psUpload;
     }
 
-    public Individual(String secOfficerApproved,String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district,String dbAccount,String sp_remarks,String so_remarks,String ctrApproved,String secOfficerUpload,String status) {
+    public Individual(String approvalAmount,String secOfficerApproved,String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district,String dbAccount,String sp_remarks,String so_remarks,String ctrApproved,String secOfficerUpload,String status) {
         this.name = name;
         this.fatherName = fatherName;
         this.age = age;
@@ -66,7 +67,16 @@ public class Individual {
         this.secOfficerUpload=secOfficerUpload;
         this.status=status;
         this.secOfficerApproved=secOfficerApproved;
+        this.approvalAmount=approvalAmount;
 
+    }
+
+    public String getApprovalAmount() {
+        return approvalAmount;
+    }
+
+    public void setApprovalAmount(String approvalAmount) {
+        this.approvalAmount = approvalAmount;
     }
 
     public String getSecOfficerApproved() {

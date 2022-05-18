@@ -83,6 +83,8 @@ public class myadapter4 extends RecyclerView.Adapter<myadapter4.myviewholder>
                 i.putExtra("uSORemarks",datalist.get(position).getSo_remarks());
                 i.putExtra("uSOApproved",datalist.get(position).getSecOfficerApproved());
                 i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
+                i.putExtra("uCollectorApprovalAmount",datalist.get(position).getApprovalAmount());
+                i.putExtra("uDBAccount",datalist.get(position).getDbAccount());
 
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
