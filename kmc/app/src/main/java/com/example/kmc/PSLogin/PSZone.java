@@ -73,11 +73,14 @@ public class PSZone extends AppCompatActivity {
                             {
 
                                 Individual obj=d.toObject(Individual.class);
-                                
-                                if(obj.getVillage().toLowerCase(Locale.ROOT).toString().equals(village.toLowerCase(Locale.ROOT)))
+                                if(obj.getVillage()!=null)
                                 {
-                                    datalist.add(obj);
+                                    if(obj.getVillage().toLowerCase(Locale.ROOT).toString().equals(village.toLowerCase(Locale.ROOT)))
+                                    {
+                                        datalist.add(obj);
+                                    }                                    
                                 }
+
 
                             }
                             adapter.notifyDataSetChanged();
