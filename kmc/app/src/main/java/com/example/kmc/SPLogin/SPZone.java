@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -30,6 +32,7 @@ public class SPZone extends AppCompatActivity {
     myadapter2 adapter;
     String village1;
     String village2;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +50,9 @@ public class SPZone extends AppCompatActivity {
         }
         adapter=new myadapter2(datalist,village1,village2);
         recyclerView.setAdapter(adapter);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+
         db=FirebaseFirestore.getInstance();
 
 
@@ -63,6 +69,7 @@ public class SPZone extends AppCompatActivity {
                             }
                         }
                         adapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
                     }
                 });
 

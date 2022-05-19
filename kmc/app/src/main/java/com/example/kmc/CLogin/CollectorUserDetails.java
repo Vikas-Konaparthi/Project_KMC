@@ -196,7 +196,7 @@ public class CollectorUserDetails extends AppCompatActivity {
             }
 
     }
-    public void groundingImage(){
+    public void groundingImage(View view){
         Uri uri = Uri.parse(groundImage); // missing 'http://' will cause crashed
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);

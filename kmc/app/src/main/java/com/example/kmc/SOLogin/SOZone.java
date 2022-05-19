@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -32,6 +34,7 @@ public class SOZone extends AppCompatActivity {
     String mandal;
     String sector;
     String preferredUnit;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,8 @@ public class SOZone extends AppCompatActivity {
         adapter=new myadapter3(datalist,mandal,sector);
         recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
         db.collection("individuals").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -64,7 +69,7 @@ public class SOZone extends AppCompatActivity {
                         {
                             Individual obj=d.toObject(Individual.class);
                             if(obj.getMandal().toLowerCase(Locale.ROOT).equals(mandal.toLowerCase(Locale.ROOT))) {
-                                if (obj.getDbAccount().equals("1000000")) {
+                                if (obj.getDbAccount().equals("1000000")||obj.getCtrApproved().equals("yes")) {
                                     if (obj.getPreferredUnit().toLowerCase(Locale.ROOT).equals(sector.toLowerCase(Locale.ROOT))) {
                                         datalist.add(obj);
 
@@ -74,6 +79,7 @@ public class SOZone extends AppCompatActivity {
                         }
 
                         adapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
                     }
                 });
 

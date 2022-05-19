@@ -4,6 +4,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -27,6 +29,7 @@ public class CollectorZone extends AppCompatActivity {
     ArrayList<Individual> datalist;
     FirebaseFirestore db;
     String village;
+    ProgressBar progressBar;
 
     myadapter4 adapter;
     @Override
@@ -43,6 +46,9 @@ public class CollectorZone extends AppCompatActivity {
         adapter=new myadapter4(datalist,village);
         recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+
 
 
         db.collection("individuals").get()
@@ -61,6 +67,7 @@ public class CollectorZone extends AppCompatActivity {
 
                         }
                         adapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
                     }
                 });
 

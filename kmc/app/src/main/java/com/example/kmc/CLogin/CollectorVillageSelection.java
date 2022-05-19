@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -29,6 +31,7 @@ public class CollectorVillageSelection extends AppCompatActivity {
     ArrayList<Mandals> datalist;
     RecyclerView recyclerView;
     myadapterVillage adapter;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,8 @@ public class CollectorVillageSelection extends AppCompatActivity {
         datalist=new ArrayList<>();
         adapter=new myadapterVillage(datalist);
         recyclerView.setAdapter(adapter);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             mandal = extras.getString("mandal");
@@ -56,6 +61,7 @@ public class CollectorVillageSelection extends AppCompatActivity {
                             datalist.add(obj);
                         }
                         adapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
                     }
 
                 });

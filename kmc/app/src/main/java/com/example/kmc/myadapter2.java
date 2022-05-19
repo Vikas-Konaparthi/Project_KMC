@@ -85,7 +85,7 @@ public class myadapter2 extends RecyclerView.Adapter<myadapter2.myviewholder>
                 i.putExtra("village2",village2);
                 i.putExtra("uApprovalAmount",datalist.get(position).getApprovalAmount());
                 i.putExtra("uDbAccount",datalist.get(position).getDbAccount());
-
+                i.putExtra("uGroundingImage",datalist.get(position).getGrounding_img());
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.t1.getContext().startActivity(i);
@@ -114,7 +114,7 @@ public class myadapter2 extends RecyclerView.Adapter<myadapter2.myviewholder>
                 i.putExtra("village2",village2);
                 i.putExtra("uApprovalAmount",datalist.get(position).getApprovalAmount());
                 i.putExtra("uDbAccount",datalist.get(position).getDbAccount());
-
+                i.putExtra("uGroundingImage",datalist.get(position).getGrounding_img());
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.t2.getContext().startActivity(i);

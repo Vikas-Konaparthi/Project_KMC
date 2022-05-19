@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -26,6 +28,7 @@ public class CollectorMandalSelection extends AppCompatActivity {
     ArrayList<District> datalist;
     RecyclerView recyclerView;
     myadapterMandals adapter;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,8 @@ public class CollectorMandalSelection extends AppCompatActivity {
         datalist=new ArrayList<>();
         adapter=new myadapterMandals(datalist, district);
         recyclerView.setAdapter(adapter);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
         db=FirebaseFirestore.getInstance();
         db.collection(district).get()
@@ -55,6 +60,7 @@ public class CollectorMandalSelection extends AppCompatActivity {
                             datalist.add(obj);
                         }
                         adapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
                     }
 
                 });

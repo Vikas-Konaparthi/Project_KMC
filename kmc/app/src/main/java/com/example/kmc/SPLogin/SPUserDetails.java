@@ -73,6 +73,8 @@ public class SPUserDetails extends AppCompatActivity {
     String district;
     String village1;
     String village2;
+    String groundImage;
+    Button groundImageButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +99,7 @@ public class SPUserDetails extends AppCompatActivity {
         getIndividualApprovalAmount=(TextView) findViewById(R.id.approvalAmount);
         approve=(Button)findViewById(R.id.approve);
         reject=(Button)findViewById(R.id.reject);
+        groundImageButton=(Button)findViewById(R.id.groundImage);
         individualName.setText("Name: "+getIntent().getStringExtra("uname").toString());
         individualFatherName.setText("Father Name: "+getIntent().getStringExtra("ufname").toString());
         individualAge.setText("Age : "+getIntent().getStringExtra("uAge").toString());
@@ -150,8 +153,17 @@ public class SPUserDetails extends AppCompatActivity {
         }
 
 
+        groundImage=getIntent().getStringExtra("uGroundingImage").toString();
+        if(!groundImage.equals(""))
+        {
+            groundImageButton.setEnabled(true);
+        }
 
-
+    }
+    public void groundingImage(View view){
+        Uri uri = Uri.parse(groundImage); // missing 'http://' will cause crashed
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
     public void enableSubmitIfReady(){
         boolean isReady = individualSPRemarks.getText().toString().length() > 3;

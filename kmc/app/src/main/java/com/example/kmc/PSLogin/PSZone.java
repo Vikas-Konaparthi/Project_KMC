@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -36,7 +37,7 @@ public class PSZone extends AppCompatActivity {
     String district;
     String mandal;
 
-
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,9 @@ public class PSZone extends AppCompatActivity {
         adapter=new myadapter(datalist);
         recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String value = extras.getString("village");
@@ -67,6 +71,7 @@ public class PSZone extends AppCompatActivity {
                             List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
                             for(DocumentSnapshot d:list)
                             {
+
                                 Individual obj=d.toObject(Individual.class);
                                 
                                 if(obj.getVillage().toLowerCase(Locale.ROOT).toString().equals(village.toLowerCase(Locale.ROOT)))
@@ -76,6 +81,7 @@ public class PSZone extends AppCompatActivity {
 
                             }
                             adapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
                     }
                 });
 

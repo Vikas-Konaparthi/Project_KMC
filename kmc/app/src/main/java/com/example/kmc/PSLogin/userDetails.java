@@ -57,8 +57,9 @@ public class userDetails extends AppCompatActivity {
     String bankACCNumber;
     String collectorApproved="";
     String bankIFSC;
+    String groundingStatus;
     private final int PICK_IMAGE_REQUEST = 22;
-    String my_url;
+    String my_url="";
     Uri image_uri = null;
 
     Button uploadImage;
@@ -145,6 +146,8 @@ public class userDetails extends AppCompatActivity {
         individualInfo.put("mandal", mandal.trim());
         individualInfo.put("district", district.trim());
         individualInfo.put("grounding_img", my_url.trim());
+        individualInfo.put("groundingStatus", "Successfully Grounded");
+
 
 
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
@@ -176,7 +179,6 @@ public class userDetails extends AppCompatActivity {
                              });
 
                          }else{
-
                              Toast.makeText(userDetails.this, "Failed", Toast.LENGTH_SHORT).show();
                          }
             }
