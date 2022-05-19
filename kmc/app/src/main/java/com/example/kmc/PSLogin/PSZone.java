@@ -68,7 +68,7 @@ public class PSZone extends AppCompatActivity {
                             for(DocumentSnapshot d:list)
                             {
                                 Individual obj=d.toObject(Individual.class);
-
+                                
                                 if(obj.getVillage().toLowerCase(Locale.ROOT).toString().equals(village.toLowerCase(Locale.ROOT)))
                                 {
                                     datalist.add(obj);

@@ -26,7 +26,11 @@ public class Individual {
     String secOfficerApproved;
     String approvalAmount;
     String bankIFSC;
-
+    String vendorName;
+    String vendorAccountNo;
+    String vendorIFSC;
+    String groundingStatus;
+    String grounding_img;
 
     public String getSecOfficerUpload() {
         return secOfficerUpload;
@@ -46,7 +50,7 @@ public class Individual {
         this.psUpload = psUpload;
     }
 
-    public Individual(String bankIFSC,String approvalAmount,String secOfficerApproved,String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district,String dbAccount,String sp_remarks,String so_remarks,String ctrApproved,String secOfficerUpload,String status) {
+    public Individual(String grounding_img,String vendorName,String vendorAccountNo,String vendorIFSC,String groundingStatus,String bankIFSC,String approvalAmount,String secOfficerApproved,String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district,String dbAccount,String sp_remarks,String so_remarks,String ctrApproved,String secOfficerUpload,String status) {
         this.name = name;
         this.fatherName = fatherName;
         this.age = age;
@@ -70,7 +74,52 @@ public class Individual {
         this.secOfficerApproved=secOfficerApproved;
         this.approvalAmount=approvalAmount;
         this.bankIFSC=bankIFSC;
+        this.vendorAccountNo=vendorAccountNo;
+        this.vendorIFSC=vendorIFSC;
+        this.vendorName=vendorName;
+        this.groundingStatus=groundingStatus;
+        this.grounding_img=grounding_img;
 
+    }
+
+    public String getGrounding_img() {
+        return grounding_img;
+    }
+
+    public void setGrounding_img(String grounding_img) {
+        this.grounding_img = grounding_img;
+    }
+
+    public String getVendorName() {
+        return vendorName;
+    }
+
+    public void setVendorName(String vendorName) {
+        this.vendorName = vendorName;
+    }
+
+    public String getVendorAccountNo() {
+        return vendorAccountNo;
+    }
+
+    public void setVendorAccountNo(String vendorAccountNo) {
+        this.vendorAccountNo = vendorAccountNo;
+    }
+
+    public String getVendorIFSC() {
+        return vendorIFSC;
+    }
+
+    public void setVendorIFSC(String vendorIFSC) {
+        this.vendorIFSC = vendorIFSC;
+    }
+
+    public String getGroundingStatus() {
+        return groundingStatus;
+    }
+
+    public void setGroundingStatus(String groundingStatus) {
+        this.groundingStatus = groundingStatus;
     }
 
     public String getBankIFSC() {

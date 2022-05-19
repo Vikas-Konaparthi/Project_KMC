@@ -49,6 +49,8 @@ public class SPUserDetails extends AppCompatActivity {
     public TextView individualPSUpload;
     public TextView getIndividualBankIFSC;
     private TextInputEditText individualSPRemarks;
+    public TextView getIndividualDBAmount;
+    public TextView getIndividualApprovalAmount;
 
     Button approve;
     Button reject;
@@ -91,6 +93,8 @@ public class SPUserDetails extends AppCompatActivity {
         getIndividualBankIFSC=(TextView) findViewById(R.id.BankIFSC);
         individualPSUpload=(TextView) findViewById(R.id.psUpload);
         individualSPRemarks=(TextInputEditText) findViewById(R.id.remarks);
+        getIndividualDBAmount=(TextView) findViewById(R.id.dbAmount);
+        getIndividualApprovalAmount=(TextView) findViewById(R.id.approvalAmount);
         approve=(Button)findViewById(R.id.approve);
         reject=(Button)findViewById(R.id.reject);
         individualName.setText("Name: "+getIntent().getStringExtra("uname").toString());
@@ -106,6 +110,9 @@ public class SPUserDetails extends AppCompatActivity {
         individualBankName.setText("Bank Name: "+getIntent().getStringExtra("uBankName").toString());
         individualBankAccNo.setText("Bank Account Number: "+getIntent().getStringExtra("uBankAccNumber").toString());
         getIndividualBankIFSC.setText("Bank IFSC: "+getIntent().getStringExtra("uBankIFSC").toString());
+        getIndividualApprovalAmount.setText("Approval Amount: "+getIntent().getStringExtra("uApprovalAmount").toString());
+        getIndividualDBAmount.setText("Dalita Bandhu Account Amount: "+getIntent().getStringExtra("uDbAccount").toString());
+
         aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
         village=getIntent().getStringExtra("uVillage").toString();
         mandal= getIntent().getStringExtra("uMandal").toString();

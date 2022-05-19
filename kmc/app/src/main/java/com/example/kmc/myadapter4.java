@@ -90,6 +90,13 @@ public class myadapter4 extends RecyclerView.Adapter<myadapter4.myviewholder>
                 i.putExtra("uDBAccount",datalist.get(position).getDbAccount());
                 i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
                 i.putExtra("village",village);
+                i.putExtra("uVendorIFSC",datalist.get(position).getVendorIFSC());
+                i.putExtra("uVendorBankAccount",datalist.get(position).getVendorAccountNo());
+                i.putExtra("uVendorName",datalist.get(position).getVendorName());
+                i.putExtra("uGroundingStatus",datalist.get(position).getGroundingStatus());
+                i.putExtra("uGroundingImage",datalist.get(position).getGrounding_img());
+                i.putExtra("uApprovalAmount",datalist.get(position).getApprovalAmount());
+                i.putExtra("uDbAccount",datalist.get(position).getDbAccount());
 
 
 
@@ -122,7 +129,13 @@ public class myadapter4 extends RecyclerView.Adapter<myadapter4.myviewholder>
                 i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
                 i.putExtra("village",village);
                 i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
-
+                i.putExtra("uVendorIFSC",datalist.get(position).getVendorIFSC());
+                i.putExtra("uVendorBankAccount",datalist.get(position).getVendorAccountNo());
+                i.putExtra("uVendorName",datalist.get(position).getVendorName());
+                i.putExtra("uGroundingStatus",datalist.get(position).getGroundingStatus());
+                i.putExtra("uGroundingImage",datalist.get(position).getGrounding_img());
+                i.putExtra("uApprovalAmount",datalist.get(position).getApprovalAmount());
+                i.putExtra("uDbAccount",datalist.get(position).getDbAccount());
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.t2.getContext().startActivity(i);
                 ((Activity)view.getContext()).finish();

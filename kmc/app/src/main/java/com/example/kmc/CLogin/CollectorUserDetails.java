@@ -27,6 +27,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,6 +49,12 @@ public class CollectorUserDetails extends AppCompatActivity {
     public TextView individualSPRemark;
     public TextView individualSORemark;
     public TextView getIndividualBankIFSC;
+    public TextView getIndividualVendorBankAccount;
+    public TextView getIndividualVendorName;
+    public TextView getIndividualVendorBankIFSC;
+    public TextView getIndividualGroundingStatus;
+    public TextView getIndividualDBAmount;
+    public TextView getIndividualApprovalAmount;
     private TextInputEditText individualSPRemarks;
     private TextInputEditText individualQAmount;
     Button release;
@@ -75,96 +83,123 @@ public class CollectorUserDetails extends AppCompatActivity {
     String dbAccount;
     String village;
     ProgressBar pgsBar;
+    String groundImage;
+    Button groundImageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_collector_user_details);
-        pgsBar = (ProgressBar)findViewById(R.id.pBar);
-        db= FirebaseFirestore.getInstance();
-        individualName  = (TextView) findViewById(R.id.IndividualName);
-        individualFatherName=(TextView) findViewById(R.id.FatherName);
-        individualAge=(TextView) findViewById(R.id.Age);
-        individualHouseNo=(TextView) findViewById(R.id.HouseNumber);
-        individualVillage=(TextView) findViewById(R.id.village);
-        individualMandal=(TextView) findViewById(R.id.mandal);
-        individualDistrict=(TextView) findViewById(R.id.district);
-        individualAadhar=(TextView) findViewById(R.id.AadharNumber);
-        individualPhno=(TextView) findViewById(R.id.MobileNumber);
-        individualPreferredUnit=(TextView) findViewById(R.id.Preferredunit);
-        individualBankName=(TextView) findViewById(R.id.BankName);
-        individualBankAccNo=(TextView) findViewById(R.id.BankACCNumber);
-        getIndividualBankIFSC=(TextView) findViewById(R.id.BankIFSC);
-        individualSPRemark=(TextView) findViewById(R.id.spRemark);
-        individualSORemark=(TextView) findViewById(R.id.soRemark);
-        individualQAmount=(TextInputEditText) findViewById(R.id.qAmount);
-        sanction=(Button)findViewById(R.id.sanction);
-        release=(Button)findViewById(R.id.release);
-        approve=(Button)findViewById(R.id.approve);
-        reject=(Button)findViewById(R.id.reject);
-        individualName.setText("Name: "+getIntent().getStringExtra("uname").toString());
-        individualFatherName.setText("Father Name: "+getIntent().getStringExtra("ufname").toString());
-        individualAge.setText("Age : "+getIntent().getStringExtra("uAge").toString());
-        individualHouseNo.setText("House Number: "+getIntent().getStringExtra("uHnumber").toString());
-        individualVillage.setText("Village: "+getIntent().getStringExtra("uVillage").toString());
-        individualMandal.setText("Mandal: "+getIntent().getStringExtra("uMandal").toString());
-        individualDistrict.setText("District: "+getIntent().getStringExtra("uDistrict").toString());
-        individualAadhar.setText("Aadhar Number: "+getIntent().getStringExtra("uAadharNumber").toString());
-        individualPhno.setText("Mobile Number: "+getIntent().getStringExtra("uMobileNo").toString());
-        individualPreferredUnit.setText("Preferred Unit: "+getIntent().getStringExtra("uPreferredUnit").toString());
-        individualBankName.setText("Bank Name: "+getIntent().getStringExtra("uBankName").toString());
-        individualBankAccNo.setText("Bank Account Number: "+getIntent().getStringExtra("uBankAccNumber").toString());
-        getIndividualBankIFSC.setText("Bank IFSC: "+getIntent().getStringExtra("uBankIFSC").toString());
-        individualSPRemark.setText("Special Officer Remark: "+getIntent().getStringExtra("uSPRemarks").toString());
-        individualSORemark.setText("Section Officer Remark: "+getIntent().getStringExtra("uSORemarks").toString());
-        approvalAmount=getIntent().getStringExtra("uCollectorApprovalAmount").toString();
-        aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
-        String soApproved=getIntent().getStringExtra("uSOApproved").toString();
-        dbAccount=getIntent().getStringExtra("uDBAccount").toString();
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_collector_user_details);
+            pgsBar = (ProgressBar)findViewById(R.id.pBar);
+            db= FirebaseFirestore.getInstance();
+            individualName  = (TextView) findViewById(R.id.IndividualName);
+            individualFatherName=(TextView) findViewById(R.id.FatherName);
+            individualAge=(TextView) findViewById(R.id.Age);
+            individualHouseNo=(TextView) findViewById(R.id.HouseNumber);
+            individualVillage=(TextView) findViewById(R.id.village);
+            individualMandal=(TextView) findViewById(R.id.mandal);
+            individualDistrict=(TextView) findViewById(R.id.district);
+            individualAadhar=(TextView) findViewById(R.id.AadharNumber);
+            individualPhno=(TextView) findViewById(R.id.MobileNumber);
+            individualPreferredUnit=(TextView) findViewById(R.id.Preferredunit);
+            individualBankName=(TextView) findViewById(R.id.BankName);
+            individualBankAccNo=(TextView) findViewById(R.id.BankACCNumber);
+            getIndividualBankIFSC=(TextView) findViewById(R.id.BankIFSC);
+            individualSPRemark=(TextView) findViewById(R.id.spRemark);
+            individualSORemark=(TextView) findViewById(R.id.soRemark);
+            getIndividualDBAmount=(TextView) findViewById(R.id.dbAmount);
+            getIndividualApprovalAmount=(TextView) findViewById(R.id.approvalAmount);
+            individualQAmount=(TextInputEditText) findViewById(R.id.qAmount);
+            getIndividualVendorBankAccount=(TextView) findViewById(R.id.vendorBankAccountNo);
+            getIndividualVendorName=(TextView) findViewById(R.id.vendorName);
+            getIndividualVendorBankIFSC=(TextView)findViewById(R.id.vendorBankIFSC);
+            getIndividualGroundingStatus=(TextView)findViewById(R.id.groundingStatus);
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            village= extras.getString("village");
-        }
-        if(soApproved.equals("yes"))
-        {
-            approve.setEnabled(true);
-            reject.setEnabled(true);
-            individualQAmount.setEnabled(true);
-        }
-        individualQAmount.addTextChangedListener(new TextWatcher() {
+            groundImageButton=(Button)findViewById(R.id.groundImage);
+            sanction=(Button)findViewById(R.id.sanction);
+            release=(Button)findViewById(R.id.release);
+            approve=(Button)findViewById(R.id.approve);
+            reject=(Button)findViewById(R.id.reject);
+            individualName.setText("Name: "+getIntent().getStringExtra("uname").toString());
+            individualFatherName.setText("Father Name: "+getIntent().getStringExtra("ufname").toString());
+            individualAge.setText("Age : "+getIntent().getStringExtra("uAge").toString());
+            individualHouseNo.setText("House Number: "+getIntent().getStringExtra("uHnumber").toString());
+            individualVillage.setText("Village: "+getIntent().getStringExtra("uVillage").toString());
+            individualMandal.setText("Mandal: "+getIntent().getStringExtra("uMandal").toString());
+            individualDistrict.setText("District: "+getIntent().getStringExtra("uDistrict").toString());
+            individualAadhar.setText("Aadhar Number: "+getIntent().getStringExtra("uAadharNumber").toString());
+            individualPhno.setText("Mobile Number: "+getIntent().getStringExtra("uMobileNo").toString());
+            individualPreferredUnit.setText("Preferred Unit: "+getIntent().getStringExtra("uPreferredUnit").toString());
+            individualBankName.setText("Bank Name: "+getIntent().getStringExtra("uBankName").toString());
+            individualBankAccNo.setText("Bank Account Number: "+getIntent().getStringExtra("uBankAccNumber").toString());
+            getIndividualBankIFSC.setText("Bank IFSC: "+getIntent().getStringExtra("uBankIFSC").toString());
+            individualSPRemark.setText("Special Officer Remark: "+getIntent().getStringExtra("uSPRemarks").toString());
+            individualSORemark.setText("Section Officer Remark: "+getIntent().getStringExtra("uSORemarks").toString());
+            getIndividualVendorName.setText("Vendor Name: "+getIntent().getStringExtra("uVendorName").toString());
+            getIndividualVendorBankAccount.setText("Vendor Bank Account: "+getIntent().getStringExtra("uVendorBankAccount").toString());
+            getIndividualVendorBankIFSC.setText("Vendor Bank IFSC: "+getIntent().getStringExtra("uVendorIFSC").toString());
+            getIndividualGroundingStatus.setText("Grounding Status: "+getIntent().getStringExtra("uGroundingStatus").toString());
+            getIndividualApprovalAmount.setText("Approval Amount: "+getIntent().getStringExtra("uApprovalAmount").toString());
+            getIndividualDBAmount.setText("Dalita Bandhu Account Amount: "+getIntent().getStringExtra("uDbAccount").toString());
+            approvalAmount=getIntent().getStringExtra("uCollectorApprovalAmount").toString();
+            aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
 
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                enableReleaseIfReady();
+            String soApproved=getIntent().getStringExtra("uSOApproved").toString();
+            dbAccount=getIntent().getStringExtra("uDBAccount").toString();
+
+            Bundle extras = getIntent().getExtras();
+            if (extras != null) {
+                village= extras.getString("village");
+            }
+            if(soApproved.equals("yes"))
+            {
+                approve.setEnabled(true);
+                reject.setEnabled(true);
+                individualQAmount.setEnabled(true);
+            }
+            individualQAmount.addTextChangedListener(new TextWatcher() {
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    enableReleaseIfReady();
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    qAmount=individualQAmount.getText().toString();
+                }
+            });
+            collectorApproved=getIntent().getStringExtra("uCollectorApproved").toString();
+            Toast.makeText(this, collectorApproved, Toast.LENGTH_SHORT).show();
+            if(collectorApproved.equals("yes"))
+            {
+
+                sanction.setEnabled(false);
+                approve.setEnabled(false);
+                reject.setEnabled(false);
+            }else if(collectorApproved.equals("no"))
+            {
+                sanction.setEnabled(false);
+                approve.setEnabled(false);
+                reject.setEnabled(false);
             }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            groundImage=getIntent().getStringExtra("uGroundingImage").toString();
+            if(!groundImage.equals(""))
+            {
+                groundImageButton.setEnabled(true);
             }
 
-            @Override
-            public void afterTextChanged(Editable editable) {
-                qAmount=individualQAmount.getText().toString();
-            }
-        });
-        collectorApproved=getIntent().getStringExtra("uCollectorApproved").toString();
-        Toast.makeText(this, collectorApproved, Toast.LENGTH_SHORT).show();
-        if(collectorApproved.equals("yes"))
-        {
-
-            sanction.setEnabled(false);
-            approve.setEnabled(false);
-            reject.setEnabled(false);
-        }else if(collectorApproved.equals("no"))
-        {
-            sanction.setEnabled(false);
-            approve.setEnabled(false);
-            reject.setEnabled(false);
-        }
-
-
-
+    }
+    public void groundingImage(){
+        Uri uri = Uri.parse(groundImage); // missing 'http://' will cause crashed
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
     public void enableReleaseIfReady(){
         boolean isReady = individualQAmount.getText().toString().length() > 3;

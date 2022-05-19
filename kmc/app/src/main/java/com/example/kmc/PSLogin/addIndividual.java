@@ -144,6 +144,10 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("grounding_img", "");
             individualInfo.put("status", "Waiting for Special Officer Approval");
             individualInfo.put("approvalAmount", "0");
+            individualInfo.put("vendorName", "");
+            individualInfo.put("vendorAccountNo", "");
+            individualInfo.put("vendorIFSC", "");
+            individualInfo.put("groundingStatus", "");
             //
             db.collection("individuals").add(individualInfo)
                     .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {

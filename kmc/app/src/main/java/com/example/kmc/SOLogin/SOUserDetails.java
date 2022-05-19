@@ -50,6 +50,10 @@ public class SOUserDetails extends AppCompatActivity {
     public TextView individualPSUpload;
     public TextView getIndividualBankIFSC;
     private TextInputEditText individualSORemarks;
+    private TextInputEditText individualVendorName;
+    private TextInputEditText individualVendorBankAccountNumber;
+    private TextInputEditText individualVendorBankIFSC;
+
     String my_url;
     Button approve;
     Button reject;
@@ -69,6 +73,9 @@ public class SOUserDetails extends AppCompatActivity {
     String status;
     String mandal;
     String sector;
+    String vendorName;
+    String vendorBankAccount;
+    String vendorBankIFSC;
 
     StorageReference storageReference;
     Uri image_uri = null;
@@ -93,6 +100,9 @@ public class SOUserDetails extends AppCompatActivity {
         individualBankAccNo=(TextView) findViewById(R.id.BankACCNumber);
         getIndividualBankIFSC=(TextView) findViewById(R.id.BankIFSC);
         individualPSUpload=(TextView) findViewById(R.id.psUpload);
+        individualVendorName=(TextInputEditText) findViewById(R.id.vendorName);
+        individualVendorBankAccountNumber=(TextInputEditText) findViewById(R.id.vendorBankAccountNo);
+        individualVendorBankIFSC=(TextInputEditText) findViewById(R.id.vendorBankIFSC);
         individualSORemarks=(TextInputEditText) findViewById(R.id.remarks);
         approve=(Button)findViewById(R.id.approve);
         reject=(Button)findViewById(R.id.reject);
@@ -216,11 +226,17 @@ public class SOUserDetails extends AppCompatActivity {
     }
 
     private void updateData(String aadharNumber, String approved,String status) {
+        vendorName= individualVendorName.getText().toString();
+        vendorBankAccount= individualBankAccNo.getText().toString();
+        vendorBankIFSC= individualVendorBankIFSC.getText().toString();
         Map<String, Object> individualInfo = new HashMap<String, Object>();
         individualInfo.put("secOfficerUpload", my_url);
         individualInfo.put("secOfficerApproved", approved);
         individualInfo.put("so_remarks", soRemarks);
         individualInfo.put("status", status);
+        individualInfo.put("vendorName", vendorName);
+        individualInfo.put("vendorAccountNo", vendorBankAccount);
+        individualInfo.put("vendorIFSC", vendorBankIFSC);
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

@@ -83,6 +83,8 @@ public class myadapter2 extends RecyclerView.Adapter<myadapter2.myviewholder>
                 i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
                 i.putExtra("village1",village1);
                 i.putExtra("village2",village2);
+                i.putExtra("uApprovalAmount",datalist.get(position).getApprovalAmount());
+                i.putExtra("uDbAccount",datalist.get(position).getDbAccount());
 
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -110,6 +112,8 @@ public class myadapter2 extends RecyclerView.Adapter<myadapter2.myviewholder>
                 i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
                 i.putExtra("village1",village1);
                 i.putExtra("village2",village2);
+                i.putExtra("uApprovalAmount",datalist.get(position).getApprovalAmount());
+                i.putExtra("uDbAccount",datalist.get(position).getDbAccount());
 
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

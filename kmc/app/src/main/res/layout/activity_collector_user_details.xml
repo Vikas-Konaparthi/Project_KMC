@@ -82,6 +82,30 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"/>
             <TextView
+                android:id="@+id/vendorName"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:id="@+id/vendorBankAccountNo"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:id="@+id/vendorBankIFSC"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:id="@+id/approvalAmount"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:id="@+id/dbAmount"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:id="@+id/groundingStatus"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+            <TextView
                 android:id="@+id/spRemark"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"/>
@@ -186,6 +210,19 @@
                 android:enabled="false"
                 style="?attr/materialButtonOutlinedStyle"
                 />
+            <Button
+                android:id="@+id/groundImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Grounded Image"
+                android:layout_below="@id/password"
+                android:onClick="groundingImage"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:enabled="false"
+                style="?attr/materialButtonOutlinedStyle"
+                />
+
 
         </LinearLayout>
     </ScrollView>
