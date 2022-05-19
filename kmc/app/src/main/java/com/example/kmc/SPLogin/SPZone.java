@@ -37,9 +37,6 @@ public class SPZone extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         datalist=new ArrayList<>();
-        adapter=new myadapter2(datalist);
-        recyclerView.setAdapter(adapter);
-        db=FirebaseFirestore.getInstance();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String value = extras.getString("village1");
@@ -48,6 +45,11 @@ public class SPZone extends AppCompatActivity {
             village1 = value;
             village2 = value2;
         }
+        adapter=new myadapter2(datalist,village1,village2);
+        recyclerView.setAdapter(adapter);
+        db=FirebaseFirestore.getInstance();
+
+
         db.collection("individuals").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override

@@ -40,9 +40,6 @@ public class SOZone extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         datalist=new ArrayList<>();
-        adapter=new myadapter3(datalist);
-        recyclerView.setAdapter(adapter);
-        db=FirebaseFirestore.getInstance();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String value = extras.getString("mandal");
@@ -54,6 +51,10 @@ public class SOZone extends AppCompatActivity {
             //preferredUnit = value3;
 
         }
+        adapter=new myadapter3(datalist,mandal,sector);
+        recyclerView.setAdapter(adapter);
+        db=FirebaseFirestore.getInstance();
+
         db.collection("individuals").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override

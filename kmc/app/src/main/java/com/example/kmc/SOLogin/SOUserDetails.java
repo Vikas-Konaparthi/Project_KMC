@@ -66,6 +66,8 @@ public class SOUserDetails extends AppCompatActivity {
     String soRemarks;
     String collectorApproved;
     String status;
+    String mandal;
+    String sector;
 
     StorageReference storageReference;
     Uri image_uri = null;
@@ -105,6 +107,8 @@ public class SOUserDetails extends AppCompatActivity {
         individualBankName.setText("Bank Name: "+getIntent().getStringExtra("uBankName").toString());
         individualBankAccNo.setText("Bank Account Number: "+getIntent().getStringExtra("uBankAccNumber").toString());
         aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
+        mandal=getIntent().getStringExtra("mandal").toString();;
+        sector=getIntent().getStringExtra("sector").toString();;
 
         individualSORemarks.addTextChangedListener(new TextWatcher() {
 
@@ -225,6 +229,8 @@ public class SOUserDetails extends AppCompatActivity {
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(SOUserDetails.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(SOUserDetails.this, SOZone.class);
+                                    intent.putExtra("mandal",mandal);
+                                    intent.putExtra("sector",sector);
                                     startActivity(intent);
                                     finish();
                                 }

@@ -24,9 +24,11 @@ import java.util.Locale;
 public class myadapter4 extends RecyclerView.Adapter<myadapter4.myviewholder>
 {
     ArrayList<Individual> datalist;
+    String village;
 
-    public myadapter4(ArrayList<Individual> datalist) {
+    public myadapter4(ArrayList<Individual> datalist, String village) {
         this.datalist = datalist;
+        this.village=village;
     }
 
     @NonNull
@@ -85,6 +87,8 @@ public class myadapter4 extends RecyclerView.Adapter<myadapter4.myviewholder>
                 i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
                 i.putExtra("uCollectorApprovalAmount",datalist.get(position).getApprovalAmount());
                 i.putExtra("uDBAccount",datalist.get(position).getDbAccount());
+                i.putExtra("village",village);
+
 
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -113,7 +117,7 @@ public class myadapter4 extends RecyclerView.Adapter<myadapter4.myviewholder>
                 i.putExtra("uSORemarks",datalist.get(position).getSo_remarks());
                 i.putExtra("uSOApproved",datalist.get(position).getSecOfficerApproved());
                 i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
-
+                i.putExtra("village",village);
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.t2.getContext().startActivity(i);

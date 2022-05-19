@@ -22,9 +22,13 @@ import java.util.Locale;
 public class myadapter3 extends RecyclerView.Adapter<myadapter3.myviewholder>
 {
     ArrayList<Individual> datalist;
+    String mandal;
+    String sector;
 
-    public myadapter3(ArrayList<Individual> datalist) {
+    public myadapter3(ArrayList<Individual> datalist, String mandal, String sector) {
         this.datalist = datalist;
+        this.mandal=mandal;
+        this.sector=sector;
     }
 
     @NonNull
@@ -78,6 +82,8 @@ public class myadapter3 extends RecyclerView.Adapter<myadapter3.myviewholder>
                 i.putExtra("uBankAccNumber",datalist.get(position).getBankAccNo());
                 i.putExtra("psUpload",datalist.get(position).getPsUpload());
                 i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
+                i.putExtra("mandal",mandal);
+                i.putExtra("sector",sector);
 
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -102,7 +108,8 @@ public class myadapter3 extends RecyclerView.Adapter<myadapter3.myviewholder>
                 i.putExtra("uBankAccNumber",datalist.get(position).getBankAccNo());
                 i.putExtra("psUpload",datalist.get(position).getPsUpload());
                 i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
-
+                i.putExtra("mandal",mandal);
+                i.putExtra("sector",sector);
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.t2.getContext().startActivity(i);

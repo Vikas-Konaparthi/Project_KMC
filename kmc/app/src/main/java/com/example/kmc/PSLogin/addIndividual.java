@@ -148,6 +148,9 @@ public class addIndividual extends AppCompatActivity {
                         public void onComplete(@NonNull Task<DocumentReference> task) {
                             Toast.makeText(addIndividual.this, "Inserted Successfully", Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(addIndividual.this, PSZone.class);
+                            i.putExtra("village",village.trim());
+                            i.putExtra("mandal", mandal.trim());
+                            i.putExtra("district",district.trim());
                             startActivity(i);
                             finish();
                         }

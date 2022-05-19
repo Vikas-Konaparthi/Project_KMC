@@ -70,6 +70,7 @@ public class CollectorUserDetails extends AppCompatActivity {
     String qAmount;
     String approvalAmount;
     String dbAccount;
+    String village;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +114,11 @@ public class CollectorUserDetails extends AppCompatActivity {
         aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
         String soApproved=getIntent().getStringExtra("uSOApproved").toString();
         dbAccount=getIntent().getStringExtra("uDBAccount").toString();
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            village= extras.getString("village");
+        }
         if(soApproved.equals("yes"))
         {
             approve.setEnabled(true);
@@ -206,6 +212,7 @@ public class CollectorUserDetails extends AppCompatActivity {
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(CollectorUserDetails.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(CollectorUserDetails.this, CollectorZone.class);
+                                    intent.putExtra("village",village);
                                     startActivity(intent);
                                     finish();
                                 }
@@ -244,6 +251,7 @@ public class CollectorUserDetails extends AppCompatActivity {
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(CollectorUserDetails.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(CollectorUserDetails.this, CollectorZone.class);
+                                    intent.putExtra("village",village);
                                     startActivity(intent);
                                     finish();
                                 }

@@ -80,6 +80,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>
 
               i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
               holder.t1.getContext().startActivity(i);
+
           }
       });
         holder.t2.setOnClickListener(new View.OnClickListener() {

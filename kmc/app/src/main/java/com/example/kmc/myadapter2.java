@@ -3,6 +3,7 @@ package com.example.kmc;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +21,13 @@ import java.util.Locale;
 public class myadapter2 extends RecyclerView.Adapter<myadapter2.myviewholder>
 {
     ArrayList<Individual> datalist;
+    String village1;
+    String village2;
 
-    public myadapter2(ArrayList<Individual> datalist) {
+    public myadapter2(ArrayList<Individual> datalist, String village1, String village2) {
         this.datalist = datalist;
+        this.village1=village1;
+        this.village2=village2;
     }
 
     @NonNull
@@ -75,6 +80,8 @@ public class myadapter2 extends RecyclerView.Adapter<myadapter2.myviewholder>
                 i.putExtra("uBankAccNumber",datalist.get(position).getBankAccNo());
                 i.putExtra("psUpload",datalist.get(position).getPsUpload());
                 i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
+                i.putExtra("village1",village1);
+                i.putExtra("village2",village2);
 
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -99,6 +106,8 @@ public class myadapter2 extends RecyclerView.Adapter<myadapter2.myviewholder>
                 i.putExtra("uBankAccNumber",datalist.get(position).getBankAccNo());
                 i.putExtra("psUpload",datalist.get(position).getPsUpload());
                 i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
+                i.putExtra("village1",village1);
+                i.putExtra("village2",village2);
 
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

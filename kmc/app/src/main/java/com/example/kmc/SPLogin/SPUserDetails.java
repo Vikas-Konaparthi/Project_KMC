@@ -65,7 +65,11 @@ public class SPUserDetails extends AppCompatActivity {
     String spRemarks;
     String collectorApproved;
     String status;
-
+    String village;
+    String mandal;
+    String district;
+    String village1;
+    String village2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +104,11 @@ public class SPUserDetails extends AppCompatActivity {
         individualBankName.setText("Bank Name: "+getIntent().getStringExtra("uBankName").toString());
         individualBankAccNo.setText("Bank Account Number: "+getIntent().getStringExtra("uBankAccNumber").toString());
         aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
+        village=getIntent().getStringExtra("uVillage").toString();
+        mandal= getIntent().getStringExtra("uMandal").toString();
+        district=getIntent().getStringExtra("uDistrict").toString();
+        village1=getIntent().getStringExtra("village1").toString();
+        village2=getIntent().getStringExtra("village2").toString();
 
         individualSPRemarks.addTextChangedListener(new TextWatcher() {
 
@@ -174,6 +183,8 @@ public class SPUserDetails extends AppCompatActivity {
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(SPUserDetails.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(SPUserDetails.this,SPZone.class);
+                                    intent.putExtra("village1",village1);
+                                    intent.putExtra("village2",village2);
                                     startActivity(intent);
                                     finish();
                                 }

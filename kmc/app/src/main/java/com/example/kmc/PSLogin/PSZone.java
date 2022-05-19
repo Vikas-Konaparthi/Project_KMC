@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -54,6 +55,8 @@ public class PSZone extends AppCompatActivity {
             district=extras.getString("district");
             //The key argument here must match that used in the other activity
 
+        }else{
+            Log.d("extra", "no");
         }
 
 
@@ -65,6 +68,7 @@ public class PSZone extends AppCompatActivity {
                             for(DocumentSnapshot d:list)
                             {
                                 Individual obj=d.toObject(Individual.class);
+
                                 if(obj.getVillage().toLowerCase(Locale.ROOT).toString().equals(village.toLowerCase(Locale.ROOT)))
                                 {
                                     datalist.add(obj);

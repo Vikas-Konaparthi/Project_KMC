@@ -162,6 +162,12 @@ public class userDetails extends AppCompatActivity {
                                          @Override
                                          public void onSuccess(Void unused) {
                                              Toast.makeText(userDetails.this, "Successfully Updated", Toast.LENGTH_SHORT).show();
+                                             Intent i = new Intent(userDetails.this, PSZone.class);
+                                             i.putExtra("village",village.trim());
+                                             i.putExtra("mandal", mandal.trim());
+                                             i.putExtra("district",district.trim());
+                                             startActivity(i);
+                                             finish();
                                          }
                                      }).addOnFailureListener(new OnFailureListener() {
                                  @Override
