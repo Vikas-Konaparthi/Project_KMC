@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,9 +46,11 @@ public class CollectorUserDetails extends AppCompatActivity {
     public TextView individualPSUpload;
     public TextView individualSPRemark;
     public TextView individualSORemark;
+    public TextView getIndividualBankIFSC;
     private TextInputEditText individualSPRemarks;
     private TextInputEditText individualQAmount;
     Button release;
+    Button sanction;
 
     Button approve;
     Button reject;
@@ -71,11 +74,13 @@ public class CollectorUserDetails extends AppCompatActivity {
     String approvalAmount;
     String dbAccount;
     String village;
+    ProgressBar pgsBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collector_user_details);
+        pgsBar = (ProgressBar)findViewById(R.id.pBar);
         db= FirebaseFirestore.getInstance();
         individualName  = (TextView) findViewById(R.id.IndividualName);
         individualFatherName=(TextView) findViewById(R.id.FatherName);
@@ -89,10 +94,11 @@ public class CollectorUserDetails extends AppCompatActivity {
         individualPreferredUnit=(TextView) findViewById(R.id.Preferredunit);
         individualBankName=(TextView) findViewById(R.id.BankName);
         individualBankAccNo=(TextView) findViewById(R.id.BankACCNumber);
+        getIndividualBankIFSC=(TextView) findViewById(R.id.BankIFSC);
         individualSPRemark=(TextView) findViewById(R.id.spRemark);
         individualSORemark=(TextView) findViewById(R.id.soRemark);
         individualQAmount=(TextInputEditText) findViewById(R.id.qAmount);
-
+        sanction=(Button)findViewById(R.id.sanction);
         release=(Button)findViewById(R.id.release);
         approve=(Button)findViewById(R.id.approve);
         reject=(Button)findViewById(R.id.reject);
@@ -108,6 +114,7 @@ public class CollectorUserDetails extends AppCompatActivity {
         individualPreferredUnit.setText("Preferred Unit: "+getIntent().getStringExtra("uPreferredUnit").toString());
         individualBankName.setText("Bank Name: "+getIntent().getStringExtra("uBankName").toString());
         individualBankAccNo.setText("Bank Account Number: "+getIntent().getStringExtra("uBankAccNumber").toString());
+        getIndividualBankIFSC.setText("Bank IFSC: "+getIntent().getStringExtra("uBankIFSC").toString());
         individualSPRemark.setText("Special Officer Remark: "+getIntent().getStringExtra("uSPRemarks").toString());
         individualSORemark.setText("Section Officer Remark: "+getIntent().getStringExtra("uSORemarks").toString());
         approvalAmount=getIntent().getStringExtra("uCollectorApprovalAmount").toString();
@@ -146,6 +153,12 @@ public class CollectorUserDetails extends AppCompatActivity {
         if(collectorApproved.equals("yes"))
         {
 
+            sanction.setEnabled(false);
+            approve.setEnabled(false);
+            reject.setEnabled(false);
+        }else if(collectorApproved.equals("no"))
+        {
+            sanction.setEnabled(false);
             approve.setEnabled(false);
             reject.setEnabled(false);
         }
@@ -159,9 +172,14 @@ public class CollectorUserDetails extends AppCompatActivity {
     }
     public void release(View view) {
         int amount1=Integer.parseInt(approvalAmount)+Integer.parseInt(qAmount);
-        int amount2=Integer.parseInt(dbAccount)-amount1;
-
-        approvalAmount(aadharNumber,String.valueOf(amount1),String.valueOf(amount2));
+        int amount2=Integer.parseInt(dbAccount)-Integer.parseInt(qAmount);
+        if(Integer.parseInt(dbAccount)<=0)
+        {
+            Toast.makeText(this, "Insufficient amount in Dalit Bandhu Account.", Toast.LENGTH_SHORT).show();
+        }else{
+            pgsBar.setVisibility(View.VISIBLE);
+            approvalAmount(aadharNumber,String.valueOf(amount1),String.valueOf(amount2));
+        }
     }
     public void sanctionAmount(View view) {
         sanctionAmount(aadharNumber);
@@ -289,7 +307,7 @@ public class CollectorUserDetails extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(CollectorUserDetails.this, "Approval Amount: "+amount1, Toast.LENGTH_SHORT).show();
-
+                                    pgsBar.setVisibility(View.GONE);
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                         @Override

@@ -80,6 +80,7 @@ public class myadapter2 extends RecyclerView.Adapter<myadapter2.myviewholder>
                 i.putExtra("uBankAccNumber",datalist.get(position).getBankAccNo());
                 i.putExtra("psUpload",datalist.get(position).getPsUpload());
                 i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
+                i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
                 i.putExtra("village1",village1);
                 i.putExtra("village2",village2);
 
@@ -106,6 +107,7 @@ public class myadapter2 extends RecyclerView.Adapter<myadapter2.myviewholder>
                 i.putExtra("uBankAccNumber",datalist.get(position).getBankAccNo());
                 i.putExtra("psUpload",datalist.get(position).getPsUpload());
                 i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
+                i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
                 i.putExtra("village1",village1);
                 i.putExtra("village2",village2);
 

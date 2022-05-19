@@ -2,6 +2,7 @@ package com.example.kmc;
 
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -87,12 +88,14 @@ public class myadapter4 extends RecyclerView.Adapter<myadapter4.myviewholder>
                 i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
                 i.putExtra("uCollectorApprovalAmount",datalist.get(position).getApprovalAmount());
                 i.putExtra("uDBAccount",datalist.get(position).getDbAccount());
+                i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
                 i.putExtra("village",village);
 
 
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.t1.getContext().startActivity(i);
+                ((Activity)view.getContext()).finish();
             }
         });
         holder.t2.setOnClickListener(new View.OnClickListener() {
@@ -118,9 +121,11 @@ public class myadapter4 extends RecyclerView.Adapter<myadapter4.myviewholder>
                 i.putExtra("uSOApproved",datalist.get(position).getSecOfficerApproved());
                 i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
                 i.putExtra("village",village);
+                i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.t2.getContext().startActivity(i);
+                ((Activity)view.getContext()).finish();
             }
         });
     }

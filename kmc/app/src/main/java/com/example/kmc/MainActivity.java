@@ -3,14 +3,20 @@ package com.example.kmc;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.kmc.login.Collector_Login;
 import com.example.kmc.login.PSLogin;
 import com.example.kmc.login.SOLogin;
 import com.example.kmc.login.SPLogin;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -30,7 +36,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         card2.setOnClickListener(this);
         card3.setOnClickListener(this);
         card4.setOnClickListener(this);
+        try {
+            if(!isNetworkConnected())
+            {
+               final Toast toast= Toast.makeText(this, "Please check your internet connection.", Toast.LENGTH_SHORT);
+                toast.show();
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        toast.cancel();
+                    }
+                }, 5000);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+        private boolean isNetworkConnected(){
+            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+        }
     @Override
     public void onClick(View v) {
         Intent i;

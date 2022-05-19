@@ -41,6 +41,7 @@ public class addIndividual extends AppCompatActivity {
     public TextInputLayout Preferredunit;
     public TextInputLayout BankName;
     public TextInputLayout BankACCNumber;
+    public TextInputLayout BankIFSC;
 
 
     FirebaseFirestore db;
@@ -57,6 +58,7 @@ public class addIndividual extends AppCompatActivity {
     String preferredunit;
     String bankName;
     String bankACCNumber;
+    String bankIFSCNumber;
 
     String v;
     String d;
@@ -84,6 +86,7 @@ public class addIndividual extends AppCompatActivity {
         Preferredunit = (TextInputLayout) findViewById(R.id.Preferredunit);
         BankName  = (TextInputLayout) findViewById(R.id.BankName);
         BankACCNumber  = (TextInputLayout) findViewById(R.id.BankACCNumber);
+        BankIFSC  = (TextInputLayout) findViewById(R.id.BankIFSC);
         storageReference= FirebaseStorage.getInstance().getReference();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -112,6 +115,7 @@ public class addIndividual extends AppCompatActivity {
         preferredunit = Preferredunit.getEditText().getText().toString();
         bankName = BankName.getEditText().getText().toString();
         bankACCNumber = BankACCNumber.getEditText().getText().toString();
+        bankIFSCNumber=BankIFSC.getEditText().getText().toString();
         //
         if (individualName.length() != 0 && fatherName.length() != 0 && age.length() != 0 && houseNumber.length() != 0 && aadharNumber.length() != 0 && mobileNumber.length() != 0 && preferredunit.length() != 0 && bankName.length() != 0 && bankACCNumber.length() != 0) {
             Map<String, Object> individualInfo = new HashMap<String, Object>();
@@ -127,6 +131,7 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("preferredUnit", preferredunit.trim());
             individualInfo.put("bankName", bankName.trim());
             individualInfo.put("bankAccNo", bankACCNumber.trim());
+            individualInfo.put("bankIFSC", bankIFSCNumber.trim());
             //
             individualInfo.put("dbAccount", "");
             individualInfo.put("psUpload", my_url);
@@ -135,9 +140,7 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("secOfficerUpload", "");
             individualInfo.put("secOfficerApproved", "");
             individualInfo.put("so_remarks", "");
-            individualInfo.put("mlaApproved", "");
             individualInfo.put("sp_remarks", "");
-            individualInfo.put("collector_remarks", "");
             individualInfo.put("grounding_img", "");
             individualInfo.put("status", "Waiting for Special Officer Approval");
             individualInfo.put("approvalAmount", "0");

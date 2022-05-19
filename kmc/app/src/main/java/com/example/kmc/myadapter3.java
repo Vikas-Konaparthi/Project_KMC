@@ -82,6 +82,7 @@ public class myadapter3 extends RecyclerView.Adapter<myadapter3.myviewholder>
                 i.putExtra("uBankAccNumber",datalist.get(position).getBankAccNo());
                 i.putExtra("psUpload",datalist.get(position).getPsUpload());
                 i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
+                i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
                 i.putExtra("mandal",mandal);
                 i.putExtra("sector",sector);
 
@@ -108,6 +109,7 @@ public class myadapter3 extends RecyclerView.Adapter<myadapter3.myviewholder>
                 i.putExtra("uBankAccNumber",datalist.get(position).getBankAccNo());
                 i.putExtra("psUpload",datalist.get(position).getPsUpload());
                 i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
+                i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
                 i.putExtra("mandal",mandal);
                 i.putExtra("sector",sector);
 

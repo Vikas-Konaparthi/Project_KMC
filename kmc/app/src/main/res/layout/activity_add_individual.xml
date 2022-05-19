@@ -216,6 +216,22 @@
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/BankIFSC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Bank IFSC"
+            android:layout_below="@id/textView1"
+            android:layout_marginTop="40dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/upload"

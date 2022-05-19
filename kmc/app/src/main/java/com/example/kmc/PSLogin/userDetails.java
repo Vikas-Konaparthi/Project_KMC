@@ -41,6 +41,7 @@ public class userDetails extends AppCompatActivity {
     public TextInputLayout individualPreferredUnit;
     public TextInputLayout individualBankName;
     public TextInputLayout individualBankAccNo;
+    public TextInputLayout individualBankIFSC;
     FirebaseFirestore db;
     String indivName;
     String fatherName;
@@ -55,6 +56,7 @@ public class userDetails extends AppCompatActivity {
     String bankName;
     String bankACCNumber;
     String collectorApproved="";
+    String bankIFSC;
     private final int PICK_IMAGE_REQUEST = 22;
     String my_url;
     Uri image_uri = null;
@@ -77,6 +79,7 @@ public class userDetails extends AppCompatActivity {
         individualPreferredUnit=(TextInputLayout) findViewById(R.id.Preferredunit);
         individualBankName=(TextInputLayout) findViewById(R.id.BankName);
         individualBankAccNo=(TextInputLayout) findViewById(R.id.BankACCNumber);
+        individualBankIFSC=(TextInputLayout) findViewById(R.id.BankIFSC);
         uploadImage=(Button) findViewById(R.id.uploadImage);
         individualName.getEditText().setText(getIntent().getStringExtra("uname").toString());
         individualFatherName.getEditText().setText(getIntent().getStringExtra("ufname").toString());
@@ -90,15 +93,10 @@ public class userDetails extends AppCompatActivity {
         individualPreferredUnit.getEditText().setText(getIntent().getStringExtra("uPreferredUnit").toString());
         individualBankName.getEditText().setText(getIntent().getStringExtra("uBankName").toString());
         individualBankAccNo.getEditText().setText(getIntent().getStringExtra("uBankAccNumber").toString());
-
+        individualBankIFSC.getEditText().setText(getIntent().getStringExtra("uBankIFSC").toString());
         collectorApproved=getIntent().getStringExtra("uCollectorApproved").toString();
         if(collectorApproved.equals("yes"))
         {
-            uploadImage.setEnabled(true);
-        }
-        if(collectorApproved.equals("yes"))
-        {
-
             uploadImage.setEnabled(true);
         }
 
@@ -129,6 +127,7 @@ public class userDetails extends AppCompatActivity {
         village=individualVillage.getEditText().getText().toString();
         mandal=individualMandal.getEditText().getText().toString();
         district=individualDistrict.getEditText().getText().toString();
+        bankIFSC=individualBankIFSC.getEditText().getText().toString();
         updateData(aadharNumber,indivName,fatherName,age,houseNumber,mobileNumber,preferredunit, bankName,bankACCNumber,my_url);
     }
 

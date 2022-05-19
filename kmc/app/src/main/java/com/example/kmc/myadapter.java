@@ -76,6 +76,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>
               i.putExtra("uBankName",datalist.get(position).getBankName());
               i.putExtra("uBankAccNumber",datalist.get(position).getBankAccNo());
               i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
+              i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
 
 
               i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -100,6 +101,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>
                 i.putExtra("uBankName",datalist.get(position).getBankName());
                 i.putExtra("uBankAccNumber",datalist.get(position).getBankAccNo());
                 i.putExtra("uCollectorApproved",datalist.get(position).getCtrApproved());
+                i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
 
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

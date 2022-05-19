@@ -48,6 +48,7 @@ public class SOUserDetails extends AppCompatActivity {
     public TextView individualBankName;
     public TextView individualBankAccNo;
     public TextView individualPSUpload;
+    public TextView getIndividualBankIFSC;
     private TextInputEditText individualSORemarks;
     String my_url;
     Button approve;
@@ -90,6 +91,7 @@ public class SOUserDetails extends AppCompatActivity {
         individualPreferredUnit=(TextView) findViewById(R.id.Preferredunit);
         individualBankName=(TextView) findViewById(R.id.BankName);
         individualBankAccNo=(TextView) findViewById(R.id.BankACCNumber);
+        getIndividualBankIFSC=(TextView) findViewById(R.id.BankIFSC);
         individualPSUpload=(TextView) findViewById(R.id.psUpload);
         individualSORemarks=(TextInputEditText) findViewById(R.id.remarks);
         approve=(Button)findViewById(R.id.approve);
@@ -106,6 +108,7 @@ public class SOUserDetails extends AppCompatActivity {
         individualPreferredUnit.setText("Preferred Unit: "+getIntent().getStringExtra("uPreferredUnit").toString());
         individualBankName.setText("Bank Name: "+getIntent().getStringExtra("uBankName").toString());
         individualBankAccNo.setText("Bank Account Number: "+getIntent().getStringExtra("uBankAccNumber").toString());
+        getIndividualBankIFSC.setText("Bank IFSC: "+getIntent().getStringExtra("uBankIFSC").toString());
         aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
         mandal=getIntent().getStringExtra("mandal").toString();;
         sector=getIntent().getStringExtra("sector").toString();;
@@ -128,6 +131,11 @@ public class SOUserDetails extends AppCompatActivity {
         });
         collectorApproved=getIntent().getStringExtra("uCollectorApproved").toString();
         if(collectorApproved.equals("yes"))
+        {
+            approve.setEnabled(false);
+            reject.setEnabled(false);
+            individualSORemarks.setEnabled(false);
+        }else if(collectorApproved.equals("no"))
         {
             approve.setEnabled(false);
             reject.setEnabled(false);
