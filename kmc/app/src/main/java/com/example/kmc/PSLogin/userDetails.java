@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.kmc.R;
@@ -57,10 +58,11 @@ public class userDetails extends AppCompatActivity {
     String bankACCNumber;
     String collectorApproved="";
     String bankIFSC;
-    String groundingStatus;
+    String groundingStatus="";
     private final int PICK_IMAGE_REQUEST = 22;
     String my_url="";
     Uri image_uri = null;
+    ProgressBar pgsBar;
 
     Button uploadImage;
     @Override
@@ -68,6 +70,7 @@ public class userDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_details);
         db=FirebaseFirestore.getInstance();
+        pgsBar = (ProgressBar)findViewById(R.id.pBar);
         individualName  = (TextInputLayout) findViewById(R.id.IndividualName);
         individualFatherName=(TextInputLayout) findViewById(R.id.FatherName);
         individualAge=(TextInputLayout) findViewById(R.id.Age);
@@ -99,6 +102,7 @@ public class userDetails extends AppCompatActivity {
         if(collectorApproved.equals("yes"))
         {
             uploadImage.setEnabled(true);
+            groundingStatus="Successfully Grounded";
         }
 
 
@@ -129,10 +133,15 @@ public class userDetails extends AppCompatActivity {
         mandal=individualMandal.getEditText().getText().toString();
         district=individualDistrict.getEditText().getText().toString();
         bankIFSC=individualBankIFSC.getEditText().getText().toString();
-        updateData(aadharNumber,indivName,fatherName,age,houseNumber,mobileNumber,preferredunit, bankName,bankACCNumber,my_url);
+        if(collectorApproved.equals("yes"))
+        {
+            uploadImage.setEnabled(true);
+        }
+
+        updateData(aadharNumber,indivName,fatherName,age,houseNumber,mobileNumber,preferredunit, bankName,bankACCNumber,my_url,groundingStatus);
     }
 
-    public void updateData(String aadharNumber,String name,String fname, String age,String houseNo,String mobileNumber,String preferredUnit,String bankName,String bankACCnumber,String my_url){
+    public void updateData(String aadharNumber,String name,String fname, String age,String houseNo,String mobileNumber,String preferredUnit,String bankName,String bankACCnumber,String my_url,String groundingStatus){
         Map<String, Object> individualInfo = new HashMap<String, Object>();
         individualInfo.put("name", name.trim());
         individualInfo.put("fatherName", fname.trim());
@@ -146,7 +155,7 @@ public class userDetails extends AppCompatActivity {
         individualInfo.put("mandal", mandal.trim());
         individualInfo.put("district", district.trim());
         individualInfo.put("grounding_img", my_url.trim());
-        individualInfo.put("groundingStatus", "Successfully Grounded");
+        individualInfo.put("groundingStatus", groundingStatus);
 
 
 
@@ -163,6 +172,7 @@ public class userDetails extends AppCompatActivity {
                                      .addOnSuccessListener(new OnSuccessListener<Void>() {
                                          @Override
                                          public void onSuccess(Void unused) {
+
                                              Toast.makeText(userDetails.this, "Successfully Updated", Toast.LENGTH_SHORT).show();
                                              Intent i = new Intent(userDetails.this, PSZone.class);
                                              i.putExtra("village",village.trim());
@@ -186,6 +196,7 @@ public class userDetails extends AppCompatActivity {
 
     }
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        pgsBar.setVisibility(View.VISIBLE);
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
             image_uri = data.getData();
@@ -209,6 +220,7 @@ public class userDetails extends AppCompatActivity {
                     if(task.isSuccessful()){
                         Uri uri = task.getResult();
                         my_url = uri.toString();
+                        pgsBar.setVisibility(View.GONE);
                         Toast.makeText(userDetails.this,"File Uploaded Successfully",Toast.LENGTH_SHORT).show();
 //                        Intent i = new Intent(Intent.ACTION_VIEW);
 //                        i.setData(Uri.parse(my_url));

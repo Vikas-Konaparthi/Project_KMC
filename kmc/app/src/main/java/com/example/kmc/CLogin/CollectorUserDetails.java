@@ -249,7 +249,6 @@ public class CollectorUserDetails extends AppCompatActivity {
     }
     private void updateData(String aadharNumber, String approved,String status) {
         Map<String, Object> individualInfo = new HashMap<String, Object>();
-        individualInfo.put("dbAccount", "1000000");
         individualInfo.put("status", status);
         individualInfo.put("ctrApproved", approved);
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();

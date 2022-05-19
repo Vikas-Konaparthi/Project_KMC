@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.kmc.R;
@@ -42,6 +43,7 @@ public class addIndividual extends AppCompatActivity {
     public TextInputLayout BankName;
     public TextInputLayout BankACCNumber;
     public TextInputLayout BankIFSC;
+    ProgressBar pgsBar;
 
 
     FirebaseFirestore db;
@@ -74,6 +76,7 @@ public class addIndividual extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_individual);
         db=FirebaseFirestore.getInstance();
+        pgsBar = (ProgressBar)findViewById(R.id.pBar);
         IndividualName  = (TextInputLayout) findViewById(R.id.IndividualName);
         FatherName  = (TextInputLayout) findViewById(R.id.FatherName);
         Age  = (TextInputLayout) findViewById(R.id.Age);
@@ -177,6 +180,7 @@ public class addIndividual extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        pgsBar.setVisibility(View.VISIBLE);
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
             image_uri = data.getData();
@@ -200,10 +204,12 @@ public class addIndividual extends AppCompatActivity {
                     if(task.isSuccessful()){
                         Uri uri = task.getResult();
                         my_url = uri.toString();
+                        pgsBar.setVisibility(View.GONE);
                         Toast.makeText(addIndividual.this,"File Uploaded Successfully",Toast.LENGTH_SHORT).show();
 //                        Intent i = new Intent(Intent.ACTION_VIEW);
 //                        i.setData(Uri.parse(my_url));
 //                        startActivity(i);
+
                     }else{
                         Toast.makeText(addIndividual.this,"Upload Failed", Toast.LENGTH_SHORT).show();
                     }

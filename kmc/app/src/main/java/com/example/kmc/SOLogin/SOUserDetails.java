@@ -11,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,6 +77,7 @@ public class SOUserDetails extends AppCompatActivity {
     String vendorName;
     String vendorBankAccount;
     String vendorBankIFSC;
+    ProgressBar pgsBar;
 
     StorageReference storageReference;
     Uri image_uri = null;
@@ -86,6 +88,7 @@ public class SOUserDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_souser_details);
         db= FirebaseFirestore.getInstance();
+        pgsBar = (ProgressBar)findViewById(R.id.pBar);
         individualName  = (TextView) findViewById(R.id.IndividualName);
         individualFatherName=(TextView) findViewById(R.id.FatherName);
         individualAge=(TextView) findViewById(R.id.Age);
@@ -190,6 +193,7 @@ public class SOUserDetails extends AppCompatActivity {
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        pgsBar.setVisibility(View.VISIBLE);
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
             image_uri = data.getData();
@@ -213,10 +217,12 @@ public class SOUserDetails extends AppCompatActivity {
                     if(task.isSuccessful()){
                         Uri uri = task.getResult();
                         my_url = uri.toString();
+                        pgsBar.setVisibility(View.GONE);
                         Toast.makeText(SOUserDetails.this,"File Uploaded Successfully",Toast.LENGTH_SHORT).show();
 //                        Intent i = new Intent(Intent.ACTION_VIEW);
 //                        i.setData(Uri.parse(my_url));
 //                        startActivity(i);
+
                     }else{
                         Toast.makeText(SOUserDetails.this,"Upload Failed", Toast.LENGTH_SHORT).show();
                     }

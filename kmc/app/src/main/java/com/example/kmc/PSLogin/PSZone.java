@@ -78,7 +78,7 @@ public class PSZone extends AppCompatActivity {
                                     if(obj.getVillage().toLowerCase(Locale.ROOT).toString().equals(village.toLowerCase(Locale.ROOT)))
                                     {
                                         datalist.add(obj);
-                                    }                                    
+                                    }
                                 }
 
 

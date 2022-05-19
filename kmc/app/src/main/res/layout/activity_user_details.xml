@@ -246,6 +246,15 @@
                 android:enabled="false"
                 style="?attr/materialButtonOutlinedStyle"
                 />
+            <ProgressBar
+                android:id="@+id/pBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="30dp"
+                android:visibility="gone">
+            </ProgressBar>
             <Button
                 android:id="@+id/submit"
                 android:layout_width="match_parent"
