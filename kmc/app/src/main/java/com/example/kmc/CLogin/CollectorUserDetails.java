@@ -141,11 +141,11 @@ public class CollectorUserDetails extends AppCompatActivity {
             getIndividualGroundingStatus.setText("Grounding Status: "+getIntent().getStringExtra("uGroundingStatus").toString());
             getIndividualApprovalAmount.setText("Approval Amount: "+getIntent().getStringExtra("uApprovalAmount").toString());
             getIndividualDBAmount.setText("Dalita Bandhu Account Amount: "+getIntent().getStringExtra("uDbAccount").toString());
-            approvalAmount=getIntent().getStringExtra("uCollectorApprovalAmount").toString();
+            approvalAmount=getIntent().getStringExtra("uApprovalAmount").toString();
             aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
 
             String soApproved=getIntent().getStringExtra("uSOApproved").toString();
-            dbAccount=getIntent().getStringExtra("uDBAccount").toString();
+            dbAccount=getIntent().getStringExtra("uDbAccount").toString();
 
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
@@ -208,12 +208,15 @@ public class CollectorUserDetails extends AppCompatActivity {
     public void release(View view) {
         int amount1=Integer.parseInt(approvalAmount)+Integer.parseInt(qAmount);
         int amount2=Integer.parseInt(dbAccount)-Integer.parseInt(qAmount);
-        if(Integer.parseInt(dbAccount)<=0)
+        if(amount2<=0)
         {
             Toast.makeText(this, "Insufficient amount in Dalit Bandhu Account.", Toast.LENGTH_SHORT).show();
         }else{
             pgsBar.setVisibility(View.VISIBLE);
             approvalAmount(aadharNumber,String.valueOf(amount1),String.valueOf(amount2));
+            getIndividualApprovalAmount.setText("Approval Amount: "+amount1);
+            getIndividualDBAmount.setText("Dalita Bandhu Account Amount: "+amount2);
+
         }
     }
     public void sanctionAmount(View view) {
