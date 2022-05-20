@@ -177,7 +177,6 @@ public class CollectorUserDetails extends AppCompatActivity {
             Toast.makeText(this, collectorApproved, Toast.LENGTH_SHORT).show();
             if(collectorApproved.equals("yes"))
             {
-
                 sanction.setEnabled(false);
                 approve.setEnabled(false);
                 reject.setEnabled(false);
