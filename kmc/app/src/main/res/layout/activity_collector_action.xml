@@ -51,6 +51,20 @@
                     android:textColor="#fff"
                     android:textSize="20dp"
                     android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Change Password"
+                    android:id="@+id/changePass"
+                    android:layout_below="@+id/textView2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="36dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    android:onClick="changePass"
+                    />
 
                 <GridLayout
                     android:layout_width="match_parent"
@@ -112,6 +126,17 @@
                         android:layout_margin="8dp"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
+                        <TextView
+                            android:id="@+id/cpending1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/badge"
+                            android:gravity="center"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -148,6 +173,17 @@
                         android:layout_margin="8dp"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
+                        <TextView
+                            android:id="@+id/cpending2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/badge"
+                            android:gravity="center"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -246,7 +282,44 @@
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/c6"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:layout_row="2"
+                        android:layout_rowWeight="1"
+                        android:layout_column="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:layout_margin="8dp"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp">
 
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center_horizontal"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <!--                            <ImageView-->
+                            <!--                                android:layout_width="40dp"-->
+                            <!--                                android:layout_height="40dp"-->
+                            <!--                                android:src=""-->
+                            <!--                                />-->
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:text="District Master Report"
+                                android:textAlignment="center"
+                                android:textColor="#4606b4"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
                 </GridLayout>
 

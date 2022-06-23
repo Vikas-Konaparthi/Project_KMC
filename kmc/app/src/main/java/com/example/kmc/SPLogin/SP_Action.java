@@ -9,18 +9,34 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
+import com.example.kmc.Individual;
 import com.example.kmc.PSLogin.PSMasterReport;
 import com.example.kmc.R;
 import com.example.kmc.login.Collector_Login;
 import com.example.kmc.login.SOLogin;
 import com.example.kmc.login.SPLogin;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.List;
+import java.util.Locale;
 
 public class SP_Action extends AppCompatActivity implements View.OnClickListener {
 
     public CardView card1,card2,card3,card4,card5;
     String village1;
     String village2;
+    int pendingAction1;
+    int pendingAction2;
+    int pendingAction3;
+    TextView pendingBadge1;
+    TextView pendingBadge2;
+    TextView pendingBadge3;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +48,10 @@ public class SP_Action extends AppCompatActivity implements View.OnClickListener
         card3 = (CardView) findViewById(R.id.c3);
         card4 = (CardView) findViewById(R.id.c4);
         card5 = (CardView) findViewById(R.id.c5);
-
+        pendingBadge1=(TextView) findViewById(R.id.sppending1);
+        pendingBadge2=(TextView) findViewById(R.id.sppending2);
+        pendingBadge3=(TextView) findViewById(R.id.sppending3);
+        db= FirebaseFirestore.getInstance();
 
         card1.setOnClickListener(this);
         card2.setOnClickListener(this);
@@ -50,7 +69,68 @@ public class SP_Action extends AppCompatActivity implements View.OnClickListener
         }else{
             Log.d("extra", "no");
         }
+        db.collection("individuals").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
+                        for(DocumentSnapshot d:list)
+                        {
+                            Individual obj=d.toObject(Individual.class);
+                            if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village1.toLowerCase(Locale.ROOT)) || (obj.getVillage().toLowerCase(Locale.ROOT).equals(village2.toLowerCase(Locale.ROOT))) ){
+                                if(!obj.getSpApproved().equals("yes"))
+                                {
+                                    pendingAction1=pendingAction1+1;
+                                }
+                            }
+                        }
+                        pendingBadge1.setText(String.valueOf(pendingAction1));
+                    }
+                });
+        db.collection("individuals").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
+                        for(DocumentSnapshot d:list)
+                        {
 
+                            Individual obj=d.toObject(Individual.class);
+                            if(!obj.getIndividualAmountRequired().equals(""))
+                            {
+                                if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village1.toLowerCase(Locale.ROOT)) || (obj.getVillage().toLowerCase(Locale.ROOT).equals(village2.toLowerCase(Locale.ROOT))) ){
+                                    if(!obj.getSpApproved2().equals("yes") &&  !obj.getSpApproved2().equals("no"))
+                                    {
+                                        pendingAction2=pendingAction2+1;
+                                    }
+                                }
+                            }
+                        }
+                        pendingBadge2.setText(String.valueOf(pendingAction2));
+                    }
+                });
+        db.collection("individuals").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
+                        for(DocumentSnapshot d:list)
+                        {
+
+                            Individual obj=d.toObject(Individual.class);
+                            if(!obj.getPsApprovedAmount().equals(""))
+                            {
+                                if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village1.toLowerCase(Locale.ROOT)) || (obj.getVillage().toLowerCase(Locale.ROOT).equals(village2.toLowerCase(Locale.ROOT))) ){
+                                    if(!obj.getSpApproved3().equals("yes") &&  !obj.getSpApproved3().equals("no"))
+                                    {
+                                        pendingAction3=pendingAction3+1;
+                                    }
+                                }
+                            }
+                        }
+                        pendingBadge3.setText(String.valueOf(pendingAction3));
+                    }
+                });
     }
     private boolean isNetworkConnected(){
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

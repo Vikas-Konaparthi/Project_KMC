@@ -42,7 +42,7 @@ import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
-public class CollectorMasterReport extends AppCompatActivity {
+public class CollectorDistrictMasterReport extends AppCompatActivity {
 
     public Toolbar toolbar;
     ArrayList<Individual> datalist;
@@ -86,16 +86,11 @@ public class CollectorMasterReport extends AppCompatActivity {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         list =queryDocumentSnapshots.getDocuments();
-                        for(DocumentSnapshot d:list)
-                        {
-                            obj=d.toObject(Individual.class);
-                            if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village.toLowerCase(Locale.ROOT)))
-                            {
-                                        if (obj.getSpApproved().equals("yes"))
-                                            total_amount+=Float.parseFloat(obj.getApprovalAmount());
-                                        datalist.add(obj);
+                        for(DocumentSnapshot d:list) {
+                            obj = d.toObject(Individual.class);
+                            total_amount += Float.parseFloat(obj.getApprovalAmount());
+                            datalist.add(obj);
 
-                            }
                         }
                         total.setText("Total Amount Approved: "+String.valueOf(total_amount/100000.0)+"L/"+String.valueOf(list.size()*10)+"L");
                         progressBar.setVisibility(View.GONE);
@@ -117,7 +112,7 @@ public class CollectorMasterReport extends AppCompatActivity {
         {
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
         }
-        String Fnamexls="VillageWiseMasterReport"+System.currentTimeMillis()+ ".xls";
+        String Fnamexls="OverAllDistrictReport"+System.currentTimeMillis()+ ".xls";
         File dir = Environment.getExternalStoragePublicDirectory("kmc");
         String filePath = Environment.getExternalStorageDirectory()+File.separator+"km";
         try{

@@ -52,7 +52,20 @@
                     android:textColor="#fff"
                     android:textSize="20dp"
                     android:textStyle="bold"/>
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Change Password"
+                    android:id="@+id/changePass"
+                    android:layout_below="@+id/textView2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="36dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    android:onClick="changePass"
+                    />
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="450dp"
@@ -76,6 +89,17 @@
                         android:layout_margin="8dp"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
+                        <TextView
+                            android:id="@+id/sppending1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/badge"
+                            android:gravity="center"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -113,6 +137,17 @@
                         android:layout_margin="8dp"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
+                        <TextView
+                            android:id="@+id/sppending2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/badge"
+                            android:gravity="center"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -149,6 +184,17 @@
                         android:layout_margin="8dp"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
+                        <TextView
+                            android:id="@+id/sppending3"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right"
+                            android:layout_marginTop="3dp"
+                            android:background="@drawable/badge"
+                            android:gravity="center"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

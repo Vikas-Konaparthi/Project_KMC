@@ -9,18 +9,30 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
+import com.example.kmc.Individual;
 import com.example.kmc.PSLogin.PSAddEdit;
 import com.example.kmc.PSLogin.PSAmountDBToBen;
 import com.example.kmc.PSLogin.PSAmountToDB;
 import com.example.kmc.R;
 import com.example.kmc.login.Collector_Login;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.List;
+import java.util.Locale;
 
 public class SO_Action extends AppCompatActivity implements View.OnClickListener{
 
     public CardView card1,card2,card3,card4;
     String mandal;
     String sector;
+    int pendingAction1;
+    TextView pendingBadge1;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +43,8 @@ public class SO_Action extends AppCompatActivity implements View.OnClickListener
         card2 = (CardView) findViewById(R.id.c2);
         card3 = (CardView) findViewById(R.id.c3);
         card4 = (CardView) findViewById(R.id.c4);
-
+        pendingBadge1=(TextView) findViewById(R.id.sopending1);
+        db=FirebaseFirestore.getInstance();
         card1.setOnClickListener(this);
         card2.setOnClickListener(this);
         card3.setOnClickListener(this);
@@ -49,6 +62,28 @@ public class SO_Action extends AppCompatActivity implements View.OnClickListener
         }else{
             Log.d("extra", "no");
         }
+        db.collection("individuals").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
+                        for(DocumentSnapshot d:list)
+                        {
+                            Individual obj=d.toObject(Individual.class);
+                            if(obj.getMandal().toLowerCase(Locale.ROOT).equals(mandal.toLowerCase(Locale.ROOT))) {
+                                if(obj.getSpApproved3().equals("yes")) {
+                                    if (obj.getPreferredUnit().toLowerCase(Locale.ROOT).equals(sector.toLowerCase(Locale.ROOT))) {
+                                        if(!obj.getSoApproved().equals("yes") &&  !obj.getSoApproved().equals("no"))
+                                        {
+                                            pendingAction1=pendingAction1+1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        pendingBadge1.setText(String.valueOf(pendingAction1));
+                    }
+                });
 
     }
     private boolean isNetworkConnected(){

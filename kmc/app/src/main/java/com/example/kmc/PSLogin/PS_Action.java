@@ -32,8 +32,12 @@ public class PS_Action extends AppCompatActivity implements View.OnClickListener
     String district;
     String mandal;
     int pendingAction1;
+    int pendingAction2;
+    int pendingAction3;
     FirebaseFirestore db;
-    TextView pending1;
+    TextView pendingBadge1;
+    TextView pendingBadge2;
+    TextView pendingBadge3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +49,9 @@ public class PS_Action extends AppCompatActivity implements View.OnClickListener
         card3 = (CardView) findViewById(R.id.c3);
         card4 = (CardView) findViewById(R.id.c4);
         card5 = (CardView) findViewById(R.id.c5);
-        pending1=(TextView) findViewById(R.id.pending1);
+        pendingBadge1=(TextView) findViewById(R.id.pending1);
+        pendingBadge2=(TextView) findViewById(R.id.pending2);
+        pendingBadge3=(TextView) findViewById(R.id.pending3);
         db=FirebaseFirestore.getInstance();
         card1.setOnClickListener(this);
         card2.setOnClickListener(this);
@@ -72,7 +78,6 @@ public class PS_Action extends AppCompatActivity implements View.OnClickListener
                         List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
                         for(DocumentSnapshot d:list)
                         {
-
                             Individual obj=d.toObject(Individual.class);
                             if(obj.getVillage()!=null)
                             {
@@ -88,13 +93,59 @@ public class PS_Action extends AppCompatActivity implements View.OnClickListener
                                     }
                                 }
                             }
+
                         }
+                        pendingBadge1.setText(String.valueOf(pendingAction1));
                     }
                 });
-        Log.d("Hello",String.valueOf(pendingAction1));
-        pending1.setText(String.valueOf(pendingAction1));
+        db.collection("individuals").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
+                        for(DocumentSnapshot d:list)
+                        {
+                            Individual obj=d.toObject(Individual.class);
+                            if(obj.getVillage()!=null)
+                            {
+                                if(obj.getVillage().toLowerCase(Locale.ROOT).toString().equals(village.toLowerCase(Locale.ROOT)));
+                                {
+                                    if(obj.getCtrApproved().toString().equalsIgnoreCase("yes"))
+                                    {
+                                        if(!obj.getPsApproved2().equals("yes")){
+                                            pendingAction2=pendingAction2+1;
+                                        }
+                                    }
 
+                                }
+                            }
+                        }
+                        pendingBadge2.setText(String.valueOf(pendingAction2));
+                    }
+                });
+        db.collection("individuals").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
+                        for(DocumentSnapshot d:list)
+                        {
 
+                            Individual obj=d.toObject(Individual.class);
+                            if(obj.getVillage()!=null)
+                            {
+                                if(obj.getVillage().toLowerCase(Locale.ROOT).toString().equals(village.toLowerCase(Locale.ROOT)));
+                                {
+                                    if(obj.getCtrApproved2().toString().equalsIgnoreCase("yes"))
+                                    {
+                                        pendingAction3=pendingAction3+1;
+                                    }
+                                }
+                            }
+                        }
+                        pendingBadge3.setText(String.valueOf(pendingAction3));
+                    }
+                });
     }
     private boolean isNetworkConnected(){
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

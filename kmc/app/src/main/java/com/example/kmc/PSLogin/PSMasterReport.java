@@ -284,16 +284,16 @@ public class PSMasterReport extends AppCompatActivity {
             e.printStackTrace();
         }
 //        Toast.makeText(this, dir.toString(), Toast.LENGTH_SHORT).show();
-        openFolder(filePath);
+        openFolder(Fnamexls);
     }
-    public void openFolder(String location)
+    public void openFolder(String Fnamexls)
     {
-        // location = "/sdcard/my_folder";
+        String location = Environment.getExternalStoragePublicDirectory("kmc")+ "/" ;
         Intent intent = new Intent(Intent.ACTION_VIEW);
         Uri mydir = Uri.parse("file://"+location);
         Toast.makeText(this, location, Toast.LENGTH_SHORT).show();
-      //  intent.setDataAndType(mydir, "file/*");    // or use */*
-        //startActivity(intent);
+        intent.setDataAndType(mydir, "application/vnd.ms-excel");   // or use /
+        startActivity(intent);
     }
 
 }
