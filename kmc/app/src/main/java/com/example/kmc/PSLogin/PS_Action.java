@@ -31,6 +31,8 @@ public class PS_Action extends AppCompatActivity implements View.OnClickListener
     String village;
     String district;
     String mandal;
+    String uname;
+    String aadhar;
     int pendingAction1;
     int pendingAction2;
     int pendingAction3;
@@ -64,8 +66,9 @@ public class PS_Action extends AppCompatActivity implements View.OnClickListener
             village=value;
             mandal=extras.getString("mandal");
             district=extras.getString("district");
+            uname=extras.getString("uname");
+            aadhar=extras.getString("aadhar");
             //The key argument here must match that used in the other activity
-
         }else{
             Log.d("extra", "no");
         }
@@ -146,6 +149,16 @@ public class PS_Action extends AppCompatActivity implements View.OnClickListener
                         pendingBadge3.setText(String.valueOf(pendingAction3));
                     }
                 });
+    }
+
+    public void changePass(View view) {
+        Intent intent = new Intent(PS_Action.this, password_change.class);
+        intent.putExtra("village",village);
+        intent.putExtra("mandal",mandal);
+        intent.putExtra("district",district);
+        intent.putExtra("uname",uname);
+        intent.putExtra("aadhar",aadhar);
+        PS_Action.this.startActivity(intent);
     }
     private boolean isNetworkConnected(){
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

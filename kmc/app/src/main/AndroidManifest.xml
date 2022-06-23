@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kmc">
         <activity
+            android:name=".PSLogin.password_change"
+            android:exported="false" />
+        <activity
             android:name=".CLogin.CollectorDistrictMasterReport"
             android:exported="false" />
         <activity

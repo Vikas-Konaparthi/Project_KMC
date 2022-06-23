@@ -191,7 +191,6 @@ public class SPUserDetails extends AppCompatActivity {
         updateData(aadharNumber,approved,status);
     }
 
-
     public void reject(View view) {
         String approved="no";
         status= "Rejected By SP: "+getIntent().getStringExtra("uStatus").toString();
