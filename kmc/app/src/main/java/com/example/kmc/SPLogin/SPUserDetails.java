@@ -1,7 +1,5 @@
 package com.example.kmc.SPLogin;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,21 +8,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.kmc.PSLogin.userDetails;
 import com.example.kmc.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -51,6 +45,11 @@ public class SPUserDetails extends AppCompatActivity {
     private TextInputEditText individualSPRemarks;
     public TextView getIndividualDBAmount;
     public TextView getIndividualApprovalAmount;
+    public TextView getAmountApproved;
+    public TextView getDBAccountAmount;
+    public TextView getDbBankName;
+    public TextView getDbAccNumber;
+    public TextView getDbIFSC;
 
     Button approve;
     Button reject;
@@ -95,14 +94,19 @@ public class SPUserDetails extends AppCompatActivity {
         getIndividualBankIFSC=(TextView) findViewById(R.id.BankIFSC);
         individualPSUpload=(TextView) findViewById(R.id.psUpload);
         individualSPRemarks=(TextInputEditText) findViewById(R.id.remarks);
-        getIndividualDBAmount=(TextView) findViewById(R.id.dbAmount);
+        getDbBankName = (TextView) findViewById(R.id.DbBankName);
+        getDbAccNumber = (TextView) findViewById(R.id.DbAccNumber);
+        getDbIFSC = (TextView) findViewById(R.id.DbBankIFSC);
+//        getIndividualDBAmount=(TextView) findViewById(R.id.dbAmount);
         getIndividualApprovalAmount=(TextView) findViewById(R.id.approvalAmount);
         approve=(Button)findViewById(R.id.approve);
         reject=(Button)findViewById(R.id.reject);
-        groundImageButton=(Button)findViewById(R.id.groundImage);
+        getDBAccountAmount=(TextView) findViewById(R.id.dbAmount);
+
+//        groundImageButton=(Button)findViewById(R.id.groundImage);
         individualName.setText("Name: "+getIntent().getStringExtra("uname").toString());
         individualFatherName.setText("Father Name: "+getIntent().getStringExtra("ufname").toString());
-        individualAge.setText("Age : "+getIntent().getStringExtra("uAge").toString());
+        individualAge.setText("Age: "+getIntent().getStringExtra("uAge").toString());
         individualHouseNo.setText("House Number: "+getIntent().getStringExtra("uHnumber").toString());
         individualVillage.setText("Village: "+getIntent().getStringExtra("uVillage").toString());
         individualMandal.setText("Mandal: "+getIntent().getStringExtra("uMandal").toString());
@@ -114,8 +118,12 @@ public class SPUserDetails extends AppCompatActivity {
         individualBankAccNo.setText("Bank Account Number: "+getIntent().getStringExtra("uBankAccNumber").toString());
         getIndividualBankIFSC.setText("Bank IFSC: "+getIntent().getStringExtra("uBankIFSC").toString());
         getIndividualApprovalAmount.setText("Approval Amount: "+getIntent().getStringExtra("uApprovalAmount").toString());
-        getIndividualDBAmount.setText("Dalita Bandhu Account Amount: "+getIntent().getStringExtra("uDbAccount").toString());
+        getDbBankName.setText("DB Bank Name: "+getIntent().getStringExtra("uDbBankName").toString());
+        getDbAccNumber.setText("DB Account Number: "+getIntent().getStringExtra("uDbAccountNo").toString());
+        getDbIFSC.setText("DB Account IFSC: "+getIntent().getStringExtra("uDbIFSC").toString());
 
+//        getIndividualDBAmount.setText("Dalita Bandhu Account Amount: "+getIntent().getStringExtra("uDbAccount").toString());
+        getDBAccountAmount.setText("DB Account Amount: "+getIntent().getStringExtra("uDbAccount").toString());
         aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
         village=getIntent().getStringExtra("uVillage").toString();
         mandal= getIntent().getStringExtra("uMandal").toString();
@@ -139,32 +147,32 @@ public class SPUserDetails extends AppCompatActivity {
                 spRemarks= individualSPRemarks.getText().toString();
             }
         });
-        collectorApproved=getIntent().getStringExtra("uCollectorApproved").toString();
-        if(collectorApproved.equals("yes"))
-        {
-            approve.setEnabled(false);
-            reject.setEnabled(false);
-            individualSPRemarks.setEnabled(false);
-        }else if(collectorApproved.equals("no"))
-        {
-            approve.setEnabled(false);
-            reject.setEnabled(false);
-            individualSPRemarks.setEnabled(false);
-        }
+//        collectorApproved=getIntent().getStringExtra("uCollectorApproved").toString();
+//        if(collectorApproved.equals("yes"))
+//        {
+//            approve.setEnabled(false);
+//            reject.setEnabled(false);
+//            individualSPRemarks.setEnabled(false);
+//        }else if(collectorApproved.equals("no"))
+//        {
+//            approve.setEnabled(false);
+//            reject.setEnabled(false);
+//            individualSPRemarks.setEnabled(false);
+//        }
 
 
-        groundImage=getIntent().getStringExtra("uGroundingImage").toString();
-        if(!groundImage.equals(""))
-        {
-            groundImageButton.setEnabled(true);
-        }
+//        groundImage=getIntent().getStringExtra("uGroundingImage").toString();
+//        if(!groundImage.equals(""))
+//        {
+//            groundImageButton.setEnabled(true);
+//        }
 
     }
-    public void groundingImage(View view){
-        Uri uri = Uri.parse(groundImage); // missing 'http://' will cause crashed
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        startActivity(intent);
-    }
+//    public void groundingImage(View view){
+//        Uri uri = Uri.parse(groundImage); // missing 'http://' will cause crashed
+//        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//        startActivity(intent);
+//    }
     public void enableSubmitIfReady(){
         boolean isReady = individualSPRemarks.getText().toString().length() > 3;
         approve.setEnabled(isReady);
@@ -179,14 +187,14 @@ public class SPUserDetails extends AppCompatActivity {
           }
     public void approve(View view) {
         String approved="yes";
-        status="Waiting for Collector Sanction";
+        status="Waiting for Panchayat Secretary Amount Request";
         updateData(aadharNumber,approved,status);
     }
 
 
     public void reject(View view) {
         String approved="no";
-        status="Rejected";
+        status= "Rejected By SP: "+getIntent().getStringExtra("uStatus").toString();
         updateData(aadharNumber,approved,status);
     }
     private void updateData(String aadharNumber, String approved,String status) {
@@ -209,7 +217,7 @@ public class SPUserDetails extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(SPUserDetails.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(SPUserDetails.this,SPZone.class);
+                                    Intent intent = new Intent(SPUserDetails.this, ListOfBen.class);
                                     intent.putExtra("village1",village1);
                                     intent.putExtra("village2",village2);
                                     startActivity(intent);

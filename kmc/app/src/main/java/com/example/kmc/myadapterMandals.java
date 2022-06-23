@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kmc.CLogin.CollectorUserDetails;
 import com.example.kmc.CLogin.CollectorVillageSelection;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 

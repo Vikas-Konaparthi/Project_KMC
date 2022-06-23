@@ -234,18 +234,66 @@
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
-            <Button
-                android:id="@+id/uploadImage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Upload Grounding Image"
-                android:layout_below="@id/password"
-                android:onClick="uploadGrounding"
-                android:layout_marginTop="30dp"
-                android:gravity="center"
-                android:enabled="false"
-                style="?attr/materialButtonOutlinedStyle"
-                />
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="Enter Vendor Name"-->
+<!--                android:layout_below="@id/document"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                android:id="@+id/vendorName"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+<!--                >-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="Enter Vendor Bank Account Number"-->
+<!--                android:layout_below="@id/vendorName"-->
+<!--                android:id="@+id/vendorBankAccountNo"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+<!--                >-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="Enter Vendor Bank IFSC"-->
+<!--                android:layout_below="@id/vendorBankAccountNo"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                android:id="@+id/vendorBankIFSC"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+<!--                >-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+<!--            <Button-->
+<!--                android:id="@+id/uploadImage"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Upload Grounding Image"-->
+<!--                android:layout_below="@id/password"-->
+<!--                android:onClick="uploadGrounding"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                android:gravity="center"-->
+<!--                android:enabled="false"-->
+<!--                style="?attr/materialButtonOutlinedStyle"-->
+<!--                />-->
             <ProgressBar
                 android:id="@+id/pBar"
                 style="?android:attr/progressBarStyle"

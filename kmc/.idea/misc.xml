@@ -3,6 +3,34 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/NUNNA KIREETI/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_collector_grounding_user_details.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_collector_user_details.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_collector_user_details_amount_dbto_ben.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_collector_user_details_amount_to_db.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_collectorzone.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_main3.xml" value="0.2" />
+        <entry key="..\:/Users/NUNNA KIREETI/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_ps_action.xml" value="0.1" />
+        <entry key="..\:/Users/NUNNA KIREETI/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_psgrounding_user_details.xml" value="0.1" />
+        <entry key="..\:/Users/NUNNA KIREETI/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_sogrounding_user_details.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_souser_details.xml" value="0.1" />
+        <entry key="..\:/Users/NUNNA KIREETI/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_souser_details_amount_dbto_ben.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_sp_action.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_spgrounding_status.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_spuser_details.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_spuser_details_amount_release_db_to_ben.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_spuser_details_amount_release_to_db.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_user_details_amount_dbto_ben.xml" value="0.1" />
+        <entry key="..\:/Users/NUNNA KIREETI/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_user_details_amount_to_db.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_collector_amount_dbto_ben.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_collector_user_details_amount_to_db.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_collectorzone.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_main3.xml" value="0.1" />
+        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_psamount_to_db.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_pszone.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_soamount_dbto_ben.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/report.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/singlerow.xml" value="0.1" />
         <entry key="..\:/Users/Vikas.Konaparthi/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_add_individual.xml" value="0.18" />
         <entry key="..\:/Users/Vikas.Konaparthi/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/Vikas.Konaparthi/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_pslogin.xml" value="0.1" />
@@ -15,6 +43,48 @@
         <entry key="..\:/Users/Vikas.Konaparthi/AndroidStudioProjects/kmc/app/src/main/res/layout/item.xml" value="0.1" />
         <entry key="..\:/Users/Vikas.Konaparthi/AndroidStudioProjects/kmc/app/src/main/res/layout/singlerow.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/Vikas.Konaparthi/AndroidStudioProjects/kmc/app/src/main/res/menu/drawer_menu.xml" value="0.1" />
+        <entry key="..\:/my-projects-repo/DBKMC/kmc/app/src/main/res/layout/activity_add_individual.xml" value="0.1" />
+        <entry key="..\:/my-projects-repo/DBKMC/kmc/app/src/main/res/layout/activity_main3.xml" value="0.1762114537444934" />
+        <entry key="..\:/my-projects-repo/DBKMC/kmc/app/src/main/res/layout/activity_psamount_to_db.xml" value="0.17074275362318841" />
+        <entry key="..\:/my-projects-repo/DBKMC/kmc/app/src/main/res/layout/activity_so_action.xml" value="0.19977426636568849" />
+        <entry key="..\:/my-projects-repo/DBKMC/kmc/app/src/main/res/layout/activity_sp_action.xml" value="0.184375" />
+        <entry key="..\:/my-projects-repo/DBKMC/kmc/app/src/main/res/layout/activity_spmaster_report.xml" value="0.184375" />
+        <entry key="..\:/my-projects-repo/DBKMC/kmc/app/src/main/res/layout/singlerow.xml" value="0.1" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_collecto_grounding.xml" value="0.18297101449275363" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_collector_action.xml" value="0.1" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_collector_amount_to_db.xml" value="0.1" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_collector_grounding.xml" value="0.1" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_collector_grounding_user_details.xml" value="0.18297101449275363" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_collector_list_of_ben.xml" value="0.184375" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_collector_user_details.xml" value="0.1" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_collector_user_details_amount_dbto_ben.xml" value="0.15217391304347827" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_collector_user_details_amount_to_db.xml" value="0.1" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_collectorzone.xml" value="0.184375" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_ps_action.xml" value="0.1" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_psamount_dbto_ben.xml" value="0.12635869565217392" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_psamount_to_db.xml" value="0.1" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_psgrounding.xml" value="0.15217391304347827" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_psgrounding_user_details.xml" value="0.15217391304347827" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_pszone.xml" value="0.14166666666666666" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_so_action.xml" value="0.22" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_soamount_dbto_ben.xml" value="0.14166666666666666" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_sogrounding.xml" value="0.18297101449275363" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_sogrounding_user_details.xml" value="0.18297101449275363" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_souser_details.xml" value="0.18" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_souser_details_amount_dbto_ben.xml" value="0.14166666666666666" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_sozone.xml" value="0.1" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_sp_action.xml" value="0.33" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_spamount_dbto_ben.xml" value="0.18" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_spamount_to_db.xml" value="0.184375" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_spgrounding.xml" value="0.18297101449275363" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_spgrounding_status.xml" value="0.1" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_spuser_details.xml" value="0.18704710144927536" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_spuser_details_amount_release_db_to_ben.xml" value="0.1" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_spuser_details_amount_release_to_db.xml" value="0.184375" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_spzone.xml" value="0.1625" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/activity_user_details_amount_dbto_ben.xml" value="0.1" />
+        <entry key="..\:/my-projects-repo/Dalit_Bandhu/kmc/app/src/main/res/layout/singlerow.xml" value="0.22" />
+        <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/drawable/badge.xml" value="0.122" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_add_individual.xml" value="0.1" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collector_home_page.xml" value="0.1703125" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collector_login.xml" value="0.184375" />
@@ -22,24 +92,28 @@
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collector_user_details.xml" value="0.1" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collector_village_selection.xml" value="0.1" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collectorzone.xml" value="0.184375" />
-        <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_main.xml" value="0.14322916666666666" />
+        <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_main.xml" value="0.15730337078651685" />
+        <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_ps_action.xml" value="0.16" />
+        <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_psamount_to_db.xml" value="0.184375" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_pslogin.xml" value="0.1" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_pszone.xml" value="0.184375" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_sologin.xml" value="0.14322916666666666" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_souser_details.xml" value="0.17" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_sozone.xml" value="0.14322916666666666" />
+        <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_sp_action.xml" value="0.22" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_splogin.xml" value="0.18568840579710144" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_spuser_details.xml" value="0.1" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_spzone.xml" value="0.18" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_user_details.xml" value="0.14322916666666666" />
+        <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_user_details_amount_to_db.xml" value="0.1703125" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/singlerow.xml" value="0.42448979591836733" />
-        <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/singlerow2.xml" value="0.16304347826086957" />
+        <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/singlerow2.xml" value="0.14583333333333334" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

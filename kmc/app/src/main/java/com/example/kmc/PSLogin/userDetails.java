@@ -13,7 +13,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.kmc.R;
-import com.example.kmc.SOLogin.SOUserDetails;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -43,6 +42,9 @@ public class userDetails extends AppCompatActivity {
     public TextInputLayout individualBankName;
     public TextInputLayout individualBankAccNo;
     public TextInputLayout individualBankIFSC;
+    private TextInputLayout individualVendorName;
+    private TextInputLayout individualVendorBankAccountNumber;
+    private TextInputLayout individualVendorBankIFSC;
     FirebaseFirestore db;
     String indivName;
     String fatherName;
@@ -58,13 +60,16 @@ public class userDetails extends AppCompatActivity {
     String bankACCNumber;
     String collectorApproved="";
     String bankIFSC;
-    String groundingStatus="";
+//    String groundingStatus="";
+//    String vendorName;
+//    String vendorBankAccount;
+//    String vendorBankIFSC;
     private final int PICK_IMAGE_REQUEST = 22;
     String my_url="";
     Uri image_uri = null;
     ProgressBar pgsBar;
 
-    Button uploadImage;
+//    Button uploadImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +89,10 @@ public class userDetails extends AppCompatActivity {
         individualBankName=(TextInputLayout) findViewById(R.id.BankName);
         individualBankAccNo=(TextInputLayout) findViewById(R.id.BankACCNumber);
         individualBankIFSC=(TextInputLayout) findViewById(R.id.BankIFSC);
-        uploadImage=(Button) findViewById(R.id.uploadImage);
+//        individualVendorName=(TextInputLayout) findViewById(R.id.vendorName);
+//        individualVendorBankAccountNumber=(TextInputLayout) findViewById(R.id.vendorBankAccountNo);
+//        individualVendorBankIFSC=(TextInputLayout) findViewById(R.id.vendorBankIFSC);
+//        uploadImage=(Button) findViewById(R.id.uploadImage);
         individualName.getEditText().setText(getIntent().getStringExtra("uname").toString());
         individualFatherName.getEditText().setText(getIntent().getStringExtra("ufname").toString());
         individualAge.getEditText().setText(getIntent().getStringExtra("uAge").toString());
@@ -98,12 +106,16 @@ public class userDetails extends AppCompatActivity {
         individualBankName.getEditText().setText(getIntent().getStringExtra("uBankName").toString());
         individualBankAccNo.getEditText().setText(getIntent().getStringExtra("uBankAccNumber").toString());
         individualBankIFSC.getEditText().setText(getIntent().getStringExtra("uBankIFSC").toString());
+//        individualVendorName.getEditText().setText(getIntent().getStringExtra("uVendorName").toString());
+//        individualVendorBankAccountNumber.getEditText().setText(getIntent().getStringExtra("uVendorBankAccount").toString());
+//        individualVendorBankIFSC.getEditText().setText(getIntent().getStringExtra("uVendorIFSC").toString());
+
         collectorApproved=getIntent().getStringExtra("uCollectorApproved").toString();
-        if(collectorApproved.equals("yes"))
-        {
-            uploadImage.setEnabled(true);
-            groundingStatus="Successfully Grounded";
-        }
+//        if(collectorApproved.equals("yes"))
+//        {
+//            uploadImage.setEnabled(true);
+//            groundingStatus="Successfully Grounded";
+//        }
 
 
 
@@ -133,15 +145,18 @@ public class userDetails extends AppCompatActivity {
         mandal=individualMandal.getEditText().getText().toString();
         district=individualDistrict.getEditText().getText().toString();
         bankIFSC=individualBankIFSC.getEditText().getText().toString();
-        if(collectorApproved.equals("yes"))
-        {
-            uploadImage.setEnabled(true);
-        }
+//        vendorBankAccount=individualVendorBankAccountNumber.getEditText().toString();
+//        vendorName=individualBankName.getEditText().toString();
+//        vendorBankIFSC=individualBankIFSC.getEditText().toString();
+//        if(collectorApproved.equals("yes"))
+//        {
+//            uploadImage.setEnabled(true);
+//        }
 
-        updateData(aadharNumber,indivName,fatherName,age,houseNumber,mobileNumber,preferredunit, bankName,bankACCNumber,my_url,groundingStatus);
+        updateData(aadharNumber,indivName,fatherName,age,houseNumber,mobileNumber,preferredunit, bankName,bankACCNumber,my_url);
     }
 
-    public void updateData(String aadharNumber,String name,String fname, String age,String houseNo,String mobileNumber,String preferredUnit,String bankName,String bankACCnumber,String my_url,String groundingStatus){
+    public void updateData(String aadharNumber,String name,String fname, String age,String houseNo,String mobileNumber,String preferredUnit,String bankName,String bankACCnumber,String my_url){
         Map<String, Object> individualInfo = new HashMap<String, Object>();
         individualInfo.put("name", name.trim());
         individualInfo.put("fatherName", fname.trim());
@@ -151,11 +166,17 @@ public class userDetails extends AppCompatActivity {
         individualInfo.put("preferredUnit", preferredUnit.trim());
         individualInfo.put("bankName", bankName.trim());
         individualInfo.put("bankAccNo", bankACCnumber.trim());
+        individualInfo.put("preferredUnit", preferredUnit.trim());
+        individualInfo.put("bankName", bankName.trim());
+        individualInfo.put("bankAccNo", bankACCnumber.trim());
+//        individualInfo.put("vendorName", vendorName.trim());
+//        individualInfo.put("vendorAccountNo", vendorBankAccount.trim());
+//        individualInfo.put("vendorIFSC", vendorBankIFSC.trim());
         individualInfo.put("village", village.trim());
         individualInfo.put("mandal", mandal.trim());
         individualInfo.put("district", district.trim());
         individualInfo.put("grounding_img", my_url.trim());
-        individualInfo.put("groundingStatus", groundingStatus);
+//        individualInfo.put("groundingStatus", groundingStatus);
 
 
 
@@ -174,7 +195,7 @@ public class userDetails extends AppCompatActivity {
                                          public void onSuccess(Void unused) {
 
                                              Toast.makeText(userDetails.this, "Successfully Updated", Toast.LENGTH_SHORT).show();
-                                             Intent i = new Intent(userDetails.this, PSZone.class);
+                                             Intent i = new Intent(userDetails.this, PSAddEdit.class);
                                              i.putExtra("village",village.trim());
                                              i.putExtra("mandal", mandal.trim());
                                              i.putExtra("district",district.trim());

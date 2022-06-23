@@ -23,6 +23,19 @@
             android:textSize="25dp"
             android:textColor="#000"/>
 
+        <TextView
+            android:id="@+id/cart_badge"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/badge"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

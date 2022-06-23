@@ -2,7 +2,6 @@ package com.example.kmc;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.kmc.CLogin.CollectorUserDetails;
-import com.example.kmc.CLogin.CollectorZone;
+import com.example.kmc.CLogin.CollectorAction;
 
 import java.util.ArrayList;
 
@@ -38,7 +36,7 @@ public class myadapterVillage extends RecyclerView.Adapter<myadapterVillage.myvi
         holder.t1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(holder.t1.getContext(), CollectorZone.class);
+                Intent i = new Intent(holder.t1.getContext(), CollectorAction.class);
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.putExtra("village",datalist.get(position).getVillage());

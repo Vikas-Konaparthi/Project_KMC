@@ -7,20 +7,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.kmc.PSLogin.PSZone;
+import com.example.kmc.PSLogin.PS_Action;
 import com.example.kmc.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.Objects;
 
 public class PSLogin extends AppCompatActivity {
     private TextInputLayout username;
@@ -42,7 +38,6 @@ public class PSLogin extends AppCompatActivity {
         // click handling code
         String uname= username.getEditText().getText().toString();
         String pass= password.getEditText().getText().toString();
-
         DocumentReference document=db.collection("psofficer").document(uname.trim());
         document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -50,7 +45,7 @@ public class PSLogin extends AppCompatActivity {
                 if(documentSnapshot.exists())
                 {
                     if(pass.equals(documentSnapshot.getString("password"))){
-                        Intent i = new Intent(PSLogin.this, PSZone.class);
+                        Intent i = new Intent(PSLogin.this, PS_Action.class);
                         i.putExtra("village",documentSnapshot.getString("village"));
                         i.putExtra("mandal",documentSnapshot.getString("mandal"));
                         i.putExtra("district",documentSnapshot.getString("district"));

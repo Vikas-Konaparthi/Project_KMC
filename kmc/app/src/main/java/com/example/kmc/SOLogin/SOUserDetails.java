@@ -15,10 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.kmc.PSLogin.addIndividual;
 import com.example.kmc.R;
-import com.example.kmc.SPLogin.SPUserDetails;
-import com.example.kmc.SPLogin.SPZone;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -50,10 +47,13 @@ public class SOUserDetails extends AppCompatActivity {
     public TextView individualBankAccNo;
     public TextView individualPSUpload;
     public TextView getIndividualBankIFSC;
-    private TextInputEditText individualSORemarks;
-    private TextInputEditText individualVendorName;
-    private TextInputEditText individualVendorBankAccountNumber;
-    private TextInputEditText individualVendorBankIFSC;
+    public TextView getAmountApproved;
+    public TextView getDBAccountAmount;
+    public TextView getDbBankName;
+    public TextView getDbAccNumber;
+    public TextView getDbIFSC;
+//    private TextInputEditText individualSORemarks;
+
 
     String my_url;
     Button approve;
@@ -74,9 +74,6 @@ public class SOUserDetails extends AppCompatActivity {
     String status;
     String mandal;
     String sector;
-    String vendorName;
-    String vendorBankAccount;
-    String vendorBankIFSC;
     ProgressBar pgsBar;
 
     StorageReference storageReference;
@@ -103,15 +100,18 @@ public class SOUserDetails extends AppCompatActivity {
         individualBankAccNo=(TextView) findViewById(R.id.BankACCNumber);
         getIndividualBankIFSC=(TextView) findViewById(R.id.BankIFSC);
         individualPSUpload=(TextView) findViewById(R.id.psUpload);
-        individualVendorName=(TextInputEditText) findViewById(R.id.vendorName);
-        individualVendorBankAccountNumber=(TextInputEditText) findViewById(R.id.vendorBankAccountNo);
-        individualVendorBankIFSC=(TextInputEditText) findViewById(R.id.vendorBankIFSC);
-        individualSORemarks=(TextInputEditText) findViewById(R.id.remarks);
+        getAmountApproved=(TextView) findViewById(R.id.approvedAmount);
+        getDBAccountAmount=(TextView) findViewById(R.id.dbAmount);
+        getDbBankName = (TextView) findViewById(R.id.DbBankName);
+        getDbAccNumber = (TextView) findViewById(R.id.DbAccNumber);
+        getDbIFSC = (TextView) findViewById(R.id.DbBankIFSC);
+
+//        individualSORemarks=(TextInputEditText) findViewById(R.id.remarks);
         approve=(Button)findViewById(R.id.approve);
         reject=(Button)findViewById(R.id.reject);
         individualName.setText("Name: "+getIntent().getStringExtra("uname").toString());
         individualFatherName.setText("Father Name: "+getIntent().getStringExtra("ufname").toString());
-        individualAge.setText("Age : "+getIntent().getStringExtra("uAge").toString());
+        individualAge.setText("Age: "+getIntent().getStringExtra("uAge").toString());
         individualHouseNo.setText("House Number: "+getIntent().getStringExtra("uHnumber").toString());
         individualVillage.setText("Village: "+getIntent().getStringExtra("uVillage").toString());
         individualMandal.setText("Mandal: "+getIntent().getStringExtra("uMandal").toString());
@@ -122,38 +122,44 @@ public class SOUserDetails extends AppCompatActivity {
         individualBankName.setText("Bank Name: "+getIntent().getStringExtra("uBankName").toString());
         individualBankAccNo.setText("Bank Account Number: "+getIntent().getStringExtra("uBankAccNumber").toString());
         getIndividualBankIFSC.setText("Bank IFSC: "+getIntent().getStringExtra("uBankIFSC").toString());
+        getAmountApproved.setText("Amount Approved: "+getIntent().getStringExtra("uApprovalAmount").toString());
+        getDBAccountAmount.setText("DB Account Amount: "+getIntent().getStringExtra("uDBAccount").toString());
+        getDbBankName.setText("DB Bank Name: "+getIntent().getStringExtra("uDbBankName").toString());
+        getDbAccNumber.setText("DB Account Number: "+getIntent().getStringExtra("uDbAccountNo").toString());
+        getDbIFSC.setText("DB Account IFSC: "+getIntent().getStringExtra("uDbIFSC").toString());
+
         aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
         mandal=getIntent().getStringExtra("mandal").toString();;
         sector=getIntent().getStringExtra("sector").toString();;
 
-        individualSORemarks.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                enableSubmitIfReady();
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                soRemarks= individualSORemarks.getText().toString();
-            }
-        });
-        collectorApproved=getIntent().getStringExtra("uCollectorApproved").toString();
-        if(collectorApproved.equals("yes"))
-        {
-            approve.setEnabled(false);
-            reject.setEnabled(false);
-            individualSORemarks.setEnabled(false);
-        }else if(collectorApproved.equals("no"))
-        {
-            approve.setEnabled(false);
-            reject.setEnabled(false);
-            individualSORemarks.setEnabled(false);
-        }
+//        individualSORemarks.addTextChangedListener(new TextWatcher() {
+//
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//                enableSubmitIfReady();
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//                soRemarks= individualSORemarks.getText().toString();
+//            }
+//        });
+//        collectorApproved=getIntent().getStringExtra("uCollectorApproved").toString();
+//        if(collectorApproved.equals("yes"))
+//        {
+//            approve.setEnabled(false);
+//            reject.setEnabled(false);
+//            individualSORemarks.setEnabled(false);
+//        }else if(collectorApproved.equals("no"))
+//        {
+//            approve.setEnabled(false);
+//            reject.setEnabled(false);
+//            individualSORemarks.setEnabled(false);
+//        }
 
 
 
@@ -164,13 +170,13 @@ public class SOUserDetails extends AppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent,"PDF FILE SELECT"),12);
     }
-    public void enableSubmitIfReady(){
-        boolean isReady = individualSORemarks.getText().toString().length() > 3;
-        approve.setEnabled(isReady);
-        reject.setEnabled(isReady);
-    }
-
-
+//    public void enableSubmitIfReady(){
+//        boolean isReady = individualSORemarks.getText().toString().length() > 3;
+//        approve.setEnabled(isReady);
+//        reject.setEnabled(isReady);
+//    }
+//
+//
     public void document(View view) {
         String url=getIntent().getStringExtra("psUpload").toString();
         Uri uri = Uri.parse(url); // missing 'http://' will cause crashed
@@ -178,19 +184,19 @@ public class SOUserDetails extends AppCompatActivity {
         startActivity(intent);
 
     }
-
-    public void approve(View view) {
-        String approved="yes";
-        status="Waiting for Collector Approval";
-        updateData(aadharNumber,approved,status);
-    }
-
-
-    public void reject(View view) {
-        String approved="no";
-        status="rejected";
-        updateData(aadharNumber,approved,status);
-    }
+//
+//    public void approve(View view) {
+//        String approved="yes";
+//        status="Waiting for Collector Approval";
+//        updateData(aadharNumber,approved,status);
+//    }
+//
+//
+//    public void reject(View view) {
+//        String approved="no";
+//        status="rejected";
+//        updateData(aadharNumber,approved,status);
+//    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         pgsBar.setVisibility(View.VISIBLE);
@@ -232,17 +238,11 @@ public class SOUserDetails extends AppCompatActivity {
     }
 
     private void updateData(String aadharNumber, String approved,String status) {
-        vendorName= individualVendorName.getText().toString();
-        vendorBankAccount= individualBankAccNo.getText().toString();
-        vendorBankIFSC= individualVendorBankIFSC.getText().toString();
         Map<String, Object> individualInfo = new HashMap<String, Object>();
         individualInfo.put("secOfficerUpload", my_url);
         individualInfo.put("secOfficerApproved", approved);
         individualInfo.put("so_remarks", soRemarks);
         individualInfo.put("status", status);
-        individualInfo.put("vendorName", vendorName);
-        individualInfo.put("vendorAccountNo", vendorBankAccount);
-        individualInfo.put("vendorIFSC", vendorBankIFSC);
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -258,7 +258,7 @@ public class SOUserDetails extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(SOUserDetails.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(SOUserDetails.this, SOZone.class);
+                                    Intent intent = new Intent(SOUserDetails.this, SOListOfBen.class);
                                     intent.putExtra("mandal",mandal);
                                     intent.putExtra("sector",sector);
                                     startActivity(intent);

@@ -1,7 +1,5 @@
 package com.example.kmc.PSLogin;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,17 +7,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.kmc.R;
-import com.example.kmc.SPLogin.SPZone;
-import com.example.kmc.login.SPLogin;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -43,6 +39,12 @@ public class addIndividual extends AppCompatActivity {
     public TextInputLayout BankName;
     public TextInputLayout BankACCNumber;
     public TextInputLayout BankIFSC;
+    public TextInputLayout DbBankName;
+    public TextInputLayout DbBankACCNumber;
+    public TextInputLayout DbBankIFSC;
+    //    private TextInputEditText individualVendorName;
+//    private TextInputEditText individualVendorBankAccountNumber;
+//    private TextInputEditText individualVendorBankIFSC;
     ProgressBar pgsBar;
 
 
@@ -61,6 +63,12 @@ public class addIndividual extends AppCompatActivity {
     String bankName;
     String bankACCNumber;
     String bankIFSCNumber;
+    String dbBankName;
+    String dbBankACCNumber;
+    String dbBankIFSC;
+//    String vendorName;
+//    String vendorBankAccount;
+//    String vendorBankIFSC;
 
     String v;
     String d;
@@ -90,6 +98,13 @@ public class addIndividual extends AppCompatActivity {
         BankName  = (TextInputLayout) findViewById(R.id.BankName);
         BankACCNumber  = (TextInputLayout) findViewById(R.id.BankACCNumber);
         BankIFSC  = (TextInputLayout) findViewById(R.id.BankIFSC);
+        DbBankName  = (TextInputLayout) findViewById(R.id.DbBankName);
+        DbBankACCNumber  = (TextInputLayout) findViewById(R.id.DbBankACCNumber);
+        DbBankIFSC  = (TextInputLayout) findViewById(R.id.DbBankIFSC);
+
+//        individualVendorName=(TextInputEditText) findViewById(R.id.vendorName);
+//        individualVendorBankAccountNumber=(TextInputEditText) findViewById(R.id.vendorBankAccountNo);
+//        individualVendorBankIFSC=(TextInputEditText) findViewById(R.id.vendorBankIFSC);
         storageReference= FirebaseStorage.getInstance().getReference();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -119,8 +134,14 @@ public class addIndividual extends AppCompatActivity {
         bankName = BankName.getEditText().getText().toString();
         bankACCNumber = BankACCNumber.getEditText().getText().toString();
         bankIFSCNumber=BankIFSC.getEditText().getText().toString();
+        dbBankName = DbBankName.getEditText().getText().toString();
+        dbBankACCNumber = DbBankACCNumber.getEditText().getText().toString();
+        dbBankIFSC=DbBankIFSC.getEditText().getText().toString();
+//        vendorName= individualVendorName.getText().toString();
+//        vendorBankAccount= individualVendorBankAccountNumber.getText().toString();
+//        vendorBankIFSC= individualVendorBankIFSC.getText().toString();
         //
-        if (individualName.length() != 0 && fatherName.length() != 0 && age.length() != 0 && houseNumber.length() != 0 && aadharNumber.length() != 0 && mobileNumber.length() != 0 && preferredunit.length() != 0 && bankName.length() != 0 && bankACCNumber.length() != 0) {
+        if (individualName.length() != 0 && fatherName.length() != 0 && age.length() != 0 && houseNumber.length() != 0 && aadharNumber.length() != 0 && mobileNumber.length() != 0 && preferredunit.length() != 0 && bankName.length() != 0 && bankACCNumber.length() != 0 && dbBankName.length() != 0 && dbBankACCNumber.length() != 0 && dbBankIFSC.length() != 0 ) {
             Map<String, Object> individualInfo = new HashMap<String, Object>();
             individualInfo.put("name", individualName.trim());
             individualInfo.put("fatherName", fatherName.trim());
@@ -135,29 +156,50 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("bankName", bankName.trim());
             individualInfo.put("bankAccNo", bankACCNumber.trim());
             individualInfo.put("bankIFSC", bankIFSCNumber.trim());
+            individualInfo.put("dbBankName", dbBankName.trim());
+            individualInfo.put("dbBankAccNo", dbBankACCNumber.trim());
+            individualInfo.put("dbBankIFSC", dbBankIFSC.trim());
+//            individualInfo.put("vendorName", vendorName.trim());
+//            individualInfo.put("vendorAccountNo", vendorBankAccount.trim());
+//            individualInfo.put("vendorIFSC", vendorBankIFSC.trim());
             //
-            individualInfo.put("dbAccount", "");
+            individualInfo.put("individualAmountRequired", "");
+            individualInfo.put("spAmountApproved", "");
+            individualInfo.put("dbAccount", "0");
             individualInfo.put("psUpload", my_url);
             individualInfo.put("spApproved", "");
+            individualInfo.put("spApproved2", "");
+            individualInfo.put("spApproved3", "");
             individualInfo.put("ctrApproved", "");
-            individualInfo.put("secOfficerUpload", "");
             individualInfo.put("secOfficerApproved", "");
             individualInfo.put("so_remarks", "");
             individualInfo.put("sp_remarks", "");
             individualInfo.put("grounding_img", "");
             individualInfo.put("status", "Waiting for Special Officer Approval");
             individualInfo.put("approvalAmount", "0");
+            individualInfo.put("groundingStatus", "");
             individualInfo.put("vendorName", "");
             individualInfo.put("vendorAccountNo", "");
             individualInfo.put("vendorIFSC", "");
-            individualInfo.put("groundingStatus", "");
+            individualInfo.put("vendorAgency", "");
+            individualInfo.put("vendorBankName", "");
+            individualInfo.put("quotationImage", "");
+            individualInfo.put("psApprovedAmount", "");
+            individualInfo.put("soApproved", "");
+            individualInfo.put("so_quotation_amount", "");
+            individualInfo.put("ctrApproved2", "");
+            individualInfo.put("psApproved", "");
+            individualInfo.put("psApproved2", "");
+            individualInfo.put("psApproved3", "");
+
+
             //
             db.collection("individuals").add(individualInfo)
                     .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentReference> task) {
                             Toast.makeText(addIndividual.this, "Inserted Successfully", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(addIndividual.this, PSZone.class);
+                            Intent i = new Intent(addIndividual.this, PSAddEdit.class);
                             i.putExtra("village",village.trim());
                             i.putExtra("mandal", mandal.trim());
                             i.putExtra("district",district.trim());

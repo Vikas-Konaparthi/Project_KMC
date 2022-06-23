@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.kmc.PSLogin.PSZone;
 import com.example.kmc.R;
-import com.example.kmc.SOLogin.SOZone;
+import com.example.kmc.SOLogin.SOListOfBen;
+import com.example.kmc.SOLogin.SO_Action;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
@@ -42,7 +42,7 @@ public class SOLogin extends AppCompatActivity {
                 if(documentSnapshot.exists())
                 {
                     if(pass.equals(documentSnapshot.getString("password"))){
-                        Intent i = new Intent(SOLogin.this, SOZone.class);
+                        Intent i = new Intent(SOLogin.this, SO_Action.class);
                         i.putExtra("mandal",documentSnapshot.getString("mandal"));
                         i.putExtra("sector",documentSnapshot.getString("sector"));
                         startActivity(i);

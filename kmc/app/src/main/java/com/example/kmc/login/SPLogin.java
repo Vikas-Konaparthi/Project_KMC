@@ -9,9 +9,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.kmc.PSLogin.PSZone;
 import com.example.kmc.R;
-import com.example.kmc.SPLogin.SPZone;
+import com.example.kmc.SPLogin.ListOfBen;
+import com.example.kmc.SPLogin.SP_Action;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
@@ -47,7 +47,7 @@ public class SPLogin extends AppCompatActivity {
                 if(documentSnapshot.exists())
                 {
                     if(pass.equals(documentSnapshot.getString("password"))){
-                        Intent i = new Intent(SPLogin.this, SPZone.class);
+                        Intent i = new Intent(SPLogin.this, SP_Action.class);
                         i.putExtra("village1",documentSnapshot.getString("village1"));
                         i.putExtra("village2",documentSnapshot.getString("village2"));
                         startActivity(i);
