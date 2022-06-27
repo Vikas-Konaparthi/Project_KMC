@@ -65,7 +65,7 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             village = extras.getString("village");
-            aadhar=extras.getString("aadhar");
+
         }else{
             Log.d("extra", "no");
         }

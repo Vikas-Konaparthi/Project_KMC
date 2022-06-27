@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kmc">
         <activity
+            android:name=".CLogin.CollectorMenu"
+            android:exported="false" />
+        <activity
             android:name=".CLogin.change_password_ctr"
             android:exported="false" />
         <activity

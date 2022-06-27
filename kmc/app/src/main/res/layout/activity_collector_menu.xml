@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:layout_margin="10dp"
+    tools:context=".CLogin.CollectorMenu">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="top">
+            <TextView
+                android:layout_marginTop="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Mandal"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="8"
+            android:orientation="horizontal"
+            android:background="@drawable/border"
+            tools:ignore="UselessParent">
+
+    <Spinner
+        android:layout_gravity="center"
+        android:id="@+id/spinner_mandal"
+        android:layout_width="match_parent"
+        android:autofillHints="Mandal"
+        android:layout_height="wrap_content"/>
+        </LinearLayout>
+            <TextView
+                android:layout_marginTop="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Village"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="8"
+            android:orientation="horizontal"
+            android:background="@drawable/border"
+            tools:ignore="UselessParent">
+
+    <Spinner
+        android:layout_below="@id/spinner_mandal"
+        android:id="@+id/spinner_village"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="wrap_content" />
+        </LinearLayout>
+            <Button
+                android:id="@+id/approve"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:layout_below="@id/password"
+                android:onClick="next"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                style="?attr/materialButtonOutlinedStyle"
+                />
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

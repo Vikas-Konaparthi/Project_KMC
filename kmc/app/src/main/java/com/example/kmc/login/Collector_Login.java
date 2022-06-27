@@ -11,7 +11,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.kmc.CLogin.CollectorAction;
 import com.example.kmc.CLogin.CollectorMandalSelection;
+import com.example.kmc.CLogin.CollectorMenu;
 import com.example.kmc.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -52,7 +54,7 @@ public class Collector_Login extends AppCompatActivity {
                 if(documentSnapshot.exists())
                 {
                     if(pass.equals(documentSnapshot.getString("password"))){
-                        Intent i = new Intent(Collector_Login.this, CollectorMandalSelection.class);
+                        Intent i = new Intent(Collector_Login.this, CollectorMenu.class);
                         i.putExtra("district",documentSnapshot.getString("District"));
                         i.putExtra("aadhar",documentSnapshot.getString("aadhar"));
 
