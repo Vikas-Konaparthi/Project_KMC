@@ -251,21 +251,24 @@ public class CollectorUserDetailsAmountToDB extends AppCompatActivity {
         int newAmount=Integer.parseInt(getIntent().getStringExtra("uDBAccount").toString())+Integer.parseInt(collectorSanction);
         String collectorSanctionAmount=Integer.toString(newAmount);
         String approved="yes";
+        String spApproved="yes";
         status=collectorSanction+" Credited to DB Account";
-        updateData(aadharNumber,approved,status,collectorSanctionAmount);
+        updateData(aadharNumber,approved,status,collectorSanctionAmount,spApproved);
     }
 //
 //
     public void reject(View view) {
         String collectorSanctionAmount="";
         String approved="no";
+        String spApproved="";
         status= "Rejected By Collector: "+getIntent().getStringExtra("uStatus").toString();
-        updateData(aadharNumber,approved,status,collectorSanctionAmount);
+        updateData(aadharNumber,approved,status,collectorSanctionAmount,spApproved);
     }
-    private void updateData(String aadharNumber, String approved,String status,String collectorSanctionAmount) {
+    private void updateData(String aadharNumber, String approved,String status,String collectorSanctionAmount,String spApproved) {
         Map<String, Object> individualInfo = new HashMap<String, Object>();
         individualInfo.put("status", status);
         individualInfo.put("ctrApproved", approved);
+        individualInfo.put("spApproved2", spApproved);
         individualInfo.put("dbAccount", collectorSanctionAmount);
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)

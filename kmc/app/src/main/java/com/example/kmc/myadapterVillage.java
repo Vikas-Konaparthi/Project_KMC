@@ -16,9 +16,11 @@ import java.util.ArrayList;
 
 public class myadapterVillage extends RecyclerView.Adapter<myadapterVillage.myviewholder>{
     ArrayList<Mandals> datalist;
+    String aadhar;
 
-    public myadapterVillage(ArrayList<Mandals> datalist) {
+    public myadapterVillage(ArrayList<Mandals> datalist,String aadhar) {
         this.datalist = datalist;
+        this.aadhar=aadhar;
     }
 
     @NonNull
@@ -39,6 +41,7 @@ public class myadapterVillage extends RecyclerView.Adapter<myadapterVillage.myvi
                 Intent i = new Intent(holder.t1.getContext(), CollectorAction.class);
 
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.putExtra("aadhar",aadhar);
                 i.putExtra("village",datalist.get(position).getVillage());
                 holder.t1.getContext().startActivity(i);
 

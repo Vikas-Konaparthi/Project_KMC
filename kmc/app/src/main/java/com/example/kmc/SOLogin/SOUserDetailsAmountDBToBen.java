@@ -233,10 +233,11 @@ public class SOUserDetailsAmountDBToBen extends AppCompatActivity {
     }
     public void approve(View view) {
         String approved="yes";
+        String spApproved="yes";
         if(Integer.parseInt(getIntent().getStringExtra("uDbAccount").toString())>=Integer.parseInt(soQuoteAmount))
         {
             status=soQuoteAmount+" approved by SO waiting for collector approval";
-            updateData(aadharNumber,approved,status);
+            updateData(aadharNumber,approved,status,spApproved);
         }else{
             Toast.makeText(this, "Insuffient amount in DB Account.", Toast.LENGTH_SHORT).show();
         }
@@ -246,14 +247,16 @@ public class SOUserDetailsAmountDBToBen extends AppCompatActivity {
 
     public void reject(View view) {
         String approved="no";
+        String spApproved="";
         status= "Rejected By SO: "+getIntent().getStringExtra("uStatus").toString();
-        updateData(aadharNumber,approved,status);
+        updateData(aadharNumber,approved,status,spApproved);
     }
-    private void updateData(String aadharNumber, String approved,String status) {
+    private void updateData(String aadharNumber, String approved,String status,String spApproved) {
         Map<String, Object> individualInfo = new HashMap<String, Object>();
         individualInfo.put("soApproved", approved.trim());
         individualInfo.put("so_quotation_amount", soQuoteAmount.trim());
         individualInfo.put("so_remarks", soRemarks.trim());
+        individualInfo.put("spApproved3", spApproved);
         individualInfo.put("status", status);
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)

@@ -218,20 +218,23 @@ public class SPUserDetailsAmountDBToBen extends AppCompatActivity {
           }
     public void approve(View view) {
         String approved="yes";
+        String psApproved="yes";
         status=getIntent().getStringExtra("uPSRequestedAmount").toString()+" approved by Special Officer waiting for SO Approval";
-        updateData(aadharNumber,approved,status);
+        updateData(aadharNumber,approved,status,psApproved);
     }
 
 
     public void reject(View view) {
         String approved="no";
+        String psApproved="";
         status= "Rejected By SP: "+getIntent().getStringExtra("uStatus").toString();
-        updateData(aadharNumber,approved,status);
+        updateData(aadharNumber,approved,status,psApproved);
     }
-    private void updateData(String aadharNumber, String approved,String status) {
+    private void updateData(String aadharNumber, String approved,String status,String psApproved) {
         Map<String, Object> individualInfo = new HashMap<String, Object>();
         individualInfo.put("spApproved3", approved.trim());
         individualInfo.put("sp_remarks", spRemarks.trim());
+        individualInfo.put("psApproved2",psApproved);
         individualInfo.put("status", status);
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)

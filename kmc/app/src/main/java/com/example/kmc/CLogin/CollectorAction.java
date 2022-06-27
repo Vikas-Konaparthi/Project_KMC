@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.example.kmc.Individual;
 import com.example.kmc.PSLogin.PSAddEdit;
 import com.example.kmc.PSLogin.PSAmountToDB;
+import com.example.kmc.PSLogin.PS_Action;
+import com.example.kmc.PSLogin.password_change;
 import com.example.kmc.R;
 import com.example.kmc.SPLogin.ListOfBen;
 import com.example.kmc.login.Collector_Login;
@@ -33,6 +35,7 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
     String village;
     int pendingAction1;
     int pendingAction2;
+    String aadhar;
     FirebaseFirestore db;
     TextView pendingBadge1;
     TextView pendingBadge2;
@@ -62,6 +65,7 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             village = extras.getString("village");
+            aadhar=extras.getString("aadhar");
         }else{
             Log.d("extra", "no");
         }
@@ -107,7 +111,13 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
 
 
     }
-
+ public  void changePass(View view)
+ {
+     Intent intent = new Intent(CollectorAction.this, change_password_ctr.class);
+     intent.putExtra("village",village);
+     intent.putExtra("aadhar",aadhar);
+     CollectorAction.this.startActivity(intent);
+ }
     private boolean isNetworkConnected(){
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 

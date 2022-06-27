@@ -15,6 +15,8 @@ import com.example.kmc.Individual;
 import com.example.kmc.PSLogin.PSAddEdit;
 import com.example.kmc.PSLogin.PSAmountDBToBen;
 import com.example.kmc.PSLogin.PSAmountToDB;
+import com.example.kmc.PSLogin.PS_Action;
+import com.example.kmc.PSLogin.password_change;
 import com.example.kmc.R;
 import com.example.kmc.login.Collector_Login;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,6 +32,7 @@ public class SO_Action extends AppCompatActivity implements View.OnClickListener
     public CardView card1,card2,card3,card4;
     String mandal;
     String sector;
+    String aadhar;
     int pendingAction1;
     TextView pendingBadge1;
     FirebaseFirestore db;
@@ -57,6 +60,7 @@ public class SO_Action extends AppCompatActivity implements View.OnClickListener
             //The key argument here must match that used in the other activity
             mandal = value;
             sector = value2;
+            aadhar=extras.getString("aadhar");
             //preferredUnit = value3;
 
         }else{
@@ -85,6 +89,13 @@ public class SO_Action extends AppCompatActivity implements View.OnClickListener
                     }
                 });
 
+    }
+    public void changePass(View view) {
+        Intent intent = new Intent(SO_Action.this, password_change_so.class);
+        intent.putExtra("sector",sector);
+        intent.putExtra("mandal",mandal);
+        intent.putExtra("aadhar",aadhar);
+        SO_Action.this.startActivity(intent);
     }
     private boolean isNetworkConnected(){
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

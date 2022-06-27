@@ -45,9 +45,9 @@ public class SOLogin extends AppCompatActivity {
                         Intent i = new Intent(SOLogin.this, SO_Action.class);
                         i.putExtra("mandal",documentSnapshot.getString("mandal"));
                         i.putExtra("sector",documentSnapshot.getString("sector"));
+                        i.putExtra("aadhar",documentSnapshot.getString("aadhar"));
                         startActivity(i);
                         finish();
-
                     }else{
                         Toast.makeText(SOLogin.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
                     }

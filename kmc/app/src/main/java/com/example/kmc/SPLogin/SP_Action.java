@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.example.kmc.Individual;
 import com.example.kmc.PSLogin.PSMasterReport;
+import com.example.kmc.PSLogin.PS_Action;
+import com.example.kmc.PSLogin.password_change;
 import com.example.kmc.R;
 import com.example.kmc.login.Collector_Login;
 import com.example.kmc.login.SOLogin;
@@ -30,6 +32,7 @@ public class SP_Action extends AppCompatActivity implements View.OnClickListener
     public CardView card1,card2,card3,card4,card5;
     String village1;
     String village2;
+    String aadhar;
     int pendingAction1;
     int pendingAction2;
     int pendingAction3;
@@ -63,6 +66,7 @@ public class SP_Action extends AppCompatActivity implements View.OnClickListener
         if (extras != null) {
             String value = extras.getString("village1");
             String value2 = extras.getString("village2");
+            aadhar = extras.getString("aadhar");
             //The key argument here must match that used in the other activity
             village1 = value;
             village2 = value2;
@@ -131,6 +135,13 @@ public class SP_Action extends AppCompatActivity implements View.OnClickListener
                         pendingBadge3.setText(String.valueOf(pendingAction3));
                     }
                 });
+    }
+    public void changePassword(View view) {
+        Intent intent = new Intent(SP_Action.this, password_change_sp.class);
+        intent.putExtra("village1",village1);
+        intent.putExtra("village2",village2);
+        intent.putExtra("aadhar",aadhar);
+        SP_Action.this.startActivity(intent);
     }
     private boolean isNetworkConnected(){
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

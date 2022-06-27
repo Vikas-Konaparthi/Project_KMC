@@ -19,10 +19,12 @@ import java.util.ArrayList;
 public class myadapterMandals extends RecyclerView.Adapter<myadapterMandals.myviewholder>{
     ArrayList<District> datalist;
     String district;
+    String aadhar;
 
-    public myadapterMandals(ArrayList<District> datalist, String district) {
+    public myadapterMandals(ArrayList<District> datalist, String district,String aadhar) {
         this.datalist = datalist;
         this.district=district;
+        this.aadhar=aadhar;
     }
 
     @NonNull
@@ -45,6 +47,7 @@ public class myadapterMandals extends RecyclerView.Adapter<myadapterMandals.myvi
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.putExtra("mandal",datalist.get(position).getUid());
                 i.putExtra("district",district);
+                i.putExtra("aadhar",aadhar);
                 holder.t1.getContext().startActivity(i);
             }
         });

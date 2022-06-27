@@ -27,6 +27,7 @@ public class CollectorVillageSelection extends AppCompatActivity {
     public Toolbar toolbar;
     String mandal;
     String district;
+    String aadhar;
     FirebaseFirestore db;
     ArrayList<Mandals> datalist;
     RecyclerView recyclerView;
@@ -39,7 +40,7 @@ public class CollectorVillageSelection extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         datalist=new ArrayList<>();
-        adapter=new myadapterVillage(datalist);
+        adapter=new myadapterVillage(datalist,aadhar);
         recyclerView.setAdapter(adapter);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
@@ -47,6 +48,7 @@ public class CollectorVillageSelection extends AppCompatActivity {
         if (extras != null) {
             mandal = extras.getString("mandal");
             district=extras.getString("district");
+            aadhar=extras.getString("aadhar");
         }
         Toast.makeText(this, district, Toast.LENGTH_SHORT).show();
         db=FirebaseFirestore.getInstance();

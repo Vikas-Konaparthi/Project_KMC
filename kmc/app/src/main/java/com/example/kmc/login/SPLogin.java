@@ -50,6 +50,7 @@ public class SPLogin extends AppCompatActivity {
                         Intent i = new Intent(SPLogin.this, SP_Action.class);
                         i.putExtra("village1",documentSnapshot.getString("village1"));
                         i.putExtra("village2",documentSnapshot.getString("village2"));
+                        i.putExtra("aadhar",documentSnapshot.getString("aadhar"));
                         startActivity(i);
                         finish();
 

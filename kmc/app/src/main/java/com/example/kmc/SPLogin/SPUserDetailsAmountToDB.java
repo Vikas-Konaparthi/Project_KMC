@@ -213,9 +213,10 @@ public class SPUserDetailsAmountToDB extends AppCompatActivity {
     public void approve(View view) {
         String approved="yes";
         status=spApprovedAmount.trim()+" approved by Special Officer to DB Account ";
+        String psApproved="yes";
         if((Integer.parseInt(spApprovedAmount)+(Integer.parseInt(getIntent().getStringExtra("uApprovalAmount")))+(Integer.parseInt(getIntent().getStringExtra("uDbAccount"))))<=1000000)
         {
-            updateData(aadharNumber,approved,status);
+            updateData(aadharNumber,approved,status,psApproved);
         }else{
             Toast.makeText(this, "Amount limit exceed.", Toast.LENGTH_SHORT).show();
         }
@@ -224,14 +225,16 @@ public class SPUserDetailsAmountToDB extends AppCompatActivity {
 
     public void reject(View view) {
         String approved="no";
+        String psApproved="";
         status= "Rejected By SP: "+getIntent().getStringExtra("uStatus").toString();
-        updateData(aadharNumber,approved,status);
+        updateData(aadharNumber,approved,status,psApproved);
     }
-    private void updateData(String aadharNumber, String approved,String status) {
+    private void updateData(String aadharNumber, String approved,String status,String psApproved) {
         Map<String, Object> individualInfo = new HashMap<String, Object>();
         individualInfo.put("spApproved2", approved.trim());
         individualInfo.put("sp_remarks", spRemarks.trim());
         individualInfo.put("spAmountApproved", spApprovedAmount.trim());
+        individualInfo.put("psApproved", psApproved);
         individualInfo.put("status", status);
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)

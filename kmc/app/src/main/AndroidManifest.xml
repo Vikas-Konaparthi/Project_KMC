@@ -16,6 +16,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kmc">
         <activity
+            android:name=".CLogin.change_password_ctr"
+            android:exported="false" />
+        <activity
+            android:name=".SOLogin.password_change_so"
+            android:exported="false" />
+        <activity
+            android:name=".SPLogin.password_change_sp"
+            android:exported="false" />
+        <activity
             android:name=".PSLogin.password_change"
             android:exported="false" />
         <activity

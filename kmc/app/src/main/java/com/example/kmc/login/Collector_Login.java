@@ -1,7 +1,10 @@
 package com.example.kmc.login;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Toast;
 
@@ -21,6 +24,9 @@ public class Collector_Login extends AppCompatActivity {
     private TextInputLayout username;
     private TextInputLayout password;
     FirebaseFirestore db;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    SharedPreferences sharedpreferences;
+    SharedPreferences preferences;
 
 
     @Override
@@ -28,6 +34,7 @@ public class Collector_Login extends AppCompatActivity {
         db=FirebaseFirestore.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collector_login);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
     }
 
@@ -47,6 +54,12 @@ public class Collector_Login extends AppCompatActivity {
                     if(pass.equals(documentSnapshot.getString("password"))){
                         Intent i = new Intent(Collector_Login.this, CollectorMandalSelection.class);
                         i.putExtra("district",documentSnapshot.getString("District"));
+                        i.putExtra("aadhar",documentSnapshot.getString("aadhar"));
+
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("aadhar",documentSnapshot.getString("aadhar"));
+                        editor.apply();
+
                         startActivity(i);
                         finish();
 

@@ -24,6 +24,7 @@ import java.util.List;
 public class CollectorMandalSelection extends AppCompatActivity {
     public Toolbar toolbar;
     String district;
+    String aadhar;
     FirebaseFirestore db;
     ArrayList<District> datalist;
     RecyclerView recyclerView;
@@ -39,9 +40,10 @@ public class CollectorMandalSelection extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             district = extras.getString("district");
+            aadhar = extras.getString("aadhar");
         }
         datalist=new ArrayList<>();
-        adapter=new myadapterMandals(datalist, district);
+        adapter=new myadapterMandals(datalist, district,aadhar);
         recyclerView.setAdapter(adapter);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
