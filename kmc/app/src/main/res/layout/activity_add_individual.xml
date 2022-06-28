@@ -9,390 +9,390 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="top">
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/IndividualName"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Individual Name"
-            android:layout_below="@id/textView1"
-            android:layout_marginTop="40dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            >
+            android:orientation="vertical"
+            android:layout_gravity="top">
 
-            <com.google.android.material.textfield.TextInputEditText
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/IndividualName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:hint="Enter Individual Name"
+                android:layout_below="@id/textView1"
+                android:layout_marginTop="40dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/FatherName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Father Name"
-            android:layout_below="@id/textView1"
-            android:layout_marginTop="40dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            >
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/FatherName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:hint="Enter Father Name"
+                android:layout_below="@id/textView1"
+                android:layout_marginTop="40dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/Age"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Age"
-            android:layout_below="@id/textView1"
-            android:layout_marginTop="40dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/Age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:hint="Enter Age"
+                android:layout_below="@id/textView1"
+                android:layout_marginTop="40dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
 
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/Occupation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Occupation"
-            android:layout_below="@id/textView1"
-            android:layout_marginTop="40dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
 
-            <com.google.android.material.textfield.TextInputEditText
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/Occupation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:hint="Enter Occupation"
+                android:layout_below="@id/textView1"
+                android:layout_marginTop="40dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
 
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/Rationcardnumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter ration card number"
-            android:layout_below="@id/textView1"
-            android:layout_marginTop="40dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
 
-            <com.google.android.material.textfield.TextInputEditText
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/Rationcardnumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:hint="Enter ration card number"
+                android:layout_below="@id/textView1"
+                android:layout_marginTop="40dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/HouseNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter House Number"
-            android:layout_below="@id/textView1"
-            android:layout_marginTop="40dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            >
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/HouseNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:hint="Enter House Number"
+                android:layout_below="@id/textView1"
+                android:layout_marginTop="40dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
 
 
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/village"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Village"
-            android:layout_below="@id/textView1"
-            android:layout_marginTop="40dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/village"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:hint="Enter Village"
+                android:layout_below="@id/textView1"
+                android:layout_marginTop="40dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
 
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/mandal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Mandal"
-            android:layout_below="@id/textView1"
-            android:layout_marginTop="40dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
 
-            <com.google.android.material.textfield.TextInputEditText
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/mandal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:hint="Enter Mandal"
+                android:layout_below="@id/textView1"
+                android:layout_marginTop="40dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
 
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/district"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter District"
-            android:layout_below="@id/textView1"
-            android:layout_marginTop="40dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
 
-            <com.google.android.material.textfield.TextInputEditText
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/district"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:hint="Enter District"
+                android:layout_below="@id/textView1"
+                android:layout_marginTop="40dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/AadharNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Aadhar Number"
-            android:layout_below="@id/textView1"
-            android:layout_marginTop="40dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            >
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/AadharNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:hint="Enter Aadhar Number"
+                android:layout_below="@id/textView1"
+                android:layout_marginTop="40dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/MobileNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Mobile Number"
-            android:layout_below="@id/textView1"
-            android:layout_marginTop="40dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            >
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/MobileNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:hint="Enter Mobile Number"
+                android:layout_below="@id/textView1"
+                android:layout_marginTop="40dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/Preferredunit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Preferred Unit"
-            android:layout_below="@id/textView1"
-            android:layout_marginTop="40dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            >
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/Preferredunit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:hint="Enter Preferred Unit"
+                android:layout_below="@id/textView1"
+                android:layout_marginTop="40dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
 
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/BankName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Bank Name"
-            android:layout_below="@id/textView1"
-            android:layout_marginTop="40dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
 
-            <com.google.android.material.textfield.TextInputEditText
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/BankName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:hint="Enter Bank Name"
+                android:layout_below="@id/textView1"
+                android:layout_marginTop="40dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
 
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/BankACCNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Bank a/c Number"
-            android:layout_below="@id/textView1"
-            android:layout_marginTop="40dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
 
-            <com.google.android.material.textfield.TextInputEditText
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/BankACCNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:hint="Enter Bank a/c Number"
+                android:layout_below="@id/textView1"
+                android:layout_marginTop="40dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
 
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/BankIFSC"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Bank IFSC"
-            android:layout_below="@id/textView1"
-            android:layout_marginTop="40dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
 
-            <com.google.android.material.textfield.TextInputEditText
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/BankIFSC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:hint="Enter Bank IFSC"
+                android:layout_below="@id/textView1"
+                android:layout_marginTop="40dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
 
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/DbBankName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter DbBank Name"
-            android:layout_below="@id/textView1"
-            android:layout_marginTop="40dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
 
-            <com.google.android.material.textfield.TextInputEditText
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/DbBankName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:hint="Enter DbBank Name"
+                android:layout_below="@id/textView1"
+                android:layout_marginTop="40dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
 
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/DbBankACCNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter DbBank a/c Number"
-            android:layout_below="@id/textView1"
-            android:layout_marginTop="40dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
 
-            <com.google.android.material.textfield.TextInputEditText
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/DbBankACCNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Enter DbBank a/c Number"
+                android:layout_below="@id/textView1"
+                android:layout_marginTop="40dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/DbBankIFSC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter DbBank IFSC"
+                android:layout_below="@id/textView1"
+                android:layout_marginTop="40dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+            <!--        <com.google.android.material.textfield.TextInputLayout-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:hint="Enter Vendor Name"-->
+            <!--            android:layout_below="@id/document"-->
+            <!--            android:layout_marginTop="30dp"-->
+            <!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+            <!--            >-->
+
+            <!--            <com.google.android.material.textfield.TextInputEditText-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:id="@+id/vendorName"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                />-->
+
+            <!--        </com.google.android.material.textfield.TextInputLayout>-->
+            <!--        <com.google.android.material.textfield.TextInputLayout-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:hint="Enter Vendor Bank Account Number"-->
+            <!--            android:layout_below="@id/vendorName"-->
+            <!--            android:layout_marginTop="30dp"-->
+            <!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+            <!--            >-->
+
+            <!--            <com.google.android.material.textfield.TextInputEditText-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:id="@+id/vendorBankAccountNo"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                />-->
+
+            <!--        </com.google.android.material.textfield.TextInputLayout>-->
+            <!--        <com.google.android.material.textfield.TextInputLayout-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:hint="Enter Vendor Bank IFSC"-->
+            <!--            android:layout_below="@id/vendorBankAccountNo"-->
+            <!--            android:layout_marginTop="30dp"-->
+            <!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+            <!--            >-->
+
+            <!--            <com.google.android.material.textfield.TextInputEditText-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:id="@+id/vendorBankIFSC"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                />-->
+
+            <!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+            <Button
+                android:id="@+id/upload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Upload File"
+                android:layout_below="@id/password"
+                android:onClick="uploadButton"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                style="?attr/materialButtonOutlinedStyle"
+                />
+            <ProgressBar
+                android:id="@+id/pBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="30dp"
+                android:visibility="gone">
+            </ProgressBar>
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add"
+                android:layout_below="@id/password"
+                android:onClick="submitButton"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                style="?attr/materialButtonOutlinedStyle"
                 />
 
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/DbBankIFSC"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter DbBank IFSC"
-            android:layout_below="@id/textView1"
-            android:layout_marginTop="40dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-        </com.google.android.material.textfield.TextInputLayout>
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="Enter Vendor Name"-->
-<!--            android:layout_below="@id/document"-->
-<!--            android:layout_marginTop="30dp"-->
-<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
-<!--            >-->
-
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:id="@+id/vendorName"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                />-->
-
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="Enter Vendor Bank Account Number"-->
-<!--            android:layout_below="@id/vendorName"-->
-<!--            android:layout_marginTop="30dp"-->
-<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
-<!--            >-->
-
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:id="@+id/vendorBankAccountNo"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                />-->
-
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="Enter Vendor Bank IFSC"-->
-<!--            android:layout_below="@id/vendorBankAccountNo"-->
-<!--            android:layout_marginTop="30dp"-->
-<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
-<!--            >-->
-
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:id="@+id/vendorBankIFSC"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                />-->
-
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
-
-        <Button
-            android:id="@+id/upload"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Upload File"
-            android:layout_below="@id/password"
-            android:onClick="uploadButton"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            style="?attr/materialButtonOutlinedStyle"
-            />
-        <ProgressBar
-            android:id="@+id/pBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingTop="30dp"
-            android:visibility="gone">
-        </ProgressBar>
-        <Button
-            android:id="@+id/submit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add"
-            android:layout_below="@id/password"
-            android:onClick="submitButton"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            style="?attr/materialButtonOutlinedStyle"
-            />
-
-    </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 
 </LinearLayout>

@@ -73,7 +73,9 @@ public class PS_Action extends AppCompatActivity implements View.OnClickListener
             Log.d("extra", "no");
         }
         Individual obj = new Individual();
-
+    pendingAction1=0;
+    pendingAction2=0;
+    pendingAction3=0;
         db.collection("individuals").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -131,6 +133,9 @@ public class PS_Action extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onRestart() {
         super.onRestart();
+        pendingAction1=0;
+        pendingAction2=0;
+        pendingAction3=0;
         db.collection("individuals").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override

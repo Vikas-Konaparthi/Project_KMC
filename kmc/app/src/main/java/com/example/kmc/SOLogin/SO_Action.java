@@ -66,6 +66,7 @@ public class SO_Action extends AppCompatActivity implements View.OnClickListener
         }else{
             Log.d("extra", "no");
         }
+        pendingAction1=0;
         db.collection("individuals").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -93,6 +94,7 @@ public class SO_Action extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onRestart() {
         super.onRestart();
+        pendingAction1=0;
         db.collection("individuals").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override

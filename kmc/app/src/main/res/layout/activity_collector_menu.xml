@@ -20,36 +20,36 @@
                 app:cardCornerRadius="10dp"
                 android:elevation="4dp"
                 app:cardUseCompatPadding="true">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-
-                android:background="#145DA0"
-                >
-
-
-                <TextView
-                    android:id="@+id/t1"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="Total No Registered:"
-                    android:textColor="#FFF"
-                    android:textSize="15dp" />
-                <TextView
-                    android:id="@+id/t2"
-                    android:layout_below="@+id/t1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text=""
-                    android:textColor="#FFF"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
+                    android:padding="16dp"
+
+                    android:background="#145DA0"
+                    >
 
 
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/t1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="Total No Registered:"
+                        android:textColor="#FFF"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:id="@+id/t2"
+                        android:layout_below="@+id/t1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text=""
+                        android:textColor="#FFF"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
@@ -211,25 +211,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Select Mandal"/>
-        <LinearLayout
+            <LinearLayout
 
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_weight="8"
-            android:orientation="horizontal"
-            android:background="@drawable/border"
-            tools:ignore="UselessParent">
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="8"
+                android:orientation="horizontal"
+                android:background="@drawable/border"
+                tools:ignore="UselessParent">
 
 
-    <Spinner
-        android:layout_gravity="center"
-        android:id="@+id/spinner_mandal"
-        android:layout_width="match_parent"
-        android:autofillHints="Mandal"
-        android:layout_height="wrap_content"/>
-        </LinearLayout>
+                <Spinner
+                    android:layout_gravity="center"
+                    android:id="@+id/spinner_mandal"
+                    android:layout_width="match_parent"
+                    android:autofillHints="Mandal"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
             <TextView
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
@@ -237,26 +237,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Select Village"/>
-        <LinearLayout
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_weight="8"
-            android:orientation="horizontal"
-            android:background="@drawable/border"
-            tools:ignore="UselessParent">
+            <LinearLayout
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="8"
+                android:orientation="horizontal"
+                android:background="@drawable/border"
+                tools:ignore="UselessParent">
 
-    <Spinner
-        android:layout_below="@id/spinner_mandal"
-        android:id="@+id/spinner_village"
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="wrap_content" />
-        </LinearLayout>
+                <Spinner
+                    android:layout_below="@id/spinner_mandal"
+                    android:id="@+id/spinner_village"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
             <Button
                 android:id="@+id/approve"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Next"

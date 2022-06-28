@@ -8,12 +8,16 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kmc.R;
+import com.example.kmc.Vendor;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -26,7 +30,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class userDetailsAmountDBtoBen extends AppCompatActivity {
@@ -57,8 +63,8 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
     private TextInputEditText individualVendorName;
     private TextInputEditText individualVendorBankAccountNumber;
     private TextInputEditText individualVendorBankIFSC;
-    private TextInputEditText individualVendorAgency;
     private TextInputEditText individualVendorBankName;
+    private Spinner individualVendorAgency;
     private TextInputEditText approvalAmountToBeneficiary;
     FirebaseFirestore db;
     String indivName;
@@ -76,6 +82,7 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
     String collectorApproved="";
     String bankIFSC;
     //    String groundingStatus="";
+    String option_selected;
     String vendorName;
     String vendorBankAccount;
     String vendorBankIFSC;
@@ -92,13 +99,75 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
     String my_url="";
     Uri image_uri = null;
     ProgressBar pgsBar;
+    Vendor obj;
+    List<DocumentSnapshot> list;
 
-        Button uploadImage;
+    Button uploadImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_details_amount_dbto_ben);
         db=FirebaseFirestore.getInstance();
+
+        Spinner spinnerVendorAgency = (Spinner) findViewById(R.id.spinner_vendorAgency);
+        List<String> agencies = new ArrayList<>();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
+                android.R.layout.simple_spinner_item,
+                agencies);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinnerVendorAgency.setAdapter(adapter);
+        db=FirebaseFirestore.getInstance();
+
+        db.collection("vendorAgency").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        list =queryDocumentSnapshots.getDocuments();
+                        for(DocumentSnapshot d:list) {
+
+                            obj = d.toObject(Vendor.class);
+
+                            agencies.add(obj.getAgencyName());
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+
+                });
+
+        spinnerVendorAgency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,int position, long arg3) {
+
+                spinnerVendorAgency.setSelection(position);
+                   option_selected = spinnerVendorAgency.getSelectedItem().toString();
+                    if(option_selected.equalsIgnoreCase("others")){
+                        individualVendorName.setText("");
+                        individualVendorBankAccountNumber.setText("");
+                        individualVendorBankIFSC.setText("");
+                        individualVendorBankName.setText("");
+                    }
+                    else{
+                        for(DocumentSnapshot d:list) {
+                            obj = d.toObject(Vendor.class);
+                            if (obj.getAgencyName().equalsIgnoreCase(option_selected)) {
+                                individualVendorName.setText(obj.getVendorName());
+                                individualVendorBankAccountNumber.setText(obj.getVendorBankAcc());
+                                individualVendorBankIFSC.setText(obj.getVendorBankIFSC());
+                                individualVendorBankName.setText(obj.getVendorBankName());
+                            }
+                        }
+                    }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+            }
+
+        });
 
         pgsBar = (ProgressBar)findViewById(R.id.pBar);
         individualName  = (TextView) findViewById(R.id.IndividualName);
@@ -125,7 +194,7 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
         individualVendorName=(TextInputEditText) findViewById(R.id.vendorName);
         individualVendorBankAccountNumber=(TextInputEditText) findViewById(R.id.vendorBankAccountNo);
         individualVendorBankIFSC=(TextInputEditText) findViewById(R.id.vendorBankIFSC);
-        individualVendorAgency=(TextInputEditText) findViewById(R.id.vendorAgency);
+        individualVendorAgency= (Spinner) findViewById(R.id.spinner_vendorAgency);
         individualVendorBankName=(TextInputEditText) findViewById(R.id.vendorBankName);
         approvalAmountToBeneficiary=(TextInputEditText) findViewById(R.id.approvalAmountToBeneficiary);
         uploadImage=(Button) findViewById(R.id.uploadImage);
@@ -181,7 +250,7 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
         vendorBankAccount=individualVendorBankAccountNumber.getText().toString();
         vendorName=individualVendorName.getText().toString();
         vendorBankIFSC=individualVendorBankIFSC.getText().toString();
-        vendorAgency=individualVendorAgency.getText().toString();
+//        vendorAgency=individualVendorAgency.getText().toString();
         vendorBankName=individualVendorBankName.getText().toString();
         approvalAmountToBen=approvalAmountToBeneficiary.getText().toString();
         indDBAccount = getIntent().getStringExtra("uDBAccount").toString();

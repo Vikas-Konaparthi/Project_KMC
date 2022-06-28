@@ -172,7 +172,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>
         return datalist.size();
     }
 
-    class myviewholder extends RecyclerView.ViewHolder
+    public class myviewholder extends RecyclerView.ViewHolder
     {
         TextView t1;
         TextView t2;

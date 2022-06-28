@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.kmc.CLogin.CollectorAction;
 import com.example.kmc.CLogin.CollectorMandalSelection;
 import com.example.kmc.CLogin.CollectorMenu;
 import com.example.kmc.R;

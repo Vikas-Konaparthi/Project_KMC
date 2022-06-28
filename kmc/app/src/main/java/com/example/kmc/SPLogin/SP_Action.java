@@ -73,6 +73,9 @@ public class SP_Action extends AppCompatActivity implements View.OnClickListener
         }else{
             Log.d("extra", "no");
         }
+        pendingAction1=0;
+        pendingAction2=0;
+        pendingAction3=0;
         db.collection("individuals").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -115,6 +118,9 @@ public class SP_Action extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onRestart() {
         super.onRestart();
+        pendingAction1=0;
+        pendingAction2=0;
+        pendingAction3=0;
         db.collection("individuals").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override

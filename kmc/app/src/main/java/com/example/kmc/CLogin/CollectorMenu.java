@@ -181,4 +181,3 @@ public class CollectorMenu extends AppCompatActivity {
         startActivity(i);
     }
 }
-

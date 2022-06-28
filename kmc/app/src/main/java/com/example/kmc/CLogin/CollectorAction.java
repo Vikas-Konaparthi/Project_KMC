@@ -69,6 +69,8 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
         }else{
             Log.d("extra", "no");
         }
+        pendingAction1=0;
+        pendingAction2=0;
 
         db.collection("individuals").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -81,7 +83,7 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
                             if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village.toLowerCase(Locale.ROOT))) {
                                 if (obj.getSpApproved2().equals("yes")) {
                                     if (!obj.getCtrApproved().equals("yes") && !obj.getCtrApproved().equals("no")) {
-                                       pendingAction1=pendingAction1+1;
+                                        pendingAction1=pendingAction1+1;
                                     }
                                 }
                             }
@@ -104,6 +106,8 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onRestart() {
         super.onRestart();
+        pendingAction1=0;
+        pendingAction2=0;
         //When BACK BUTTON is pressed, the activity on the stack is restarted
         //Do what you want on the refresh procedure here
         db.collection("individuals").get()
@@ -134,13 +138,13 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
                     }
                 });
     }
- public  void changePass(View view)
- {
-     Intent intent = new Intent(CollectorAction.this, change_password_ctr.class);
-     intent.putExtra("village",village);
-     intent.putExtra("aadhar",aadhar);
-     CollectorAction.this.startActivity(intent);
- }
+    public  void changePass(View view)
+    {
+        Intent intent = new Intent(CollectorAction.this, change_password_ctr.class);
+        intent.putExtra("village",village);
+        intent.putExtra("aadhar",aadhar);
+        CollectorAction.this.startActivity(intent);
+    }
     private boolean isNetworkConnected(){
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
