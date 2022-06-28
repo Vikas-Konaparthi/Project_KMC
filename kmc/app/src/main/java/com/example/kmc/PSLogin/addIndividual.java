@@ -42,6 +42,9 @@ public class addIndividual extends AppCompatActivity {
     public TextInputLayout DbBankName;
     public TextInputLayout DbBankACCNumber;
     public TextInputLayout DbBankIFSC;
+    public TextInputLayout Occupation;
+    public TextInputLayout Rationcardnumber;
+
     //    private TextInputEditText individualVendorName;
 //    private TextInputEditText individualVendorBankAccountNumber;
 //    private TextInputEditText individualVendorBankIFSC;
@@ -66,6 +69,8 @@ public class addIndividual extends AppCompatActivity {
     String dbBankName;
     String dbBankACCNumber;
     String dbBankIFSC;
+    String occupation;
+    String rationcardnumber;
 //    String vendorName;
 //    String vendorBankAccount;
 //    String vendorBankIFSC;
@@ -101,6 +106,8 @@ public class addIndividual extends AppCompatActivity {
         DbBankName  = (TextInputLayout) findViewById(R.id.DbBankName);
         DbBankACCNumber  = (TextInputLayout) findViewById(R.id.DbBankACCNumber);
         DbBankIFSC  = (TextInputLayout) findViewById(R.id.DbBankIFSC);
+        Occupation=(TextInputLayout) findViewById(R.id.Occupation);
+        Rationcardnumber=(TextInputLayout) findViewById(R.id.Rationcardnumber);
 
 //        individualVendorName=(TextInputEditText) findViewById(R.id.vendorName);
 //        individualVendorBankAccountNumber=(TextInputEditText) findViewById(R.id.vendorBankAccountNo);
@@ -137,6 +144,8 @@ public class addIndividual extends AppCompatActivity {
         dbBankName = DbBankName.getEditText().getText().toString();
         dbBankACCNumber = DbBankACCNumber.getEditText().getText().toString();
         dbBankIFSC=DbBankIFSC.getEditText().getText().toString();
+        occupation=Occupation.getEditText().getText().toString();
+        rationcardnumber=Rationcardnumber.getEditText().getText().toString();
 //        vendorName= individualVendorName.getText().toString();
 //        vendorBankAccount= individualVendorBankAccountNumber.getText().toString();
 //        vendorBankIFSC= individualVendorBankIFSC.getText().toString();
@@ -159,6 +168,9 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("dbBankName", dbBankName.trim());
             individualInfo.put("dbBankAccNo", dbBankACCNumber.trim());
             individualInfo.put("dbBankIFSC", dbBankIFSC.trim());
+            individualInfo.put("occupation", occupation.trim());
+            individualInfo.put("rationcardnumber", rationcardnumber.trim());
+
 //            individualInfo.put("vendorName", vendorName.trim());
 //            individualInfo.put("vendorAccountNo", vendorBankAccount.trim());
 //            individualInfo.put("vendorIFSC", vendorBankIFSC.trim());

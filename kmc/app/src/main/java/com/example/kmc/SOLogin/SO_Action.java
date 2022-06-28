@@ -90,6 +90,32 @@ public class SO_Action extends AppCompatActivity implements View.OnClickListener
                 });
 
     }
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        db.collection("individuals").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
+                        for(DocumentSnapshot d:list)
+                        {
+                            Individual obj=d.toObject(Individual.class);
+                            if(obj.getMandal().toLowerCase(Locale.ROOT).equals(mandal.toLowerCase(Locale.ROOT))) {
+                                if(obj.getSpApproved3().equals("yes")) {
+                                    if (obj.getPreferredUnit().toLowerCase(Locale.ROOT).equals(sector.toLowerCase(Locale.ROOT))) {
+                                        if(!obj.getSoApproved().equals("yes") &&  !obj.getSoApproved().equals("no"))
+                                        {
+                                            pendingAction1=pendingAction1+1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        pendingBadge1.setText(String.valueOf(pendingAction1));
+                    }
+                });
+    }
     public void changePass(View view) {
         Intent intent = new Intent(SO_Action.this, password_change_so.class);
         intent.putExtra("sector",sector);

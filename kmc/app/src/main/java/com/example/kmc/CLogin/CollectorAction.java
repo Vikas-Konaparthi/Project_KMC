@@ -85,18 +85,6 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
                                     }
                                 }
                             }
-                        }
-                        pendingBadge1.setText(String.valueOf(pendingAction1));
-                    }
-                });
-        db.collection("individuals").get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
-                        for(DocumentSnapshot d:list)
-                        {
-                            Individual obj=d.toObject(Individual.class);
                             if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village.toLowerCase(Locale.ROOT)))
                             {
                                 if(obj.getSpApproved3().equals("yes") && obj.getSoApproved().equals("yes"))
@@ -105,11 +93,46 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
                                     }
                             }
                         }
+                        pendingBadge1.setText(String.valueOf(pendingAction1));
                         pendingBadge2.setText(String.valueOf(pendingAction2));
                     }
                 });
 
 
+
+    }
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        //When BACK BUTTON is pressed, the activity on the stack is restarted
+        //Do what you want on the refresh procedure here
+        db.collection("individuals").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
+                        for(DocumentSnapshot d:list)
+                        {
+                            Individual obj=d.toObject(Individual.class);
+                            if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village.toLowerCase(Locale.ROOT))) {
+                                if (obj.getSpApproved2().equals("yes")) {
+                                    if (!obj.getCtrApproved().equals("yes") && !obj.getCtrApproved().equals("no")) {
+                                        pendingAction1=pendingAction1+1;
+                                    }
+                                }
+                            }
+                            if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village.toLowerCase(Locale.ROOT)))
+                            {
+                                if(obj.getSpApproved3().equals("yes") && obj.getSoApproved().equals("yes"))
+                                    if(!obj.getCtrApproved2().equals("yes") &&  !obj.getCtrApproved2().equals("no")) {
+                                        pendingAction2=pendingAction2+1;
+                                    }
+                            }
+                        }
+                        pendingBadge1.setText(String.valueOf(pendingAction1));
+                        pendingBadge2.setText(String.valueOf(pendingAction2));
+                    }
+                });
     }
  public  void changePass(View view)
  {

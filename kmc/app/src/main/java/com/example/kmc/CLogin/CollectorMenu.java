@@ -32,11 +32,27 @@ public class CollectorMenu extends AppCompatActivity {
     String selected_village;
     String selected_mandal;
     TextView mandal_pending;
+    TextView total_no_registered;
+    TextView total_no_sanctioned;
+    TextView total_no_released;
+    TextView partially_grounded;
+    TextView fully_grounded;
+    int total_registered;
+    int total_sanctioned;
+    int total_released;
+    int partially_g;
+    int fully_g;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collector_menu);
+        total_no_registered=(TextView) findViewById(R.id.t2);
+        total_no_sanctioned=(TextView) findViewById(R.id.t4);
+        total_no_released=(TextView) findViewById(R.id.t6);
+        partially_grounded=(TextView) findViewById(R.id.t8);
+        fully_grounded=(TextView) findViewById(R.id.t10);
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
         CollectionReference subjectsRef = rootRef.collection("Khammam");
         Bundle extras = getIntent().getExtras();
@@ -58,6 +74,44 @@ public class CollectorMenu extends AppCompatActivity {
         spinnerMandal.setAdapter(adapter);
         spinnerVillage.setAdapter(adapter2);
         db=FirebaseFirestore.getInstance();
+        total_registered=0;
+        db.collection("individuals").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
+                        for(DocumentSnapshot d:list)
+                        {
+                            Individual obj=d.toObject(Individual.class);
+                            if(obj.getDbAccount()!="")
+                            {
+                                total_sanctioned=total_sanctioned+1;
+                            }
+                            if(obj.getApprovalAmount()!="")
+                            {
+                                total_released=total_released+1;
+                            }
+                            if(Integer.parseInt(obj.getApprovalAmount())<990000)
+                            {
+                                partially_g=partially_g+1;
+                            }
+                            if(Integer.parseInt(obj.getApprovalAmount())>=990000)
+                            {
+                                fully_g=fully_g+1;
+                            }
+
+                            total_registered=total_registered+1;
+                        }
+                        total_no_registered.setText(String.valueOf(total_registered));
+                        total_no_sanctioned.setText(String.valueOf(total_sanctioned));
+                        total_no_released.setText(String.valueOf(total_released));
+                        partially_grounded.setText(String.valueOf(partially_g));
+                        fully_grounded.setText(String.valueOf(fully_g));
+                    }
+                });
+
+
+
         db.collection(district).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override

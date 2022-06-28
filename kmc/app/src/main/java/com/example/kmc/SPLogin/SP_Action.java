@@ -87,19 +87,15 @@ public class SP_Action extends AppCompatActivity implements View.OnClickListener
                                     pendingAction1=pendingAction1+1;
                                 }
                             }
-                        }
-                        pendingBadge1.setText(String.valueOf(pendingAction1));
-                    }
-                });
-        db.collection("individuals").get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
-                        for(DocumentSnapshot d:list)
-                        {
-
-                            Individual obj=d.toObject(Individual.class);
+                            if(!obj.getPsApprovedAmount().equals(""))
+                            {
+                                if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village1.toLowerCase(Locale.ROOT)) || (obj.getVillage().toLowerCase(Locale.ROOT).equals(village2.toLowerCase(Locale.ROOT))) ){
+                                    if(!obj.getSpApproved3().equals("yes") &&  !obj.getSpApproved3().equals("no"))
+                                    {
+                                        pendingAction3=pendingAction3+1;
+                                    }
+                                }
+                            }
                             if(!obj.getIndividualAmountRequired().equals(""))
                             {
                                 if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village1.toLowerCase(Locale.ROOT)) || (obj.getVillage().toLowerCase(Locale.ROOT).equals(village2.toLowerCase(Locale.ROOT))) ){
@@ -110,9 +106,15 @@ public class SP_Action extends AppCompatActivity implements View.OnClickListener
                                 }
                             }
                         }
+                        pendingBadge1.setText(String.valueOf(pendingAction1));
                         pendingBadge2.setText(String.valueOf(pendingAction2));
+                        pendingBadge3.setText(String.valueOf(pendingAction3));
                     }
                 });
+    }
+    @Override
+    public void onRestart() {
+        super.onRestart();
         db.collection("individuals").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -120,8 +122,13 @@ public class SP_Action extends AppCompatActivity implements View.OnClickListener
                         List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
                         for(DocumentSnapshot d:list)
                         {
-
                             Individual obj=d.toObject(Individual.class);
+                            if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village1.toLowerCase(Locale.ROOT)) || (obj.getVillage().toLowerCase(Locale.ROOT).equals(village2.toLowerCase(Locale.ROOT))) ){
+                                if(!obj.getSpApproved().equals("yes"))
+                                {
+                                    pendingAction1=pendingAction1+1;
+                                }
+                            }
                             if(!obj.getPsApprovedAmount().equals(""))
                             {
                                 if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village1.toLowerCase(Locale.ROOT)) || (obj.getVillage().toLowerCase(Locale.ROOT).equals(village2.toLowerCase(Locale.ROOT))) ){
@@ -131,10 +138,22 @@ public class SP_Action extends AppCompatActivity implements View.OnClickListener
                                     }
                                 }
                             }
+                            if(!obj.getIndividualAmountRequired().equals(""))
+                            {
+                                if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village1.toLowerCase(Locale.ROOT)) || (obj.getVillage().toLowerCase(Locale.ROOT).equals(village2.toLowerCase(Locale.ROOT))) ){
+                                    if(!obj.getSpApproved2().equals("yes") &&  !obj.getSpApproved2().equals("no"))
+                                    {
+                                        pendingAction2=pendingAction2+1;
+                                    }
+                                }
+                            }
                         }
+                        pendingBadge1.setText(String.valueOf(pendingAction1));
+                        pendingBadge2.setText(String.valueOf(pendingAction2));
                         pendingBadge3.setText(String.valueOf(pendingAction3));
                     }
                 });
+
     }
     public void changePassword(View view) {
         Intent intent = new Intent(SP_Action.this, password_change_sp.class);
