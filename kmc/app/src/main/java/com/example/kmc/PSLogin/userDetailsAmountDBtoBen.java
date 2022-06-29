@@ -65,6 +65,7 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
     private TextInputEditText individualVendorBankIFSC;
     private TextInputEditText individualVendorBankName;
     private Spinner individualVendorAgency;
+    private TextInputEditText vendorAgency;
     private TextInputEditText approvalAmountToBeneficiary;
     FirebaseFirestore db;
     String indivName;
@@ -86,7 +87,7 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
     String vendorName;
     String vendorBankAccount;
     String vendorBankIFSC;
-    String vendorAgency;
+    String agencyName;
     String vendorBankName;
     String amountRequired;
     String spRemarks;
@@ -107,6 +108,7 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_details_amount_dbto_ben);
+        vendorAgency=(TextInputEditText) findViewById(R.id.others_vendorAgency);
         db=FirebaseFirestore.getInstance();
 
         Spinner spinnerVendorAgency = (Spinner) findViewById(R.id.spinner_vendorAgency);
@@ -141,24 +143,27 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> arg0, View arg1,int position, long arg3) {
 
                 spinnerVendorAgency.setSelection(position);
-                   option_selected = spinnerVendorAgency.getSelectedItem().toString();
-                    if(option_selected.equalsIgnoreCase("others")){
-                        individualVendorName.setText("");
-                        individualVendorBankAccountNumber.setText("");
-                        individualVendorBankIFSC.setText("");
-                        individualVendorBankName.setText("");
-                    }
-                    else{
-                        for(DocumentSnapshot d:list) {
-                            obj = d.toObject(Vendor.class);
-                            if (obj.getAgencyName().equalsIgnoreCase(option_selected)) {
-                                individualVendorName.setText(obj.getVendorName());
-                                individualVendorBankAccountNumber.setText(obj.getVendorBankAcc());
-                                individualVendorBankIFSC.setText(obj.getVendorBankIFSC());
-                                individualVendorBankName.setText(obj.getVendorBankName());
-                            }
+                option_selected = spinnerVendorAgency.getSelectedItem().toString();
+                if(option_selected.equalsIgnoreCase("others")){
+                    vendorAgency.setText("");
+                    individualVendorName.setText("");
+                    individualVendorBankAccountNumber.setText("");
+                    individualVendorBankIFSC.setText("");
+                    individualVendorBankName.setText("");
+                }
+                else{
+                    for(DocumentSnapshot d:list) {
+                        obj = d.toObject(Vendor.class);
+                        if (obj.getAgencyName().equalsIgnoreCase(option_selected)) {
+                            agencyName = option_selected;
+                            vendorAgency.setText(option_selected);
+                            individualVendorName.setText(obj.getVendorName());
+                            individualVendorBankAccountNumber.setText(obj.getVendorBankAcc());
+                            individualVendorBankIFSC.setText(obj.getVendorBankIFSC());
+                            individualVendorBankName.setText(obj.getVendorBankName());
                         }
                     }
+                }
 
             }
 
@@ -250,7 +255,7 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
         vendorBankAccount=individualVendorBankAccountNumber.getText().toString();
         vendorName=individualVendorName.getText().toString();
         vendorBankIFSC=individualVendorBankIFSC.getText().toString();
-//        vendorAgency=individualVendorAgency.getText().toString();
+        agencyName=vendorAgency.getText().toString();
         vendorBankName=individualVendorBankName.getText().toString();
         approvalAmountToBen=approvalAmountToBeneficiary.getText().toString();
         indDBAccount = getIntent().getStringExtra("uDBAccount").toString();
@@ -262,8 +267,8 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
         if((Integer.parseInt(approvalAmountToBen)<=Integer.parseInt(indDBAccount))){
 //            int Amount = Integer.parseInt(indDBAccount)-Integer.parseInt(approvalAmountToBen);
 //            indDBAccount = Integer.toString(Amount);
-            updateData(aadharNumber,vendorAgency,vendorName,vendorBankName,vendorBankAccount,vendorBankIFSC,my_url,approvalAmountToBen,indDBAccount);
-            individualDBAccount.setText("DB Account: "+indDBAccount.trim());
+            updateData(aadharNumber, agencyName, vendorName, vendorBankName, vendorBankAccount, vendorBankIFSC, my_url, approvalAmountToBen, indDBAccount);
+            individualDBAccount.setText("DB Account: " + indDBAccount.trim());
         }
         else{
             System.out.println("Hello");
@@ -277,11 +282,11 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
 
             Map<String, Object> individualInfo = new HashMap<String, Object>();
 //            individualInfo.put("individualAmountRequired", amountRequired.trim());
-        individualInfo.put("vendorName", vendorName.trim());
-        individualInfo.put("vendorAccountNo", vendorBankAccount.trim());
-        individualInfo.put("vendorIFSC", vendorBankIFSC.trim());
-        individualInfo.put("vendorAgency", vendorAgency.trim());
-        individualInfo.put("vendorBankName", vendorBankName.trim());
+            individualInfo.put("vendorName", vendorName.trim());
+            individualInfo.put("vendorAccountNo", vendorBankAccount.trim());
+            individualInfo.put("vendorIFSC", vendorBankIFSC.trim());
+            individualInfo.put("vendorAgency", vendorAgency.trim());
+            individualInfo.put("vendorBankName", vendorBankName.trim());
             individualInfo.put("status", "Requesting for "+appAmountToBen.trim()+" to Beneficiary from DB Account.");
 
             individualInfo.put("psRequestedAmountToBeneficiary", appAmountToBen.trim());

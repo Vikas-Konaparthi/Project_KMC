@@ -42,6 +42,7 @@ public class CollectorMenu extends AppCompatActivity {
     int total_released;
     int partially_g;
     int fully_g;
+    int c;
 
 
     @Override
@@ -111,7 +112,6 @@ public class CollectorMenu extends AppCompatActivity {
                 });
 
 
-
         db.collection(district).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -120,9 +120,18 @@ public class CollectorMenu extends AppCompatActivity {
                         for(DocumentSnapshot d:list) {
 
                             District obj = d.toObject(District.class);
-
+                            c=0;
                             obj.setUid(d.getId().toString());
-                            mandals.add(obj.getUid());
+                            db.collection("individuals").whereEqualTo("mandal",obj.getUid()).whereEqualTo("ctrApproved2","").whereEqualTo("ctrApproved","").get()
+                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                                c=queryDocumentSnapshots.size();
+                                                Log.d("Lenght",String.valueOf(c));
+                                        }
+                                    });
+
+                            mandals.add(obj.getUid()+" ("+c+")");
                         }
                         adapter.notifyDataSetChanged();
                     }
@@ -132,10 +141,10 @@ public class CollectorMenu extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,int position, long arg3) {
-
+                villages.clear();
                 spinnerVillage.setVisibility(View.VISIBLE);
                 spinnerMandal.setSelection(position);
-                selected_mandal = spinnerMandal.getSelectedItem().toString();
+                selected_mandal = spinnerMandal.getSelectedItem().toString().split(" ")[0];
 
                 db.collection(district).document(selected_mandal).collection("villages").get()
                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {

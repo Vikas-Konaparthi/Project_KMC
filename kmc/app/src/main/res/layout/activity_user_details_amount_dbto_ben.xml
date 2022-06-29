@@ -123,12 +123,12 @@
                 android:textColor="#000000"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"/>
-<!--            <TextView-->
-<!--                android:id="@+id/spRemark"-->
-<!--                android:textSize="20sp"-->
-<!--                android:textColor="#000000"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_width="wrap_content"/>-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/spRemark"-->
+            <!--                android:textSize="20sp"-->
+            <!--                android:textColor="#000000"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_width="wrap_content"/>-->
             <TextView
                 android:id="@+id/dbAccount"
                 android:textSize="20sp"
@@ -141,46 +141,63 @@
                 android:textColor="#000000"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"/>
-<!--            <TextView-->
-<!--                android:id="@+id/approvedAmount"-->
-<!--                android:textSize="20sp"-->
-<!--                android:textColor="#000000"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_width="wrap_content"/>-->
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:hint="Enter Amount Required"-->
-<!--                android:layout_below="@id/document"-->
-<!--                android:layout_marginTop="30dp"-->
-<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
-<!--                >-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/approvedAmount"-->
+            <!--                android:textSize="20sp"-->
+            <!--                android:textColor="#000000"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_width="wrap_content"/>-->
+            <!--            <com.google.android.material.textfield.TextInputLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:hint="Enter Amount Required"-->
+            <!--                android:layout_below="@id/document"-->
+            <!--                android:layout_marginTop="30dp"-->
+            <!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+            <!--                >-->
 
-<!--                <com.google.android.material.textfield.TextInputEditText-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:id="@+id/individualAmountRequired"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    />-->
+            <!--                <com.google.android.material.textfield.TextInputEditText-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:id="@+id/individualAmountRequired"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    />-->
 
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
-        <TextView
-            android:layout_marginTop="50dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Select Agency Name"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_weight="8"
-            android:orientation="horizontal"
-            android:background="@drawable/border"
-            tools:ignore="UselessParent">
-            <Spinner
-                android:id="@+id/spinner_vendorAgency"
-                android:layout_gravity="center"
+            <!--            </com.google.android.material.textfield.TextInputLayout>-->
+            <TextView
+                android:layout_marginTop="50dp"
                 android:layout_width="match_parent"
-                android:layout_height="40dp" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:text="Select Agency Name"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="8"
+                android:orientation="horizontal"
+                android:background="@drawable/border"
+                tools:ignore="UselessParent">
+                <Spinner
+                    android:id="@+id/spinner_vendorAgency"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Agency Name"
+                android:layout_below="@id/document"
+                android:layout_marginTop="30dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:id="@+id/others_vendorAgency"
+                    android:layout_height="wrap_content"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -198,55 +215,55 @@
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Enter Vendor Bank Name"
-                            android:layout_below="@id/document"
-                            android:layout_marginTop="30dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Vendor Bank Name"
+                android:layout_below="@id/document"
+                android:layout_marginTop="30dp"
 
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                            >
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:layout_width="match_parent"
-                                android:id="@+id/vendorBankName"
-                                android:layout_height="wrap_content"
-                                />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:id="@+id/vendorBankName"
+                    android:layout_height="wrap_content"
+                    />
 
-                        </com.google.android.material.textfield.TextInputLayout>
-                                    <com.google.android.material.textfield.TextInputLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:hint="Enter Vendor Bank Account Number"
-                                        android:layout_below="@id/vendorName"
-                                        android:layout_marginTop="30dp"
-                                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                                        >
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Vendor Bank Account Number"
+                android:layout_below="@id/vendorName"
+                android:layout_marginTop="30dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
 
-                                        <com.google.android.material.textfield.TextInputEditText
-                                            android:layout_width="match_parent"
-                                            android:id="@+id/vendorBankAccountNo"
-                                            android:layout_height="wrap_content"
-                                            />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:id="@+id/vendorBankAccountNo"
+                    android:layout_height="wrap_content"
+                    />
 
-                                    </com.google.android.material.textfield.TextInputLayout>
-                                    <com.google.android.material.textfield.TextInputLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:hint="Enter Vendor Bank IFSC"
-                                        android:layout_below="@id/vendorBankAccountNo"
-                                        android:layout_marginTop="30dp"
-                                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                                        >
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Vendor Bank IFSC"
+                android:layout_below="@id/vendorBankAccountNo"
+                android:layout_marginTop="30dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                >
 
-                                        <com.google.android.material.textfield.TextInputEditText
-                                            android:layout_width="match_parent"
-                                            android:id="@+id/vendorBankIFSC"
-                                            android:layout_height="wrap_content"
-                                            />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:id="@+id/vendorBankIFSC"
+                    android:layout_height="wrap_content"
+                    />
 
-                                    </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -263,17 +280,17 @@
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
-                        <Button
-                            android:id="@+id/uploadImage"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Upload Quotation Image"
-                            android:layout_below="@id/password"
-                            android:onClick="uploadQuoteImg"
-                            android:layout_marginTop="30dp"
-                            android:gravity="center"
-                            style="?attr/materialButtonOutlinedStyle"
-                            />
+            <Button
+                android:id="@+id/uploadImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Upload Quotation Image"
+                android:layout_below="@id/password"
+                android:onClick="uploadQuoteImg"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                style="?attr/materialButtonOutlinedStyle"
+                />
             <ProgressBar
                 android:id="@+id/pBar"
                 style="?android:attr/progressBarStyle"
@@ -300,4 +317,3 @@
 
 
 </LinearLayout>
-
