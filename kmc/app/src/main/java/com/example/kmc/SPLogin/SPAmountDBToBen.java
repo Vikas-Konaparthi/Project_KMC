@@ -67,7 +67,7 @@ public class SPAmountDBToBen extends AppCompatActivity {
                         {
 
                             Individual obj=d.toObject(Individual.class);
-                            if(!obj.getPsApprovedAmount().equals(""))
+                            if(!obj.getPsApprovedAmount().equals("") && obj.getSoApproved().equals("yes"))
                             {
                                 if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village1.toLowerCase(Locale.ROOT)) || (obj.getVillage().toLowerCase(Locale.ROOT).equals(village2.toLowerCase(Locale.ROOT))) ){
                                     if(!obj.getSpApproved3().equals("yes") &&  !obj.getSpApproved3().equals("no"))

@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -88,6 +89,11 @@ public class SOUserDetailsAmountDBToBen extends AppCompatActivity {
     String qImage="";
     String sector;
     String soQuoteAmount;
+    String agencyname;
+    String bankaccount;
+    String bankifsc;
+    String bankname;
+    String vendorname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -159,6 +165,13 @@ public class SOUserDetailsAmountDBToBen extends AppCompatActivity {
         mandal=getIntent().getStringExtra("mandal").toString();;
         sector=getIntent().getStringExtra("sector").toString();;
         qImage=getIntent().getStringExtra("uQuotationImage").toString();
+
+        agencyname = getIntent().getStringExtra("uVendorAgency").toString();
+        bankaccount = getIntent().getStringExtra("uVendorAccountNo").toString();
+        bankifsc = getIntent().getStringExtra("uVendorBankIFSC").toString();
+        vendorname = getIntent().getStringExtra("uVendorName").toString();
+        bankname = getIntent().getStringExtra("uVendorBankName".toString());
+
         individualSORemarks.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -256,7 +269,25 @@ public class SOUserDetailsAmountDBToBen extends AppCompatActivity {
         individualInfo.put("soApproved", approved.trim());
         individualInfo.put("so_quotation_amount", soQuoteAmount.trim());
         individualInfo.put("so_remarks", soRemarks.trim());
-        individualInfo.put("spApproved3", spApproved);
+        if(approved.equals("yes")){
+            individualInfo.put("spApproved3", "");
+            individualInfo.put("soApproved", "yes");
+            Map<String, Object> VendorsInfo = new HashMap<String, Object>();
+
+            VendorsInfo.put("agencyName", agencyname.trim());
+            VendorsInfo.put("vendorBankAcc", bankaccount.trim());
+            VendorsInfo.put("vendorBankIFSC", bankifsc.trim());
+            VendorsInfo.put("vendorBankName", bankname.trim());
+            VendorsInfo.put("vendorName", vendorname.trim());
+
+            db.collection("vendorAgency").add(VendorsInfo)
+                    .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentReference> task) {
+                            Toast.makeText(SOUserDetailsAmountDBToBen.this,"Vendor Details Added Successfully", Toast.LENGTH_SHORT);
+                        }
+                    });
+        }
         individualInfo.put("status", status);
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
