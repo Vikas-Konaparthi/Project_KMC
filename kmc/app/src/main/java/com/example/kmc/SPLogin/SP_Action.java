@@ -41,6 +41,7 @@ public class SP_Action extends AppCompatActivity implements View.OnClickListener
     TextView pendingBadge3;
     FirebaseFirestore db;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
