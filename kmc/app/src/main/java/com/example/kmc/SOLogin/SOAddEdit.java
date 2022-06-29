@@ -55,8 +55,10 @@ public class SOAddEdit extends AppCompatActivity {
                         for(DocumentSnapshot d:list)
                         {
                             Vendor obj=d.toObject(Vendor.class);
-                            datalist.add(obj);
-
+                            if(!obj.getAgencyName().equalsIgnoreCase("others"))
+                            {
+                                datalist.add(obj);
+                            }
                         }
                         adapter.notifyDataSetChanged();
                         progressBar.setVisibility(View.GONE);

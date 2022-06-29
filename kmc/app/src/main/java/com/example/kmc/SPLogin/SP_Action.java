@@ -90,7 +90,7 @@ public class SP_Action extends AppCompatActivity implements View.OnClickListener
                                     pendingAction1=pendingAction1+1;
                                 }
                             }
-                            if(!obj.getPsApprovedAmount().equals(""))
+                            if(!obj.getPsRequestedAmountToBeneficiary().equals("") && obj.getSoApproved().equals("yes"))
                             {
                                 if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village1.toLowerCase(Locale.ROOT)) || (obj.getVillage().toLowerCase(Locale.ROOT).equals(village2.toLowerCase(Locale.ROOT))) ){
                                     if(!obj.getSpApproved3().equals("yes") &&  !obj.getSpApproved3().equals("no"))
@@ -135,7 +135,7 @@ public class SP_Action extends AppCompatActivity implements View.OnClickListener
                                     pendingAction1=pendingAction1+1;
                                 }
                             }
-                            if(!obj.getPsApprovedAmount().equals(""))
+                            if(!obj.getPsRequestedAmountToBeneficiary().equals("") && obj.getSoApproved().equals("yes"))
                             {
                                 if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village1.toLowerCase(Locale.ROOT)) || (obj.getVillage().toLowerCase(Locale.ROOT).equals(village2.toLowerCase(Locale.ROOT))) ){
                                     if(!obj.getSpApproved3().equals("yes") &&  !obj.getSpApproved3().equals("no"))
