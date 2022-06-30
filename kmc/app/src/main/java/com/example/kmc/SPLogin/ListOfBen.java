@@ -64,7 +64,11 @@ public class ListOfBen extends AppCompatActivity {
                         {
                             Individual obj=d.toObject(Individual.class);
                             if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village1.toLowerCase(Locale.ROOT)) || (obj.getVillage().toLowerCase(Locale.ROOT).equals(village2.toLowerCase(Locale.ROOT))) ){
-                                datalist.add(obj);
+                                if(!obj.getSpApproved().equals("yes"))
+                                {
+                                    datalist.add(obj);
+                                }
+
                             }
                         }
                         adapter.notifyDataSetChanged();

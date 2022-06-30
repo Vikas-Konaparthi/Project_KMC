@@ -167,6 +167,7 @@ public class CollectorUserDetailsAmountDBToBen extends AppCompatActivity {
         getDbBankName.setText("DB Bank Name: "+getIntent().getStringExtra("uDbBankName").toString());
         getDbAccNumber.setText("DB Account Number: "+getIntent().getStringExtra("uDbAccountNo").toString());
         getDbIFSC.setText("DB Account IFSC: "+getIntent().getStringExtra("uDbIFSC").toString());
+        collectorNewApprovalAmount.setText(getIntent().getStringExtra("psRequestedAmount").toString());
 
         //            individualSORemark.setText("Section Officer Remark: "+getIntent().getStringExtra("uSORemarks").toString());
 //            getIndividualVendorName.setText("Vendor Name: "+getIntent().getStringExtra("uVendorName").toString());

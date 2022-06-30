@@ -258,7 +258,7 @@ public class CollectorUserDetailsAmountToDB extends AppCompatActivity {
 //
 //
     public void reject(View view) {
-        String collectorSanctionAmount="";
+        String collectorSanctionAmount="0";
         String approved="no";
         String spApproved="";
         status= "Rejected By Collector: "+getIntent().getStringExtra("uStatus").toString();
