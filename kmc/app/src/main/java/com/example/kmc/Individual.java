@@ -51,6 +51,8 @@ public class Individual {
     String occupation;
     String rationcardnumber;
     String option_selected;
+    String ctrNote1;
+    String ctrNote2;
 
     public String getSecOfficerUpload() {
         return secOfficerUpload;
@@ -70,7 +72,7 @@ public class Individual {
         this.psUpload = psUpload;
     }
 
-    public Individual(String option_selected, String grounding_img,String vendorName,String vendorAccountNo,String vendorIFSC,String groundingStatus,String bankIFSC,String approvalAmount,String secOfficerApproved,String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district,String dbAccount,String sp_remarks,String so_remarks,String ctrApproved,String secOfficerUpload,String status,String individualAmountRequired,String spApproved2,String spAmountApproved,String psRequestedAmountToBeneficiary,String vendorAgency,String vendorBankName,String quotationImage, String DbBankName, String dbBankAccNo, String DbBankIFSC,String spApproved3,String soApproved,String so_quotation_amount,String ctrApproved2,String psApproved, String psApproved2, String psApproved3,String occupation,String rationcardnumber) {
+    public Individual(String option_selected, String grounding_img,String vendorName,String vendorAccountNo,String vendorIFSC,String groundingStatus,String bankIFSC,String approvalAmount,String secOfficerApproved,String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district,String dbAccount,String sp_remarks,String so_remarks,String ctrApproved,String secOfficerUpload,String status,String individualAmountRequired,String spApproved2,String spAmountApproved,String psRequestedAmountToBeneficiary,String vendorAgency,String vendorBankName,String quotationImage, String DbBankName, String dbBankAccNo, String DbBankIFSC,String spApproved3,String soApproved,String so_quotation_amount,String ctrApproved2,String psApproved, String psApproved2, String psApproved3,String occupation,String rationcardnumber,String ctrNote1,String ctrNote2) {
         this.option_selected = option_selected;
         this.name = name;
         this.fatherName = fatherName;
@@ -119,7 +121,29 @@ public class Individual {
         this.psApproved3 = psApproved3;
         this.occupation=occupation;
         this.rationcardnumber=rationcardnumber;
+        this.ctrNote1=ctrNote1;
+        this.ctrNote2=ctrNote2;
 
+    }
+
+    public void setOption_selected(String option_selected) {
+        this.option_selected = option_selected;
+    }
+
+    public String getCtrNote2() {
+        return ctrNote2;
+    }
+
+    public void setCtrNote2(String ctrNote2) {
+        this.ctrNote2 = ctrNote2;
+    }
+
+    public String getCtrNote1() {
+        return ctrNote1;
+    }
+
+    public void setCtrNote1(String ctrNote1) {
+        this.ctrNote1 = ctrNote1;
     }
 
     public String getOption_selected() {

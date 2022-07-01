@@ -83,15 +83,15 @@ public class CollectorMenu extends AppCompatActivity {
                         for(DocumentSnapshot d:list)
                         {
                             Individual obj=d.toObject(Individual.class);
-                            if(obj.getDbAccount()!="")
+                            if(obj.getSpApproved().equals("yes"))
                             {
                                 total_sanctioned=total_sanctioned+1;
                             }
-                            if(obj.getApprovalAmount()!="")
+                            if(!obj.getApprovalAmount().equals("0"))
                             {
                                 total_released=total_released+1;
                             }
-                            if(Integer.parseInt(obj.getApprovalAmount())<990000)
+                            if(Integer.parseInt(obj.getApprovalAmount())>0 && Integer.parseInt(obj.getApprovalAmount())<990000)
                             {
                                 partially_g=partially_g+1;
                             }

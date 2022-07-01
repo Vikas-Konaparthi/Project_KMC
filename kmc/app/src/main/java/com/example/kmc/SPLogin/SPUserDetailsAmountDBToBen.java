@@ -237,6 +237,7 @@ public class SPUserDetailsAmountDBToBen extends AppCompatActivity {
         individualInfo.put("psApproved2",psApproved);
         individualInfo.put("ctrApproved2","");
         individualInfo.put("status", status);
+        individualInfo.put("ctrNote2", "");
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

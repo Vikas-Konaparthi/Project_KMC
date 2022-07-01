@@ -4,26 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CLogin.CollectorListOfBen">
+    tools:context=".CLogin.CollectorAmountToDB">
     <include
         layout="@layout/appbar"/>
 
     <LinearLayout
         android:id="@+id/layout1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:weightSum="1"
         tools:ignore="MissingConstraints">
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="0dp"
-            android:paddingLeft="20dp"
-            android:layout_height="55dp"
-            android:layout_weight="1"
+<!--        <TextView-->
+<!--            android:id="@+id/title"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:paddingLeft="20dp"-->
+<!--            android:layout_height="55dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Collector"-->
+<!--            android:textColor="#fff"/>-->
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:paddingLeft="20dp"
+                    android:text="Collector"
+                    android:textColor="#fff" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addIndividual"
             android:gravity="center"
-            android:text="Collector"
-            android:textColor="#fff"/>
+            android:onClick="generateNote"
+            android:text="Note"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/ic_baseline_sticky_note_2_24"
+            android:textSize="20dp"
+            />
+
 
 
     </LinearLayout>

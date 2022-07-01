@@ -203,7 +203,8 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("psApproved", "");
             individualInfo.put("psApproved2", "");
             individualInfo.put("psApproved3", "");
-
+            individualInfo.put("ctrNote1", "");
+            individualInfo.put("ctrNote2", "");
 
             //
             db.collection("individuals").add(individualInfo)
