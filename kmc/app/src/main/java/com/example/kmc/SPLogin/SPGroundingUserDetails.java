@@ -158,7 +158,7 @@ public class SPGroundingUserDetails extends AppCompatActivity {
         district=getIntent().getStringExtra("uDistrict").toString();
         village1=getIntent().getStringExtra("village1").toString();
         village2=getIntent().getStringExtra("village2").toString();
-        qImage=getIntent().getStringExtra("uQuotationImage").toString();
+        qImage=getIntent().getStringExtra("uGroundingImage").toString();
 //        individualSPRemarks.addTextChangedListener(new TextWatcher() {
 //
 //            @Override

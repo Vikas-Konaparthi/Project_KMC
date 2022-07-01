@@ -192,33 +192,147 @@ public class CollectorAmountToDB extends AppCompatActivity {
             //open the document
             doc.open();
 
-            Paragraph p1 = new Paragraph("I Here By Declare that these people are eligible for scheme : ");
+            Paragraph p1 = new Paragraph("GOVERNMENT OF TELANGANA");
             Font paraFont = new Font(Font.COURIER);
-            p1.setAlignment(Paragraph.ALIGN_LEFT);
+            p1.setAlignment(Paragraph.ALIGN_CENTER);
             p1.setFont(paraFont);
-
             //add paragraph to document
             doc.add(p1);
-            Paragraph p2 = new Paragraph(" ");
-            p1.setAlignment(Paragraph.ALIGN_LEFT);
-            p1.setFont(paraFont);
-
+            Paragraph p2 = new Paragraph("DISTRICT SCHEDULED CASTES SERVICES CO – OPERATIVE SOCIETY LTD.,");
+            p2.setAlignment(Paragraph.ALIGN_CENTER);
+            p2.setFont(paraFont);
             //add paragraph to document
             doc.add(p2);
-            doc.setPageSize(PageSize.A4.rotate());
-            doc.newPage();
-            Paragraph p3 = new Paragraph("Statement showing the details of adjustment and release of amounts to their units in "+village+" in respect of Dalit Bandhu Scheme.");
-            p1.setAlignment(Paragraph.ALIGN_LEFT);
-            p1.setFont(paraFont);
-
+            Paragraph p3 = new Paragraph("KHAMMAM.");
+            p3.setAlignment(Paragraph.ALIGN_CENTER);
+            p3.setFont(paraFont);
             //add paragraph to document
             doc.add(p3);
+
             Paragraph p4 = new Paragraph(" ");
-            p1.setAlignment(Paragraph.ALIGN_LEFT);
-            p1.setFont(paraFont);
+            p4.setAlignment(Paragraph.ALIGN_CENTER);
+            p4.setFont(paraFont);
+            //add paragraph to document
+
+            Paragraph p5 = new Paragraph("Rc.No.E/298/SC/2021-DB-3\t ;Date:-    .0 .20  ..");
+            p5.setAlignment(Paragraph.ALIGN_CENTER);
+            p5.setFont(paraFont);
+            //add paragraph to document
+            doc.add(p5);
+
+            Paragraph p7 = new Paragraph("FROM");
+            p7.setAlignment(Paragraph.ALIGN_LEFT);
+            p7.setFont(paraFont);
+            //add paragraph to document
+            doc.add(p7);
+
+            doc.add(p4);
+            doc.add(p4);
+            doc.add(p4);
+            doc.add(p4);
+
+            Paragraph p8 = new Paragraph("Sir,");
+            p8.setAlignment(Paragraph.ALIGN_LEFT);
+            p8.setFont(paraFont);
+            //add paragraph to document
+            doc.add(p8);
+
+            Paragraph p9 = new Paragraph("Sub:-\tDSCSCDS Ltd., Khammam District – Dalit Bandhu Scheme – Chinthakani Mandal  –-  Transfer for an amounts of Rs.               /- to Vendor Account of (  ) beneficiaries pertains to                  Unit  – Reg.");
+            p9.setAlignment(Paragraph.ALIGN_CENTER);
+            p9.setFont(paraFont);
+            //add paragraph to document
+            doc.add(p9);
+
+            Paragraph p10 = new Paragraph("Ref:-");
+            p10.setAlignment(Paragraph.ALIGN_LEFT);
+            p10.setFont(paraFont);
+            //add paragraph to document
+            doc.add(p10);
+            Paragraph p11 = new Paragraph("1\tProgs of the District Collector & Chairman, DSCSCDS Ltd., KhammamRc.No. E/298/SC/2021, Dated: 03.04.2022.");
+            p11.setAlignment(Paragraph.ALIGN_LEFT);
+            p11.setFont(paraFont);
+            //add paragraph to document
+            doc.add(p11);
+            Paragraph p12 = new Paragraph("2\tBeneficiaries individual acceptancy letters duly recommended by the Panchayat Secretary, MPDO and  Special Officers of Concerned G Ps/");
+            p12.setAlignment(Paragraph.ALIGN_LEFT);
+            p12.setFont(paraFont);
+            //add paragraph to document
+            doc.add(p12);
+
+            Paragraph p13 = new Paragraph("3\tThis office Lr.Rc.No. E/298/SC/2022, Dated:          addressed to the Branch Managers of Banks concerned.");
+            p13.setAlignment(Paragraph.ALIGN_LEFT);
+            p13.setFont(paraFont);
+            //add paragraph to document
+            doc.add(p13);
+            Paragraph p14 = new Paragraph(
+                    "4\tInstructions of District Collector & Chairman, DSCSCDS Ltd., Khammam.\n"+
+                    "5\tLr.Rc.No.DB/                   /    , dt:-.            of D.P.M, KMM \n");
+            p14.setAlignment(Paragraph.ALIGN_LEFT);
+            p14.setFont(paraFont);
+            //add paragraph to document
+            doc.add(p14);
+            Paragraph p15 = new Paragraph(
+                    "***");
+            p15.setAlignment(Paragraph.ALIGN_CENTER);
+            p15.setFont(paraFont);
+            //add paragraph to document
+            doc.add(p15);
+            Paragraph p16 = new Paragraph(
+                    "      Incompliance to the references 1st to 5th cited, under Dalit Bandhu Scheme, beneficiaries were selected from                Mandal and sanctioned Rs. 10.00 Lakh per each beneficiary for the said purpose vide the proceedings under reference 1st cited. Further, it is to submit that, previously              have been credited to the account of         beneficiaries.Further it is submitted that for      beneficiaries initial amount                   has been not released and not credited. Hence, initial amount                  each is hereby released for       beneficiaries.Further, an amount of RS                  (Rupees                                                                            Only) of        beneficiaries are hereby released  to Vendor account pertains to                         unit under Dalit Bandhu Scheme.");
+            p16.setAlignment(Paragraph.ALIGN_LEFT);
+            p16.setFont(paraFont);
+            //add paragraph to document
+            doc.add(p16);
+            Paragraph p17 = new Paragraph(
+                    "     Therefore, the  Manager concerned are requested to release and transfer amount of Rs.                  (Rupees                                                                                Only) of       beneficiaries from Dalit Bandhu Beneficiary account to vendor account as  furnished at Colm No.       of the Annexure. ");
+            p17.setAlignment(Paragraph.ALIGN_LEFT);
+            p17.setFont(paraFont);
+            //add paragraph to document
+            doc.add(p17);
+            doc.add(p4);
+            Paragraph p18 = new Paragraph(
+                    "Yours faithfully,");
+            p18.setAlignment(Paragraph.ALIGN_RIGHT);
+            p18.setFont(paraFont);
+            //add paragraph to document
+            doc.add(p18);
+
+            Paragraph p19 = new Paragraph(
+                    "Encls:-\t Annexure");
+            p19.setAlignment(Paragraph.ALIGN_LEFT);
+            p19.setFont(paraFont);
+            //add paragraph to document
+            doc.add(p19);
+            doc.add(p4);
+            Paragraph p20 = new Paragraph(
+                    "\n" +
+                            "District Collector & Chairman,\n");
+            p20.setAlignment(Paragraph.ALIGN_RIGHT);
+            p20.setFont(paraFont);
+            //add paragraph to document
+            doc.add(p20);
+            Paragraph p21 = new Paragraph(
+                                         "DSCSCDS Ltd., Khammam\n");
+            p21.setAlignment(Paragraph.ALIGN_RIGHT);
+            p21.setFont(paraFont);
+            //add paragraph to document
+            doc.add(p21);
+
+
+            doc.setPageSize(PageSize.A4.rotate());
+            doc.newPage();
+            Paragraph p22 = new Paragraph("Statement showing the details of adjustment and release of amounts to their units in "+village+" in respect of Dalit Bandhu Scheme.");
+            p22.setAlignment(Paragraph.ALIGN_LEFT);
+            p22.setFont(paraFont);
 
             //add paragraph to document
-            doc.add(p4);
+            doc.add(p22);
+            Paragraph p23 = new Paragraph(" ");
+            p23.setAlignment(Paragraph.ALIGN_LEFT);
+            p23.setFont(paraFont);
+
+            //add paragraph to document
+            doc.add(p23);
 
             PdfPTable userTable = new PdfPTable(7);
             userTable.addCell("Name of the Village");
