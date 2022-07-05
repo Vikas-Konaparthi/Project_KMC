@@ -2,6 +2,7 @@ package com.example.kmc;
 
 public class Vendor {
     String agencyName;
+    String unit;
     String vendorName;
     String vendorBankAcc;
     String vendorBankIFSC;
@@ -11,12 +12,21 @@ public class Vendor {
 
     }
 
-    public Vendor(String agencyName, String vendorName, String vendorBankAcc, String vendorBankIFSC, String vendorBankName) {
+    public Vendor(String agencyName, String vendorName, String vendorBankAcc, String vendorBankIFSC, String vendorBankName, String unit) {
         this.agencyName = agencyName;
+        this.unit = unit;
         this.vendorName = vendorName;
         this.vendorBankAcc = vendorBankAcc;
         this.vendorBankIFSC = vendorBankIFSC;
         this.vendorBankName = vendorBankName;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 
     public String getAgencyName() {

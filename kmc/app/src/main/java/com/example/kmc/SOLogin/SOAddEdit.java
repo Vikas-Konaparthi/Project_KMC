@@ -32,7 +32,8 @@ public class SOAddEdit extends AppCompatActivity {
 
     ArrayList<Vendor> datalist;
     FirebaseFirestore db;
-
+    String sector;
+    String mandal;
     ProgressBar progressBar;
     vendorAdapter adapter;
     @Override
@@ -44,6 +45,19 @@ public class SOAddEdit extends AppCompatActivity {
         datalist=new ArrayList<>();
         adapter=new vendorAdapter(datalist);
         recyclerView.setAdapter(adapter);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String value = extras.getString("mandal");
+            String value2 = extras.getString("sector");
+            //String value3 = extras.getString("preferredUnit");
+            //The key argument here must match that used in the other activity
+            mandal = value;
+            sector = value2;
+            //preferredUnit = value3;
+
+        }else{
+            Log.d("extra", "no");
+        }
         db=FirebaseFirestore.getInstance();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
@@ -74,6 +88,8 @@ public class SOAddEdit extends AppCompatActivity {
 //        startActivity(intent);
 //        finish();
         Intent i = new Intent(SOAddEdit.this, addVendor.class);
+        i.putExtra("mandal",mandal);
+        i.putExtra("sector",sector);
         startActivity(i);
     }
 }

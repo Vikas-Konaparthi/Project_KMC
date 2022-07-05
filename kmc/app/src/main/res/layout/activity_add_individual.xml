@@ -200,22 +200,41 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/Preferredunit"
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/Preferredunit"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="Preferred Unit"-->
+<!--                android:layout_below="@id/textView1"-->
+<!--                android:layout_marginTop="40dp"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+<!--                >-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+            <TextView
+                android:layout_marginTop="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Preferred Unit"
-                android:layout_below="@id/textView1"
-                android:layout_marginTop="40dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
+                android:text="Preferred Unit"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="8"
+                android:orientation="horizontal"
+                android:background="@drawable/border"
+                tools:ignore="UselessParent">
+                <Spinner
+                    android:id="@+id/spinner_preferredunit"
+                    android:layout_gravity="center"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="40dp" />
+            </LinearLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/BankName"
                 android:layout_width="match_parent"

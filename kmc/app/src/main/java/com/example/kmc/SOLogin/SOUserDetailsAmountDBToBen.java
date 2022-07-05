@@ -275,6 +275,7 @@ public class SOUserDetailsAmountDBToBen extends AppCompatActivity {
             Map<String, Object> VendorsInfo = new HashMap<String, Object>();
 
             VendorsInfo.put("agencyName", agencyname.trim());
+            VendorsInfo.put("unit", preferredunit.trim());
             VendorsInfo.put("vendorBankAcc", bankaccount.trim());
             VendorsInfo.put("vendorBankIFSC", bankifsc.trim());
             VendorsInfo.put("vendorBankName", bankname.trim());

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -22,26 +23,45 @@ import java.util.Map;
 
 public class addVendor extends AppCompatActivity {
     public TextInputLayout AgencyName;
+    public TextInputLayout UnitName;
     public TextInputLayout BankAccount;
     public TextInputLayout BankIFSC;
     public TextInputLayout BankName;
     public TextInputLayout VendorName;
     FirebaseFirestore db;
     String agencyname;
+    String unitname;
     String bankaccount;
     String bankifsc;
     String bankname;
     String vendorname;
+    String mandal;
+    String sector;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_vendor);
         db=FirebaseFirestore.getInstance();
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String value = extras.getString("mandal");
+            String value2 = extras.getString("sector");
+            //String value3 = extras.getString("preferredUnit");
+            //The key argument here must match that used in the other activity
+            mandal = value;
+            sector = value2;
+            //preferredUnit = value3;
+
+        }else{
+            Log.d("extra", "no");
+        }
         AgencyName  = (TextInputLayout) findViewById(R.id.AgencyName);
+        UnitName  = (TextInputLayout) findViewById(R.id.UnitName);
         BankAccount  = (TextInputLayout) findViewById(R.id.vendorAgencyaccountnumber);
         BankIFSC  = (TextInputLayout) findViewById(R.id.vendorBankIFSC);
         BankName  = (TextInputLayout) findViewById(R.id.vendorBankName);
         VendorName  = (TextInputLayout) findViewById(R.id.vendorName);
+        UnitName.getEditText().setText(sector);
     }
 
     public void AddVendors(View view) {
@@ -54,6 +74,7 @@ public class addVendor extends AppCompatActivity {
      {
          Map<String, Object> VendorsInfo = new HashMap<String, Object>();
          VendorsInfo.put("agencyName", agencyname.trim());
+         VendorsInfo.put("unit", unitname.trim());
          VendorsInfo.put("vendorBankAcc", bankaccount.trim());
          VendorsInfo.put("vendorBankIFSC", bankifsc.trim());
          VendorsInfo.put("vendorBankName", bankname.trim());
@@ -66,6 +87,7 @@ public class addVendor extends AppCompatActivity {
                          Toast.makeText(addVendor.this, "Inserted Successfully", Toast.LENGTH_SHORT).show();
                          Intent i = new Intent(addVendor.this, addVendor.class);
                          i.putExtra("vendorAgency",agencyname.trim());
+                         i.putExtra("UnitName",unitname.trim());
                          i.putExtra("VendorBankName", bankaccount.trim());
                          i.putExtra("VendorIFSC",bankifsc.trim());
                          i.putExtra("VendorBankName",bankname.trim());

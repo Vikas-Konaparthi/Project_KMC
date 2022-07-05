@@ -8,21 +8,30 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.kmc.R;
+import com.example.kmc.Unit;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class addIndividual extends AppCompatActivity {
@@ -35,7 +44,7 @@ public class addIndividual extends AppCompatActivity {
     public TextInputLayout District;
     public TextInputLayout AadharNumber;
     public TextInputLayout MobileNumber;
-    public TextInputLayout Preferredunit;
+    public Spinner Preferredunit;
     public TextInputLayout BankName;
     public TextInputLayout BankACCNumber;
     public TextInputLayout BankIFSC;
@@ -79,6 +88,11 @@ public class addIndividual extends AppCompatActivity {
     String d;
     String m;
 
+    Unit obj;
+    List<DocumentSnapshot> list;
+    String option_selected;
+
+
     StorageReference storageReference;
     Uri image_uri = null;
 
@@ -89,6 +103,7 @@ public class addIndividual extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_individual);
         db=FirebaseFirestore.getInstance();
+
         pgsBar = (ProgressBar)findViewById(R.id.pBar);
         IndividualName  = (TextInputLayout) findViewById(R.id.IndividualName);
         FatherName  = (TextInputLayout) findViewById(R.id.FatherName);
@@ -99,7 +114,7 @@ public class addIndividual extends AppCompatActivity {
         District  = (TextInputLayout) findViewById(R.id.district);
         AadharNumber = (TextInputLayout) findViewById(R.id.AadharNumber);
         MobileNumber = (TextInputLayout) findViewById(R.id.MobileNumber);
-        Preferredunit = (TextInputLayout) findViewById(R.id.Preferredunit);
+        Preferredunit = (Spinner) findViewById(R.id.spinner_preferredunit);
         BankName  = (TextInputLayout) findViewById(R.id.BankName);
         BankACCNumber  = (TextInputLayout) findViewById(R.id.BankACCNumber);
         BankIFSC  = (TextInputLayout) findViewById(R.id.BankIFSC);
@@ -114,6 +129,50 @@ public class addIndividual extends AppCompatActivity {
 //        individualVendorBankIFSC=(TextInputEditText) findViewById(R.id.vendorBankIFSC);
         storageReference= FirebaseStorage.getInstance().getReference();
         Bundle extras = getIntent().getExtras();
+
+        List<String> units = new ArrayList<>();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
+                android.R.layout.simple_spinner_item,
+                units);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        Preferredunit.setAdapter(adapter);
+
+        db.collection("unit").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        list =queryDocumentSnapshots.getDocuments();
+                        for(DocumentSnapshot d:list) {
+
+                            obj = d.toObject(Unit.class);
+
+                            units.add(obj.getUnitName());
+                        }
+                        adapter.notifyDataSetChanged();
+                        option_selected = adapter.getItem(0);
+                    }
+
+                });
+
+        Preferredunit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,int position, long arg3) {
+
+                Preferredunit.setSelection(position);
+                option_selected = Preferredunit.getSelectedItem().toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+            }
+
+        });
+
+
         if (extras != null) {
             v = extras.getString("village");
             m=extras.getString("mandal");
@@ -137,7 +196,7 @@ public class addIndividual extends AppCompatActivity {
         district = District.getEditText().getText().toString();
         aadharNumber = AadharNumber.getEditText().getText().toString();
         mobileNumber = MobileNumber.getEditText().getText().toString();
-        preferredunit = Preferredunit.getEditText().getText().toString();
+//        preferredunit = Preferredunit.getEditText().getText().toString();
         bankName = BankName.getEditText().getText().toString();
         bankACCNumber = BankACCNumber.getEditText().getText().toString();
         bankIFSCNumber=BankIFSC.getEditText().getText().toString();
@@ -150,7 +209,7 @@ public class addIndividual extends AppCompatActivity {
 //        vendorBankAccount= individualVendorBankAccountNumber.getText().toString();
 //        vendorBankIFSC= individualVendorBankIFSC.getText().toString();
         //
-        if (individualName.length() != 0 && fatherName.length() != 0 && age.length() != 0 && houseNumber.length() != 0 && aadharNumber.length() != 0 && mobileNumber.length() != 0 && preferredunit.length() != 0 && bankName.length() != 0 && bankACCNumber.length() != 0 && dbBankName.length() != 0 && dbBankACCNumber.length() != 0 && dbBankIFSC.length() != 0 ) {
+        if (individualName.length() != 0 && fatherName.length() != 0 && age.length() != 0 && houseNumber.length() != 0 && aadharNumber.length() != 0 && mobileNumber.length() != 0 && option_selected.length() != 0 && bankName.length() != 0 && bankACCNumber.length() != 0 && dbBankName.length() != 0 && dbBankACCNumber.length() != 0 && dbBankIFSC.length() != 0 ) {
             Map<String, Object> individualInfo = new HashMap<String, Object>();
             individualInfo.put("name", individualName.trim());
             individualInfo.put("fatherName", fatherName.trim());
@@ -161,7 +220,7 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("district", district.trim());
             individualInfo.put("aadhar", aadharNumber.trim());
             individualInfo.put("phoneNo", mobileNumber.trim());
-            individualInfo.put("preferredUnit", preferredunit.trim());
+            individualInfo.put("preferredUnit", option_selected.trim());
             individualInfo.put("bankName", bankName.trim());
             individualInfo.put("bankAccNo", bankACCNumber.trim());
             individualInfo.put("bankIFSC", bankIFSCNumber.trim());

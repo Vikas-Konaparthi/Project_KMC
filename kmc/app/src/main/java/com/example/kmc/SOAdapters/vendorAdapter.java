@@ -41,12 +41,13 @@ public class vendorAdapter extends RecyclerView.Adapter<vendorAdapter.myviewhold
     @NonNull
     @Override
     public vendorAdapter.myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerow,parent,false);
+        View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerow3,parent,false);
         return new myviewholder(view);
     }
 
     public void onBindViewHolder(@NonNull vendorAdapter.myviewholder holder, @SuppressLint("RecyclerView") int position) {
         holder.t1.setText(datalist.get(position).getAgencyName());
+        holder.t6.setText("Unit: "+datalist.get(position).getUnit());
         holder.t4.setText("Name: "+datalist.get(position).getVendorName());
         holder.t3.setText("Bank Name: "+datalist.get(position).getVendorBankName());
         holder.t2.setText("Bank ACC Number: "+datalist.get(position).getVendorBankAcc());
@@ -65,6 +66,7 @@ public class vendorAdapter extends RecyclerView.Adapter<vendorAdapter.myviewhold
         TextView t3;
         TextView t4;
         TextView t5;
+        TextView t6;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
@@ -73,6 +75,7 @@ public class vendorAdapter extends RecyclerView.Adapter<vendorAdapter.myviewhold
             t3=itemView.findViewById(R.id.t3);
             t4=itemView.findViewById(R.id.t4);
             t5=itemView.findViewById(R.id.t5);
+            t6=itemView.findViewById(R.id.t6);
 
         }
     }

@@ -133,6 +133,7 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
                             agencies.add(obj.getAgencyName());
                         }
                         adapter.notifyDataSetChanged();
+                        option_selected = adapter.getItem(0);
                     }
 
                 });

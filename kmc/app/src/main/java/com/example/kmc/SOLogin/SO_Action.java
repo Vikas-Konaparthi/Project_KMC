@@ -60,6 +60,7 @@ public class SO_Action extends AppCompatActivity implements View.OnClickListener
             //The key argument here must match that used in the other activity
             mandal = value;
             sector = value2;
+
             aadhar=extras.getString("aadhar");
             //preferredUnit = value3;
 
