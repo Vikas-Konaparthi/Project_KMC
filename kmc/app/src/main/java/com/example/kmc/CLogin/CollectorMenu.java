@@ -35,6 +35,12 @@ public class CollectorMenu extends AppCompatActivity {
     String selected_mandal;
     TextView mandal_pending;
     TextView village_pending;
+    TextView spMandal;
+    TextView spVillage;
+    TextView psVillage;
+    TextView groundingVillage;
+    TextView groundingMandal;
+    TextView psMandal;
     TextView total_no_registered;
     TextView total_no_sanctioned;
     TextView total_no_released;
@@ -47,6 +53,12 @@ public class CollectorMenu extends AppCompatActivity {
     int fully_g;
     int ctrMandalPending;
     int ctrVillagePending;
+    int spMandalPending;
+    int spVillagePending;
+    int psMandalPending;
+    int psVillagePending;
+    int groundingVillagePending;
+    int groundingMandalPending;
 
 
     @Override
@@ -60,6 +72,13 @@ public class CollectorMenu extends AppCompatActivity {
         fully_grounded=(TextView) findViewById(R.id.t10);
         mandal_pending=(TextView) findViewById(R.id.ctrMandalPending);
         village_pending=(TextView) findViewById(R.id.ctrVillagePending);
+        spMandal=(TextView) findViewById(R.id.spMandalPending);
+        psMandal=(TextView) findViewById(R.id.psMandalPending);
+        groundingMandal=(TextView) findViewById(R.id.groundingMandalPending);
+        spVillage=(TextView) findViewById(R.id.spVillagePending);
+        psVillage=(TextView) findViewById(R.id.psVillagePending);
+        groundingVillage=(TextView) findViewById(R.id.groundingVillagePending);
+
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
         CollectionReference subjectsRef = rootRef.collection("Khammam");
         Bundle extras = getIntent().getExtras();
@@ -153,14 +172,30 @@ public class CollectorMenu extends AppCompatActivity {
                                 for(DocumentSnapshot d:list)
                                 {
                                     Individual objCtrMP=d.toObject(Individual.class);
-                                    if((objCtrMP.getSpApproved2().equals("yes")||objCtrMP.getSpApproved3().equals("yes"))&&(objCtrMP.getCtrApproved().equals("")||objCtrMP.getCtrApproved2().equals("")))
-                                    {
+                                    if((objCtrMP.getSpApproved2().equals("yes")&&objCtrMP.getCtrApproved().equals(""))||(objCtrMP.getSpApproved3().equals("yes")&&objCtrMP.getCtrApproved2().equals(""))) {
                                         ctrMandalPending=ctrMandalPending+1;
+                                    }
+                                    if((objCtrMP.getSpApproved().equals(""))||(objCtrMP.getPsApproved().equals("yes")&&objCtrMP.getSpApproved2().equals(""))||(objCtrMP.getSoApproved().equals("yes")&&objCtrMP.getSpApproved3().equals("")))
+                                    {
+                                        spMandalPending=spMandalPending+1;
+                                    }
+                                    if((objCtrMP.getSpApproved().equals("yes")&&objCtrMP.getPsApproved().equals(""))||(objCtrMP.getSpApproved2().equals("yes")&&objCtrMP.getCtrApproved().equals("yes")&&objCtrMP.getPsApproved2().equals("")))                               {
+                                        psMandalPending=psMandalPending+1;
+                                    }
+                                    if((objCtrMP.getCtrApproved2().equals("yes")&&objCtrMP.getGroundingStatus().equals("")))
+                                    {
+                                        groundingMandalPending=groundingMandalPending+1;
                                     }
 
                                 }
                                 mandal_pending.setText("Collector Pending in "+selected_mandal+" "+ctrMandalPending);
+                                spMandal.setText("SP Pending in "+selected_mandal+" "+spMandalPending);
+                                psMandal.setText("PS Pending in "+selected_mandal+" "+psMandalPending);
+                                groundingMandal.setText("Grounding Pending in "+selected_mandal+" "+groundingMandalPending);
                                 ctrMandalPending=0;
+                                spMandalPending=0;
+                                psMandalPending=0;
+                                groundingMandalPending=0;
                             }
                         });
 
@@ -184,12 +219,32 @@ public class CollectorMenu extends AppCompatActivity {
                                                 for(DocumentSnapshot d:list)
                                                 {
                                                     Individual objCtrVP=d.toObject(Individual.class);
-                                                    if((objCtrVP.getSpApproved2().equals("yes")||objCtrVP.getSpApproved3().equals("yes"))&&(objCtrVP.getCtrApproved().equals("")||objCtrVP.getCtrApproved2().equals(""))) {
+                                                    if((objCtrVP.getSpApproved2().equals("yes")&&objCtrVP.getCtrApproved().equals(""))||(objCtrVP.getSpApproved3().equals("yes")&&objCtrVP.getCtrApproved2().equals(""))) {
                                                         ctrVillagePending= ctrVillagePending + 1;
                                                     }
+                                                    if((objCtrVP.getSpApproved().equals(""))||(objCtrVP.getPsApproved().equals("yes")&&objCtrVP.getSpApproved2().equals(""))||(objCtrVP.getSoApproved().equals("yes")&&objCtrVP.getSpApproved3().equals("")))
+                                                    {
+                                                        spVillagePending=spVillagePending+1;
+                                                    }
+                                                    if((objCtrVP.getSpApproved().equals("yes")&&objCtrVP.getPsApproved().equals(""))||(objCtrVP.getSpApproved2().equals("yes")&&objCtrVP.getCtrApproved().equals("yes")&&objCtrVP.getPsApproved2().equals("")))
+                                                    {
+                                                        psVillagePending=psVillagePending+1;
+                                                    }
+                                                    if((objCtrVP.getCtrApproved2().equals("yes")&&objCtrVP.getGroundingStatus().equals("")))
+                                                    {
+                                                        groundingVillagePending=groundingVillagePending+1;
+                                                    }
+
                                                 }
                                                 village_pending.setText("Collector Pending in "+selected_village+" "+ctrVillagePending);
+                                                spVillage.setText("SP Pending in "+selected_village+" "+spVillagePending);
+                                                psVillage.setText("PS Pending in "+selected_village+" "+psVillagePending);
+                                                groundingVillage.setText("Grounding Pending in "+selected_village+" "+groundingVillagePending);
+                                                spVillagePending=0;
+                                                psVillagePending=0;
+                                                groundingVillagePending=0;
                                                 ctrVillagePending=0;
+
                                             }
                                         });
                             }
@@ -217,11 +272,29 @@ public class CollectorMenu extends AppCompatActivity {
                                 for(DocumentSnapshot d:list)
                                 {
                                     Individual objCtrVP=d.toObject(Individual.class);
-                                    if((objCtrVP.getSpApproved2().equals("yes")||objCtrVP.getSpApproved3().equals("yes"))&&(objCtrVP.getCtrApproved().equals("")||objCtrVP.getCtrApproved2().equals(""))) {
+                                    if((objCtrVP.getSpApproved2().equals("yes")&&objCtrVP.getCtrApproved().equals(""))||(objCtrVP.getSpApproved3().equals("yes")&&objCtrVP.getCtrApproved2().equals(""))) {
                                         ctrVillagePending= ctrVillagePending + 1;
+                                    }
+                                    if((objCtrVP.getSpApproved().equals(""))||(objCtrVP.getPsApproved().equals("yes")&&objCtrVP.getSpApproved2().equals(""))||(objCtrVP.getSoApproved().equals("yes")&&objCtrVP.getSpApproved3().equals("")))
+                                    {
+                                        spVillagePending=spVillagePending+1;
+                                    }
+                                    if((objCtrVP.getSpApproved().equals("yes")&&objCtrVP.getPsApproved().equals(""))||(objCtrVP.getSpApproved2().equals("yes")&&objCtrVP.getCtrApproved().equals("yes")&&objCtrVP.getPsApproved2().equals("")))
+                                    {
+                                        psVillagePending=psVillagePending+1;
+                                    }
+                                    if((objCtrVP.getCtrApproved2().equals("yes")&&objCtrVP.getGroundingStatus().equals("")))
+                                    {
+                                        groundingVillagePending=groundingVillagePending+1;
                                     }
                                 }
                                 village_pending.setText("Collector Pending in "+selected_village+" "+ctrVillagePending);
+                                spVillage.setText("SP Pending in "+selected_village+" "+spVillagePending);
+                                psVillage.setText("PS Pending in "+selected_village+" "+psVillagePending);
+                                groundingVillage.setText("Grounding Pending in "+selected_village+" "+groundingVillagePending);
+                                spVillagePending=0;
+                                psVillagePending=0;
+                                groundingVillagePending=0;
                                 ctrVillagePending=0;
                             }
                         });
@@ -243,8 +316,8 @@ public class CollectorMenu extends AppCompatActivity {
     }
 
 //    public void pendency(View view) {
-//        Intent i = new Intent(this, CollectorAction.class);
+//        Intent i = new Intent(this, MandalPending.class);
+//        i.putExtra("district",district);
 //        startActivity(i);
-//
 //    }
 }

@@ -105,6 +105,7 @@
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/drawable/ic_baseline_sticky_note_2_24.xml" value="0.108" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_add_individual.xml" value="0.1" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_change_password_ctr.xml" value="0.13854166666666667" />
+        <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collecto_grounding.xml" value="0.1" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collector_action.xml" value="0.25" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collector_amount_dbto_ben.xml" value="0.1" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collector_amount_to_db.xml" value="0.18070652173913043" />
@@ -117,6 +118,7 @@
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collector_village_selection.xml" value="0.1" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collectorzone.xml" value="0.33" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_main.xml" value="0.15730337078651685" />
+        <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_mandal_pending.xml" value="0.25" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_password_change_sp.xml" value="0.15896739130434784" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_ps_action.xml" value="0.39072847682119205" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_psamount_to_db.xml" value="0.184375" />
