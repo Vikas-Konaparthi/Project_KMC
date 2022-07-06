@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kmc.Individual;
 import com.example.kmc.PSLogin.PSAddEdit;
@@ -71,6 +72,7 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
         }
         pendingAction1=0;
         pendingAction2=0;
+        Toast.makeText(this, village, Toast.LENGTH_SHORT).show();
 
         db.collection("individuals").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {

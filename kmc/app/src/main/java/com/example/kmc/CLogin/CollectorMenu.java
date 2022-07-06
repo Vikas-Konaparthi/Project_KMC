@@ -33,6 +33,7 @@ public class CollectorMenu extends AppCompatActivity {
     String district;
     String selected_village;
     String selected_mandal;
+    String selected_constitutiency;
     TextView mandal_pending;
     TextView village_pending;
     TextView spMandal;
@@ -70,14 +71,6 @@ public class CollectorMenu extends AppCompatActivity {
         total_no_released=(TextView) findViewById(R.id.t6);
         partially_grounded=(TextView) findViewById(R.id.t8);
         fully_grounded=(TextView) findViewById(R.id.t10);
-        mandal_pending=(TextView) findViewById(R.id.ctrMandalPending);
-        village_pending=(TextView) findViewById(R.id.ctrVillagePending);
-        spMandal=(TextView) findViewById(R.id.spMandalPending);
-        psMandal=(TextView) findViewById(R.id.psMandalPending);
-        groundingMandal=(TextView) findViewById(R.id.groundingMandalPending);
-        spVillage=(TextView) findViewById(R.id.spVillagePending);
-        psVillage=(TextView) findViewById(R.id.psVillagePending);
-        groundingVillage=(TextView) findViewById(R.id.groundingVillagePending);
 
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
         CollectionReference subjectsRef = rootRef.collection("Khammam");
@@ -85,10 +78,15 @@ public class CollectorMenu extends AppCompatActivity {
         if (extras != null) {
             district = extras.getString("district");
         }
+        Spinner spinnerConstituency = (Spinner) findViewById(R.id.spinner_constituency);
         Spinner spinnerMandal = (Spinner) findViewById(R.id.spinner_mandal);
         Spinner spinnerVillage=(Spinner) findViewById(R.id.spinner_village);
-        List<String> mandals = new ArrayList<>();
+        List<String> constituencies = new ArrayList<>();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
+                android.R.layout.simple_spinner_item,
+                constituencies);
+        List<String> mandals = new ArrayList<>();
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getApplicationContext(),
                 android.R.layout.simple_spinner_item,
                 mandals);
         List<String> villages = new ArrayList<>();
@@ -96,8 +94,10 @@ public class CollectorMenu extends AppCompatActivity {
                 android.R.layout.simple_spinner_item,
                 villages);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerMandal.setAdapter(adapter);
+        spinnerConstituency.setAdapter(adapter);
+        spinnerMandal.setAdapter(adapter1);
         spinnerVillage.setAdapter(adapter2);
         db=FirebaseFirestore.getInstance();
         total_registered=0;
@@ -138,7 +138,7 @@ public class CollectorMenu extends AppCompatActivity {
 
 
 
-        db.collection(district).get()
+        db.collection(district+"_constituencies").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -148,13 +148,82 @@ public class CollectorMenu extends AppCompatActivity {
                             District obj = d.toObject(District.class);
 
                             obj.setUid(d.getId().toString());
-                            mandals.add(obj.getUid());
+                            constituencies.add(obj.getUid());
                         }
                         adapter.notifyDataSetChanged();
-                        selected_mandal=adapter.getItem(0);
+                        selected_constitutiency=adapter.getItem(0);
                     }
 
                 });
+        spinnerConstituency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,int position, long arg3) {
+                mandals.clear();
+                spinnerConstituency.setSelection(position);
+                selected_constitutiency = spinnerConstituency.getSelectedItem().toString();
+
+                db.collection(district).whereEqualTo("constituency",selected_constitutiency).get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
+                                for(DocumentSnapshot d:list) {
+
+                                    District obj = d.toObject(District.class);
+
+                                    obj.setUid(d.getId().toString());
+                                    mandals.add(obj.getUid());
+                                }
+                                adapter1.notifyDataSetChanged();
+                                selected_mandal=adapter.getItem(0);
+                            }
+
+                        });
+//                db.collection("individuals").whereEqualTo("mandal",selected_mandal).get()
+//                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                            @Override
+//                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                                List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
+//                                for(DocumentSnapshot d:list)
+//                                {
+//                                    Individual objCtrMP=d.toObject(Individual.class);
+//                                    if((objCtrMP.getSpApproved2().equals("yes")&&objCtrMP.getCtrApproved().equals(""))||(objCtrMP.getSpApproved3().equals("yes")&&objCtrMP.getCtrApproved2().equals(""))) {
+//                                        ctrMandalPending=ctrMandalPending+1;
+//                                    }
+//                                    if((objCtrMP.getSpApproved().equals(""))||(objCtrMP.getPsApproved().equals("yes")&&objCtrMP.getSpApproved2().equals(""))||(objCtrMP.getSoApproved().equals("yes")&&objCtrMP.getSpApproved3().equals("")))
+//                                    {
+//                                        spMandalPending=spMandalPending+1;
+//                                    }
+//                                    if((objCtrMP.getSpApproved().equals("yes")&&objCtrMP.getPsApproved().equals(""))||(objCtrMP.getSpApproved2().equals("yes")&&objCtrMP.getCtrApproved().equals("yes")&&objCtrMP.getPsApproved2().equals("")))                               {
+//                                        psMandalPending=psMandalPending+1;
+//                                    }
+//                                    if((objCtrMP.getCtrApproved2().equals("yes")&&objCtrMP.getGroundingStatus().equals("")))
+//                                    {
+//                                        groundingMandalPending=groundingMandalPending+1;
+//                                    }
+//
+//                                }
+//                                mandal_pending.setText("Collector Pending in "+selected_mandal+" "+ctrMandalPending);
+//                                spMandal.setText("SP Pending in "+selected_mandal+" "+spMandalPending);
+//                                psMandal.setText("PS Pending in "+selected_mandal+" "+psMandalPending);
+//                                groundingMandal.setText("Grounding Pending in "+selected_mandal+" "+groundingMandalPending);
+//                                ctrMandalPending=0;
+//                                spMandalPending=0;
+//                                psMandalPending=0;
+//                                groundingMandalPending=0;
+//                            }
+//                        });
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+            }
+
+        });
         spinnerMandal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -163,43 +232,6 @@ public class CollectorMenu extends AppCompatActivity {
                 spinnerVillage.setVisibility(View.VISIBLE);
                 spinnerMandal.setSelection(position);
                 selected_mandal = spinnerMandal.getSelectedItem().toString();
-
-                db.collection("individuals").whereEqualTo("mandal",selected_mandal).get()
-                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                            @Override
-                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
-                                for(DocumentSnapshot d:list)
-                                {
-                                    Individual objCtrMP=d.toObject(Individual.class);
-                                    if((objCtrMP.getSpApproved2().equals("yes")&&objCtrMP.getCtrApproved().equals(""))||(objCtrMP.getSpApproved3().equals("yes")&&objCtrMP.getCtrApproved2().equals(""))) {
-                                        ctrMandalPending=ctrMandalPending+1;
-                                    }
-                                    if((objCtrMP.getSpApproved().equals(""))||(objCtrMP.getPsApproved().equals("yes")&&objCtrMP.getSpApproved2().equals(""))||(objCtrMP.getSoApproved().equals("yes")&&objCtrMP.getSpApproved3().equals("")))
-                                    {
-                                        spMandalPending=spMandalPending+1;
-                                    }
-                                    if((objCtrMP.getSpApproved().equals("yes")&&objCtrMP.getPsApproved().equals(""))||(objCtrMP.getSpApproved2().equals("yes")&&objCtrMP.getCtrApproved().equals("yes")&&objCtrMP.getPsApproved2().equals("")))                               {
-                                        psMandalPending=psMandalPending+1;
-                                    }
-                                    if((objCtrMP.getCtrApproved2().equals("yes")&&objCtrMP.getGroundingStatus().equals("")))
-                                    {
-                                        groundingMandalPending=groundingMandalPending+1;
-                                    }
-
-                                }
-                                mandal_pending.setText("Collector Pending in "+selected_mandal+" "+ctrMandalPending);
-                                spMandal.setText("SP Pending in "+selected_mandal+" "+spMandalPending);
-                                psMandal.setText("PS Pending in "+selected_mandal+" "+psMandalPending);
-                                groundingMandal.setText("Grounding Pending in "+selected_mandal+" "+groundingMandalPending);
-                                ctrMandalPending=0;
-                                spMandalPending=0;
-                                psMandalPending=0;
-                                groundingMandalPending=0;
-                            }
-                        });
-
-
                 db.collection(district).document(selected_mandal).collection("villages").get()
                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
@@ -211,42 +243,6 @@ public class CollectorMenu extends AppCompatActivity {
                                 }
                                 adapter2.notifyDataSetChanged();
                                 selected_village=adapter2.getItem(0);
-                                db.collection("individuals").whereEqualTo("village",selected_village).get()
-                                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                            @Override
-                                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                                List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
-                                                for(DocumentSnapshot d:list)
-                                                {
-                                                    Individual objCtrVP=d.toObject(Individual.class);
-                                                    if((objCtrVP.getSpApproved2().equals("yes")&&objCtrVP.getCtrApproved().equals(""))||(objCtrVP.getSpApproved3().equals("yes")&&objCtrVP.getCtrApproved2().equals(""))) {
-                                                        ctrVillagePending= ctrVillagePending + 1;
-                                                    }
-                                                    if((objCtrVP.getSpApproved().equals(""))||(objCtrVP.getPsApproved().equals("yes")&&objCtrVP.getSpApproved2().equals(""))||(objCtrVP.getSoApproved().equals("yes")&&objCtrVP.getSpApproved3().equals("")))
-                                                    {
-                                                        spVillagePending=spVillagePending+1;
-                                                    }
-                                                    if((objCtrVP.getSpApproved().equals("yes")&&objCtrVP.getPsApproved().equals(""))||(objCtrVP.getSpApproved2().equals("yes")&&objCtrVP.getCtrApproved().equals("yes")&&objCtrVP.getPsApproved2().equals("")))
-                                                    {
-                                                        psVillagePending=psVillagePending+1;
-                                                    }
-                                                    if((objCtrVP.getCtrApproved2().equals("yes")&&objCtrVP.getGroundingStatus().equals("")))
-                                                    {
-                                                        groundingVillagePending=groundingVillagePending+1;
-                                                    }
-
-                                                }
-                                                village_pending.setText("Collector Pending in "+selected_village+" "+ctrVillagePending);
-                                                spVillage.setText("SP Pending in "+selected_village+" "+spVillagePending);
-                                                psVillage.setText("PS Pending in "+selected_village+" "+psVillagePending);
-                                                groundingVillage.setText("Grounding Pending in "+selected_village+" "+groundingVillagePending);
-                                                spVillagePending=0;
-                                                psVillagePending=0;
-                                                groundingVillagePending=0;
-                                                ctrVillagePending=0;
-
-                                            }
-                                        });
                             }
                         });
             }
@@ -264,40 +260,6 @@ public class CollectorMenu extends AppCompatActivity {
 
                 spinnerVillage.setSelection(position);
                 selected_village = spinnerVillage.getSelectedItem().toString();
-                db.collection("individuals").whereEqualTo("village",selected_village).get()
-                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                            @Override
-                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
-                                for(DocumentSnapshot d:list)
-                                {
-                                    Individual objCtrVP=d.toObject(Individual.class);
-                                    if((objCtrVP.getSpApproved2().equals("yes")&&objCtrVP.getCtrApproved().equals(""))||(objCtrVP.getSpApproved3().equals("yes")&&objCtrVP.getCtrApproved2().equals(""))) {
-                                        ctrVillagePending= ctrVillagePending + 1;
-                                    }
-                                    if((objCtrVP.getSpApproved().equals(""))||(objCtrVP.getPsApproved().equals("yes")&&objCtrVP.getSpApproved2().equals(""))||(objCtrVP.getSoApproved().equals("yes")&&objCtrVP.getSpApproved3().equals("")))
-                                    {
-                                        spVillagePending=spVillagePending+1;
-                                    }
-                                    if((objCtrVP.getSpApproved().equals("yes")&&objCtrVP.getPsApproved().equals(""))||(objCtrVP.getSpApproved2().equals("yes")&&objCtrVP.getCtrApproved().equals("yes")&&objCtrVP.getPsApproved2().equals("")))
-                                    {
-                                        psVillagePending=psVillagePending+1;
-                                    }
-                                    if((objCtrVP.getCtrApproved2().equals("yes")&&objCtrVP.getGroundingStatus().equals("")))
-                                    {
-                                        groundingVillagePending=groundingVillagePending+1;
-                                    }
-                                }
-                                village_pending.setText("Collector Pending in "+selected_village+" "+ctrVillagePending);
-                                spVillage.setText("SP Pending in "+selected_village+" "+spVillagePending);
-                                psVillage.setText("PS Pending in "+selected_village+" "+psVillagePending);
-                                groundingVillage.setText("Grounding Pending in "+selected_village+" "+groundingVillagePending);
-                                spVillagePending=0;
-                                psVillagePending=0;
-                                groundingVillagePending=0;
-                                ctrVillagePending=0;
-                            }
-                        });
             }
 
             @Override
@@ -306,6 +268,8 @@ public class CollectorMenu extends AppCompatActivity {
             }
 
         });
+
+
 //        Toast.makeText(this, selected_mandal+","+selected_village, Toast.LENGTH_SHORT).show();
 
     }

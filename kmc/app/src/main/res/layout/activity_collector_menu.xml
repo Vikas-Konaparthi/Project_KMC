@@ -219,7 +219,30 @@
 <!--                />-->
             <TextView
                 android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Constituency"/>
+            <LinearLayout
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="8"
+                android:orientation="horizontal"
+                android:background="@drawable/border"
+                tools:ignore="UselessParent">
+
+                <Spinner
+                    android:id="@+id/spinner_constituency"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView
+                android:paddingLeft="16dp"
+                android:layout_marginTop="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Select Mandal"/>
@@ -242,38 +265,7 @@
                     android:autofillHints="Mandal"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
-            <TextView
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:id="@+id/ctrMandalPending"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Collector Pending:"
-                android:textColor="@color/colorPrimary"/>
-            <TextView
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:id="@+id/spMandalPending"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="SP Pending:"
-                android:textColor="@color/colorPrimary"/>
-            <TextView
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:id="@+id/psMandalPending"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="PS Pending:"
-                android:textColor="@color/colorPrimary"/>
-            <TextView
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:id="@+id/groundingMandalPending"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Grounding Pending:"
-                android:textColor="@color/colorPrimary"/>
+<!---->
             <TextView
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
@@ -299,38 +291,8 @@
                     android:visibility="gone"
                     android:layout_height="wrap_content" />
             </LinearLayout>
-            <TextView
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:id="@+id/ctrVillagePending"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Collector Pending:"
-                android:textColor="@color/colorPrimary"/>
-            <TextView
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:id="@+id/spVillagePending"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="SP Pending:"
-                android:textColor="@color/colorPrimary"/>
-            <TextView
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:id="@+id/psVillagePending"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="PS Pending:"
-                android:textColor="@color/colorPrimary"/>
-            <TextView
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:id="@+id/groundingVillagePending"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Grounding Pending:"
-                android:textColor="@color/colorPrimary"/>
+
+
             <Button
                 android:id="@+id/approve"
                 android:layout_marginLeft="16dp"
