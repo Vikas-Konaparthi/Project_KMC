@@ -46,7 +46,6 @@ public class CollectorMenu extends AppCompatActivity {
     TextView total_no_sanctioned;
     TextView total_no_released;
     TextView partially_grounded;
-    TextView fully_grounded;
     int total_registered;
     int total_sanctioned;
     int total_released;
@@ -70,7 +69,6 @@ public class CollectorMenu extends AppCompatActivity {
         total_no_sanctioned=(TextView) findViewById(R.id.t4);
         total_no_released=(TextView) findViewById(R.id.t6);
         partially_grounded=(TextView) findViewById(R.id.t8);
-        fully_grounded=(TextView) findViewById(R.id.t10);
 
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
         CollectionReference subjectsRef = rootRef.collection("Khammam");
@@ -117,22 +115,16 @@ public class CollectorMenu extends AppCompatActivity {
                             {
                                 total_released=total_released+1;
                             }
-                            if(Integer.parseInt(obj.getApprovalAmount())>0 && Integer.parseInt(obj.getApprovalAmount())<990000)
+                            if((Integer.parseInt(obj.getApprovalAmount())>0 && Integer.parseInt(obj.getApprovalAmount())<990000)||(Integer.parseInt(obj.getApprovalAmount())>=990000))
                             {
                                 partially_g=partially_g+1;
                             }
-                            if(Integer.parseInt(obj.getApprovalAmount())>=990000)
-                            {
-                                fully_g=fully_g+1;
-                            }
-
                             total_registered=total_registered+1;
                         }
                         total_no_registered.setText(String.valueOf(total_registered));
                         total_no_sanctioned.setText(String.valueOf(total_sanctioned));
                         total_no_released.setText(String.valueOf(total_released));
                         partially_grounded.setText(String.valueOf(partially_g));
-                        fully_grounded.setText(String.valueOf(fully_g));
                     }
                 });
 
@@ -279,9 +271,9 @@ public class CollectorMenu extends AppCompatActivity {
         startActivity(i);
     }
 
-//    public void pendency(View view) {
-//        Intent i = new Intent(this, MandalPending.class);
-//        i.putExtra("district",district);
-//        startActivity(i);
-//    }
+    public void overview(View view) {
+        Intent i = new Intent(this, CollectorMandalOverview.class);
+        i.putExtra("district",district);
+        startActivity(i);
+    }
 }

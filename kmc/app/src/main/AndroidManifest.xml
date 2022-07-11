@@ -16,6 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kmc">
         <activity
+            android:name=".CLogin.CollectorMandalOverview"
+            android:exported="false" />
+        <activity
+            android:name=".CLogin.CollectorDistrictOverview"
+            android:exported="false" />
+        <activity
             android:name=".CLogin.MandalPending"
             android:exported="false" />
         <activity

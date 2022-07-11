@@ -55,4 +55,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage'
     implementation files('libs/jxl-2.6.12.jar')
     implementation files('libs/droidText.0.2.jar')
+
 }

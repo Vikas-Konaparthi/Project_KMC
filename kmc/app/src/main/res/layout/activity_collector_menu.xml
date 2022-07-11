@@ -37,11 +37,12 @@
                         android:text="Total No Registered:"
                         android:textColor="#FFF"
                         android:textSize="15dp" />
+
                     <TextView
                         android:id="@+id/t2"
-                        android:layout_below="@+id/t1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/t1"
                         android:layout_centerHorizontal="true"
                         android:text=""
                         android:textColor="#FFF"
@@ -140,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:padding="16dp"
 
-                    android:background="#0198E1"
+                    android:background="#006400"
                     >
 
 
@@ -166,45 +167,7 @@
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                app:cardCornerRadius="10dp"
-                android:elevation="4dp"
-                app:cardUseCompatPadding="true">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp"
 
-                    android:background="#006400"
-                    >
-
-
-                    <TextView
-                        android:id="@+id/t9"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:text="Total No Fully Grounded:"
-                        android:textColor="#FFF"
-                        android:textSize="15dp" />
-                    <TextView
-                        android:id="@+id/t10"
-                        android:layout_below="@+id/t9"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:text=""
-                        android:textColor="#FFF"
-                        android:textSize="25dp"
-                        android:textStyle="bold" />
-
-
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
 <!--            <Button-->
 <!--                android:id="@+id/pendencyReport"-->
 <!--                android:layout_marginLeft="16dp"-->
@@ -217,6 +180,19 @@
 <!--                android:gravity="center"-->
 <!--                style="?attr/materialButtonOutlinedStyle"-->
 <!--                />-->
+            <Button
+                android:id="@+id/overviewid"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Overview"
+                android:layout_below="@id/password"
+                android:onClick="overview"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                style="?attr/materialButtonOutlinedStyle"
+                />
             <TextView
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
