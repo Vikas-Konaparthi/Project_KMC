@@ -14,13 +14,13 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.kmc.District;
 import com.example.kmc.R;
 import com.example.kmc.Unit;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -39,6 +39,7 @@ public class addIndividual extends AppCompatActivity {
     public TextInputLayout FatherName;
     public TextInputLayout Age;
     public TextInputLayout HouseNumber;
+    public Spinner Constituency;
     public TextInputLayout Village;
     public TextInputLayout Mandal;
     public TextInputLayout District;
@@ -91,6 +92,7 @@ public class addIndividual extends AppCompatActivity {
     Unit obj;
     List<DocumentSnapshot> list;
     String option_selected;
+    String const_selected;
 
 
     StorageReference storageReference;
@@ -115,6 +117,7 @@ public class addIndividual extends AppCompatActivity {
         AadharNumber = (TextInputLayout) findViewById(R.id.AadharNumber);
         MobileNumber = (TextInputLayout) findViewById(R.id.MobileNumber);
         Preferredunit = (Spinner) findViewById(R.id.spinner_preferredunit);
+        Constituency = (Spinner) findViewById(R.id.spinner_constituency);
         BankName  = (TextInputLayout) findViewById(R.id.BankName);
         BankACCNumber  = (TextInputLayout) findViewById(R.id.BankACCNumber);
         BankIFSC  = (TextInputLayout) findViewById(R.id.BankIFSC);
@@ -129,6 +132,12 @@ public class addIndividual extends AppCompatActivity {
 //        individualVendorBankIFSC=(TextInputEditText) findViewById(R.id.vendorBankIFSC);
         storageReference= FirebaseStorage.getInstance().getReference();
         Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            v = extras.getString("village");
+            m=extras.getString("mandal");
+            d=extras.getString("district");
+            //The key argument here must match that used in the other activity
+        }
 
         List<String> units = new ArrayList<>();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
@@ -137,6 +146,48 @@ public class addIndividual extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         Preferredunit.setAdapter(adapter);
+
+        List<String> constituencies = new ArrayList<>();
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getApplicationContext(),
+                android.R.layout.simple_spinner_item,
+                constituencies);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Constituency.setAdapter(adapter1);
+
+        db.collection(d+"_constituencies").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
+                        for(DocumentSnapshot d:list) {
+
+                            District obj1 = d.toObject(District.class);
+
+                            obj1.setUid(d.getId().toString());
+                            constituencies.add(obj1.getUid());
+                        }
+                        adapter1.notifyDataSetChanged();
+                        const_selected=adapter1.getItem(0);
+                    }
+
+                });
+
+        Constituency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,int position, long arg3) {
+
+                Constituency.setSelection(position);
+                const_selected = Constituency.getSelectedItem().toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+            }
+
+        });
 
         db.collection("unit").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -173,12 +224,7 @@ public class addIndividual extends AppCompatActivity {
         });
 
 
-        if (extras != null) {
-            v = extras.getString("village");
-            m=extras.getString("mandal");
-            d=extras.getString("district");
-            //The key argument here must match that used in the other activity
-        }
+
         Village.getEditText().setText(v);
         Mandal.getEditText().setText(m);
         District.getEditText().setText(d);
@@ -229,6 +275,8 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("dbBankIFSC", dbBankIFSC.trim());
             individualInfo.put("occupation", occupation.trim());
             individualInfo.put("rationcardnumber", rationcardnumber.trim());
+            individualInfo.put("constituency", const_selected.trim());
+
 
 //            individualInfo.put("vendorName", vendorName.trim());
 //            individualInfo.put("vendorAccountNo", vendorBankAccount.trim());
