@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -21,16 +22,36 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class SOLogin extends AppCompatActivity {
     private TextInputLayout username;
     private TextInputLayout password;
+    SharedPreferences pref;
+    SharedPreferences.Editor editor2;
     FirebaseFirestore db;
+    String soUname;
+    String soPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         db=FirebaseFirestore.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sologin);
-    }
-    public void submitButton(View view) {
+
+        pref = getApplicationContext().getSharedPreferences("SO", 0); // 0 - for private mode
+        editor2 = pref.edit();
         username  = (TextInputLayout) findViewById(R.id.username);
         password  = (TextInputLayout) findViewById(R.id.password);
+
+        soUname=pref.getString("soUsername", "");
+        soPassword=pref.getString("soPassword", "");
+
+        if (!soUname.equals("")||!soPassword.equals(""))
+        {
+            username.getEditText().setText(soUname);
+            password.getEditText().setText(soPassword);
+        }else{
+            username.getEditText().setText("");
+            password.getEditText().setText("");
+        }
+    }
+    public void submitButton(View view) {
+
         // click handling code
         String uname= username.getEditText().getText().toString();
         String pass= password.getEditText().getText().toString();
@@ -46,6 +67,9 @@ public class SOLogin extends AppCompatActivity {
                         i.putExtra("mandal",documentSnapshot.getString("mandal"));
                         i.putExtra("sector",documentSnapshot.getString("sector"));
                         i.putExtra("aadhar",documentSnapshot.getString("aadhar"));
+                        editor2.putString("soUsername", uname.trim()); // Storing string
+                        editor2.putString("soPassword", pass.trim());
+                        editor2.commit();
                         startActivity(i);
                         finish();
                     }else{

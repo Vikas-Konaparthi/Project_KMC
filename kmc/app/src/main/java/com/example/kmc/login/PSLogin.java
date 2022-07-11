@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,13 +23,32 @@ public class PSLogin extends AppCompatActivity {
     private TextInputLayout username;
     private TextInputLayout password;
     FirebaseFirestore db;
-
+    SharedPreferences pref;
+    SharedPreferences.Editor editor2;
+    String psUname;
+    String psPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         db=FirebaseFirestore.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pslogin);
+        pref = getApplicationContext().getSharedPreferences("PS", 0); // 0 - for private mode
+        editor2 = pref.edit();
+        username  = (TextInputLayout) findViewById(R.id.username);
+        password  = (TextInputLayout) findViewById(R.id.password);
+
+        psUname=pref.getString("psUsername", "");
+        psPassword=pref.getString("psPassword", "");
+
+        if (!psUname.equals("")||!psPassword.equals(""))
+        {
+            username.getEditText().setText(psUname);
+            password.getEditText().setText(psPassword);
+        }else{
+            username.getEditText().setText("");
+            password.getEditText().setText("");
+        }
 
     }
 
@@ -51,6 +71,9 @@ public class PSLogin extends AppCompatActivity {
                         i.putExtra("district",documentSnapshot.getString("district"));
                         i.putExtra("uname",uname);
                         i.putExtra("aadhar",documentSnapshot.getString("aadhar"));
+                        editor2.putString("psUsername", uname.trim()); // Storing string
+                        editor2.putString("psPassword", pass.trim());
+                        editor2.commit();
                         startActivity(i);
                         finish();
 

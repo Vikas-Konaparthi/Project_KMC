@@ -1,6 +1,7 @@
 package com.example.kmc.SPLogin;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,12 +34,17 @@ public class password_change_sp extends AppCompatActivity {
     public TextInputLayout password;
     public TextInputLayout cnfPassword;
     FirebaseFirestore db;
+    SharedPreferences pref;
+    SharedPreferences.Editor editor2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password_change_sp);
         db = FirebaseFirestore.getInstance();
+        pref = getApplicationContext().getSharedPreferences("SP", 0); // 0 - for private mode
+        editor2 = pref.edit();
         Bundle extras = getIntent().getExtras();
         password = (TextInputLayout) findViewById(R.id.pass);
         cnfPassword = (TextInputLayout) findViewById(R.id.cnfPass);
@@ -85,6 +91,8 @@ Log.d("aa",aadhar);
                                     i.putExtra("village1",village1);
                                     i.putExtra("village2",village2);
                                     i.putExtra("aadhar",aadhar);
+                                    editor2.putString("psPassword", pass);
+                                    editor2.commit();
                                     startActivity(i);
                                     finish();
                                 }

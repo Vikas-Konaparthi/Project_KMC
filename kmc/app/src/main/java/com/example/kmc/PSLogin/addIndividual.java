@@ -276,8 +276,6 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("occupation", occupation.trim());
             individualInfo.put("rationcardnumber", rationcardnumber.trim());
             individualInfo.put("constituency", const_selected.trim());
-
-
 //            individualInfo.put("vendorName", vendorName.trim());
 //            individualInfo.put("vendorAccountNo", vendorBankAccount.trim());
 //            individualInfo.put("vendorIFSC", vendorBankIFSC.trim());

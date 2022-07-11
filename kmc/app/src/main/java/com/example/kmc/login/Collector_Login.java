@@ -24,10 +24,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class Collector_Login extends AppCompatActivity {
     private TextInputLayout username;
     private TextInputLayout password;
+    String ctrUname;
+    String ctrPassword;
     FirebaseFirestore db;
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
     SharedPreferences preferences;
+
+    SharedPreferences pref;
+    SharedPreferences.Editor editor2;
 
 
     @Override
@@ -35,13 +40,29 @@ public class Collector_Login extends AppCompatActivity {
         db=FirebaseFirestore.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collector_login);
+        username  = (TextInputLayout) findViewById(R.id.username);
+        password  = (TextInputLayout) findViewById(R.id.password);
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        pref = getApplicationContext().getSharedPreferences("Collector", 0); // 0 - for private mode
+        editor2 = pref.edit();
+
+        ctrUname=pref.getString("ctrUsername", "");
+        ctrPassword=pref.getString("ctrPassword", "");
+
+        if (!ctrUname.equals("")||!ctrPassword.equals(""))
+        {
+            username.getEditText().setText(ctrUname);
+            password.getEditText().setText(ctrPassword);
+        }else{
+            username.getEditText().setText("");
+            password.getEditText().setText("");
+        }
+
 
     }
 
     public void submitButton(View view) {
-        username  = (TextInputLayout) findViewById(R.id.username);
-        password  = (TextInputLayout) findViewById(R.id.password);
+
         // click handling code
         String uname= username.getEditText().getText().toString();
         String pass= password.getEditText().getText().toString();
@@ -61,6 +82,9 @@ public class Collector_Login extends AppCompatActivity {
                         editor.putString("aadhar",documentSnapshot.getString("aadhar"));
                         editor.apply();
 
+                        editor2.putString("ctrUsername", uname.trim()); // Storing string
+                        editor2.putString("ctrPassword", pass.trim());
+                        editor2.commit();
                         startActivity(i);
                         finish();
 

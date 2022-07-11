@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,12 +36,16 @@ public class password_change_so extends AppCompatActivity {
     public TextInputLayout password;
     public TextInputLayout cnfPassword;
     FirebaseFirestore db;
+    SharedPreferences pref;
+    SharedPreferences.Editor editor2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password_change_so);
         db = FirebaseFirestore.getInstance();
+        pref = getApplicationContext().getSharedPreferences("SO", 0); // 0 - for private mode
+        editor2 = pref.edit();
         Bundle extras = getIntent().getExtras();
         password = (TextInputLayout) findViewById(R.id.pass);
         cnfPassword = (TextInputLayout) findViewById(R.id.cnfPass);
@@ -93,6 +98,8 @@ public class password_change_so extends AppCompatActivity {
                                     i.putExtra("sector",sector);
                                     i.putExtra("mandal",mandal);
                                     i.putExtra("aadhar",aadhar);
+                                    editor2.putString("soPassword", pass);
+                                    editor2.commit();
                                     startActivity(i);
                                     finish();
                                 }
