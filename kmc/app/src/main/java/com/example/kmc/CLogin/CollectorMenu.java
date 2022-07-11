@@ -59,6 +59,8 @@ public class CollectorMenu extends AppCompatActivity {
     int psVillagePending;
     int groundingVillagePending;
     int groundingMandalPending;
+    int ctrConstituencyPending;
+
 
 
     @Override
@@ -140,12 +142,26 @@ public class CollectorMenu extends AppCompatActivity {
                             District obj = d.toObject(District.class);
 
                             obj.setUid(d.getId().toString());
-                            constituencies.add(obj.getUid());
-                        }
-                        adapter.notifyDataSetChanged();
-                        selected_constitutiency=adapter.getItem(0);
-                    }
+                            db.collection("individuals").whereEqualTo("constituency",obj.getUid()).get()
+                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                                            for (DocumentSnapshot d : list) {
+                                                Individual objCtrMP = d.toObject(Individual.class);
+                                                if ((objCtrMP.getSpApproved2().equals("yes") && objCtrMP.getCtrApproved().equals("")) || (objCtrMP.getSpApproved3().equals("yes") && objCtrMP.getCtrApproved2().equals(""))) {
+                                                    ctrConstituencyPending = ctrConstituencyPending + 1;
+                                                }
+                                              }
 
+                                            constituencies.add(obj.getUid()+" ("+ctrConstituencyPending+")");
+                                            adapter.notifyDataSetChanged();
+                                            selected_constitutiency=adapter.getItem(0);
+                                            ctrConstituencyPending=0;
+                                        }
+                                    });
+                        }
+                    }
                 });
         spinnerConstituency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -155,7 +171,7 @@ public class CollectorMenu extends AppCompatActivity {
                 spinnerConstituency.setSelection(position);
                 selected_constitutiency = spinnerConstituency.getSelectedItem().toString();
 
-                db.collection(district).whereEqualTo("constituency",selected_constitutiency).get()
+                db.collection(district).whereEqualTo("constituency",selected_constitutiency.substring(0,selected_constitutiency.indexOf(" "))).get()
                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -171,42 +187,6 @@ public class CollectorMenu extends AppCompatActivity {
                             }
 
                         });
-//                db.collection("individuals").whereEqualTo("mandal",selected_mandal).get()
-//                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                            @Override
-//                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                                List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
-//                                for(DocumentSnapshot d:list)
-//                                {
-//                                    Individual objCtrMP=d.toObject(Individual.class);
-//                                    if((objCtrMP.getSpApproved2().equals("yes")&&objCtrMP.getCtrApproved().equals(""))||(objCtrMP.getSpApproved3().equals("yes")&&objCtrMP.getCtrApproved2().equals(""))) {
-//                                        ctrMandalPending=ctrMandalPending+1;
-//                                    }
-//                                    if((objCtrMP.getSpApproved().equals(""))||(objCtrMP.getPsApproved().equals("yes")&&objCtrMP.getSpApproved2().equals(""))||(objCtrMP.getSoApproved().equals("yes")&&objCtrMP.getSpApproved3().equals("")))
-//                                    {
-//                                        spMandalPending=spMandalPending+1;
-//                                    }
-//                                    if((objCtrMP.getSpApproved().equals("yes")&&objCtrMP.getPsApproved().equals(""))||(objCtrMP.getSpApproved2().equals("yes")&&objCtrMP.getCtrApproved().equals("yes")&&objCtrMP.getPsApproved2().equals("")))                               {
-//                                        psMandalPending=psMandalPending+1;
-//                                    }
-//                                    if((objCtrMP.getCtrApproved2().equals("yes")&&objCtrMP.getGroundingStatus().equals("")))
-//                                    {
-//                                        groundingMandalPending=groundingMandalPending+1;
-//                                    }
-//
-//                                }
-//                                mandal_pending.setText("Collector Pending in "+selected_mandal+" "+ctrMandalPending);
-//                                spMandal.setText("SP Pending in "+selected_mandal+" "+spMandalPending);
-//                                psMandal.setText("PS Pending in "+selected_mandal+" "+psMandalPending);
-//                                groundingMandal.setText("Grounding Pending in "+selected_mandal+" "+groundingMandalPending);
-//                                ctrMandalPending=0;
-//                                spMandalPending=0;
-//                                psMandalPending=0;
-//                                groundingMandalPending=0;
-//                            }
-//                        });
-
-
             }
 
             @Override
@@ -223,6 +203,7 @@ public class CollectorMenu extends AppCompatActivity {
                 spinnerVillage.setVisibility(View.VISIBLE);
                 spinnerMandal.setSelection(position);
                 selected_mandal = spinnerMandal.getSelectedItem().toString();
+
                 db.collection(district).document(selected_mandal).collection("villages").get()
                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
@@ -230,10 +211,39 @@ public class CollectorMenu extends AppCompatActivity {
                                 List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
                                 for(DocumentSnapshot d:list) {
                                     Mandals obj = d.toObject(Mandals.class);
-                                    villages.add(obj.getVillage());
+                                    db.collection("individuals").whereEqualTo("village",obj.getVillage()).get()
+                                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                                    Log.d("HELLO","HI");
+                                                    List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                                                    for (DocumentSnapshot d : list) {
+                                                        Individual objCtrMP = d.toObject(Individual.class);
+                                                        if ((objCtrMP.getSpApproved2().equals("yes") && objCtrMP.getCtrApproved().equals("")) || (objCtrMP.getSpApproved3().equals("yes") && objCtrMP.getCtrApproved2().equals(""))) {
+                                                            ctrVillagePending = ctrVillagePending + 1;
+//                                                           final String ctr=String.valueOf(ctrMandalPending);
+//                                                            Log.d("HELLO",ctr);
+//                                                            Log.d("tag",String.valueOf(ctrMandalPending));
+//                                                            villages.add(obj.getVillage()+" "+ctrMandalPending);
+//                                                            adapter2.notifyDataSetChanged();
+//                                                            selected_village=adapter2.getItem(0);
+//                                                            ctrMandalPending=0;
+                                                        }
+//                                                        Mandals obj = d.toObject(Mandals.class);
+//                                                        villages.add(obj.getVillage()+ String.valueOf(ctrMandalPending));
+                                                    }
+                                                    villages.add(obj.getVillage()+" ("+ctrVillagePending+")");
+                                                    adapter2.notifyDataSetChanged();
+                                                    selected_village=adapter2.getItem(0);
+                                                    ctrVillagePending=0;
+//                                                  adapter2.notifyDataSetChanged();
+//                                                    selected_village=adapter2.getItem(0);
+                                                }
+                                            });
+//                                   Mandals obj = d.toObject(Mandals.class);
+//                                    Log.d("tag",String.valueOf(ctrMandalPending));
+//                                    villages.add(obj.getVillage()+"-"+ctrMandalPending);
                                 }
-                                adapter2.notifyDataSetChanged();
-                                selected_village=adapter2.getItem(0);
                             }
                         });
             }
@@ -251,6 +261,7 @@ public class CollectorMenu extends AppCompatActivity {
 
                 spinnerVillage.setSelection(position);
                 selected_village = spinnerVillage.getSelectedItem().toString();
+//                selected_village.replaceAll("\\s+","");
             }
 
             @Override
@@ -260,13 +271,12 @@ public class CollectorMenu extends AppCompatActivity {
 
         });
 
-
 //        Toast.makeText(this, selected_mandal+","+selected_village, Toast.LENGTH_SHORT).show();
 
     }
     public void next(View view) {
         Intent i = new Intent(this, CollectorAction.class);
-        i.putExtra("village",selected_village);
+        i.putExtra("village",selected_village.substring(0,selected_village.indexOf(" ")));
         startActivity(i);
     }
 
