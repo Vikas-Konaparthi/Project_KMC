@@ -33,14 +33,13 @@ public class CollectorMandalOverview extends AppCompatActivity {
     ArrayList<MandalElements> datalist;
     FirebaseFirestore db;
     String district;
+    String constituency;
     ProgressBar progressBar;
     int totalRegistered;
     int totalSelected;
     int totalApprovedAmount;
     int dbAccountAmount;
     int grounding;
-
-
 
     myadapterMandalOverView adapter;
     @Override
@@ -53,16 +52,15 @@ public class CollectorMandalOverview extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             district= extras.getString("district");
+            constituency= extras.getString("constituency");
         }
-        adapter=new myadapterMandalOverView(datalist);
+        adapter=new myadapterMandalOverView(datalist,district);
         recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
 
-
-
-        db.collection(district).get()
+        db.collection(district).whereEqualTo("constituency",constituency).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {

@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kmc.CLogin.CollectorGroundingUserDetails;
+import com.example.kmc.CLogin.CollectorVillageOverview;
 import com.example.kmc.Individual;
 import com.example.kmc.MandalElements;
 import com.example.kmc.R;
@@ -24,9 +25,11 @@ import java.util.Locale;
 public class myadapterMandalOverView extends RecyclerView.Adapter<myadapterMandalOverView.myviewholder>
 {
     ArrayList<MandalElements> datalist;
+    String district;
 
-    public myadapterMandalOverView(ArrayList<MandalElements> datalist) {
+    public myadapterMandalOverView(ArrayList<MandalElements> datalist,String district) {
         this.datalist = datalist;
+        this.district=district;
     }
 
     @NonNull
@@ -49,9 +52,9 @@ public class myadapterMandalOverView extends RecyclerView.Adapter<myadapterManda
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(holder.t1.getContext(), CollectorGroundingUserDetails.class);
-
-
+                Intent i = new Intent(holder.t1.getContext(), CollectorVillageOverview.class);
+                i.putExtra("mandal",datalist.get(position).getMandalName());
+                i.putExtra("district",district);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.t1.getContext().startActivity(i);
                 ((Activity)holder.t1.getContext()).finish();

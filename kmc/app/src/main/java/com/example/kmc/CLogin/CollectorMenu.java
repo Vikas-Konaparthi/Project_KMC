@@ -161,7 +161,6 @@ public class CollectorMenu extends AppCompatActivity {
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                 List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
                                 for(DocumentSnapshot d:list) {
-
                                     District obj = d.toObject(District.class);
 
                                     obj.setUid(d.getId().toString());
@@ -272,7 +271,7 @@ public class CollectorMenu extends AppCompatActivity {
     }
 
     public void overview(View view) {
-        Intent i = new Intent(this, CollectorMandalOverview.class);
+        Intent i = new Intent(this, CollectorDistrictOverview.class);
         i.putExtra("district",district);
         startActivity(i);
     }

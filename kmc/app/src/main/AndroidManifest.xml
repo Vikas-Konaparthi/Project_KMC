@@ -16,7 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kmc">
         <activity
+            android:name=".CLogin.CollectorVillageOverview"
+            android:exported="false" />
+        <activity
             android:name=".CLogin.CollectorMandalOverview"
+            android:exported="false" />
+        <activity
+            android:name=".CLogin.CollectorConstituencyOverview"
             android:exported="false" />
         <activity
             android:name=".CLogin.CollectorDistrictOverview"
