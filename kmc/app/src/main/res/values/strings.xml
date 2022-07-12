@@ -10,4 +10,12 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_collector_grounding">CollectorGrounding</string>
+    <string name="clong_shortcut">Collector Login</string>
+    <string name="cshort_shortcut">Collector Login</string>
+    <string name="pslong_shortcut">PS Login</string>
+    <string name="psshort_shortcut">PS Login</string>
+    <string name="splong_shortcut">SP Login</string>
+    <string name="spshort_shortcut">SP Login</string>
+    <string name="solong_shortcut">SO Login</string>
+    <string name="soshort_shortcut">SO Login</string>
 </resources>

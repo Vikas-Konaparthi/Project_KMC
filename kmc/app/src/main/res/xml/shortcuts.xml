@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shortcut
+        android:shortcutId="PSLogin"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:shortcutShortLabel="@string/psshort_shortcut"
+        android:shortcutLongLabel="@string/pslong_shortcut">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.kmc"
+            android:targetClass="com.example.kmc.login.PSLogin"/>
+    </shortcut>
+    <shortcut
+        android:shortcutId="SOLogin"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:shortcutShortLabel="@string/soshort_shortcut"
+        android:shortcutLongLabel="@string/solong_shortcut">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.kmc"
+            android:targetClass="com.example.kmc.login.SOLogin"/>
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="SPLogin"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:shortcutShortLabel="@string/spshort_shortcut"
+        android:shortcutLongLabel="@string/splong_shortcut">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.kmc"
+            android:targetClass="com.example.kmc.login.SPLogin"/>
+    </shortcut>
+    <shortcut
+        android:shortcutId="CollectorLogin"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:shortcutShortLabel="@string/cshort_shortcut"
+        android:shortcutLongLabel="@string/clong_shortcut">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.kmc"
+            android:targetClass="com.example.kmc.login.Collector_Login"/>
+    </shortcut>
+</shortcuts>
