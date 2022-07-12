@@ -180,10 +180,26 @@ public class CollectorMenu extends AppCompatActivity {
                                     District obj = d.toObject(District.class);
 
                                     obj.setUid(d.getId().toString());
-                                    mandals.add(obj.getUid());
+                                    db.collection("individuals").whereEqualTo("mandal",obj.getUid()).get()
+                                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                                    List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                                                    for (DocumentSnapshot d : list) {
+                                                        Individual objCtrMP = d.toObject(Individual.class);
+                                                        if ((objCtrMP.getSpApproved2().equals("yes") && objCtrMP.getCtrApproved().equals("")) || (objCtrMP.getSpApproved3().equals("yes") && objCtrMP.getCtrApproved2().equals(""))) {
+                                                            ctrMandalPending = ctrMandalPending + 1;
+                                                        }
+                                                    }
+                                                    mandals.add(obj.getUid()+" ("+ctrMandalPending+")");
+                                                    adapter1.notifyDataSetChanged();
+                                                    selected_mandal=adapter.getItem(0);
+                                                    ctrMandalPending=0;
+                                                }
+                                            });
+
                                 }
-                                adapter1.notifyDataSetChanged();
-                                selected_mandal=adapter.getItem(0);
+
                             }
 
                         });
@@ -204,7 +220,7 @@ public class CollectorMenu extends AppCompatActivity {
                 spinnerMandal.setSelection(position);
                 selected_mandal = spinnerMandal.getSelectedItem().toString();
 
-                db.collection(district).document(selected_mandal).collection("villages").get()
+                db.collection(district).document(selected_mandal.substring(0,selected_mandal.indexOf(" "))).collection("villages").get()
                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
