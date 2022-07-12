@@ -53,7 +53,7 @@ public class myadapterVillageOverview extends RecyclerView.Adapter<myadapterVill
                 i.putExtra("village",datalist.get(position).getMandalName());
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.t1.getContext().startActivity(i);
-                ((Activity)holder.t1.getContext()).finish();
+       //         ((Activity)holder.t1.getContext()).finish();
             }
         }) ;
     }
