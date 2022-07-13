@@ -301,4 +301,9 @@ public class CollectorMenu extends AppCompatActivity {
         i.putExtra("district",district);
         startActivity(i);
     }
+    public void reports(View view) {
+        Intent i = new Intent(this, CollectorDistrictOverview.class);
+        i.putExtra("district",district);
+        startActivity(i);
+    }
 }
