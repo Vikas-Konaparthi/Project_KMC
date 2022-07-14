@@ -180,10 +180,6 @@ public class PSMasterReport extends AppCompatActivity {
                     {
                         Label name = new Label(0,i,obj.getName());
                         sheet.addCell(name);
-//                        Label fname = new Label(1,i,obj.getFatherName());
-//                        sheet.addCell(fname);
-//                        Label  aadhar= new Label(2,i,obj.getAadhar());
-//                        sheet.addCell(aadhar);
                         Label village = new Label(1,i,obj.getVillage());
                         sheet.addCell(village);
                         Label mandal = new Label(2,i,obj.getMandal());
