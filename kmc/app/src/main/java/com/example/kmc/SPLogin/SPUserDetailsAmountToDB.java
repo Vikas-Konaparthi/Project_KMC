@@ -225,7 +225,7 @@ public class SPUserDetailsAmountToDB extends AppCompatActivity {
 
     public void reject(View view) {
         String approved="no";
-        String psApproved="";
+        String psApproved="NA";
         status= "Rejected By SP: "+getIntent().getStringExtra("uStatus").toString();
         updateData(aadharNumber,approved,status,psApproved);
     }
@@ -233,11 +233,11 @@ public class SPUserDetailsAmountToDB extends AppCompatActivity {
         Map<String, Object> individualInfo = new HashMap<String, Object>();
         individualInfo.put("spApproved2", approved.trim());
         individualInfo.put("sp_remarks", spRemarks.trim());
-        individualInfo.put("ctrApproved", "");
+        individualInfo.put("ctrApproved", "NA");
         individualInfo.put("spAmountApproved", spApprovedAmount.trim());
         individualInfo.put("psApproved", psApproved);
         individualInfo.put("status", status);
-        individualInfo.put("ctrNote1", "");
+        individualInfo.put("ctrNote1", "NA");
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

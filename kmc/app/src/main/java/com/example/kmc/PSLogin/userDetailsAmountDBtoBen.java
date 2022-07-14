@@ -297,7 +297,7 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
             individualInfo.put("quotationImage", img_url.trim());
             individualInfo.put("psApproved2","yes");
             individualInfo.put("soApproved","yes");
-            individualInfo.put("spApproved3","");
+            individualInfo.put("spApproved3","NA");
             individualInfo.put("so_quotation_amount", appAmountToBen.trim());
 //            individualInfo.put("approvalAmountToBen",indDBAccount.trim());
 //        individualInfo.put("groundingStatus", groundingStatus);

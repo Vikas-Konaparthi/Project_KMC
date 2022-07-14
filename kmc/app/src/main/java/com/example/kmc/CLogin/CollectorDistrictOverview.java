@@ -35,9 +35,10 @@ public class CollectorDistrictOverview extends AppCompatActivity {
     ProgressBar progressBar;
     int totalRegistered;
     int totalSelected;
-    int totalApprovedAmount;
-    int dbAccountAmount;
+    double totalApprovedAmount;
+    double dbAccountAmount;
     int grounding;
+    double totalDbAmount;
 
     myadapterDistrictOverView adapter;
     @Override
@@ -57,38 +58,40 @@ public class CollectorDistrictOverview extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
 
-                            db.collection("individuals").whereEqualTo("district",district).get()
-                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                        @Override
-                                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                            List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
+        db.collection("individuals").whereEqualTo("district",district).get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
 
-                                            for(DocumentSnapshot d:list)
-                                            {
-                                                Individual obj2=d.toObject(Individual.class);
-                                                totalRegistered=totalRegistered+1;
-                                                if(obj2.getSpApproved().equals("yes"))
-                                                {
-                                                    totalSelected=totalSelected+1;
-                                                }
-                                                totalApprovedAmount=totalApprovedAmount+Integer.parseInt(obj2.getApprovalAmount());
-                                                dbAccountAmount=dbAccountAmount+Integer.parseInt(obj2.getDbAccount());
-                                                if(obj2.getGroundingStatus().equals("yes")||Integer.parseInt(obj2.getApprovalAmount())>=990000)
-                                                {
-                                                    grounding=grounding+1;
-                                                }
-                                            }
-                                            MandalElements ob=new MandalElements(district,String.valueOf(totalRegistered),String.valueOf(totalSelected),String.valueOf(totalApprovedAmount),String.valueOf(dbAccountAmount),String.valueOf(grounding));
-                                            datalist.add(ob);
-                                            adapter.notifyDataSetChanged();
-                                            totalRegistered=0;
-                                            totalSelected=0;
-                                            totalApprovedAmount=0;
-                                            dbAccountAmount=0;
-                                            grounding=0;
+                        for(DocumentSnapshot d:list)
+                        {
+                            Individual obj2=d.toObject(Individual.class);
+                            totalRegistered=totalRegistered+1;
+                            if(obj2.getSpApproved().equals("yes"))
+                            {
+                                totalSelected=totalSelected+1;
+                            }
+                            totalDbAmount = totalDbAmount+Integer.parseInt(obj2.getApprovalAmount())+Integer.parseInt(obj2.getDbAccount());
+                            totalApprovedAmount=totalApprovedAmount+Integer.parseInt(obj2.getApprovalAmount());
+                            dbAccountAmount=dbAccountAmount+Integer.parseInt(obj2.getDbAccount());
+                            if(obj2.getGroundingStatus().equals("yes")||Integer.parseInt(obj2.getApprovalAmount())>=990000)
+                            {
+                                grounding=grounding+1;
+                            }
+                        }
+                        MandalElements ob=new MandalElements(district,String.valueOf(totalRegistered),String.valueOf(totalSelected),String.valueOf(totalApprovedAmount/100000.0),String.valueOf(dbAccountAmount/100000.0),String.valueOf(grounding), String.valueOf(totalDbAmount/100000.0));
+                        datalist.add(ob);
+                        adapter.notifyDataSetChanged();
+                        totalRegistered=0;
+                        totalSelected=0;
+                        totalApprovedAmount=0;
+                        dbAccountAmount=0;
+                        grounding=0;
+                        totalDbAmount = 0;
 
-                                        }
-                                    });
+                    }
+                });
         progressBar.setVisibility(View.GONE);
 
         toolbar = findViewById(R.id.toolbar);

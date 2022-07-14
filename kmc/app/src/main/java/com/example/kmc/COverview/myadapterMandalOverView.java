@@ -42,11 +42,12 @@ public class myadapterMandalOverView extends RecyclerView.Adapter<myadapterManda
     @Override
     public void onBindViewHolder(@NonNull myadapterMandalOverView.myviewholder holder, @SuppressLint("RecyclerView") int position) {
         holder.t1.setText(datalist.get(position).getMandalName());
-        holder.t2.setText("Total Registered: "+datalist.get(position).getTotalRegistered());
-        holder.t3.setText("Total Selected: "+datalist.get(position).getTotalSelected());
-        holder.t4.setText("Total Approved Amount: "+datalist.get(position).getTotalApprovedAmount());
-        holder.t5.setText("DB Amount: "+datalist.get(position).getDbAccountAmount());
-        holder.t6.setText("Total Grounded: "+datalist.get(position).getGrounding());
+        holder.t2.setText("Registered: "+datalist.get(position).getTotalRegistered());
+        holder.t3.setText("Selected: "+datalist.get(position).getTotalSelected());
+        holder.t4.setText("Amount Transferred to DB:"+datalist.get(position).getTotalDbAmount()+"L");
+        holder.t5.setText("Approved Amount: "+datalist.get(position).getTotalApprovedAmount()+"L");
+        holder.t6.setText("DB Amount Balance: "+datalist.get(position).getDbAccountAmount()+"L");
+        holder.t7.setText("Grounded: "+datalist.get(position).getGrounding());
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +58,7 @@ public class myadapterMandalOverView extends RecyclerView.Adapter<myadapterManda
                 i.putExtra("district",district);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.t1.getContext().startActivity(i);
-    //            ((Activity)holder.t1.getContext()).finish();
+                //            ((Activity)holder.t1.getContext()).finish();
             }
         }) ;
     }
@@ -78,6 +79,7 @@ public class myadapterMandalOverView extends RecyclerView.Adapter<myadapterManda
         TextView t4;
         TextView t5;
         TextView t6;
+        TextView t7;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
@@ -87,7 +89,7 @@ public class myadapterMandalOverView extends RecyclerView.Adapter<myadapterManda
             t4=itemView.findViewById(R.id.t4);
             t5=itemView.findViewById(R.id.t5);
             t6=itemView.findViewById(R.id.t6);
-
+            t7=itemView.findViewById(R.id.t7);
         }
     }
 }

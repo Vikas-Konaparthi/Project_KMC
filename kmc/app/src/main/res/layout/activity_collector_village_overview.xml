@@ -40,6 +40,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"/>
+        <Button
+            android:id="@+id/pdf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Generate XL"
+            android:onClick="generateXL"
+            android:layout_below="@id/password"
+            android:gravity="center"
+            style="?attr/materialButtonOutlinedStyle"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

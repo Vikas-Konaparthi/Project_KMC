@@ -7,15 +7,21 @@ public class MandalElements {
     String totalApprovedAmount;
     String dbAccountAmount;
     String grounding;
+    String totalDbAmount;
     MandalElements(){}
 
-    public MandalElements(String mandalName, String totalRegistered, String totalSelected, String totalApprovedAmount, String dbAccountAmount, String grounding) {
+    public MandalElements(String mandalName, String totalRegistered, String totalSelected, String totalApprovedAmount, String dbAccountAmount, String grounding, String totalDbAmount) {
         this.mandalName = mandalName;
         this.totalRegistered = totalRegistered;
         this.totalSelected = totalSelected;
         this.totalApprovedAmount = totalApprovedAmount;
         this.dbAccountAmount = dbAccountAmount;
         this.grounding = grounding;
+        this.totalDbAmount = totalDbAmount;
+    }
+
+    public String getTotalDbAmount() {
+        return totalDbAmount;
     }
 
     public String getMandalName() {

@@ -184,19 +184,19 @@ public class PSGroundingUserDetails extends AppCompatActivity {
     public void updateData(String aadharNumber,String my_url){
         if (my_url.length()!=0) {
             Map<String, Object> individualInfo = new HashMap<String, Object>();
-            individualInfo.put("individualAmountRequired", "");
+            individualInfo.put("individualAmountRequired", "NA");
             individualInfo.put("grounding_img", my_url.trim());
             individualInfo.put("status", "Grounded Successfully");
             individualInfo.put("groundingStatus", "yes");
 //            individualInfo.put("spApproved","");
-            individualInfo.put("spApproved2","");
-            individualInfo.put("spApproved3","");
-            individualInfo.put("soApproved","");
-            individualInfo.put("ctrApproved","");
-            individualInfo.put("ctrApproved2","");
+            individualInfo.put("spApproved2","NA");
+            individualInfo.put("spApproved3","NA");
+            individualInfo.put("soApproved","NA");
+            individualInfo.put("ctrApproved","NA");
+            individualInfo.put("ctrApproved2","NA");
             individualInfo.put("psApproved3","yes");
-            individualInfo.put("psApproved","");
-            individualInfo.put("psApproved2","");
+            individualInfo.put("psApproved","NA");
+            individualInfo.put("psApproved2","NA");
 
 //        individualInfo.put("groundingStatus", groundingStatus);
 

@@ -193,8 +193,8 @@ public class userDetailsAmountToDB extends AppCompatActivity {
             individualInfo.put("individualAmountRequired", amountRequired.trim());
             individualInfo.put("status", "Waiting for "+amountRequired.trim()+ " approval to DB Account.");
             individualInfo.put("psApproved","yes");
-            individualInfo.put("psApproved3","");
-            individualInfo.put("spApproved2","");
+            individualInfo.put("psApproved3","NA");
+            individualInfo.put("spApproved2","NA");
 
 //        individualInfo.put("vendorName", vendorName.trim());
 //        individualInfo.put("vendorAccountNo", vendorBankAccount.trim());

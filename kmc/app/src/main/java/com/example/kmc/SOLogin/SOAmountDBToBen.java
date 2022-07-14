@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toolbar;
@@ -68,7 +69,7 @@ public class SOAmountDBToBen extends AppCompatActivity {
                         {
                             Individual obj=d.toObject(Individual.class);
                             if(obj.getMandal().toLowerCase(Locale.ROOT).equals(mandal.toLowerCase(Locale.ROOT))) {
-                                if(obj.getSpApproved3().equals("yes") && obj.getPreferredUnit().equals(sector)) {
+                                if(obj.getSpApproved3().equals("yes") && obj.getPreferredUnit().equalsIgnoreCase(sector)) {
                                     if (obj.getPreferredUnit().toLowerCase(Locale.ROOT).equals(sector.toLowerCase(Locale.ROOT))) {
                                         if(!obj.getSoApproved().equals("yes") &&  !obj.getSoApproved().equals("no"))
                                         {

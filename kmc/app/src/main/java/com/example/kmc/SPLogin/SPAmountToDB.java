@@ -103,7 +103,7 @@ public class SPAmountToDB extends AppCompatActivity {
                         {
 
                             obj=d.toObject(Individual.class);
-                            if(!obj.getIndividualAmountRequired().equals(""))
+                            if(!obj.getIndividualAmountRequired().equals("NA"))
                             {
                                 if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village1.toLowerCase(Locale.ROOT)) || (obj.getVillage().toLowerCase(Locale.ROOT).equals(village2.toLowerCase(Locale.ROOT))) ){
                                     if(!obj.getSpApproved2().equals("yes") &&  !obj.getSpApproved2().equals("no"))
@@ -135,7 +135,7 @@ public class SPAmountToDB extends AppCompatActivity {
                             obj2=d.toObject(Individual.class);
                             if(obj2.getVillage().toLowerCase(Locale.ROOT).equals(village1.toLowerCase(Locale.ROOT))||obj2.getVillage().toLowerCase(Locale.ROOT).equals(village2.toLowerCase(Locale.ROOT))) {
                                 if (obj2.getSpApproved().equals("yes")) {
-                                    if(obj2.getSpNote().equals(""))
+                                    if(obj2.getSpNote().equals("NA"))
                                     {
                                         updateData(obj2.getAadhar());
                                     }
@@ -365,7 +365,7 @@ public class SPAmountToDB extends AppCompatActivity {
                 obj2 = d.toObject(Individual.class);
                 if(obj2.getVillage().toLowerCase(Locale.ROOT).equals(village1.toLowerCase(Locale.ROOT))||obj2.getVillage().toLowerCase(Locale.ROOT).equals(village2.toLowerCase(Locale.ROOT))) {
                     if (obj2.getSpApproved().equals("yes")) {
-                        if(obj2.getSpNote().equals("")) {
+                        if(obj2.getSpNote().equals("NA")) {
                             userTable.addCell(obj2.getVillage());
                             userTable.addCell(obj2.getPreferredUnit());
                             userTable.addCell(obj2.getDbAccount());

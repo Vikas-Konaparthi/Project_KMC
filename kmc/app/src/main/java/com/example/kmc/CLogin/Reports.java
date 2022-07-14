@@ -72,7 +72,7 @@ public class Reports extends AppCompatActivity {
                                             list2 = queryDocumentSnapshots.getDocuments();
                                             for (DocumentSnapshot d : list2) {
                                                 Individual obj = d.toObject(Individual.class);
-                                                if((obj.getVillage().equals(sp.getVillage1())||obj.getVillage().equals(sp.getVillage2()))&&((obj.getSpApproved().equals(""))||(obj.getPsApproved().equals("yes")&&obj.getSpApproved2().equals(""))||(obj.getSoApproved().equals("yes")&&obj.getSpApproved3().equals(""))))
+                                                if((obj.getVillage().equals(sp.getVillage1())||obj.getVillage().equals(sp.getVillage2()))&&((obj.getSpApproved().equals("NA"))||(obj.getPsApproved().equals("yes")&&obj.getSpApproved2().equals("NA"))||(obj.getSoApproved().equals("yes")&&obj.getSpApproved3().equals("NA"))))
                                                 {
                                                     sppending=sppending+1;
                                                 }
@@ -85,7 +85,6 @@ public class Reports extends AppCompatActivity {
 
 
                                     });
-
                         }
                         progressBar.setVisibility(View.GONE);
                     }

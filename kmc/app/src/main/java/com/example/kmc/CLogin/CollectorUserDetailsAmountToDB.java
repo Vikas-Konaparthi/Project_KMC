@@ -260,7 +260,7 @@ public class CollectorUserDetailsAmountToDB extends AppCompatActivity {
     public void reject(View view) {
         String collectorSanctionAmount="0";
         String approved="no";
-        String spApproved="";
+        String spApproved="NA";
         status= "Rejected By Collector: "+getIntent().getStringExtra("uStatus").toString();
         updateData(aadharNumber,approved,status,collectorSanctionAmount,spApproved);
     }

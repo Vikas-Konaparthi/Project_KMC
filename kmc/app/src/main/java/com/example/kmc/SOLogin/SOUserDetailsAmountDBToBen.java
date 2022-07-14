@@ -270,7 +270,7 @@ public class SOUserDetailsAmountDBToBen extends AppCompatActivity {
         individualInfo.put("so_quotation_amount", soQuoteAmount.trim());
         individualInfo.put("so_remarks", soRemarks.trim());
         if(approved.equals("yes")){
-            individualInfo.put("spApproved3", "");
+            individualInfo.put("spApproved3", "NA");
             individualInfo.put("soApproved", "yes");
             Map<String, Object> VendorsInfo = new HashMap<String, Object>();
 
@@ -289,7 +289,7 @@ public class SOUserDetailsAmountDBToBen extends AppCompatActivity {
                         }
                     });
         }else{
-            individualInfo.put("psApproved2","");
+            individualInfo.put("psApproved2","NA");
         }
         individualInfo.put("status", status);
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
