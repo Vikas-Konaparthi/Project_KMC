@@ -124,26 +124,26 @@ public class CollectorUserDetailsAmountToDB extends AppCompatActivity {
         approve=(Button)findViewById(R.id.approve);
         reject=(Button)findViewById(R.id.reject);
         individualName.setText("Name: "+getIntent().getStringExtra("uname").toString());
-        individualFatherName.setText("Father Name: "+getIntent().getStringExtra("ufname").toString());
-        individualAge.setText("Age: "+getIntent().getStringExtra("uAge").toString());
-        individualHouseNo.setText("House Number: "+getIntent().getStringExtra("uHnumber").toString());
+        //individualFatherName.setText("Father Name: "+getIntent().getStringExtra("ufname").toString());
+        // individualAge.setText("Age: "+getIntent().getStringExtra("uAge").toString());
+        // individualHouseNo.setText("House Number: "+getIntent().getStringExtra("uHnumber").toString());
         individualVillage.setText("Village: "+getIntent().getStringExtra("uVillage").toString());
-        individualMandal.setText("Mandal: "+getIntent().getStringExtra("uMandal").toString());
-        individualDistrict.setText("District: "+getIntent().getStringExtra("uDistrict").toString());
-        individualAadhar.setText("Aadhar Number: "+getIntent().getStringExtra("uAadharNumber").toString());
-        individualPhno.setText("Mobile Number: "+getIntent().getStringExtra("uMobileNo").toString());
+        // individualMandal.setText("Mandal: "+getIntent().getStringExtra("uMandal").toString());
+        //individualDistrict.setText("District: "+getIntent().getStringExtra("uDistrict").toString());
+        //individualAadhar.setText("Aadhar Number: "+getIntent().getStringExtra("uAadharNumber").toString());
+        //individualPhno.setText("Mobile Number: "+getIntent().getStringExtra("uMobileNo").toString());
         individualPreferredUnit.setText("Preferred Unit: "+getIntent().getStringExtra("uPreferredUnit").toString());
-        individualBankName.setText("Bank Name: "+getIntent().getStringExtra("uBankName").toString());
-        individualBankAccNo.setText("Bank Account Number: "+getIntent().getStringExtra("uBankAccNumber").toString());
-        getIndividualBankIFSC.setText("Bank IFSC: "+getIntent().getStringExtra("uBankIFSC").toString());
+        //individualBankName.setText("Bank Name: "+getIntent().getStringExtra("uBankName").toString());
+        //individualBankAccNo.setText("Bank Account Number: "+getIntent().getStringExtra("uBankAccNumber").toString());
+        //getIndividualBankIFSC.setText("Bank IFSC: "+getIntent().getStringExtra("uBankIFSC").toString());
         getIndividualRequestedAmount.setText("Requested Amount: "+getIntent().getStringExtra("uRequestedAmount").toString());
         getSpApprovedAmount.setText("Special Officer Approved Amount: "+getIntent().getStringExtra("uSPAmountApproved").toString());
         individualSPRemark.setText("Special Officer Remark: "+getIntent().getStringExtra("uSPRemarks").toString());
         getAmountApproved.setText("Amount Approved: "+getIntent().getStringExtra("uApprovalAmount").toString());
         getDBAccountAmount.setText("DB Account Amount: "+getIntent().getStringExtra("uDBAccount").toString());
         getDbBankName.setText("DB Bank Name: "+getIntent().getStringExtra("uDbBankName").toString());
-       getDbAccNumber.setText("DB Account Number: "+getIntent().getStringExtra("uDbAccountNo").toString());
-        getDbIFSC.setText("DB Account IFSC: "+getIntent().getStringExtra("uDbIFSC").toString());
+        getDbAccNumber.setText("DB Account Number: "+getIntent().getStringExtra("uDbAccountNo").toString());
+        //getDbIFSC.setText("DB Account IFSC: "+getIntent().getStringExtra("uDbIFSC").toString());
 
 
         //            individualSORemark.setText("Section Officer Remark: "+getIntent().getStringExtra("uSORemarks").toString());
@@ -154,8 +154,8 @@ public class CollectorUserDetailsAmountToDB extends AppCompatActivity {
 //            getIndividualApprovalAmount.setText("Approval Amount: "+getIntent().getStringExtra("uApprovalAmount").toString());
 //            getIndividualDBAmount.setText("Dalita Bandhu Account Amount: "+getIntent().getStringExtra("uDbAccount").toString());
 //            approvalAmount=getIntent().getStringExtra("uApprovalAmount").toString();
-            aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
-            collectorSanction=getIntent().getStringExtra("uSPAmountApproved").toString();
+        aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
+        collectorSanction=getIntent().getStringExtra("uSPAmountApproved").toString();
 
 //        String soApproved=getIntent().getStringExtra("uSOApproved").toString();
 //            dbAccount=getIntent().getStringExtra("uDbAccount").toString();
@@ -241,7 +241,7 @@ public class CollectorUserDetailsAmountToDB extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    public void sodocument(View view) {
+    //    public void sodocument(View view) {
 //        String url=getIntent().getStringExtra("usecOfficerUpload").toString();
 //        Uri uri = Uri.parse(url); // missing 'http://' will cause crashed
 //        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -255,7 +255,7 @@ public class CollectorUserDetailsAmountToDB extends AppCompatActivity {
         status=collectorSanction+" Credited to DB Account";
         updateData(aadharNumber,approved,status,collectorSanctionAmount,spApproved);
     }
-//
+    //
 //
     public void reject(View view) {
         String collectorSanctionAmount="0";
