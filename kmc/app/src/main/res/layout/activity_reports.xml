@@ -27,6 +27,7 @@
 
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_below="@+id/layout1"
         android:layout_width="match_parent"
@@ -34,24 +35,10 @@
         android:weightSum="1"
         tools:ignore="MissingConstraints"
         android:orientation="vertical">
-
-        <Button
-            android:id="@+id/spReport"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SP Report"
-            android:layout_below="@id/password"
-            android:onClick="spReport"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            style="?attr/materialButtonOutlinedStyle"
-            />
         <TextView
+            android:layout_marginTop="10dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Select Constituency"/>
@@ -87,6 +74,28 @@
             android:gravity="center"
             style="?attr/materialButtonOutlinedStyle"
             />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="#D3D3D3"/>
+        <Button
+            android:id="@+id/spReport"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SP Report"
+            android:layout_below="@id/password"
+            android:onClick="spReport"
+            android:gravity="center"
+            style="?attr/materialButtonOutlinedStyle"
+            />
+
+
 
     </LinearLayout>
 
