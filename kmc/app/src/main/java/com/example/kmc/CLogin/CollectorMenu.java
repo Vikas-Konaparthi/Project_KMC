@@ -293,6 +293,7 @@ public class CollectorMenu extends AppCompatActivity {
     public void next(View view) {
         Intent i = new Intent(this, CollectorAction.class);
         i.putExtra("village",selected_village.substring(0,selected_village.indexOf(" ")));
+        i.putExtra("district",district);
         startActivity(i);
     }
 

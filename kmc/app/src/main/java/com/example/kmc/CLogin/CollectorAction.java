@@ -40,6 +40,7 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
     FirebaseFirestore db;
     TextView pendingBadge1;
     TextView pendingBadge2;
+    String district;
 
 
     @Override
@@ -66,7 +67,7 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             village = extras.getString("village");
-
+            district = extras.getString("district");
         }else{
             Log.d("extra", "no");
         }
@@ -161,6 +162,7 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
             case R.id.c1:
                 i = new Intent(this, CollectorListOfBen.class);
                 i.putExtra("village",village);
+                i.putExtra("district",district);
                 startActivity(i);
                 break;
             case R.id.c2:

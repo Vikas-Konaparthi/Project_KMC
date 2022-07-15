@@ -52,6 +52,7 @@ public class myadapterVillageOverview extends RecyclerView.Adapter<myadapterVill
             public void onClick(View v) {
                 Intent i = new Intent(holder.t1.getContext(), CollectorListOfBen.class);
                 i.putExtra("village",datalist.get(position).getMandalName());
+                i.putExtra("district",district);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.t1.getContext().startActivity(i);
                 //         ((Activity)holder.t1.getContext()).finish();

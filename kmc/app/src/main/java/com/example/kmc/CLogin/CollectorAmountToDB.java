@@ -61,8 +61,8 @@ public class CollectorAmountToDB extends AppCompatActivity {
     List<DocumentSnapshot> list;
     Individual obj;
     Individual obj2;
-    int totalAmount;
-    int noOfBen;
+    int totalAmount=0;
+    int noOfBen=0;
     String mandal;
     myadapter4Collector2 adapter;
     @Override
@@ -120,8 +120,6 @@ public class CollectorAmountToDB extends AppCompatActivity {
                                 if (obj2.getCtrApproved().equals("yes")) {
                                     if(!obj2.getCtrNote1().equals("yes"))
                                     {
-                                        totalAmount=totalAmount+Integer.parseInt(obj2.getDbAccount());
-                                        noOfBen=noOfBen+1;
                                         updateData(obj2.getAadhar());
                                     }
                                 }
@@ -165,6 +163,17 @@ public class CollectorAmountToDB extends AppCompatActivity {
         });
     }
     public void createPDF() {
+        for(DocumentSnapshot d:list) {
+            obj2 = d.toObject(Individual.class);
+            if(obj2.getVillage().toLowerCase(Locale.ROOT).equals(village.toLowerCase(Locale.ROOT))) {
+                if (obj2.getCtrApproved().equals("yes")) {
+                    if(!obj2.getCtrNote1().equals("yes")) {
+                        totalAmount=totalAmount+Integer.parseInt(obj.getDbAccount());
+                        noOfBen=noOfBen+1;
+                    }
+                }
+            }
+        }
         Document doc = new Document();
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT)
         {
@@ -181,6 +190,7 @@ public class CollectorAmountToDB extends AppCompatActivity {
 
 
         try {
+
 
             //This is for random name
             String number="VillageNote1"+System.currentTimeMillis();

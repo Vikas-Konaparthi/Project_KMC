@@ -24,7 +24,12 @@
             android:gravity="center"
             android:text="Collector"
             android:textColor="#fff"/>
-
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
+            android:onClick="search"
+            android:src="@drawable/ic_search_white"/>
     </LinearLayout>
     <LinearLayout
         android:layout_below="@+id/layout1"

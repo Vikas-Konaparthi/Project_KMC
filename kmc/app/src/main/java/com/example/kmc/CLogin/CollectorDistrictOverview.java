@@ -100,9 +100,5 @@ public class CollectorDistrictOverview extends AppCompatActivity {
 
     }
 
-    public void search(View view) {
-        Intent i = new Intent(this, CollectorSearch.class);
-        i.putExtra("district",district);
-        startActivity(i);
-    }
+
 }
