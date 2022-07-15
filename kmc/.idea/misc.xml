@@ -117,7 +117,9 @@
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collector_mandal_overview.xml" value="0.18" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collector_mandal_selection.xml" value="0.184375" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collector_menu.xml" value="0.1" />
+        <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collector_search.xml" value="0.22" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collector_user_details.xml" value="0.18" />
+        <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collector_user_details_amount_to_db.xml" value="0.17527173913043478" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collector_village_overview.xml" value="0.18840579710144928" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collector_village_selection.xml" value="0.1" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/activity_collectorzone.xml" value="0.33" />
@@ -147,6 +149,7 @@
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/singlerow2.xml" value="0.14583333333333334" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/singlerowOverview.xml" value="0.6529605263157895" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/singlerow_overview.xml" value="0.33" />
+        <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/layout/singlerow_search.xml" value="0.17527173913043478" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/my-projects-repo/Project_KMC/kmc/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
       </map>

@@ -18,4 +18,5 @@
     <string name="spshort_shortcut">SP Login</string>
     <string name="solong_shortcut">SO Login</string>
     <string name="soshort_shortcut">SO Login</string>
+    <string name="title_activity_collector_search">CollectorSearch</string>
 </resources>

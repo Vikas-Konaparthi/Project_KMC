@@ -55,15 +55,15 @@ public class CollectorAmountToDB extends AppCompatActivity {
     RecyclerView recyclerView;
 
     ArrayList<Individual> datalist;
-    ArrayList<Individual> datalist2;
     FirebaseFirestore db;
     String village;
     ProgressBar progressBar;
     List<DocumentSnapshot> list;
     Individual obj;
     Individual obj2;
-
-
+    int totalAmount;
+    int noOfBen;
+    String mandal;
     myadapter4Collector2 adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +120,8 @@ public class CollectorAmountToDB extends AppCompatActivity {
                                 if (obj2.getCtrApproved().equals("yes")) {
                                     if(!obj2.getCtrNote1().equals("yes"))
                                     {
+                                        totalAmount=totalAmount+Integer.parseInt(obj2.getDbAccount());
+                                        noOfBen=noOfBen+1;
                                         updateData(obj2.getAadhar());
                                     }
                                 }
@@ -180,10 +182,8 @@ public class CollectorAmountToDB extends AppCompatActivity {
 
         try {
 
-            Log.d("PDFCreator", "PDF Path: " + dir);
-
             //This is for random name
-            String number="VillageNote"+System.currentTimeMillis();
+            String number="VillageNote1"+System.currentTimeMillis();
 
             File file = new File(dir, "Document" + number + ".pdf");
             FileOutputStream fOut = new FileOutputStream(file);
@@ -214,7 +214,7 @@ public class CollectorAmountToDB extends AppCompatActivity {
             p4.setFont(paraFont);
             //add paragraph to document
 
-            Paragraph p5 = new Paragraph("Rc.No.E/298/SC/2021-DB-3\t ;Date:-    .0 .20  ..");
+            Paragraph p5 = new Paragraph("Rc.No.E/298/SC/2021-DB-3\t ;Date:- __.__.20__.");
             p5.setAlignment(Paragraph.ALIGN_CENTER);
             p5.setFont(paraFont);
             //add paragraph to document
@@ -225,7 +225,6 @@ public class CollectorAmountToDB extends AppCompatActivity {
             p7.setFont(paraFont);
             //add paragraph to document
             doc.add(p7);
-
             doc.add(p4);
             doc.add(p4);
             doc.add(p4);
@@ -237,7 +236,7 @@ public class CollectorAmountToDB extends AppCompatActivity {
             //add paragraph to document
             doc.add(p8);
 
-            Paragraph p9 = new Paragraph("Sub:-\tDSCSCDS Ltd., Khammam District – Dalit Bandhu Scheme – Chinthakani Mandal  –-  Transfer for an amounts of Rs.               /- to Vendor Account of (  ) beneficiaries pertains to                  Unit  – Reg.");
+            Paragraph p9 = new Paragraph("Sub:-\tDSCSCDS Ltd., Khammam District – Dalit Bandhu Scheme – "+village+"  –-  Transfer for an amounts of Rs."+totalAmount+"/- to beneficiary Account of "+noOfBen+" beneficiaries pertains to their preferred units – Reg.");
             p9.setAlignment(Paragraph.ALIGN_CENTER);
             p9.setFont(paraFont);
             //add paragraph to document
@@ -248,7 +247,7 @@ public class CollectorAmountToDB extends AppCompatActivity {
             p10.setFont(paraFont);
             //add paragraph to document
             doc.add(p10);
-            Paragraph p11 = new Paragraph("1\tProgs of the District Collector & Chairman, DSCSCDS Ltd., KhammamRc.No. E/298/SC/2021, Dated: 03.04.2022.");
+            Paragraph p11 = new Paragraph("1\tProgs of the District Collector & Chairman, DSCSCDS Ltd., KhammamRc.No. E/298/SC/2021, Dated: __.__.20__.");
             p11.setAlignment(Paragraph.ALIGN_LEFT);
             p11.setFont(paraFont);
             //add paragraph to document
@@ -259,14 +258,14 @@ public class CollectorAmountToDB extends AppCompatActivity {
             //add paragraph to document
             doc.add(p12);
 
-            Paragraph p13 = new Paragraph("3\tThis office Lr.Rc.No. E/298/SC/2022, Dated:          addressed to the Branch Managers of Banks concerned.");
+            Paragraph p13 = new Paragraph("3\tThis office Lr.Rc.No. E/298/SC/2022, Dated: __/__/20__ addressed to the Branch Managers of Banks concerned.");
             p13.setAlignment(Paragraph.ALIGN_LEFT);
             p13.setFont(paraFont);
             //add paragraph to document
             doc.add(p13);
             Paragraph p14 = new Paragraph(
                     "4\tInstructions of District Collector & Chairman, DSCSCDS Ltd., Khammam.\n"+
-                    "5\tLr.Rc.No.DB/                   /    , dt:-.            of D.P.M, KMM \n");
+                    "5\tLr.Rc.No.E/298/SE/                   /, dt:-.__/__/20__ of D.P.M, KMM \n");
             p14.setAlignment(Paragraph.ALIGN_LEFT);
             p14.setFont(paraFont);
             //add paragraph to document
@@ -278,13 +277,13 @@ public class CollectorAmountToDB extends AppCompatActivity {
             //add paragraph to document
             doc.add(p15);
             Paragraph p16 = new Paragraph(
-                    "      Incompliance to the references 1st to 5th cited, under Dalit Bandhu Scheme, beneficiaries were selected from                Mandal and sanctioned Rs. 10.00 Lakh per each beneficiary for the said purpose vide the proceedings under reference 1st cited. Further, it is to submit that, previously              have been credited to the account of         beneficiaries.Further it is submitted that for      beneficiaries initial amount                   has been not released and not credited. Hence, initial amount                  each is hereby released for       beneficiaries.Further, an amount of RS                  (Rupees                                                                            Only) of        beneficiaries are hereby released  to Vendor account pertains to                         unit under Dalit Bandhu Scheme.");
+                    "Incompliance to the references 1st to 5th cited, under Dalit Bandhu Scheme, beneficiaries were selected from "+village+" and sanctioned Rs. 10.00 Lakh per each beneficiary for the said purpose vide the proceedings under reference 1st cited.Further it is submitted that an amount of "+totalAmount+" of "+noOfBen+" beneficiaries is hereby released to their Dalit Bandhu beneficiaries account pertains to their preferred units under Dalit Bandhu Scheme.");
             p16.setAlignment(Paragraph.ALIGN_LEFT);
             p16.setFont(paraFont);
             //add paragraph to document
             doc.add(p16);
             Paragraph p17 = new Paragraph(
-                    "     Therefore, the  Manager concerned are requested to release and transfer amount of Rs.                  (Rupees                                                                                Only) of       beneficiaries from Dalit Bandhu Beneficiary account to vendor account as  furnished at Colm No.       of the Annexure. ");
+                    "Therefore, the  Manager,                concerned are requested to release and transfer amounts to Dalit Bandhu beneficiaries accounts for an amount of "+totalAmount+" of "+noOfBen+" beneficiaries furnished at Colm No. (4) of the Annexure.");
             p17.setAlignment(Paragraph.ALIGN_LEFT);
             p17.setFont(paraFont);
             //add paragraph to document
@@ -358,9 +357,6 @@ public class CollectorAmountToDB extends AppCompatActivity {
                         }
                     }
                 }
-
-
-
             }
 
             doc.add(userTable);

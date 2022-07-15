@@ -178,10 +178,9 @@ public class CollectorAmountDBToBen extends AppCompatActivity {
 
         try {
 
-            Log.d("PDFCreator", "PDF Path: " + dir);
 
             //This is for random name
-            String number="VillageNote"+System.currentTimeMillis();
+            String number="VillageNote2"+System.currentTimeMillis();
 
             File file = new File(dir, "Document" + number + ".pdf");
             FileOutputStream fOut = new FileOutputStream(file);
@@ -212,7 +211,7 @@ public class CollectorAmountDBToBen extends AppCompatActivity {
             p4.setFont(paraFont);
             //add paragraph to document
 
-            Paragraph p5 = new Paragraph("Rc.No.E/298/SC/2021-DB-3\t ;Date:-    .0 .20  ..");
+            Paragraph p5 = new Paragraph("Rc.No.E/298/SC/2021-DB-3\t ;Date:- __.__.20__.");
             p5.setAlignment(Paragraph.ALIGN_CENTER);
             p5.setFont(paraFont);
             //add paragraph to document
@@ -276,7 +275,7 @@ public class CollectorAmountDBToBen extends AppCompatActivity {
             //add paragraph to document
             doc.add(p15);
             Paragraph p16 = new Paragraph(
-                    "      Incompliance to the references 1st to 5th cited, under Dalit Bandhu Scheme, beneficiaries were selected from                Mandal and sanctioned Rs. 10.00 Lakh per each beneficiary for the said purpose vide the proceedings under reference 1st cited. Further, it is to submit that, previously              have been credited to the account of         beneficiaries.Further it is submitted that for      beneficiaries initial amount                   has been not released and not credited. Hence, initial amount                  each is hereby released for       beneficiaries.Further, an amount of RS                  (Rupees                                                                            Only) of        beneficiaries are hereby released  to Vendor account pertains to                         unit under Dalit Bandhu Scheme.");
+                    "      Incompliance to the references 1st to 5th cited, under Dalit Bandhu Scheme, beneficiaries were selected from (_) Mandal and sanctioned Rs. 10.00 Lakh per each beneficiary for the said purpose vide the proceedings under reference 1st cited.Further it is submitted that for (_) beneficiaries an amount (_) has been released to Vendor Account pertains to their preferred units under Dalit Bandhu Scheme.");
             p16.setAlignment(Paragraph.ALIGN_LEFT);
             p16.setFont(paraFont);
             //add paragraph to document

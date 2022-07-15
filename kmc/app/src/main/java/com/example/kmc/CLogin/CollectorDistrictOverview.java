@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -97,5 +98,11 @@ public class CollectorDistrictOverview extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setActionBar(toolbar);
 
+    }
+
+    public void search(View view) {
+        Intent i = new Intent(this, CollectorSearch.class);
+        i.putExtra("district",district);
+        startActivity(i);
     }
 }

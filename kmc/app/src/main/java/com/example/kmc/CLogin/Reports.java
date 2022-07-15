@@ -63,8 +63,6 @@ public class Reports extends AppCompatActivity {
                         List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                         for (DocumentSnapshot d : list) {
                             SPOfficer sp = d.toObject(SPOfficer.class);
-
-
                             db.collection("individuals").get()
                                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                         @Override
@@ -76,14 +74,11 @@ public class Reports extends AppCompatActivity {
                                                 {
                                                     sppending=sppending+1;
                                                 }
-
                                             }
                                             SPElements spe=new SPElements(sp.getName(),sp.getVillage1(),sp.getVillage2(),String.valueOf(sppending));
                                             datalist.add(spe);
                                             sppending=0;
                                         }
-
-
                                     });
                         }
                         progressBar.setVisibility(View.GONE);
@@ -92,9 +87,6 @@ public class Reports extends AppCompatActivity {
     }
 
     public void spReport(View view) {
-        Log.d("SP111111", datalist.get(0).getName());
-        Log.d("SP222222", datalist.get(1).getName());
-
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT)
         {
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);

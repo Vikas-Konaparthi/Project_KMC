@@ -4,32 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CLogin.CollectorDistrictOverview">
-    <include
-        layout="@layout/appbar"/>
+    tools:context=".CLogin.CollectorSearch">
+
 
     <LinearLayout
         android:id="@+id/layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="1"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="0dp"
-            android:paddingLeft="20dp"
-            android:layout_height="55dp"
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:layout_alignParentLeft="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="District Overview"
-            android:textColor="#fff"/>
+            android:hint="Search"
+            android:layout_below="@id/textView1"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/searchbox"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
         <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@color/colorPrimary"
-            android:onClick="search"
-            android:src="@drawable/ic_search_white"/>
+            android:id="@+id/searchbutton"
+            android:layout_height="60dp"
+            android:background="#FFF"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_baseline_search_24"
+            android:layout_width="80dp"
+            android:onClick="searchbutton"
+            />
 
 
     </LinearLayout>
@@ -45,6 +57,7 @@
             android:indeterminate="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="invisible"
             style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"/>
 
         <androidx.recyclerview.widget.RecyclerView
