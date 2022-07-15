@@ -16,6 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kmc">
         <activity
+            android:name=".CLogin.VillageDemo"
+            android:exported="false" />
+        <activity
+            android:name=".CLogin.MandalDemo"
+            android:exported="false" />
+        <activity
             android:name=".CLogin.Demo"
             android:exported="false" />
         <activity
