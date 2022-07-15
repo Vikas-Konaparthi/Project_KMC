@@ -20,7 +20,7 @@
             android:layout_centerHorizontal="true"
             android:text="Name"
             android:textColor="#000"
-            android:textSize="25dp"
+            android:textSize="30dp"
             android:textStyle="bold" />
 
         <TextView
@@ -30,9 +30,9 @@
             android:layout_below="@id/t1"
             android:layout_centerHorizontal="true"
             android:gravity="left"
-            android:text="Total Registered:"
-            android:textColor="#000"
-            android:textSize="15dp"
+            android:text="Total Registered:  "
+            android:textColor="#145DA0"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <TextView
@@ -41,9 +41,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/t2"
             android:layout_centerHorizontal="true"
-            android:text="Total Selected:"
-            android:textColor="#000"
-            android:textSize="15dp"
+            android:text="Total Selected:  "
+            android:textColor="#FF4500"
+            android:textSize="20dp"
             android:textStyle="bold" />
         <TextView
             android:id="@+id/t4"
@@ -52,10 +52,11 @@
             android:layout_below="@id/t3"
             android:layout_centerHorizontal="true"
             android:gravity="left"
-            android:text="Total DB Amount:"
-            android:textColor="#000"
-            android:textSize="15dp"
+            android:text="Amount Transferred to DB:"
+            android:textColor="#6200EE"
+            android:textSize="20dp"
             android:textStyle="bold" />
+
         <TextView
             android:id="@+id/t5"
             android:layout_width="match_parent"
@@ -63,9 +64,9 @@
             android:layout_below="@id/t4"
             android:layout_centerHorizontal="true"
             android:gravity="left"
-            android:text="Total Approved Amount:"
-            android:textColor="#000"
-            android:textSize="15dp"
+            android:text="Total Approved Amount:  "
+            android:textColor="#FF5F28"
+            android:textSize="20dp"
             android:textStyle="bold" />
         <TextView
             android:id="@+id/t6"
@@ -74,20 +75,21 @@
             android:layout_below="@id/t5"
             android:layout_centerHorizontal="true"
             android:gravity="left"
-            android:text="DB Account Balance:"
-            android:textColor="#000"
-            android:textSize="15dp"
+            android:text="DB Account Balance:  "
+            android:textColor="#C247A2"
+            android:textSize="20dp"
             android:textStyle="bold" />
+
         <TextView
             android:id="@+id/t7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/t6"
             android:layout_centerHorizontal="true"
-            android:text="Total Grounded:"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:textSize="15dp" />
+            android:text="Total Grounded:  "
+            android:textColor="#006400"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

@@ -15,7 +15,6 @@
         android:weightSum="1"
         tools:ignore="MissingConstraints">
 
-
         <TextView
             android:id="@+id/title"
             android:layout_width="0dp"
@@ -28,7 +27,6 @@
 
 
     </LinearLayout>
-
     <LinearLayout
         android:layout_below="@+id/layout1"
         android:layout_width="match_parent"
@@ -36,12 +34,6 @@
         android:weightSum="1"
         tools:ignore="MissingConstraints"
         android:orientation="vertical">
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:indeterminate="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"/>
 
         <Button
             android:id="@+id/spReport"
@@ -56,6 +48,32 @@
             android:gravity="center"
             style="?attr/materialButtonOutlinedStyle"
             />
+        <TextView
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Constituency"/>
+        <LinearLayout
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="8"
+            android:orientation="horizontal"
+            android:background="@drawable/border"
+            tools:ignore="UselessParent">
+
+            <Spinner
+                android:id="@+id/spinner_constituency"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+
         <Button
             android:id="@+id/unitReport"
             android:layout_marginLeft="16dp"
@@ -69,6 +87,7 @@
             android:gravity="center"
             style="?attr/materialButtonOutlinedStyle"
             />
+
     </LinearLayout>
 
 </RelativeLayout>
