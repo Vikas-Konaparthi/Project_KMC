@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toolbar;
 
+import com.example.kmc.CLogin.CollectorSearchGrounding;
 import com.example.kmc.Individual;
 import com.example.kmc.R;
 import com.example.kmc.SPAdapters.myadapter2;
@@ -79,5 +81,11 @@ public class ListOfBen extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setActionBar(toolbar);
 
+    }
+    public void search(View view) {
+        Intent i = new Intent(this, CollectorSearchGrounding.class);
+        i.putExtra("village1",village1);
+        i.putExtra("village2",village2);
+        startActivity(i);
     }
 }

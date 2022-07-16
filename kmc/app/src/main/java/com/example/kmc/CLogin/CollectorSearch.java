@@ -36,7 +36,6 @@ public class CollectorSearch extends AppCompatActivity {
     ProgressBar progressBar;
     String searchText;
     String village;
-
     myadapter4 adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
