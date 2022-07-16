@@ -145,7 +145,7 @@ public class SPAmountToDB extends AppCompatActivity {
                         {
                             obj2=d.toObject(Individual.class);
                             if(obj2.getVillage().toLowerCase(Locale.ROOT).equals(village1.toLowerCase(Locale.ROOT))||obj2.getVillage().toLowerCase(Locale.ROOT).equals(village2.toLowerCase(Locale.ROOT))) {
-                                if (obj2.getSpApproved().equals("yes")) {
+                                if (obj2.getSpApproved2().equals("yes")) {
                                     if(!obj2.getSpNote().equals("yes"))
                                     {
                                         updateData(obj2.getAadhar());
@@ -391,7 +391,7 @@ public class SPAmountToDB extends AppCompatActivity {
             for(DocumentSnapshot d:list) {
                 obj2 = d.toObject(Individual.class);
                 if(obj2.getVillage().toLowerCase(Locale.ROOT).equals(village1.toLowerCase(Locale.ROOT))||obj2.getVillage().toLowerCase(Locale.ROOT).equals(village2.toLowerCase(Locale.ROOT))) {
-                    if (obj2.getSpApproved().equals("yes")) {
+                    if (obj2.getSpApproved2().equals("yes")) {
                         if(!obj2.getSpNote().equals("yes")) {
                             userTable.addCell(obj2.getVillage());
                             userTable.addCell(obj2.getPreferredUnit());
