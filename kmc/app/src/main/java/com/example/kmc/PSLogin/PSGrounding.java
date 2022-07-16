@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -93,5 +94,11 @@ public class PSGrounding extends AppCompatActivity {
         setActionBar(toolbar);
 
 
+    }
+    public void search(View view) {
+        Intent i = new Intent(this, PSSearchGrounding.class);
+        i.putExtra("district",district);
+        i.putExtra("village",village);
+        startActivity(i);
     }
 }

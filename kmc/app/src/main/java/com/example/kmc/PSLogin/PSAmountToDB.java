@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toolbar;
 
+import com.example.kmc.CLogin.CollectorSearch;
 import com.example.kmc.Individual;
 import com.example.kmc.PSAdapters.myadapterPS2;
 import com.example.kmc.R;
@@ -97,4 +99,10 @@ public class PSAmountToDB extends AppCompatActivity {
 
     }
 
+    public void search(View view) {
+        Intent i = new Intent(this, PSSearchAmountToDB.class);
+        i.putExtra("district",district);
+        i.putExtra("village",village);
+        startActivity(i);
+    }
 }

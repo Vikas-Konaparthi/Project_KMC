@@ -1,9 +1,5 @@
 package com.example.kmc.CLogin;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,13 +7,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.example.kmc.CollectorAdapters.myadapter4;
-import com.example.kmc.CollectorAdapters.searchAdapterCollector;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.kmc.CollectorAdapters.myadapter4Collector2;
+import com.example.kmc.CollectorAdapters.myadapter4Collector3;
 import com.example.kmc.Individual;
 import com.example.kmc.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -26,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class CollectorSearch extends AppCompatActivity {
+public class CollectorSearchAmountDBToBen extends AppCompatActivity {
     ArrayList<Individual> datalist;
     FirebaseFirestore db;
     RecyclerView recyclerView;
@@ -37,7 +36,7 @@ public class CollectorSearch extends AppCompatActivity {
     String searchText;
     String village;
 
-    myadapter4 adapter;
+    myadapter4Collector3 adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,10 +48,10 @@ public class CollectorSearch extends AppCompatActivity {
         searchText="";
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            district= extras.getString("district");
+            //district= extras.getString("district");
             village=extras.getString("village");
         }
-        adapter=new myadapter4(datalist,village);
+        adapter=new myadapter4Collector3(datalist,village);
         recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -81,14 +80,17 @@ public class CollectorSearch extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
+                        List<DocumentSnapshot>list =queryDocumentSnapshots.getDocuments();
                         datalist.clear();
                         for(DocumentSnapshot d:list)
                         {
                             Individual obj=d.toObject(Individual.class);
-                            if(obj.getDistrict().equalsIgnoreCase(district))
+                            if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village.toLowerCase(Locale.ROOT)))
                             {
-                                datalist.add(obj);
+                                if(obj.getSpApproved3().equals("yes") && obj.getSoApproved().equals("yes"))
+                                    if(!obj.getCtrApproved2().equals("yes") &&  !obj.getCtrApproved2().equals("no")) {
+                                        datalist.add(obj);
+                                    }
                             }
                         }
                         adapter.notifyDataSetChanged();
@@ -96,4 +98,5 @@ public class CollectorSearch extends AppCompatActivity {
                     }
                 });
     }
+
 }

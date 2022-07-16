@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CLogin.CollectorListOfBen">
+    tools:context=".CLogin.CollectorGrounding">
     <include
         layout="@layout/appbar"/>
 
@@ -24,7 +24,17 @@
             android:gravity="center"
             android:text="Collector"
             android:textColor="#fff"/>
-
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="search"
+            android:text="Search"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/ic_search_white"
+            android:textSize="20dp"
+            />
 
     </LinearLayout>
     <LinearLayout

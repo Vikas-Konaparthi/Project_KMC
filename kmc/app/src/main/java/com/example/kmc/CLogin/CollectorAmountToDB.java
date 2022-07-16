@@ -423,4 +423,9 @@ public class CollectorAmountToDB extends AppCompatActivity {
         }
 
     }
+    public void search(View view) {
+        Intent i = new Intent(this, CollectorSearchAmountToDB.class);
+        i.putExtra("village",village);
+        startActivity(i);
+    }
 }

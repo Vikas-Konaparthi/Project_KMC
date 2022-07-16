@@ -79,6 +79,7 @@ public class CollectorListOfBen extends AppCompatActivity {
     public void search(View view) {
         Intent i = new Intent(this, CollectorSearch.class);
         i.putExtra("district",district);
+        i.putExtra("village",village);
         startActivity(i);
     }
 }

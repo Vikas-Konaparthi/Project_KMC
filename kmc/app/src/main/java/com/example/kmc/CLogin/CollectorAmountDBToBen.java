@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -414,6 +415,11 @@ public class CollectorAmountDBToBen extends AppCompatActivity {
             doc.close();
         }
 
+    }
+    public void search(View view) {
+        Intent i = new Intent(this, CollectorSearchAmountToDB.class);
+        i.putExtra("village",village);
+        startActivity(i);
     }
 
 }

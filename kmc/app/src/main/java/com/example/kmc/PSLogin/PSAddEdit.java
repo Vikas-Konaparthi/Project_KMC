@@ -63,7 +63,7 @@ public class PSAddEdit extends AppCompatActivity {
         }
 
 
-        db.collection("individuals").get()
+        db.collection("individuals").orderBy("name").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {

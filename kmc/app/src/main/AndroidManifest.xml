@@ -16,6 +16,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kmc">
         <activity
+            android:name=".PSLogin.PSSearchGrounding"
+            android:exported="false" />
+        <activity
+            android:name=".CLogin.CollectorSearchAmountDBToBen"
+            android:exported="false" />
+        <activity
+            android:name=".CLogin.CollectorSearchAmountToDB"
+            android:exported="false" />
+        <activity
+            android:name=".PSLogin.PSSearchAmountDBToBen"
+            android:exported="false" />
+        <activity
+            android:name=".PSLogin.PSSearchAmountToDB"
+            android:exported="false" />
+        <activity
             android:name=".CLogin.VillageDemo"
             android:exported="false" />
         <activity
