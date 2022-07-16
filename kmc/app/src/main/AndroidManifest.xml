@@ -19,6 +19,9 @@
             android:name=".PSLogin.PSSearchGrounding"
             android:exported="false" />
         <activity
+            android:name=".CLogin.CollectorSearchGrounding"
+            android:exported="false" />
+        <activity
             android:name=".CLogin.CollectorSearchAmountDBToBen"
             android:exported="false" />
         <activity
