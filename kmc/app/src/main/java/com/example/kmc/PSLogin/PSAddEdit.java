@@ -14,6 +14,7 @@ import android.widget.Toolbar;
 import com.example.kmc.Individual;
 import com.example.kmc.R;
 import com.example.kmc.PSAdapters.myadapter;
+import com.example.kmc.SPLogin.SpGroundingSearch;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -103,5 +104,11 @@ public class PSAddEdit extends AppCompatActivity {
         intent.putExtra("district",district);
         startActivity(intent);
         finish();
+    }
+    public void search(View view) {
+        Intent i = new Intent(this, PsAddEditSearch.class);
+        i.putExtra("district",district);
+        i.putExtra("village",village);
+        startActivity(i);
     }
 }

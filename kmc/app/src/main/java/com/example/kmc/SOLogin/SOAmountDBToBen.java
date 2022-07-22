@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -88,5 +89,11 @@ public class SOAmountDBToBen extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setActionBar(toolbar);
 
+    }
+    public void search(View view) {
+        Intent i = new Intent(this, SoAmountDbtoBenSearch.class);
+        i.putExtra("mandal",mandal);
+        i.putExtra("sector",sector);
+        startActivity(i);
     }
 }

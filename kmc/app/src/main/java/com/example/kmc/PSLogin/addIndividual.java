@@ -257,7 +257,7 @@ public class addIndividual extends AppCompatActivity {
         //
         if (individualName.length() != 0 && fatherName.length() != 0 && age.length() != 0 && houseNumber.length() != 0 && aadharNumber.length() != 0 && mobileNumber.length() != 0 && option_selected.length() != 0 && bankName.length() != 0 && bankACCNumber.length() != 0 && dbBankName.length() != 0 && dbBankACCNumber.length() != 0 && dbBankIFSC.length() != 0 ) {
             Map<String, Object> individualInfo = new HashMap<String, Object>();
-            individualInfo.put("name", individualName.trim());
+            individualInfo.put("name", individualName.toLowerCase().trim());
             individualInfo.put("fatherName", fatherName.trim());
             individualInfo.put("age", age.trim());
             individualInfo.put("houseNo", houseNumber.trim());
@@ -313,19 +313,36 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("spNote", "NA");
 
             //
-            db.collection("individuals").add(individualInfo)
-                    .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentReference> task) {
-                            Toast.makeText(addIndividual.this, "Inserted Successfully", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(addIndividual.this, PSAddEdit.class);
-                            i.putExtra("village",village.trim());
-                            i.putExtra("mandal", mandal.trim());
-                            i.putExtra("district",district.trim());
-                            startActivity(i);
-                            finish();
+            db.collection("individuals").whereEqualTo("aadhar",aadharNumber.trim()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (DocumentSnapshot document : task.getResult()) {
+                            if (document.exists()) {
+                                Toast.makeText(addIndividual.this, "User already exists.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                //Do what you need to do
+                                db.collection("individuals").add(individualInfo)
+                                        .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentReference> task) {
+                                                Toast.makeText(addIndividual.this, "Inserted Successfully", Toast.LENGTH_SHORT).show();
+                                                Intent i = new Intent(addIndividual.this, PSAddEdit.class);
+                                                i.putExtra("village",village.trim());
+                                                i.putExtra("mandal", mandal.trim());
+                                                i.putExtra("district",district.trim());
+                                                startActivity(i);
+                                                finish();
+                                            }
+                                        });
+                            }
                         }
-                    });
+                    } else {
+                        Toast.makeText(addIndividual.this, "Error", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
         } else {
             Toast.makeText(this, "Enter all fields", Toast.LENGTH_SHORT).show();
         }

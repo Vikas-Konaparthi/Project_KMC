@@ -262,7 +262,7 @@ public class CollectorAmountDBToBen extends AppCompatActivity {
             //add paragraph to document
             doc.add(p8);
 
-            Paragraph p9 = new Paragraph("Sub:-\tDSCSCDS Ltd., Khammam District – Dalit Bandhu Scheme – "+village+"  –-  Transfer for an amounts of Rs."+ne.get(0).getTotalAmount()+"/- to beneficiary Account of "+ne.get(0).getNoOfBen()+" beneficiaries pertains to their preferred units – Reg.");
+            Paragraph p9 = new Paragraph("Sub:-\tDSCSCDS Ltd., Khammam District – Dalit Bandhu Scheme – "+village+"  –-  Transfer for an amounts of Rs."+ne.get(0).getTotalAmount()+"/- to vendor accounts of "+ne.get(0).getNoOfBen()+" beneficiaries pertains to their preferred units – Reg.");
             p9.setAlignment(Paragraph.ALIGN_CENTER);
             p9.setFont(paraFont);
             //add paragraph to document
@@ -303,13 +303,13 @@ public class CollectorAmountDBToBen extends AppCompatActivity {
             //add paragraph to document
             doc.add(p15);
             Paragraph p16 = new Paragraph(
-                    "Incompliance to the references 1st to 5th cited, under Dalit Bandhu Scheme, beneficiaries were selected from "+village+" and sanctioned Rs. 10.00 Lakh per each beneficiary for the said purpose vide the proceedings under reference 1st cited.Further it is submitted that an amount of "+ne.get(0).getTotalAmount()+" of "+ne.get(0).getNoOfBen()+" beneficiaries is hereby released to their Dalit Bandhu beneficiaries account pertains to their preferred units under Dalit Bandhu Scheme.");
+                    "Incompliance to the references 1st to 5th cited, under Dalit Bandhu Scheme, beneficiaries were selected from "+village+" and sanctioned Rs. 10.00 Lakh per each beneficiary for the said purpose vide the proceedings under reference 1st cited.Further it is submitted that an amount of "+ne.get(0).getTotalAmount()+" of "+ne.get(0).getNoOfBen()+" beneficiaries is hereby released to their Vendor accounts pertains to their preferred units under Dalit Bandhu Scheme.");
             p16.setAlignment(Paragraph.ALIGN_LEFT);
             p16.setFont(paraFont);
             //add paragraph to document
             doc.add(p16);
             Paragraph p17 = new Paragraph(
-                    "Therefore, the  Manager,                concerned are requested to release and transfer amounts to Dalit Bandhu beneficiaries accounts for an amount of "+ne.get(0).getTotalAmount()+" of "+ne.get(0).getNoOfBen()+" beneficiaries furnished at Colm No. (4) of the Annexure.");
+                    "Therefore, the  Manager,                concerned are requested to release and transfer amounts of "+ne.get(0).getTotalAmount()+" of "+ne.get(0).getNoOfBen()+" beneficiaries dalit bandhu account beneficiary account to vendor account furnished at Colm No. (4) of the Annexure.");
             p17.setAlignment(Paragraph.ALIGN_LEFT);
             p17.setFont(paraFont);
             //add paragraph to document

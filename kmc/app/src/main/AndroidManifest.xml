@@ -16,6 +16,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kmc">
         <activity
+            android:name=".SOLogin.SoGroundingSearch"
+            android:exported="false" />
+        <activity
+            android:name=".SOLogin.SoAmountDbtoBenSearch"
+            android:exported="false" />
+        <activity
+            android:name=".SOLogin.SoAddEditSearch"
+            android:exported="false" />
+        <activity
+            android:name=".PSLogin.PsAddEditSearch"
+            android:exported="false" />
+        <activity
+            android:name=".SPLogin.SpGroundingSearch"
+            android:exported="false" />
+        <activity
+            android:name=".SPLogin.SpDbToBenSearch"
+            android:exported="false" />
+        <activity
+            android:name=".SPLogin.SpAmountToDbSearch"
+            android:exported="false" />
+        <activity
+            android:name=".SPLogin.SpListOfBenSearch"
+            android:exported="false" />
+        <activity
             android:name=".PSLogin.PSSearchGrounding"
             android:exported="false" />
         <activity

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -81,7 +82,11 @@ public class SPGrounding extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setActionBar(toolbar);
-
-
+    }
+    public void search(View view) {
+        Intent i = new Intent(this, SpGroundingSearch.class);
+        i.putExtra("village1",village1);
+        i.putExtra("village2",village2);
+        startActivity(i);
     }
 }

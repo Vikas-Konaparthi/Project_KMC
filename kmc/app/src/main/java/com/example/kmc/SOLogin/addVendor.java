@@ -73,7 +73,7 @@ public class addVendor extends AppCompatActivity {
      if(agencyname.length()!=0&&bankaccount.length()!=0&&bankifsc.length()!=0&&bankname.length()!=0&&vendorname.length()!=0)
      {
          Map<String, Object> VendorsInfo = new HashMap<String, Object>();
-         VendorsInfo.put("agencyName", agencyname.trim());
+         VendorsInfo.put("agencyName", agencyname.toLowerCase().trim());
          VendorsInfo.put("unit", unitname.trim());
          VendorsInfo.put("vendorBankAcc", bankaccount.trim());
          VendorsInfo.put("vendorBankIFSC", bankifsc.trim());

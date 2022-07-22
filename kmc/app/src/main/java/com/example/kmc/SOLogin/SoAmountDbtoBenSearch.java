@@ -4,17 +4,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toolbar;
 
+import com.example.kmc.CollectorAdapters.myadapter4;
+import com.example.kmc.CollectorAdapters.searchAdapterCollector;
 import com.example.kmc.Individual;
 import com.example.kmc.R;
 import com.example.kmc.SOAdapters.myadapter3SO2;
-import com.example.kmc.SOAdapters.myadapter3SO3;
+import com.example.kmc.SOAdapters.vendorAdapter;
+import com.example.kmc.Vendor;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -23,44 +29,55 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class SOGrounding extends AppCompatActivity {
-
-    public Toolbar toolbar;
-    RecyclerView recyclerView;
-
+public class SoAmountDbtoBenSearch extends AppCompatActivity {
     ArrayList<Individual> datalist;
     FirebaseFirestore db;
+    RecyclerView recyclerView;
+    public TextInputEditText searchBox;
 
-    myadapter3SO3 adapter;
     String mandal;
-    String sector;
-    String preferredUnit;
     ProgressBar progressBar;
-
+    String searchText;
+    String sector;
+    myadapter3SO2 adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_soamount_dbto_ben);
+        setContentView(R.layout.activity_collector_search);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        searchBox=findViewById(R.id.searchbox);
         datalist=new ArrayList<>();
+        searchText="";
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String value = extras.getString("mandal");
-            String value2 = extras.getString("sector");
-            //String value3 = extras.getString("preferredUnit");
-            //The key argument here must match that used in the other activity
-            mandal = value;
-            sector = value2;
-            //preferredUnit = value3;
+            mandal= extras.getString("mandal");
+            sector=extras.getString("sector");
         }
-        adapter=new myadapter3SO3(datalist,mandal,sector);
+        adapter=new myadapter3SO2(datalist,mandal,sector);
         recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.VISIBLE);
+        searchBox.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
 
-        db.collection("individuals").get()
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                searchText=searchBox.getText().toString().toLowerCase();
+            }
+        });
+
+    }
+    public void searchbutton(View view) {
+        progressBar.setVisibility(View.VISIBLE);
+        db.collection("individuals").orderBy("name").startAt(searchText).endAt(searchText+"\uf8ff").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -69,9 +86,12 @@ public class SOGrounding extends AppCompatActivity {
                         {
                             Individual obj=d.toObject(Individual.class);
                             if(obj.getMandal().toLowerCase(Locale.ROOT).equals(mandal.toLowerCase(Locale.ROOT))) {
-                                if(obj.getGroundingStatus().equals("yes")) {
+                                if(obj.getSpApproved3().equals("yes") && obj.getPreferredUnit().equalsIgnoreCase(sector)) {
                                     if (obj.getPreferredUnit().toLowerCase(Locale.ROOT).equals(sector.toLowerCase(Locale.ROOT))) {
-                                        datalist.add(obj);
+                                        if(!obj.getSoApproved().equals("yes") &&  !obj.getSoApproved().equals("no"))
+                                        {
+                                            datalist.add(obj);
+                                        }
                                     }
                                 }
                             }
@@ -81,15 +101,6 @@ public class SOGrounding extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                     }
                 });
-
-        toolbar = findViewById(R.id.toolbar);
-        setActionBar(toolbar);
-
     }
-    public void search(View view) {
-        Intent i = new Intent(this, SoGroundingSearch.class);
-        i.putExtra("mandal",mandal);
-        i.putExtra("sector",sector);
-        startActivity(i);
-    }
+
 }

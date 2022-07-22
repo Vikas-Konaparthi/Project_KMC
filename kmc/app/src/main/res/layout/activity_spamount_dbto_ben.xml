@@ -24,6 +24,13 @@
             android:gravity="center"
             android:text="Special Officer"
             android:textColor="#fff"/>
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="2dp"
+            android:onClick="search"
+            android:src="@drawable/ic_search_white"/>
 
 
     </LinearLayout>

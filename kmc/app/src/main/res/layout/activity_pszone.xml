@@ -25,6 +25,13 @@
             android:paddingLeft="20dp"
             android:text="Panchat Secretary"
             android:textColor="#fff" />
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
+            android:onClick="search"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/ic_search_white"/>
 
         <Button
             android:id="@+id/addIndividual"

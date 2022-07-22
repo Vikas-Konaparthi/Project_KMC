@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SOLogin.SOListOfBen">
+    tools:context=".SOLogin.SOAmountDBToBen">
     <include
         layout="@layout/appbar"/>
 
@@ -24,6 +24,14 @@
             android:gravity="center"
             android:text="Section Officer"
             android:textColor="#fff"/>
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="2dp"
+            android:onClick="search"
+            android:src="@drawable/ic_search_white"/>
+
 
 
     </LinearLayout>

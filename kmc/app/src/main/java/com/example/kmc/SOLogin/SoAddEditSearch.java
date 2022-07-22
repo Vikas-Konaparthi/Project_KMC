@@ -4,20 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toolbar;
 
+import com.example.kmc.CollectorAdapters.myadapter4;
+import com.example.kmc.CollectorAdapters.searchAdapterCollector;
 import com.example.kmc.Individual;
 import com.example.kmc.R;
-import com.example.kmc.PSAdapters.myadapter;
 import com.example.kmc.SOAdapters.vendorAdapter;
-import com.example.kmc.SPLogin.SpGroundingSearch;
 import com.example.kmc.Vendor;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -26,47 +28,60 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class SOAddEdit extends AppCompatActivity {
-
-    public Toolbar toolbar;
-    RecyclerView recyclerView;
-
+public class SoAddEditSearch extends AppCompatActivity {
     ArrayList<Vendor> datalist;
     FirebaseFirestore db;
-    String sector;
+    RecyclerView recyclerView;
+    public TextInputEditText searchBox;
+
     String mandal;
     ProgressBar progressBar;
+    String searchText;
+    String sector;
     vendorAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_soadd_edit);
+        setContentView(R.layout.activity_collector_search);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        searchBox=findViewById(R.id.searchbox);
         datalist=new ArrayList<>();
-        adapter=new vendorAdapter(datalist);
-        recyclerView.setAdapter(adapter);
+        searchText="";
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String value = extras.getString("mandal");
-            String value2 = extras.getString("sector");
-            //String value3 = extras.getString("preferredUnit");
-            //The key argument here must match that used in the other activity
-            mandal = value;
-            sector = value2;
-            //preferredUnit = value3;
-
-        }else{
-            Log.d("extra", "no");
+            mandal= extras.getString("mandal");
+            sector=extras.getString("sector");
         }
+        adapter=new vendorAdapter(datalist);
+        recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        searchBox.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                searchText=searchBox.getText().toString().toLowerCase();
+            }
+        });
+
+    }
+    public void searchbutton(View view) {
         progressBar.setVisibility(View.VISIBLE);
-        db.collection("vendorAgency").get()
+        db.collection("vendorAgency").orderBy("agencyName").startAt(searchText).endAt(searchText+"\uf8ff").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
+                        datalist.clear();
                         for(DocumentSnapshot d:list)
                         {
                             Vendor obj=d.toObject(Vendor.class);
@@ -79,24 +94,5 @@ public class SOAddEdit extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                     }
                 });
-    }
-
-    public void addIndividual(View view) {
-//        Intent intent = new Intent(getApplicationContext(), addVendor.class);
-//        intent.putExtra("village",village);
-//        intent.putExtra("mandal",mandal);
-//        intent.putExtra("sector",sector);
-//        startActivity(intent);
-//        finish();
-        Intent i = new Intent(SOAddEdit.this, addVendor.class);
-        i.putExtra("mandal",mandal);
-        i.putExtra("sector",sector);
-        startActivity(i);
-    }
-    public void search(View view) {
-        Intent i = new Intent(this, SoAddEditSearch.class);
-        i.putExtra("mandal",mandal);
-        i.putExtra("sector",sector);
-        startActivity(i);
     }
 }

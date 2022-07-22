@@ -28,21 +28,28 @@
         <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_add_individual.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_add_vendor.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_collector_amount_dbto_ben.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_collector_list_ben.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_collector_search.xml" value="0.1" />
         <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_collector_user_details_amount_to_db.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_collectorzone.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_main3.xml" value="0.1" />
         <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_password_change.xml" value="0.1" />
         <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_ps_action.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_psamount_dbto_ben.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_psamount_to_db.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_psgrounding.xml" value="0.1" />
         <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_psgrounding_user_details.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_pslogin.xml" value="0.17074275362318841" />
-        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_pszone.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_pszone.xml" value="0.25" />
         <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_so_action.xml" value="0.25" />
         <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_soadd_edit.xml" value="0.17074275362318841" />
-        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_soamount_dbto_ben.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_soamount_dbto_ben.xml" value="0.1" />
         <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_souser_details.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_spamount_dbto_ben.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_spamount_to_db.xml" value="0.14" />
+        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_spgrounding.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_spzone.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/activity_user_details_amount_dbto_ben.xml" value="0.14" />
         <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/report.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/NUNNA KIREETI/Desktop/GIT HUB repositaries/DB-Project/kmc/app/src/main/res/layout/singlerow.xml" value="0.1" />
