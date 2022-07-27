@@ -4,11 +4,13 @@ public class SelectionElements2 {
     String aadhar;
     String dbAccount;
     String approvalAmount;
+    String soApprovalAmount;
 
-    public SelectionElements2(String aadhar, String dbAccount, String approvalAmount) {
+    public SelectionElements2(String aadhar, String dbAccount, String approvalAmount,String soApprovalAmount) {
         this.aadhar = aadhar;
         this.dbAccount = dbAccount;
         this.approvalAmount = approvalAmount;
+        this.soApprovalAmount=soApprovalAmount;
     }
 
     public String getAadhar() {
@@ -17,6 +19,14 @@ public class SelectionElements2 {
 
     public void setAadhar(String aadhar) {
         this.aadhar = aadhar;
+    }
+
+    public String getSoApprovalAmount() {
+        return soApprovalAmount;
+    }
+
+    public void setSoApprovalAmount(String soApprovalAmount) {
+        this.soApprovalAmount = soApprovalAmount;
     }
 
     public String getDbAccount() {

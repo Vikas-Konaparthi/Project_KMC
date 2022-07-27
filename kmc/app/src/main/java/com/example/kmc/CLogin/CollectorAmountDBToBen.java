@@ -385,21 +385,19 @@ public class CollectorAmountDBToBen extends AppCompatActivity implements com.exa
                         if(!obj2.getCtrNote2().equals("yes")) {
                             userTable.addCell(obj2.getVillage());
                             userTable.addCell(obj2.getPreferredUnit());
-                            userTable.addCell(obj2.getDbAccount());
+                            userTable.addCell(obj2.getSo_quotation_amount());
                             userTable.addCell(obj2.getName());
                             userTable.addCell(obj2.getDbBankName());
                             userTable.addCell(obj2.getDbBankAccNo());
                             userTable.addCell(obj2.getDbBankIFSC());
-                            userTable.addCell(obj.getApprovalAmount());
-                            userTable.addCell(obj.getVendorAgency());
-                            userTable.addCell(obj.getVendorBankName());
-                            userTable.addCell(obj.getVendorAccountNo());
-                            userTable.addCell(obj.getVendorIFSC());
+                            userTable.addCell(obj2.getApprovalAmount());
+                            userTable.addCell(obj2.getVendorAgency());
+                            userTable.addCell(obj2.getVendorBankName());
+                            userTable.addCell(obj2.getVendorAccountNo());
+                            userTable.addCell(obj2.getVendorIFSC());
                         }
                     }
                 }
-
-
 
             }
 
@@ -441,10 +439,10 @@ public class CollectorAmountDBToBen extends AppCompatActivity implements com.exa
     public void checkAll(View view) {
         for(SelectionElements2 s:selected)
         {
-            int updateDBAccount=Integer.parseInt(s.getDbAccount());
+            int updateDBAccount=Integer.parseInt(s.getDbAccount())-Integer.parseInt(s.getSoApprovalAmount());
             String updateAmount=Integer.toString(updateDBAccount);
-            int approvalAmount=Integer.parseInt(s.getApprovalAmount());
-            updateData(s.getAadhar(),"yes",approvalAmount+" released to beneficiary account.",s.getDbAccount(),String.valueOf(approvalAmount),"yes");
+            int approvalAmount=Integer.parseInt(s.getApprovalAmount())+Integer.parseInt(s.getSoApprovalAmount());
+            updateData(s.getAadhar(),"yes",approvalAmount+" released to beneficiary account.",updateAmount,String.valueOf(approvalAmount),"yes");
         }
         Toast.makeText(this, "Approved", Toast.LENGTH_SHORT).show();
         finish();

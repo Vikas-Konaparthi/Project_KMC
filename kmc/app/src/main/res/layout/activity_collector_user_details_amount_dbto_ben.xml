@@ -463,6 +463,7 @@
                     android:layout_width="match_parent"
                     android:id="@+id/collectorApprovalAmount"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
