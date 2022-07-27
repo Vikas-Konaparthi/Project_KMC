@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -23,6 +24,7 @@ import com.example.kmc.CollectorAdapters.myadapter4Collector2;
 import com.example.kmc.Individual;
 import com.example.kmc.NoteElements;
 import com.example.kmc.R;
+import com.example.kmc.SelectionElements;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -52,12 +54,13 @@ import java.util.Map;
 import java.util.*;
 import java.text.SimpleDateFormat;
 
-public class CollectorAmountToDB extends AppCompatActivity {
+public class CollectorAmountToDB extends AppCompatActivity implements com.example.kmc.List {
 
     public Toolbar toolbar;
     RecyclerView recyclerView;
 
     ArrayList<Individual> datalist;
+    ArrayList<SelectionElements> selected;
     FirebaseFirestore db;
     String village;
     ArrayList<NoteElements> ne;
@@ -65,6 +68,7 @@ public class CollectorAmountToDB extends AppCompatActivity {
     List<DocumentSnapshot> list;
     Individual obj;
     Individual obj2;
+    ImageButton checkAll;
     int totalAmount;
     int noOfBen;
     String mandal;
@@ -79,13 +83,16 @@ public class CollectorAmountToDB extends AppCompatActivity {
         today = formatter.format(date);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        checkAll=findViewById(R.id.checkAll);
         datalist=new ArrayList<>();
+        selected=new ArrayList<>();
+        selected.clear();
         ne=new ArrayList<>();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             village= extras.getString("village");
         }
-        adapter=new myadapter4Collector2(datalist,village);
+        adapter=new myadapter4Collector2(datalist,village,CollectorAmountToDB.this,CollectorAmountToDB.this);
         recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -427,5 +434,67 @@ public class CollectorAmountToDB extends AppCompatActivity {
         Intent i = new Intent(this, CollectorSearchAmountToDB.class);
         i.putExtra("village",village);
         startActivity(i);
+    }
+
+    @Override
+    public void push(ArrayList<SelectionElements> list) {
+        selected=list;
+        if(!selected.isEmpty())
+        {
+            checkAll.setVisibility(View.VISIBLE);
+        }else{
+            checkAll.setVisibility(View.GONE);
+        }
+
+    }
+
+    public void checkAll(View view) {
+        for(SelectionElements s:selected)
+        {
+           updateData(s.getAadhar(),"yes",s.getApprovedAmount()+" Credited to DB Account",s.getApprovedAmount(),"yes");
+
+        }
+        Toast.makeText(this, "Approved", Toast.LENGTH_SHORT).show();
+        finish();
+    }
+    private void updateData(String aadharNumber, String approved,String status,String collectorSanctionAmount,String spApproved) {
+        Map<String, Object> individualInfo = new HashMap<String, Object>();
+        individualInfo.put("status", status);
+        individualInfo.put("ctrApproved", approved);
+        individualInfo.put("spApproved2", spApproved);
+        individualInfo.put("dbAccount", collectorSanctionAmount);
+        Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
+        db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful() && !task.getResult().isEmpty()){
+                    DocumentSnapshot documentSnapshot=task.getResult().getDocuments().get(0);
+                    String documentID=documentSnapshot.getId();
+                    db.collection("individuals")
+                            .document(documentID)
+                            .update(individualInfo)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(CollectorAmountToDB.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(CollectorAmountToDB.this, CollectorAmountToDB.class);
+                                    intent.putExtra("village",village);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(CollectorAmountToDB.this, "Error occured", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                }else{
+
+                    Toast.makeText(CollectorAmountToDB.this, "Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

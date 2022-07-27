@@ -57,6 +57,19 @@
             android:src="@drawable/ic_search_white"
             android:textSize="20dp"
             />
+        <ImageButton
+            android:id="@+id/checkAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="check"
+            android:onClick="checkAll"
+            android:visibility="gone"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/ic_baseline_check_24"
+            android:textSize="20dp"
+            />
 
 
 

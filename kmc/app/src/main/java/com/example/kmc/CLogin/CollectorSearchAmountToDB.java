@@ -51,7 +51,7 @@ public class CollectorSearchAmountToDB extends AppCompatActivity {
             //district= extras.getString("district");
             village=extras.getString("village");
         }
-        adapter=new myadapter4Collector2(datalist,village);
+        //adapter=new myadapter4Collector2(datalist,village);
         recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
