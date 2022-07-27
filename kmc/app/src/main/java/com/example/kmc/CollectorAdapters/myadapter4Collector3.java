@@ -3,20 +3,28 @@ package com.example.kmc.CollectorAdapters;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kmc.CLogin.CollectorUserDetailsAmountDBToBen;
 import com.example.kmc.CLogin.CollectorUserDetailsAmountToDB;
 import com.example.kmc.Individual;
+import com.example.kmc.List;
+import com.example.kmc.List2;
 import com.example.kmc.R;
+import com.example.kmc.SelectionElements;
+import com.example.kmc.SelectionElements2;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -24,11 +32,15 @@ import java.util.Locale;
 public class myadapter4Collector3 extends RecyclerView.Adapter<myadapter4Collector3.myviewholder>
 {
     ArrayList<Individual> datalist;
+    ArrayList<SelectionElements2> dataAadhar=new ArrayList<>();
     String village;
+    private List2 list;
+    String t;
 
-    public myadapter4Collector3(ArrayList<Individual> datalist, String village) {
+    public myadapter4Collector3(ArrayList<Individual> datalist, String village, Context context,List2 l) {
         this.datalist = datalist;
         this.village=village;
+        this.list=l;
     }
 
     @NonNull
@@ -122,6 +134,26 @@ public class myadapter4Collector3 extends RecyclerView.Adapter<myadapter4Collect
                 ((Activity)holder.t1.getContext()).finish();
             }
         }) ;
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                holder.cardView.setCardBackgroundColor(Color.parseColor("#edbef7"));
+                t = datalist.get(position).getAadhar();
+                if (dataAadhar.contains(t)) {
+                    Toast.makeText(view.getContext(), t+"Already Selected", Toast.LENGTH_SHORT).show();
+                } else {
+                    SelectionElements2 s= new SelectionElements2(datalist.get(position).getAadhar(),datalist.get(position).getDbAccount(),datalist.get(position).getApprovalAmount());
+                    dataAadhar.add(s);
+                    list.push(dataAadhar);
+                    Toast.makeText(view.getContext (), t+"Added", Toast.LENGTH_SHORT).show();
+                }
+
+                holder.check.setVisibility(View.VISIBLE);
+                return true;
+
+            }
+
+        });
 //        holder.t1.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -237,6 +269,8 @@ public class myadapter4Collector3 extends RecyclerView.Adapter<myadapter4Collect
         TextView t3;
         TextView t4;
         TextView t5;
+        ImageView check;
+        CardView cardView;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
@@ -245,6 +279,8 @@ public class myadapter4Collector3 extends RecyclerView.Adapter<myadapter4Collect
             t3=itemView.findViewById(R.id.t3);
             t4=itemView.findViewById(R.id.t4);
             t5=itemView.findViewById(R.id.t5);
+            check=itemView.findViewById(R.id.check);
+            cardView=itemView.findViewById(R.id.cardview);
 
         }
     }

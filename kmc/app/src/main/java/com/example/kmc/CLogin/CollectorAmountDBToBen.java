@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -23,6 +24,8 @@ import com.example.kmc.CollectorAdapters.myadapter4Collector3;
 import com.example.kmc.Individual;
 import com.example.kmc.NoteElements;
 import com.example.kmc.R;
+import com.example.kmc.SelectionElements;
+import com.example.kmc.SelectionElements2;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -51,18 +54,19 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class CollectorAmountDBToBen extends AppCompatActivity {
+public class CollectorAmountDBToBen extends AppCompatActivity implements com.example.kmc.List2 {
 
     public Toolbar toolbar;
     RecyclerView recyclerView;
 
     ArrayList<Individual> datalist;
+    ArrayList<SelectionElements2> selected;
     FirebaseFirestore db;
     String village;
     ProgressBar progressBar;
     Individual obj2;
     String today;
-
+    ImageButton checkAll;
     Individual obj;
     List<DocumentSnapshot> list;
     int totalAmount;
@@ -84,9 +88,10 @@ public class CollectorAmountDBToBen extends AppCompatActivity {
         if (extras != null) {
             village= extras.getString("village");
         }
-        adapter=new myadapter4Collector3(datalist,village);
+        adapter=new myadapter4Collector3(datalist,village,CollectorAmountDBToBen.this,CollectorAmountDBToBen.this);
         recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
+        checkAll=findViewById(R.id.checkAll);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
         ne=new ArrayList<>();
@@ -421,5 +426,70 @@ public class CollectorAmountDBToBen extends AppCompatActivity {
         i.putExtra("village",village);
         startActivity(i);
     }
+    @Override
+    public void push(ArrayList<SelectionElements2> list) {
+        selected=list;
+        if(!selected.isEmpty())
+        {
+            checkAll.setVisibility(View.VISIBLE);
+        }else{
+            checkAll.setVisibility(View.GONE);
+        }
 
+    }
+
+    public void checkAll(View view) {
+        for(SelectionElements2 s:selected)
+        {
+            int updateDBAccount=Integer.parseInt(s.getDbAccount());
+            String updateAmount=Integer.toString(updateDBAccount);
+            int approvalAmount=Integer.parseInt(s.getApprovalAmount());
+            updateData(s.getAadhar(),"yes",approvalAmount+" released to beneficiary account.",s.getDbAccount(),String.valueOf(approvalAmount),"yes");
+        }
+        Toast.makeText(this, "Approved", Toast.LENGTH_SHORT).show();
+        finish();
+    }
+    private void updateData(String aadharNumber, String approved,String status,String collectorSanctionAmount,String approvalAmount,String soApproved) {
+        Map<String, Object> individualInfo = new HashMap<String, Object>();
+        individualInfo.put("status", status);
+        individualInfo.put("ctrApproved2", approved);
+        individualInfo.put("dbAccount", collectorSanctionAmount);
+        individualInfo.put("approvalAmount", approvalAmount);
+        individualInfo.put("soApproved", soApproved);
+
+        Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
+        db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful() && !task.getResult().isEmpty()){
+                    DocumentSnapshot documentSnapshot=task.getResult().getDocuments().get(0);
+                    String documentID=documentSnapshot.getId();
+                    db.collection("individuals")
+                            .document(documentID)
+                            .update(individualInfo)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(CollectorAmountDBToBen.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(CollectorAmountDBToBen.this, CollectorAmountDBToBen.class);
+                                    intent.putExtra("village",village);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(CollectorAmountDBToBen.this, "Error occured", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                }else{
+
+                    Toast.makeText(CollectorAmountDBToBen.this, "Failed", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+    }
 }

@@ -452,7 +452,6 @@ public class CollectorAmountToDB extends AppCompatActivity implements com.exampl
         for(SelectionElements s:selected)
         {
            updateData(s.getAadhar(),"yes",s.getApprovedAmount()+" Credited to DB Account",s.getApprovedAmount(),"yes");
-
         }
         Toast.makeText(this, "Approved", Toast.LENGTH_SHORT).show();
         finish();

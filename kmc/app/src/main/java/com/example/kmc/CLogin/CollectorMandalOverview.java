@@ -40,25 +40,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import android.widget.Toolbar;
-
-import com.example.kmc.COverview.myadapterMandalOverView;
-import com.example.kmc.CollectorAdapters.myadapter4Collector4;
-import com.example.kmc.District;
-import com.example.kmc.Individual;
-import com.example.kmc.MandalElements;
-import com.example.kmc.R;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
 import jxl.Workbook;
 import jxl.WorkbookSettings;
 import jxl.write.Label;
@@ -89,6 +72,7 @@ public class CollectorMandalOverview extends AppCompatActivity {
     myadapterMandalOverView adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collector_mandal_overview);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -168,6 +152,7 @@ public class CollectorMandalOverview extends AppCompatActivity {
     }
     public void generateXL(View view) throws IOException {
         getPermission();
+
 
 //        openFolder(filePath+"/"+Fnamexls);
     }

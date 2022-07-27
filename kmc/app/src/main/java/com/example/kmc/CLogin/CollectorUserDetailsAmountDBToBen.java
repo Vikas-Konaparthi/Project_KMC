@@ -345,6 +345,7 @@ public class CollectorUserDetailsAmountDBToBen extends AppCompatActivity {
                 }else{
 
                     Toast.makeText(CollectorUserDetailsAmountDBToBen.this, "Failed", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
