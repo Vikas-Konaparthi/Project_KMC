@@ -139,7 +139,7 @@ public class SPUserDetailsAmountToDB extends AppCompatActivity {
         district=getIntent().getStringExtra("uDistrict").toString();
         village1=getIntent().getStringExtra("village1").toString();
         village2=getIntent().getStringExtra("village2").toString();
-
+        spApprovedAmount= spAmountApproved.getText().toString();
         individualSPRemarks.addTextChangedListener(new TextWatcher() {
 
             @Override
