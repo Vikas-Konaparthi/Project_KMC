@@ -69,6 +69,7 @@ public class CollectorAmountToDB extends AppCompatActivity implements com.exampl
     Individual obj;
     Individual obj2;
     ImageButton checkAll;
+    ImageButton cancelAll;
     int totalAmount;
     int noOfBen;
     String mandal;
@@ -84,6 +85,7 @@ public class CollectorAmountToDB extends AppCompatActivity implements com.exampl
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         checkAll=findViewById(R.id.checkAll);
+        cancelAll=findViewById(R.id.cancelAll);
         datalist=new ArrayList<>();
         selected=new ArrayList<>();
         selected.clear();
@@ -442,8 +444,10 @@ public class CollectorAmountToDB extends AppCompatActivity implements com.exampl
         if(!selected.isEmpty())
         {
             checkAll.setVisibility(View.VISIBLE);
+            cancelAll.setVisibility(View.VISIBLE);
         }else{
             checkAll.setVisibility(View.GONE);
+            cancelAll.setVisibility(View.GONE);
         }
 
     }
@@ -495,5 +499,17 @@ public class CollectorAmountToDB extends AppCompatActivity implements com.exampl
                 }
             }
         });
+    }
+
+    public void cancelAll(View view) {
+        for(SelectionElements s:selected) {
+            String collectorSanctionAmount = "0";
+            String approved = "no";
+            String spApproved = "NA";
+            String status = "Rejected By Collector: " + s.getStatus();
+            updateData(s.getAadhar(), approved, status, collectorSanctionAmount, spApproved);
+        }
+        Toast.makeText(this, "Rejected", Toast.LENGTH_SHORT).show();
+        finish();
     }
 }

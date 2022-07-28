@@ -130,19 +130,22 @@
             <TextView
                 android:id="@+id/requestedAmount"
                 android:textSize="20sp"
-                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"/>
             <TextView
                 android:id="@+id/approvedAmount"
                 android:textSize="20sp"
-                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"/>
             <TextView
                 android:id="@+id/dbAmount"
                 android:textSize="20sp"
-                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"/>
             <!--            <TextView-->

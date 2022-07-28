@@ -5,12 +5,16 @@ public class SelectionElements2 {
     String dbAccount;
     String approvalAmount;
     String soApprovalAmount;
+    String status;
+    String benAccountAmount;
 
-    public SelectionElements2(String aadhar, String dbAccount, String approvalAmount,String soApprovalAmount) {
+    public SelectionElements2(String aadhar, String dbAccount, String approvalAmount,String soApprovalAmount,String status,String benAccountAmount) {
         this.aadhar = aadhar;
         this.dbAccount = dbAccount;
         this.approvalAmount = approvalAmount;
         this.soApprovalAmount=soApprovalAmount;
+        this.status=status;
+        this.benAccountAmount=benAccountAmount;
     }
 
     public String getAadhar() {
@@ -27,6 +31,22 @@ public class SelectionElements2 {
 
     public void setSoApprovalAmount(String soApprovalAmount) {
         this.soApprovalAmount = soApprovalAmount;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getBenAccountAmount() {
+        return benAccountAmount;
+    }
+
+    public void setBenAccountAmount(String benAccountAmount) {
+        this.benAccountAmount = benAccountAmount;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getDbAccount() {

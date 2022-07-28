@@ -274,7 +274,8 @@
                     android:id="@+id/spApprovedAmount"
                     android:textSize="20sp"
                     android:padding="7dp"
-                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"/>
             </androidx.cardview.widget.CardView>
@@ -299,7 +300,8 @@
                     android:id="@+id/approvedAmount"
                     android:textSize="20sp"
                     android:padding="7dp"
-                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"/>
             </androidx.cardview.widget.CardView>
@@ -318,7 +320,8 @@
                     android:id="@+id/dbAmount"
                     android:textSize="20sp"
                     android:padding="7dp"
-                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"/>
             </androidx.cardview.widget.CardView>

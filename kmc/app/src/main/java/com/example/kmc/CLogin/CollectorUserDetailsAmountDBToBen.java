@@ -281,7 +281,7 @@ public class CollectorUserDetailsAmountDBToBen extends AppCompatActivity {
             String updateAmount=Integer.toString(updateDBAccount);
             int approvalAmount=Integer.parseInt(getIntent().getStringExtra("uApprovalAmount").toString())+Integer.parseInt(soApprovalAmount);
             status=approvalAmount+ " released to beneficiary account.";
-            updateData(aadharNumber,approved,status,updateAmount,Integer.toString(approvalAmount),soApproved);
+            updateData(aadharNumber,approved,status,updateAmount,Integer.toString(approvalAmount),soApproved,"yes");
         }else{
             if(Integer.parseInt(collectorNewApprovalAmount.getText().toString())<=Integer.parseInt(getIntent().getStringExtra("uDbAccount").toString()))
             {
@@ -290,7 +290,7 @@ public class CollectorUserDetailsAmountDBToBen extends AppCompatActivity {
                 String updateAmount=Integer.toString(updateDBAccount);
                 int approvalAmount=Integer.parseInt(getIntent().getStringExtra("uApprovalAmount").toString())+Integer.parseInt(collectorNewAppAmount);
                 status=approvalAmount+ " released to beneficiary account.";
-                updateData(aadharNumber,approved,status,updateAmount,Integer.toString(approvalAmount),soApproved);
+                updateData(aadharNumber,approved,status,updateAmount,Integer.toString(approvalAmount),soApproved,"yes");
             }else{
                 Toast.makeText(this, "Insufficient amount in DB Account.", Toast.LENGTH_SHORT).show();
             }
@@ -301,20 +301,22 @@ public class CollectorUserDetailsAmountDBToBen extends AppCompatActivity {
 
     }
     public void reject(View view) {
-        String collectorSanctionAmount="";
+        String collectorSanctionAmount=getIntent().getStringExtra("uDbAccount").toString();
         String approved="no";
-        String soApproved="NA";
+        String soApproved="yes";
+        String spApproved="NA";
         status= "Rejected By Collector: "+getIntent().getStringExtra("uStatus").toString();
         int approvalAmount=Integer.parseInt(getIntent().getStringExtra("uApprovalAmount").toString());
-        updateData(aadharNumber,approved,status,collectorSanctionAmount,Integer.toString(approvalAmount),soApproved);
+        updateData(aadharNumber,approved,status,collectorSanctionAmount,Integer.toString(approvalAmount),soApproved,spApproved);
     }
-    private void updateData(String aadharNumber, String approved,String status,String collectorSanctionAmount,String approvalAmount,String soApproved) {
+    private void updateData(String aadharNumber, String approved,String status,String collectorSanctionAmount,String approvalAmount,String soApproved,String spApproved) {
         Map<String, Object> individualInfo = new HashMap<String, Object>();
         individualInfo.put("status", status);
         individualInfo.put("ctrApproved2", approved);
         individualInfo.put("dbAccount", collectorSanctionAmount);
         individualInfo.put("approvalAmount", approvalAmount);
         individualInfo.put("soApproved", soApproved);
+        individualInfo.put("spApproved3", spApproved);
 
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)

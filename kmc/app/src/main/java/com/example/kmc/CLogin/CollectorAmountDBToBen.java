@@ -67,6 +67,7 @@ public class CollectorAmountDBToBen extends AppCompatActivity implements com.exa
     Individual obj2;
     String today;
     ImageButton checkAll;
+    ImageButton cancelAll;
     Individual obj;
     List<DocumentSnapshot> list;
     int totalAmount;
@@ -92,6 +93,7 @@ public class CollectorAmountDBToBen extends AppCompatActivity implements com.exa
         recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
         checkAll=findViewById(R.id.checkAll);
+        cancelAll=findViewById(R.id.cancelAll);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
         ne=new ArrayList<>();
@@ -430,8 +432,10 @@ public class CollectorAmountDBToBen extends AppCompatActivity implements com.exa
         if(!selected.isEmpty())
         {
             checkAll.setVisibility(View.VISIBLE);
+            cancelAll.setVisibility(View.VISIBLE);
         }else{
             checkAll.setVisibility(View.GONE);
+            cancelAll.setVisibility(View.GONE);
         }
 
     }
@@ -441,19 +445,20 @@ public class CollectorAmountDBToBen extends AppCompatActivity implements com.exa
         {
             int updateDBAccount=Integer.parseInt(s.getDbAccount())-Integer.parseInt(s.getSoApprovalAmount());
             String updateAmount=Integer.toString(updateDBAccount);
-            int approvalAmount=Integer.parseInt(s.getApprovalAmount())+Integer.parseInt(s.getSoApprovalAmount());
-            updateData(s.getAadhar(),"yes",approvalAmount+" released to beneficiary account.",updateAmount,String.valueOf(approvalAmount),"yes");
+            int approvalAmount=Integer.parseInt(s.getBenAccountAmount())+Integer.parseInt(s.getSoApprovalAmount());
+            updateData(s.getAadhar(),"yes",approvalAmount+" released to beneficiary account.",updateAmount,String.valueOf(approvalAmount),"yes","yes");
         }
         Toast.makeText(this, "Approved", Toast.LENGTH_SHORT).show();
         finish();
     }
-    private void updateData(String aadharNumber, String approved,String status,String collectorSanctionAmount,String approvalAmount,String soApproved) {
+    private void updateData(String aadharNumber, String approved,String status,String collectorSanctionAmount,String approvalAmount,String soApproved,String spApproved) {
         Map<String, Object> individualInfo = new HashMap<String, Object>();
         individualInfo.put("status", status);
         individualInfo.put("ctrApproved2", approved);
         individualInfo.put("dbAccount", collectorSanctionAmount);
         individualInfo.put("approvalAmount", approvalAmount);
         individualInfo.put("soApproved", soApproved);
+        individualInfo.put("spApproved3", spApproved);
 
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
@@ -489,5 +494,20 @@ public class CollectorAmountDBToBen extends AppCompatActivity implements com.exa
                 }
             }
         });
+    }
+
+    public void cancelAll(View view) {
+        for(SelectionElements2 s:selected)
+        {
+            String collectorSanctionAmount=s.getDbAccount();
+            String approved="no";
+            String soApproved="yes";
+            String spApproved="NA";
+            String status= "Rejected By Collector: "+s.getStatus();
+            int approvalAmount=Integer.parseInt(s.getBenAccountAmount());
+            updateData(s.getAadhar(),approved,status,collectorSanctionAmount,Integer.toString(approvalAmount),soApproved,spApproved);
+        }
+        Toast.makeText(this, "Rejected", Toast.LENGTH_SHORT).show();
+        finish();
     }
 }

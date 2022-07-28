@@ -3,10 +3,20 @@ package com.example.kmc;
 public class SelectionElements {
     String aadhar;
     String approvedAmount;
+    String status;
 
-    public SelectionElements(String aadhar, String approvedAmount) {
+    public SelectionElements(String aadhar, String approvedAmount,String status) {
         this.aadhar = aadhar;
         this.approvedAmount = approvedAmount;
+        this.status=status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getAadhar() {

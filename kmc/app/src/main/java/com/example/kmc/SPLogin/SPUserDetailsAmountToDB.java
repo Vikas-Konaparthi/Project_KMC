@@ -110,6 +110,7 @@ public class SPUserDetailsAmountToDB extends AppCompatActivity {
         approve=(Button)findViewById(R.id.approve);
         reject=(Button)findViewById(R.id.reject);
 //        groundImageButton=(Button)findViewById(R.id.groundImage);
+
         individualName.setText("Name: "+getIntent().getStringExtra("uname").toString());
         individualFatherName.setText("Father Name: "+getIntent().getStringExtra("ufname").toString());
         individualAge.setText("Age: "+getIntent().getStringExtra("uAge").toString());
@@ -129,7 +130,7 @@ public class SPUserDetailsAmountToDB extends AppCompatActivity {
         getDbBankName.setText("DB Bank Name: "+getIntent().getStringExtra("uDbBankName").toString());
         getDbAccNumber.setText("DB Account Number: "+getIntent().getStringExtra("uDbAccountNo").toString());
         getDbIFSC.setText("DB Account IFSC: "+getIntent().getStringExtra("uDbIFSC").toString());
-
+        spAmountApproved.setText(getIntent().getStringExtra("uRequestedAmount").toString());
         //        getIndividualDBAmount.setText("Dalita Bandhu Account Amount: "+getIntent().getStringExtra("uDbAccount").toString());
 
         aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();

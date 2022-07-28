@@ -134,10 +134,10 @@ public class myadapter4Collector2 extends RecyclerView.Adapter<myadapter4Collect
                 if (dataAadhar.contains(t)) {
                     Toast.makeText(view.getContext(), t+"Already Selected", Toast.LENGTH_SHORT).show();
                 } else {
-                    SelectionElements s= new SelectionElements(datalist.get(position).getAadhar(),datalist.get(position).getSpAmountApproved());
+                    SelectionElements s= new SelectionElements(datalist.get(position).getAadhar(),datalist.get(position).getSpAmountApproved(),datalist.get(position).getStatus());
                     dataAadhar.add(s);
                     list.push(dataAadhar);
-                    Toast.makeText(view.getContext (), t+"Added", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext (), t+" Added", Toast.LENGTH_SHORT).show();
                 }
 
                 holder.check.setVisibility(View.VISIBLE);
