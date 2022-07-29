@@ -3,6 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/GITHUB_REPO/Project_KMC-main/kmc/app/src/main/res/layout/activity_collector_amount_dbto_ben.xml" value="0.25" />
+        <entry key="..\:/GITHUB_REPO/Project_KMC-main/kmc/app/src/main/res/layout/activity_collector_grounding_user_details.xml" value="0.25" />
+        <entry key="..\:/GITHUB_REPO/Project_KMC-main/kmc/app/src/main/res/layout/activity_collector_user_details_amount_to_db.xml" value="0.25" />
+        <entry key="..\:/GITHUB_REPO/Project_KMC-main/kmc/app/src/main/res/layout/activity_psgrounding_user_details.xml" value="0.25" />
+        <entry key="..\:/GITHUB_REPO/Project_KMC-main/kmc/app/src/main/res/layout/activity_sogrounding_user_details.xml" value="0.25" />
+        <entry key="..\:/GITHUB_REPO/Project_KMC-main/kmc/app/src/main/res/layout/activity_souser_details.xml" value="0.25" />
+        <entry key="..\:/GITHUB_REPO/Project_KMC-main/kmc/app/src/main/res/layout/activity_souser_details_amount_dbto_ben.xml" value="0.25" />
+        <entry key="..\:/GITHUB_REPO/Project_KMC-main/kmc/app/src/main/res/layout/activity_spgrounding_status.xml" value="0.25" />
+        <entry key="..\:/GITHUB_REPO/Project_KMC-main/kmc/app/src/main/res/layout/activity_spuser_details.xml" value="0.25" />
+        <entry key="..\:/GITHUB_REPO/Project_KMC-main/kmc/app/src/main/res/layout/activity_spuser_details_amount_release_db_to_ben.xml" value="0.25" />
+        <entry key="..\:/GITHUB_REPO/Project_KMC-main/kmc/app/src/main/res/layout/activity_spuser_details_amount_release_to_db.xml" value="0.25" />
+        <entry key="..\:/GITHUB_REPO/Project_KMC-main/kmc/app/src/main/res/layout/activity_user_details.xml" value="0.25" />
+        <entry key="..\:/GITHUB_REPO/Project_KMC-main/kmc/app/src/main/res/layout/activity_user_details_amount_dbto_ben.xml" value="0.25" />
+        <entry key="..\:/GITHUB_REPO/Project_KMC-main/kmc/app/src/main/res/layout/activity_user_details_amount_to_db.xml" value="0.25" />
         <entry key="..\:/Users/DINAKAR/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_add_individual.xml" value="0.10714285714285714" />
         <entry key="..\:/Users/DINAKAR/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_add_vendor.xml" value="0.17" />
         <entry key="..\:/Users/DINAKAR/AndroidStudioProjects/kmc/app/src/main/res/layout/activity_ps_action.xml" value="0.2203125" />

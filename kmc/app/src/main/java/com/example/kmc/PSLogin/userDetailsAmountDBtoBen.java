@@ -224,7 +224,7 @@ public class userDetailsAmountDBtoBen extends AppCompatActivity {
         getDbAccNumber.setText("DB Account Number: "+getIntent().getStringExtra("uDbAccountNo").toString());
         //        individualVendorName.getEditText().setText(getIntent().getStringExtra("uVendorName").toString());
 //        individualVendorBankAccountNumber.getEditText().setText(getIntent().getStringExtra("uVendorBankAccount").toString());
-//        individualVendorBankIFSC.getEditText().setText(getIntent().getStringExtra("uVendorIFSC").toString());
+        individualVendorBankIFSC.setText(getIntent().getStringExtra("uVendorIFSC").toString());
         village=getIntent().getStringExtra("uVillage").toString();
         mandal=getIntent().getStringExtra("uMandal").toString();
         district=getIntent().getStringExtra("uDistrict").toString();

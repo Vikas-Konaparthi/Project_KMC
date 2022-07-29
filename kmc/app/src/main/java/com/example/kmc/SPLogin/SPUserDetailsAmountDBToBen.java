@@ -94,18 +94,18 @@ public class SPUserDetailsAmountDBToBen extends AppCompatActivity {
         setContentView(R.layout.activity_spuser_details_amount_release_db_to_ben);
         db= FirebaseFirestore.getInstance();
         individualName  = (TextView) findViewById(R.id.IndividualName);
-        individualFatherName=(TextView) findViewById(R.id.FatherName);
-        individualAge=(TextView) findViewById(R.id.Age);
-        individualHouseNo=(TextView) findViewById(R.id.HouseNumber);
+        //individualFatherName=(TextView) findViewById(R.id.FatherName);
+        //individualAge=(TextView) findViewById(R.id.Age);
+        //individualHouseNo=(TextView) findViewById(R.id.HouseNumber);
         individualVillage=(TextView) findViewById(R.id.village);
         individualMandal=(TextView) findViewById(R.id.mandal);
-        individualDistrict=(TextView) findViewById(R.id.district);
+        //individualDistrict=(TextView) findViewById(R.id.district);
         individualAadhar=(TextView) findViewById(R.id.AadharNumber);
         individualPhno=(TextView) findViewById(R.id.MobileNumber);
         individualPreferredUnit=(TextView) findViewById(R.id.Preferredunit);
-        individualBankName=(TextView) findViewById(R.id.BankName);
-        individualBankAccNo=(TextView) findViewById(R.id.BankACCNumber);
-        getIndividualBankIFSC=(TextView) findViewById(R.id.BankIFSC);
+        //individualBankName=(TextView) findViewById(R.id.BankName);
+        //individualBankAccNo=(TextView) findViewById(R.id.BankACCNumber);
+        //getIndividualBankIFSC=(TextView) findViewById(R.id.BankIFSC);
         getIndividualRequestedAmount=(TextView) findViewById(R.id.requestedAmount);
         individualPSUpload=(TextView) findViewById(R.id.psUpload);
         getVendorAgency=(TextView) findViewById(R.id.vendorAgency);
@@ -120,7 +120,7 @@ public class SPUserDetailsAmountDBToBen extends AppCompatActivity {
         getAmountApproved=(TextView) findViewById(R.id.approvedAmount);
         getDbBankName = (TextView) findViewById(R.id.DbBankName);
         getDbAccNumber = (TextView) findViewById(R.id.DbAccNumber);
-        getDbIFSC = (TextView) findViewById(R.id.DbBankIFSC);
+        //getDbIFSC = (TextView) findViewById(R.id.DbBankIFSC);
 
 //        getIndividualDBAmount=(TextView) findViewById(R.id.dbAmount);
         getIndividualApprovalAmount=(TextView) findViewById(R.id.approvalAmount);
@@ -128,18 +128,18 @@ public class SPUserDetailsAmountDBToBen extends AppCompatActivity {
         reject=(Button)findViewById(R.id.reject);
         quotationImageButton=(Button)findViewById(R.id.quotationImageButton);
         individualName.setText("Name: "+getIntent().getStringExtra("uname").toString());
-        individualFatherName.setText("Father Name: "+getIntent().getStringExtra("ufname").toString());
-        individualAge.setText("Age: "+getIntent().getStringExtra("uAge").toString());
-        individualHouseNo.setText("House Number: "+getIntent().getStringExtra("uHnumber").toString());
+        //individualFatherName.setText("Father Name: "+getIntent().getStringExtra("ufname").toString());
+        //individualAge.setText("Age: "+getIntent().getStringExtra("uAge").toString());
+        //individualHouseNo.setText("House Number: "+getIntent().getStringExtra("uHnumber").toString());
         individualVillage.setText("Village: "+getIntent().getStringExtra("uVillage").toString());
         individualMandal.setText("Mandal: "+getIntent().getStringExtra("uMandal").toString());
-        individualDistrict.setText("District: "+getIntent().getStringExtra("uDistrict").toString());
+        //individualDistrict.setText("District: "+getIntent().getStringExtra("uDistrict").toString());
         individualAadhar.setText("Aadhar Number: "+getIntent().getStringExtra("uAadharNumber").toString());
         individualPhno.setText("Mobile Number: "+getIntent().getStringExtra("uMobileNo").toString());
         individualPreferredUnit.setText("Preferred Unit: "+getIntent().getStringExtra("uPreferredUnit").toString());
-        individualBankName.setText("Bank Name: "+getIntent().getStringExtra("uBankName").toString());
-        individualBankAccNo.setText("Bank Account Number: "+getIntent().getStringExtra("uBankAccNumber").toString());
-        getIndividualBankIFSC.setText("Bank IFSC: "+getIntent().getStringExtra("uBankIFSC").toString());
+        //individualBankName.setText("Bank Name: "+getIntent().getStringExtra("uBankName").toString());
+        //individualBankAccNo.setText("Bank Account Number: "+getIntent().getStringExtra("uBankAccNumber").toString());
+       // getIndividualBankIFSC.setText("Bank IFSC: "+getIntent().getStringExtra("uBankIFSC").toString());
         getVendorName.setText("Vendor Name: "+getIntent().getStringExtra("uVendorName").toString());
         getVendorBankName.setText("Vendor Bank Name: "+getIntent().getStringExtra("uVendorBankName").toString());
         getVendorBankIFSC.setText("Vendor Bank IFSC: "+getIntent().getStringExtra("uVendorBankIFSC").toString());
@@ -150,7 +150,7 @@ public class SPUserDetailsAmountDBToBen extends AppCompatActivity {
         getAmountApproved.setText("Amount Approved: "+getIntent().getStringExtra("uApprovalAmount").toString());
         getDbBankName.setText("DB Bank Name: "+getIntent().getStringExtra("uDbBankName").toString());
         getDbAccNumber.setText("DB Account Number: "+getIntent().getStringExtra("uDbAccountNo").toString());
-        getDbIFSC.setText("DB Account IFSC: "+getIntent().getStringExtra("uDbIFSC").toString());
+        //getDbIFSC.setText("DB Account IFSC: "+getIntent().getStringExtra("uDbIFSC").toString());
 
         //        getIndividualDBAmount.setText("Dalita Bandhu Account Amount: "+getIntent().getStringExtra("uDbAccount").toString());
 
