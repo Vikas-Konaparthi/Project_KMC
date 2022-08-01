@@ -149,7 +149,7 @@ public class CollectorMenu extends AppCompatActivity {
                                             List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                                             for (DocumentSnapshot d : list) {
                                                 Individual objCtrMP = d.toObject(Individual.class);
-                                                if ((objCtrMP.getSpApproved2().equals("yes") && objCtrMP.getCtrApproved().equals("NA")) || (objCtrMP.getSpApproved3().equals("yes") && objCtrMP.getCtrApproved2().equals("NA"))|| !objCtrMP.getCtrBenApproved().equalsIgnoreCase("yes")) {
+                                                if ((objCtrMP.getSpApproved2().equals("yes") && objCtrMP.getCtrApproved().equals("NA")) || (objCtrMP.getSpApproved3().equals("yes") && objCtrMP.getCtrApproved2().equals("NA"))|| (!objCtrMP.getCtrBenApproved().equalsIgnoreCase("yes")&&objCtrMP.getSpApproved().equalsIgnoreCase("yes"))) {
                                                     ctrConstituencyPending = ctrConstituencyPending + 1;
                                                 }
                                               }
@@ -187,7 +187,7 @@ public class CollectorMenu extends AppCompatActivity {
                                                     List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                                                     for (DocumentSnapshot d : list) {
                                                         Individual objCtrMP = d.toObject(Individual.class);
-                                                        if ((objCtrMP.getSpApproved2().equals("yes") && objCtrMP.getCtrApproved().equals("NA")) || (objCtrMP.getSpApproved3().equals("yes") && objCtrMP.getCtrApproved2().equals("NA"))|| !objCtrMP.getCtrBenApproved().equalsIgnoreCase("yes")) {
+                                                        if ((objCtrMP.getSpApproved2().equals("yes") && objCtrMP.getCtrApproved().equals("NA")) || (objCtrMP.getSpApproved3().equals("yes") && objCtrMP.getCtrApproved2().equals("NA"))|| (!objCtrMP.getCtrBenApproved().equalsIgnoreCase("yes")&&objCtrMP.getSpApproved().equalsIgnoreCase("yes"))) {
                                                             ctrMandalPending = ctrMandalPending + 1;
                                                         }
                                                     }
@@ -235,7 +235,7 @@ public class CollectorMenu extends AppCompatActivity {
                                                     List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                                                     for (DocumentSnapshot d : list) {
                                                         Individual objCtrMP = d.toObject(Individual.class);
-                                                        if ((objCtrMP.getSpApproved2().equals("yes") && objCtrMP.getCtrApproved().equals("NA")) || (objCtrMP.getSpApproved3().equals("yes") && objCtrMP.getCtrApproved2().equals("NA"))|| !objCtrMP.getCtrBenApproved().equalsIgnoreCase("yes")) {
+                                                        if ((objCtrMP.getSpApproved2().equals("yes") && objCtrMP.getCtrApproved().equals("NA")) || (objCtrMP.getSpApproved3().equals("yes") && objCtrMP.getCtrApproved2().equals("NA"))|| (!objCtrMP.getCtrBenApproved().equalsIgnoreCase("yes")&&objCtrMP.getSpApproved().equalsIgnoreCase("yes"))) {
                                                             ctrVillagePending = ctrVillagePending + 1;
 //                                                           final String ctr=String.valueOf(ctrMandalPending);
 //                                                            Log.d("HELLO",ctr);

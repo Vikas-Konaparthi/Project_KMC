@@ -86,7 +86,7 @@ public class CollectorAction2 extends AppCompatActivity implements View.OnClickL
                         for(DocumentSnapshot d:list)
                         {
                             Individual obj=d.toObject(Individual.class);
-                            if(obj.getSpApproved().equals("yes")&& !obj.getCtrBenApproved().equalsIgnoreCase("yes")){
+                            if(obj.getSpApproved().equals("yes")&& (!obj.getCtrBenApproved().equalsIgnoreCase("yes")&&obj.getSpApproved().equalsIgnoreCase("yes"))){
                                 pendingAction3 = pendingAction3+1;
                             }
                                 if (obj.getSpApproved2().equals("yes")) {
@@ -124,6 +124,9 @@ public class CollectorAction2 extends AppCompatActivity implements View.OnClickL
                         for(DocumentSnapshot d:list)
                         {
                             Individual obj=d.toObject(Individual.class);
+                            if(obj.getSpApproved().equals("yes")&& (!obj.getCtrBenApproved().equalsIgnoreCase("yes")&&obj.getSpApproved().equalsIgnoreCase("yes"))){
+                                pendingAction3 = pendingAction3+1;
+                            }
                                 if (obj.getSpApproved2().equals("yes")) {
                                     if (!obj.getCtrApproved().equals("yes") && !obj.getCtrApproved().equals("no")) {
                                         pendingAction1=pendingAction1+1;
@@ -136,6 +139,7 @@ public class CollectorAction2 extends AppCompatActivity implements View.OnClickL
                         }
                         pendingBadge1.setText(String.valueOf(pendingAction1));
                         pendingBadge2.setText(String.valueOf(pendingAction2));
+                        pendingBadge3.setText(String.valueOf(pendingAction3));
                     }
                 });
     }

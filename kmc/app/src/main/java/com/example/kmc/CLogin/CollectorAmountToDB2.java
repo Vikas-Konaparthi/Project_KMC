@@ -55,10 +55,8 @@ import java.util.*;
 import java.text.SimpleDateFormat;
 
 public class CollectorAmountToDB2 extends AppCompatActivity implements com.example.kmc.List{
-
     public Toolbar toolbar;
     RecyclerView recyclerView;
-
     ArrayList<Individual> datalist;
     ArrayList<SelectionElements> selected;
     FirebaseFirestore db;
@@ -495,7 +493,6 @@ public class CollectorAmountToDB2 extends AppCompatActivity implements com.examp
                                     });
 
                         }else{
-
                             Toast.makeText(CollectorAmountToDB2.this, "Failed", Toast.LENGTH_SHORT).show();
                         }
                     }

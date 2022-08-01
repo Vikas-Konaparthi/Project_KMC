@@ -128,6 +128,9 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
                         for(DocumentSnapshot d:list)
                         {
                             Individual obj=d.toObject(Individual.class);
+                            if(obj.getSpApproved().equals("yes")&& !obj.getCtrBenApproved().equalsIgnoreCase("yes")){
+                                pendingAction3 = pendingAction3+1;
+                            }
                             if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village.toLowerCase(Locale.ROOT))) {
                                 if (obj.getSpApproved2().equals("yes")) {
                                     if (!obj.getCtrApproved().equals("yes") && !obj.getCtrApproved().equals("no")) {
@@ -145,6 +148,7 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
                         }
                         pendingBadge1.setText(String.valueOf(pendingAction1));
                         pendingBadge2.setText(String.valueOf(pendingAction2));
+                        pendingBadge3.setText(String.valueOf(pendingAction3));
                     }
                 });
     }
