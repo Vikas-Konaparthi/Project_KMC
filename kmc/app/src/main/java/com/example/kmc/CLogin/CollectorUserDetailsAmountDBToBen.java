@@ -119,7 +119,7 @@ public class CollectorUserDetailsAmountDBToBen extends AppCompatActivity {
         getIndividualVendorName=(TextView) findViewById(R.id.vendorName);
         individualSPRemark = (TextView) findViewById(R.id.spRemark);
         getIndividualVendorBankName=(TextView) findViewById(R.id.vendorBankName);
-        //getIndividualsoRemarks=(TextView) findViewById(R.id.soRemarks);
+        getIndividualsoRemarks=(TextView) findViewById(R.id.soRemarks);
         soQuotationAmount=(TextView) findViewById(R.id.soQuotationAmount);
         psRequestedAmount=(TextView) findViewById(R.id.psRequestedAmount);
         getIndividualDBAmount=(TextView) findViewById(R.id.dbAmount);
@@ -161,7 +161,7 @@ public class CollectorUserDetailsAmountDBToBen extends AppCompatActivity {
         //psRequestedAmount.setText("PS Requested Amount: "+getIntent().getStringExtra("psRequestedAmount").toString());;
         getIndividualDBAmount.setText("DB Account Amount: "+getIntent().getStringExtra("uDbAccount").toString());;
         //getIndividualsoRemarks.setText("Section Officer Remark: "+getIntent().getStringExtra("usoRemarks").toString());;
-        soQuotationAmount.setText("SP Approved Amount: "+getIntent().getStringExtra("usoQuotationAmount").toString());;
+        soQuotationAmount.setText("Section Officer Quotation: "+getIntent().getStringExtra("usoQuotationAmount").toString());;
         soApprovalAmount=getIntent().getStringExtra("usoQuotationAmount").toString();
         //getAmountApproved.setText("Amount Approved: "+getIntent().getStringExtra("uApprovalAmount").toString());
         //getDbBankName.setText("DB Bank Name: "+getIntent().getStringExtra("uDbBankName").toString());

@@ -312,6 +312,7 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("ctrNote1", "NA");
             individualInfo.put("ctrNote2", "NA");
             individualInfo.put("spNote", "NA");
+            individualInfo.put("ctrBenApproved","NA");
 
             //
             db.collection("individuals").whereEqualTo("aadhar",aadharNumber.trim()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

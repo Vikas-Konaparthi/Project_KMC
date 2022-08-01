@@ -62,8 +62,11 @@ public class CollectorListOfBen extends AppCompatActivity {
                             Individual obj=d.toObject(Individual.class);
                             if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village.toLowerCase(Locale.ROOT)))
                             {
-                                if(obj.getSpApproved().equals("yes"))
-                                datalist.add(obj);
+                                if(obj.getSpApproved().equals("yes")&& !obj.getCtrBenApproved().equalsIgnoreCase("yes"))
+                                {
+                                    datalist.add(obj);
+                                }
+
                             }
 
                         }

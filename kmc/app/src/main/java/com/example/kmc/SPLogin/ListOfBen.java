@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -23,6 +24,8 @@ import com.example.kmc.Individual;
 import com.example.kmc.NoteElements;
 import com.example.kmc.R;
 import com.example.kmc.SPAdapters.myadapter2;
+import com.example.kmc.SelectionElements2;
+import com.example.kmc.SelectionElements4;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -51,9 +54,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class ListOfBen extends AppCompatActivity {
+public class ListOfBen extends AppCompatActivity implements com.example.kmc.List4{
     public Toolbar toolbar;
     RecyclerView recyclerView;
+    ArrayList<SelectionElements4> selected;
 
     ArrayList<Individual> datalist;
     FirebaseFirestore db;
@@ -64,8 +68,8 @@ public class ListOfBen extends AppCompatActivity {
     int noOfBen;
     ArrayList<NoteElements> ne;
     String today;
-
-
+    ImageButton checkAll;
+    ImageButton cancelAll;
     myadapter2 adapter;
     String village1;
     String village2;
@@ -89,7 +93,9 @@ public class ListOfBen extends AppCompatActivity {
             village1 = value;
             village2 = value2;
         }
-        adapter=new myadapter2(datalist,village1,village2);
+        checkAll=findViewById(R.id.checkAll);
+        cancelAll=findViewById(R.id.cancelAll);
+        adapter=new myadapter2(datalist,village1,village2,ListOfBen.this,ListOfBen.this);
         recyclerView.setAdapter(adapter);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
@@ -106,13 +112,10 @@ public class ListOfBen extends AppCompatActivity {
                         for(DocumentSnapshot d:list)
                         {
                             Individual obj=d.toObject(Individual.class);
-                            if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village1.toLowerCase(Locale.ROOT)) || (obj.getVillage().toLowerCase(Locale.ROOT).equals(village2.toLowerCase(Locale.ROOT))) ){
-                                if(!obj.getSpApproved().equals("yes"))
+                                if(!obj.getSpApproved().equalsIgnoreCase("yes"))
                                 {
                                     datalist.add(obj);
                                 }
-
-                            }
                         }
                         adapter.notifyDataSetChanged();
                         progressBar.setVisibility(View.GONE);
@@ -124,10 +127,10 @@ public class ListOfBen extends AppCompatActivity {
 
     }
     public void search(View view) {
-        Intent i = new Intent(this, SpListOfBenSearch.class);
-        i.putExtra("village1",village1);
-        i.putExtra("village2",village2);
-        startActivity(i);
+//        Intent i = new Intent(this, SpListOfBenSearch.class);
+//        i.putExtra("village1",village1);
+//        i.putExtra("village2",village2);
+//        startActivity(i);
     }
     public void generateNote(View view) {
         db.collection("individuals").get()
@@ -404,5 +407,75 @@ public class ListOfBen extends AppCompatActivity {
             doc.close();
         }
 
+    }
+
+
+    public void checkAll(View view) {
+        for(SelectionElements4 s:selected) {
+            String approved = "yes";
+            String status = "Waiting for collector Approval";
+            updateData(s.getAadhar(), approved, status,"Approved");
+        }
+    }
+
+    public void cancelAll(View view) {
+        for(SelectionElements4 s:selected) {
+            String approved = "no";
+            String status = "Rejected By SP: " + s.getStatus();
+            updateData(s.getAadhar(), approved, status,"Rejected");
+        }
+    }
+
+    @Override
+    public void push(ArrayList<SelectionElements4> list) {
+        selected=list;
+        if(!selected.isEmpty())
+        {
+            checkAll.setVisibility(View.VISIBLE);
+            cancelAll.setVisibility(View.VISIBLE);
+        }else{
+            checkAll.setVisibility(View.GONE);
+            cancelAll.setVisibility(View.GONE);
+        }
+    }
+    private void updateData(String aadharNumber, String approved,String status,String spRemarks) {
+        Map<String, Object> individualInfo = new HashMap<String, Object>();
+        individualInfo.put("spApproved", approved.trim());
+        individualInfo.put("sp_remarks", spRemarks.trim());
+        individualInfo.put("status", status);
+        Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
+        db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful() && !task.getResult().isEmpty()){
+                    DocumentSnapshot documentSnapshot=task.getResult().getDocuments().get(0);
+                    String documentID=documentSnapshot.getId();
+                    db.collection("individuals")
+                            .document(documentID)
+                            .update(individualInfo)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(ListOfBen.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
+//                                    Intent intent = new Intent(ListOfBen.this, ListOfBen.class);
+//                                    intent.putExtra("village1",village1);
+//                                    intent.putExtra("village2",village2);
+//                                    startActivity(intent);
+                                    finish();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(ListOfBen.this, "Error occured", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                }else{
+
+                    Toast.makeText(ListOfBen.this, "Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -55,11 +56,9 @@ public class CollectorUserDetails extends AppCompatActivity {
     public TextView getDbBankName;
     public TextView getDbAccNumber;
     public TextView getDbIFSC;
-    Button release;
-    Button sanction;
-
     Button approve;
     Button reject;
+
     String approved;
     FirebaseFirestore db;
     String indivName;
@@ -114,8 +113,8 @@ public class CollectorUserDetails extends AppCompatActivity {
 //            groundImageButton=(Button)findViewById(R.id.groundImage);
 //            sanction=(Button)findViewById(R.id.sanction);
 //            release=(Button)findViewById(R.id.release);
-//            approve=(Button)findViewById(R.id.approve);
-//            reject=(Button)findViewById(R.id.reject);
+            approve=(Button)findViewById(R.id.approve);
+            reject=(Button)findViewById(R.id.reject);
         individualName.setText("Name: "+getIntent().getStringExtra("uname").toString());
 //            individualFatherName.setText("Father Name: "+getIntent().getStringExtra("ufname").toString());
         // individualAge.setText("Age: "+getIntent().getStringExtra("uAge").toString());
@@ -142,7 +141,7 @@ public class CollectorUserDetails extends AppCompatActivity {
         getIndividualApprovalAmount.setText("Approval Amount: "+getIntent().getStringExtra("uApprovalAmount").toString());
         getIndividualDBAmount.setText("Dalita Bandhu Account Amount: "+getIntent().getStringExtra("uDbAccount").toString());
 //            approvalAmount=getIntent().getStringExtra("uApprovalAmount").toString();
-//            aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
+            aadharNumber=getIntent().getStringExtra("uAadharNumber").toString();
 
         String soApproved=getIntent().getStringExtra("uSOApproved").toString();
 //            dbAccount=getIntent().getStringExtra("uDbAccount").toString();
@@ -151,12 +150,7 @@ public class CollectorUserDetails extends AppCompatActivity {
         if (extras != null) {
             village= extras.getString("village");
         }
-        if(soApproved.equals("yes"))
-        {
-            approve.setEnabled(true);
-            reject.setEnabled(true);
-            individualQAmount.setEnabled(true);
-        }
+
 //            individualQAmount.addTextChangedListener(new TextWatcher() {
 //
 //                @Override
@@ -234,56 +228,56 @@ public class CollectorUserDetails extends AppCompatActivity {
 //        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 //        startActivity(intent);
 //    }
-//    public void approve(View view) {
-//        String approved="yes";
-//        status="Approved";
-//        updateData(aadharNumber,approved,status);
-//    }
-//
-//
-//    public void reject(View view) {
-//        String approved="no";
-//        status="Rejected";
-//        updateData(aadharNumber,approved,status);
-//    }
-//    private void updateData(String aadharNumber, String approved,String status) {
-//        Map<String, Object> individualInfo = new HashMap<String, Object>();
-//        individualInfo.put("status", status);
-//        individualInfo.put("ctrApproved", approved);
-//        Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
-//        db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
-//                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                if(task.isSuccessful() && !task.getResult().isEmpty()){
-//                    DocumentSnapshot documentSnapshot=task.getResult().getDocuments().get(0);
-//                    String documentID=documentSnapshot.getId();
-//                    db.collection("individuals")
-//                            .document(documentID)
-//                            .update(individualInfo)
-//                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                @Override
-//                                public void onSuccess(Void unused) {
-//                                    Toast.makeText(CollectorUserDetails.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
-//                                    Intent intent = new Intent(CollectorUserDetails.this, CollectorListOfBen.class);
-//                                    intent.putExtra("village",village);
-//                                    startActivity(intent);
-//                                    finish();
-//                                }
-//                            }).addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception e) {
-//                            Toast.makeText(CollectorUserDetails.this, "Error occured", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//
-//                }else{
-//
-//                    Toast.makeText(CollectorUserDetails.this, "Failed", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-//    }
+    public void approve(View view) {
+        String approved="yes";
+        status="Waiting for Panchayat Secretary Amount Request";
+        String spApproved="yes";
+        updateData(aadharNumber,approved,status,spApproved);
+    }
+    public void reject(View view) {
+        String approved="no";
+        status="Rejected by Collector";
+        String spApproved="NA";
+        updateData(aadharNumber,approved,status,spApproved);
+    }
+    private void updateData(String aadharNumber, String approved,String status,String spApproved) {
+        Map<String, Object> individualInfo = new HashMap<String, Object>();
+        individualInfo.put("status", status);
+        individualInfo.put("ctrBenApproved", approved);
+        individualInfo.put("spApproved", spApproved);
+        db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        Log.d("Hello","hi");
+                        if(task.isSuccessful() && !task.getResult().isEmpty()){
+                    DocumentSnapshot documentSnapshot=task.getResult().getDocuments().get(0);
+                    String documentID=documentSnapshot.getId();
+                    db.collection("individuals")
+                            .document(documentID)
+                            .update(individualInfo)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(CollectorUserDetails.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(CollectorUserDetails.this, CollectorListOfBen2.class);
+                                    intent.putExtra("village",village);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(CollectorUserDetails.this, "Error occured", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                }else{
+                    Toast.makeText(CollectorUserDetails.this, "Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 
 //    private void sanctionAmount(String aadharNumber) {
 //        Map<String, Object> individualInfo = new HashMap<String, Object>();

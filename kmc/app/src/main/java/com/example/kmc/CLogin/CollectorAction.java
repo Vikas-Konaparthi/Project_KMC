@@ -36,11 +36,13 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
     String village;
     int pendingAction1;
     int pendingAction2;
+    int pendingAction3;
     String aadhar;
     FirebaseFirestore db;
     TextView pendingBadge1;
     TextView pendingBadge2;
     String district;
+    TextView pendingBadge3;
 
 
     @Override
@@ -57,6 +59,7 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
 
         pendingBadge1=(TextView) findViewById(R.id.cpending1);
         pendingBadge2=(TextView) findViewById(R.id.cpending2);
+        pendingBadge3 =(TextView) findViewById(R.id.cpending3);
         db=FirebaseFirestore.getInstance();
         card1.setOnClickListener(this);
         card2.setOnClickListener(this);
@@ -83,6 +86,9 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
                         for(DocumentSnapshot d:list)
                         {
                             Individual obj=d.toObject(Individual.class);
+                            if(obj.getSpApproved().equals("yes")&& !obj.getCtrBenApproved().equalsIgnoreCase("yes")){
+                                pendingAction3 = pendingAction3+1;
+                            }
                             if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village.toLowerCase(Locale.ROOT))) {
                                 if (obj.getSpApproved2().equals("yes")) {
                                     if (!obj.getCtrApproved().equals("yes") && !obj.getCtrApproved().equals("no")) {
@@ -100,6 +106,7 @@ public class CollectorAction extends AppCompatActivity implements View.OnClickLi
                         }
                         pendingBadge1.setText(String.valueOf(pendingAction1));
                         pendingBadge2.setText(String.valueOf(pendingAction2));
+                        pendingBadge3.setText(String.valueOf(pendingAction3));
                     }
                 });
 

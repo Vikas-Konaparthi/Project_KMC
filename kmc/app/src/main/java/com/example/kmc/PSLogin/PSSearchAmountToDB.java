@@ -90,7 +90,7 @@ public class PSSearchAmountToDB extends AppCompatActivity {
                             {
                                 if(obj.getVillage().toLowerCase(Locale.ROOT).toString().equals(village.toLowerCase(Locale.ROOT)));
                                 {
-                                    if(obj.getSpApproved().toString().equalsIgnoreCase("yes"))
+                                    if(obj.getSpApproved().toString().equalsIgnoreCase("yes")&&obj.getCtrBenApproved().equalsIgnoreCase("yes"))
                                     {
                                         if(!obj.getPsApproved().equals("yes")) {
                                             datalist.add(obj);

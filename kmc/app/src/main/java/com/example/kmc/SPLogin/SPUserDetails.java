@@ -187,7 +187,7 @@ public class SPUserDetails extends AppCompatActivity {
           }
     public void approve(View view) {
         String approved="yes";
-        status="Waiting for Panchayat Secretary Amount Request";
+        status="Waiting for collector Approval";
         updateData(aadharNumber,approved,status);
     }
 

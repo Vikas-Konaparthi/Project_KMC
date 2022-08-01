@@ -16,16 +16,19 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.kmc.CLogin.CollectorAmountDBToBen;
 import com.example.kmc.Individual;
+import com.example.kmc.List4;
 import com.example.kmc.NoteElements;
 import com.example.kmc.PSAdapters.myadapterPS2;
 import com.example.kmc.R;
 import com.example.kmc.SPAdapters.myadapterSP2;
+import com.example.kmc.SelectionElements4;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -59,13 +62,14 @@ import java.util.Map;
 
 import jxl.write.Label;
 
-public class SPAmountToDB extends AppCompatActivity {
+public class SPAmountToDB extends AppCompatActivity implements com.example.kmc.List4{
 
     public Toolbar toolbar;
     RecyclerView recyclerView;
 
     ArrayList<Individual> datalist;
     FirebaseFirestore db;
+    ArrayList<SelectionElements4> selected;
 
     myadapterSP2 adapter;
     String village1;
@@ -73,7 +77,8 @@ public class SPAmountToDB extends AppCompatActivity {
     Individual obj;
     String village2;
     List<DocumentSnapshot> list;
-
+    ImageButton checkAll;
+    ImageButton cancelAll;
     ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +86,8 @@ public class SPAmountToDB extends AppCompatActivity {
         setContentView(R.layout.activity_spamount_to_db);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        checkAll=findViewById(R.id.checkAll);
+        cancelAll=findViewById(R.id.cancelAll);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -91,7 +98,7 @@ public class SPAmountToDB extends AppCompatActivity {
             village2 = value2;
         }
         datalist=new ArrayList<>();
-        adapter=new myadapterSP2(datalist,village1,village2);
+        adapter=new myadapterSP2(datalist,village1,village2,SPAmountToDB.this,SPAmountToDB.this);
         recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -130,9 +137,30 @@ public class SPAmountToDB extends AppCompatActivity {
     }
 
     public void search(View view) {
-        Intent i = new Intent(this, SpAmountToDbSearch.class);
-        i.putExtra("village1",village1);
-        i.putExtra("village2",village2);
-        startActivity(i);
+//        Intent i = new Intent(this, SpAmountToDbSearch.class);
+//        i.putExtra("village1",village1);
+//        i.putExtra("village2",village2);
+//        startActivity(i);
+    }
+
+    public void checkAll(View view) {
+
+    }
+    public void cancelAll(View view) {
+
+    }
+
+
+    @Override
+    public void push(ArrayList<SelectionElements4> list) {
+        selected=list;
+        if(!selected.isEmpty())
+        {
+            checkAll.setVisibility(View.VISIBLE);
+            cancelAll.setVisibility(View.VISIBLE);
+        }else{
+            checkAll.setVisibility(View.GONE);
+            cancelAll.setVisibility(View.GONE);
+        }
     }
 }

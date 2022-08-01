@@ -25,6 +25,19 @@
             android:text="Special Officer"
             android:textColor="#fff"/>
         <ImageButton
+            android:id="@+id/cancelAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="cancel"
+            android:onClick="cancelAll"
+            android:visibility="gone"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/ic_outline_clear_24"
+            android:textSize="20dp"
+            />
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -45,6 +58,19 @@
             android:layout_marginTop="5dp"
             android:backgroundTint="@color/colorPrimary"
             android:src="@drawable/ic_baseline_sticky_note_2_24"
+            android:textSize="20dp"
+            />
+        <ImageButton
+            android:id="@+id/checkAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="check"
+            android:onClick="checkAll"
+            android:visibility="gone"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/ic_baseline_check_24"
             android:textSize="20dp"
             />
 

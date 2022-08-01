@@ -85,11 +85,8 @@ public class CollectorSearchGrounding extends AppCompatActivity {
                         for(DocumentSnapshot d:list)
                         {
                             Individual obj=d.toObject(Individual.class);
-                            if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village.toLowerCase(Locale.ROOT)))
-                            {
                                 if(obj.getGroundingStatus().equals("yes"))
                                     datalist.add(obj);
-                            }
                         }
                         adapter.notifyDataSetChanged();
                         progressBar.setVisibility(View.GONE);

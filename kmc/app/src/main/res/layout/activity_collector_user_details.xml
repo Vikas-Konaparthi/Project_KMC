@@ -298,6 +298,7 @@
                 android:gravity="center"
                 style="?attr/materialButtonOutlinedStyle"
                 />
+
             <!--            <Button-->
             <!--                android:id="@+id/soDocument"-->
             <!--                android:layout_width="match_parent"-->
@@ -359,30 +360,28 @@
             <!--                android:paddingTop="30dp"-->
             <!--                android:visibility="gone">-->
             <!--            </ProgressBar>-->
-            <!--            <Button-->
-            <!--                android:id="@+id/approve"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:text="Approve"-->
-            <!--                android:layout_below="@id/password"-->
-            <!--                android:onClick="approve"-->
-            <!--                android:layout_marginTop="30dp"-->
-            <!--                android:gravity="center"-->
-            <!--                android:enabled="false"-->
-            <!--                style="?attr/materialButtonOutlinedStyle"-->
-            <!--                />-->
-            <!--            <Button-->
-            <!--                android:id="@+id/reject"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:text="Reject"-->
-            <!--                android:layout_below="@id/password"-->
-            <!--                android:onClick="reject"-->
-            <!--                android:layout_marginTop="30dp"-->
-            <!--                android:gravity="center"-->
-            <!--                android:enabled="false"-->
-            <!--                style="?attr/materialButtonOutlinedStyle"-->
-            <!--                />-->
+                        <Button
+                            android:id="@+id/approve"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Approve"
+                            android:layout_below="@id/password"
+                            android:onClick="approve"
+                            android:layout_marginTop="30dp"
+                            android:gravity="center"
+                            style="?attr/materialButtonOutlinedStyle"
+                            />
+                        <Button
+                            android:id="@+id/reject"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Reject"
+                            android:layout_below="@id/password"
+                            android:onClick="reject"
+                            android:layout_marginTop="30dp"
+                            android:gravity="center"
+                            style="?attr/materialButtonOutlinedStyle"
+                            />
             <!--            <Button-->
             <!--                android:id="@+id/groundImage"-->
             <!--                android:layout_width="match_parent"-->

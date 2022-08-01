@@ -88,7 +88,7 @@ public class PS_Action extends AppCompatActivity implements View.OnClickListener
                             {
                                 if(obj.getVillage().toLowerCase(Locale.ROOT).toString().equals(village.toLowerCase(Locale.ROOT)));
                                 {
-                                    if(obj.getSpApproved().toString().equalsIgnoreCase("yes"))
+                                    if(obj.getSpApproved().toString().equalsIgnoreCase("yes")&&obj.getCtrBenApproved().equalsIgnoreCase("yes"))
                                     {
                                         if(!obj.getPsApproved().equals("yes")) {
                                             pendingAction1=pendingAction1+1;
@@ -148,7 +148,7 @@ public class PS_Action extends AppCompatActivity implements View.OnClickListener
                             {
                                 if(obj.getVillage().toLowerCase(Locale.ROOT).toString().equals(village.toLowerCase(Locale.ROOT)));
                                 {
-                                    if(obj.getSpApproved().toString().equalsIgnoreCase("yes"))
+                                    if(obj.getSpApproved().toString().equalsIgnoreCase("yes")&&obj.getCtrBenApproved().equalsIgnoreCase("yes"))
                                     {
                                         if(!obj.getPsApproved().equals("yes")) {
                                             pendingAction1=pendingAction1+1;

@@ -16,6 +16,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kmc">
         <activity
+            android:name=".CLogin.CollectorGrounding2"
+            android:exported="false" />
+        <activity
+            android:name=".CLogin.CollectorAmountDBToBen2"
+            android:exported="false" />
+        <activity
+            android:name=".CLogin.CollectorAmountToDB2"
+            android:exported="false" />
+        <activity
+            android:name=".CLogin.CollectorListOfBen2"
+            android:exported="false" />
+        <activity
+            android:name=".CLogin.CollectorAction2"
+            android:exported="false" />
+        <activity
             android:name=".SOLogin.SoGroundingSearch"
             android:exported="false" />
         <activity
