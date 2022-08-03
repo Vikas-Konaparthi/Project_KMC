@@ -23,6 +23,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class CollectorSearchAmountToDB2 extends AppCompatActivity {
     ArrayList<Individual> datalist;
@@ -47,10 +48,10 @@ public class CollectorSearchAmountToDB2 extends AppCompatActivity {
         searchText="";
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            //district= extras.getString("district");
+            district= extras.getString("district");
            // village=extras.getString("village");
         }
-        adapter=new myadapter4CollectorSearch5(datalist,village);
+        adapter=new myadapter4CollectorSearch5(datalist,district);
         recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -73,22 +74,24 @@ public class CollectorSearchAmountToDB2 extends AppCompatActivity {
     }
 
     public void searchbutton(View view) {
+        datalist.clear();
         progressBar.setVisibility(View.VISIBLE);
         Log.d("searchText",searchText);
-        db.collection("individuals").orderBy("name").startAt(searchText).endAt(searchText+"\uf8ff").get()
+        db.collection("individuals").orderBy("name").startAt(searchText.toLowerCase(Locale.ROOT)).endAt(searchText.toLowerCase(Locale.ROOT)+"\uf8ff").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         List<DocumentSnapshot> list =queryDocumentSnapshots.getDocuments();
-                        datalist.clear();
                         for(DocumentSnapshot d:list)
                         {
                             Individual obj=d.toObject(Individual.class);
+                            if(obj.getDistrict().equalsIgnoreCase(district)) {
                                 if (obj.getSpApproved2().equals("yes")) {
                                     if (!obj.getCtrApproved().equals("yes") && !obj.getCtrApproved().equals("no")) {
                                         datalist.add(obj);
                                     }
                                 }
+                            }
                         }
                         adapter.notifyDataSetChanged();
                         progressBar.setVisibility(View.GONE);

@@ -422,8 +422,8 @@ public class CollectorAmountDBToBen2 extends AppCompatActivity implements com.ex
 
     }
     public void search(View view) {
-        Intent i = new Intent(this, CollectorSearchAmountToDB.class);
-        i.putExtra("village",village);
+        Intent i = new Intent(this, CollectorSearchAmountDBToBen2.class);
+        i.putExtra("district",district);
         startActivity(i);
     }
     @Override

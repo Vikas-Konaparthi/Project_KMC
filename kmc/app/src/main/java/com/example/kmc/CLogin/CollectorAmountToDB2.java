@@ -92,7 +92,7 @@ public class CollectorAmountToDB2 extends AppCompatActivity implements com.examp
         ne=new ArrayList<>();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            village= extras.getString("village");
+          //  village= extras.getString("village");
             district= extras.getString("district");
         }
         adapter=new myadapter4Collector5(datalist,village,CollectorAmountToDB2.this,CollectorAmountToDB2.this);
@@ -434,7 +434,7 @@ public class CollectorAmountToDB2 extends AppCompatActivity implements com.examp
     }
     public void search(View view) {
         Intent i = new Intent(this, CollectorSearchAmountToDB2.class);
-        i.putExtra("village",village);
+        i.putExtra("district",district);
         startActivity(i);
     }
 

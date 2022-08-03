@@ -34,7 +34,7 @@ public class CollectorSearchAmountDBToBen2 extends AppCompatActivity {
     String district;
     ProgressBar progressBar;
     String searchText;
-    String village;
+//    String village;
 
     myadapter4CollectorSearch6 adapter;
     @Override
@@ -48,10 +48,10 @@ public class CollectorSearchAmountDBToBen2 extends AppCompatActivity {
         searchText="";
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            //district= extras.getString("district");
-            village=extras.getString("village");
+            district= extras.getString("district");
+            //village=extras.getString("village");
         }
-        adapter=new myadapter4CollectorSearch6(datalist,village);
+        adapter=new myadapter4CollectorSearch6(datalist,district);
         recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -75,8 +75,7 @@ public class CollectorSearchAmountDBToBen2 extends AppCompatActivity {
 
     public void searchbutton(View view) {
         progressBar.setVisibility(View.VISIBLE);
-        Log.d("searchText",searchText);
-        db.collection("individuals").orderBy("name").startAt(searchText).endAt(searchText+"\uf8ff").get()
+        db.collection("individuals").orderBy("name").startAt(searchText.toLowerCase(Locale.ROOT)).endAt(searchText.toLowerCase(Locale.ROOT)+"\uf8ff").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -85,12 +84,17 @@ public class CollectorSearchAmountDBToBen2 extends AppCompatActivity {
                         for(DocumentSnapshot d:list)
                         {
                             Individual obj=d.toObject(Individual.class);
-                            if(obj.getVillage().toLowerCase(Locale.ROOT).equals(village.toLowerCase(Locale.ROOT)))
-                            {
-                                if(obj.getSpApproved3().equals("yes") && obj.getSoApproved().equals("yes"))
-                                    if(!obj.getCtrApproved2().equals("yes") &&  !obj.getCtrApproved2().equals("no")) {
+                            if(obj.getDistrict().equalsIgnoreCase(district)) {
+                                Log.d("searchDis",district);
+                                Log.d("searchDistrict",obj.getDistrict());
+                                Log.d("searchDText",searchText);
+                                if (obj.getSpApproved3().equals("yes") && obj.getSoApproved().equals("yes"))
+                                {
+                                    if (!obj.getCtrApproved2().equals("yes") && !obj.getCtrApproved2().equals("no")) {
                                         datalist.add(obj);
                                     }
+                                }
+
                             }
                         }
                         adapter.notifyDataSetChanged();

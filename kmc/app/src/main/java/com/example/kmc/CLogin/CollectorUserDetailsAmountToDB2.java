@@ -84,7 +84,7 @@ public class CollectorUserDetailsAmountToDB2 extends AppCompatActivity {
     String qAmount;
     String approvalAmount;
     String dbAccount;
-    String village;
+    String district;
     ProgressBar pgsBar;
     String groundImage;
     Button groundImageButton;
@@ -164,7 +164,7 @@ public class CollectorUserDetailsAmountToDB2 extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            village= extras.getString("village");
+            district= extras.getString("district");
         }
 //        if(soApproved.equals("yes"))
 //        {
@@ -291,7 +291,7 @@ public class CollectorUserDetailsAmountToDB2 extends AppCompatActivity {
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(CollectorUserDetailsAmountToDB2.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(CollectorUserDetailsAmountToDB2.this, CollectorAmountToDB2.class);
-                                    intent.putExtra("village",village);
+                                    intent.putExtra("district",district);
                                     startActivity(intent);
                                     finish();
                                 }

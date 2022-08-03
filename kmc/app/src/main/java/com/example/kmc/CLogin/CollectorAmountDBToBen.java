@@ -422,7 +422,7 @@ public class CollectorAmountDBToBen extends AppCompatActivity implements com.exa
 
     }
     public void search(View view) {
-        Intent i = new Intent(this, CollectorSearchAmountToDB.class);
+        Intent i = new Intent(this, CollectorSearchAmountDBToBen.class);
         i.putExtra("village",village);
         startActivity(i);
     }

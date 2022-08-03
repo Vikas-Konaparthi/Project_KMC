@@ -99,7 +99,7 @@ public class PSAmountDBToBen extends AppCompatActivity {
 
     }
     public void search(View view) {
-        Intent i = new Intent(this, PSSearchGrounding.class);
+        Intent i = new Intent(this, PSSearchAmountDBToBen.class);
         i.putExtra("district",district);
         i.putExtra("village",village);
         startActivity(i);

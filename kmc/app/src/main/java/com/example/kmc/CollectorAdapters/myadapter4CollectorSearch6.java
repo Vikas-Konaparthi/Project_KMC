@@ -24,11 +24,11 @@ import java.util.Locale;
 public class myadapter4CollectorSearch6 extends RecyclerView.Adapter<myadapter4CollectorSearch6.myviewholder>
 {
     ArrayList<Individual> datalist;
-    String village;
+    String district;
 
-    public myadapter4CollectorSearch6(ArrayList<Individual> datalist, String village) {
+    public myadapter4CollectorSearch6(ArrayList<Individual> datalist, String district) {
         this.datalist = datalist;
-        this.village=village;
+        this.district=district;
     }
 
     @NonNull
@@ -92,7 +92,7 @@ public class myadapter4CollectorSearch6 extends RecyclerView.Adapter<myadapter4C
                 i.putExtra("uCollectorApprovalAmount",datalist.get(position).getApprovalAmount());
                 i.putExtra("uDbAccount",datalist.get(position).getDbAccount());
                 i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
-                i.putExtra("village",village);
+                i.putExtra("district",district);
                 i.putExtra("uGroundingStatus",datalist.get(position).getGroundingStatus());
                 i.putExtra("uGroundingImage",datalist.get(position).getGrounding_img());
                 i.putExtra("uApprovalAmount",datalist.get(position).getApprovalAmount());
