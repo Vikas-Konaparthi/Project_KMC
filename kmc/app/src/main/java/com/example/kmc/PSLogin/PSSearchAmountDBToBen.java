@@ -7,6 +7,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -77,7 +78,7 @@ public class PSSearchAmountDBToBen extends AppCompatActivity {
     public void searchbutton(View view) {
         progressBar.setVisibility(View.VISIBLE);
         Log.d("searchText",searchText);
-        db.collection("individuals").orderBy("name").startAt(searchText).endAt(searchText+"\uf8ff").get()
+        db.collection("individuals").orderBy("name").startAt(searchText).endAt(searchText.toLowerCase(Locale.ROOT)+"\uf8ff").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
