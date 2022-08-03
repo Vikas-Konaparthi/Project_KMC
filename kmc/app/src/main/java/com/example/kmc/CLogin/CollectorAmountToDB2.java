@@ -433,7 +433,7 @@ public class CollectorAmountToDB2 extends AppCompatActivity implements com.examp
 
     }
     public void search(View view) {
-        Intent i = new Intent(this, CollectorSearchAmountToDB.class);
+        Intent i = new Intent(this, CollectorSearchAmountToDB2.class);
         i.putExtra("village",village);
         startActivity(i);
     }

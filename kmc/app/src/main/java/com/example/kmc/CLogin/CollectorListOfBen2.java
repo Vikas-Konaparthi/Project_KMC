@@ -57,7 +57,7 @@ public class CollectorListOfBen2 extends AppCompatActivity implements com.exampl
         datalist=new ArrayList<>();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            village= extras.getString("village");
+          //  village= extras.getString("village");
             district= extras.getString("district");
         }
         adapter=new myadapter5(datalist,village,CollectorListOfBen2.this,CollectorListOfBen2.this);
@@ -93,10 +93,10 @@ public class CollectorListOfBen2 extends AppCompatActivity implements com.exampl
 
     }
     public void search(View view) {
-//        Intent i = new Intent(this, CollectorSearch.class);
-//        i.putExtra("district",district);
-//        i.putExtra("village",village);
-//        startActivity(i);
+        Intent i = new Intent(this, CollectorSearch2.class);
+        i.putExtra("district",district);
+     //   i.putExtra("village",village);
+        startActivity(i);
     }
 
     public void cancelAll(View view) {

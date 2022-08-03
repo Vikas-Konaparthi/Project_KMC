@@ -146,7 +146,7 @@ public class CollectorUserDetails2 extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            village= extras.getString("village");
+           // village= extras.getString("village");
         }
 
 //            individualQAmount.addTextChangedListener(new TextWatcher() {
