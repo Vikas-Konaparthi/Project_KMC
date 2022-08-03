@@ -21,6 +21,7 @@ import android.widget.Toolbar;
 
 import com.example.kmc.CollectorAdapters.myadapter4Collector2;
 import com.example.kmc.CollectorAdapters.myadapter4Collector3;
+import com.example.kmc.CollectorAdapters.myadapter4Collector6;
 import com.example.kmc.Individual;
 import com.example.kmc.NoteElements;
 import com.example.kmc.R;
@@ -74,7 +75,7 @@ public class CollectorAmountDBToBen2 extends AppCompatActivity implements com.ex
     int noOfBen;
     String district;
     ArrayList<NoteElements> ne;
-    myadapter4Collector3 adapter;
+    myadapter4Collector6 adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +91,7 @@ public class CollectorAmountDBToBen2 extends AppCompatActivity implements com.ex
             village= extras.getString("village");
             district = extras.getString("district");
         }
-        adapter=new myadapter4Collector3(datalist,village,CollectorAmountDBToBen2.this,CollectorAmountDBToBen2.this);
+        adapter=new myadapter4Collector6(datalist,village,CollectorAmountDBToBen2.this,CollectorAmountDBToBen2.this);
         recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
         checkAll=findViewById(R.id.checkAll);
@@ -473,10 +474,10 @@ public class CollectorAmountDBToBen2 extends AppCompatActivity implements com.ex
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
-                                            Toast.makeText(CollectorAmountDBToBen2.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(CollectorAmountDBToBen2.this, CollectorAmountDBToBen.class);
-                                            intent.putExtra("village",village);
-                                            startActivity(intent);
+             //                               Toast.makeText(CollectorAmountDBToBen2.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
+//                                            Intent intent = new Intent(CollectorAmountDBToBen2.this, CollectorAmountDBToBen2.class);
+//                                            intent.putExtra("village",village);
+//                                            startActivity(intent);
                                             finish();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {

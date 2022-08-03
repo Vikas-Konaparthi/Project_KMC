@@ -21,6 +21,7 @@ import android.widget.Toolbar;
 
 import com.example.kmc.CollectorAdapters.myadapter4;
 import com.example.kmc.CollectorAdapters.myadapter4Collector2;
+import com.example.kmc.CollectorAdapters.myadapter4Collector5;
 import com.example.kmc.Individual;
 import com.example.kmc.NoteElements;
 import com.example.kmc.R;
@@ -73,7 +74,7 @@ public class CollectorAmountToDB2 extends AppCompatActivity implements com.examp
     String district;
     String mandal;
     String today;
-    myadapter4Collector2 adapter;
+    myadapter4Collector5 adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,7 +95,7 @@ public class CollectorAmountToDB2 extends AppCompatActivity implements com.examp
             village= extras.getString("village");
             district= extras.getString("district");
         }
-        adapter=new myadapter4Collector2(datalist,village,CollectorAmountToDB2.this,CollectorAmountToDB2.this);
+        adapter=new myadapter4Collector5(datalist,village,CollectorAmountToDB2.this,CollectorAmountToDB2.this);
         recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);

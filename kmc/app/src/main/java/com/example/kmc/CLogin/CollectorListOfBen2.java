@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.example.kmc.CollectorAdapters.myadapter5;
 import com.example.kmc.Individual;
 import com.example.kmc.R;
 import com.example.kmc.CollectorAdapters.myadapter4;
@@ -44,7 +45,7 @@ public class CollectorListOfBen2 extends AppCompatActivity implements com.exampl
     ProgressBar progressBar;
     ImageButton checkAll;
     ImageButton cancelAll;
-    myadapter4 adapter;
+    myadapter5 adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +60,7 @@ public class CollectorListOfBen2 extends AppCompatActivity implements com.exampl
             village= extras.getString("village");
             district= extras.getString("district");
         }
-        adapter=new myadapter4(datalist,village,CollectorListOfBen2.this,CollectorListOfBen2.this);
+        adapter=new myadapter5(datalist,village,CollectorListOfBen2.this,CollectorListOfBen2.this);
         recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -136,9 +137,9 @@ public class CollectorListOfBen2 extends AppCompatActivity implements com.exampl
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(CollectorListOfBen2.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(CollectorListOfBen2.this, CollectorListOfBen2.class);
-                                    intent.putExtra("village",village);
-                                    startActivity(intent);
+//                                    Intent intent = new Intent(CollectorListOfBen2.this, CollectorAction2.class);
+//                                    intent.putExtra("village",village);
+//                                    startActivity(intent);
                                     finish();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
