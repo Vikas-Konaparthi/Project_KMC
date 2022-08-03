@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toolbar;
 
-import com.example.kmc.CLogin.CollectorSearch;
+
 import com.example.kmc.Individual;
 import com.example.kmc.PSAdapters.myadapterPS2;
 import com.example.kmc.R;

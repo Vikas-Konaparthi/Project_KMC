@@ -117,6 +117,7 @@ public class myadapter4Collector2 extends RecyclerView.Adapter<myadapter4Collect
                 i.putExtra("uDbAccountNo",datalist.get(position).getDbBankAccNo());
                 i.putExtra("uDbIFSC",datalist.get(position).getDbBankIFSC());
                 i.putExtra("uStatus",datalist.get(position).getStatus());
+                i.putExtra("uCreditedToDB",datalist.get(position).getCreditedToDB());
 
 
 
@@ -134,7 +135,7 @@ public class myadapter4Collector2 extends RecyclerView.Adapter<myadapter4Collect
                 if (dataAadhar.contains(t)) {
                     Toast.makeText(view.getContext(), t+"Already Selected", Toast.LENGTH_SHORT).show();
                 } else {
-                    SelectionElements s= new SelectionElements(datalist.get(position).getAadhar(),datalist.get(position).getSpAmountApproved(),datalist.get(position).getStatus());
+                    SelectionElements s= new SelectionElements(datalist.get(position).getAadhar(),datalist.get(position).getSpAmountApproved(),datalist.get(position).getStatus(),datalist.get(position).getDbAccount(),datalist.get(position).getApprovalAmount(),datalist.get(position).getCreditedToDB());
                     dataAadhar.add(s);
                     list.push(dataAadhar);
                     Toast.makeText(view.getContext (), t+" Added", Toast.LENGTH_SHORT).show();

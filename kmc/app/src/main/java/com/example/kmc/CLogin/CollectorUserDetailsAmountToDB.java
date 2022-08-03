@@ -251,27 +251,30 @@ public class CollectorUserDetailsAmountToDB extends AppCompatActivity {
 //    }
     public void approve(View view) {
         int newAmount=Integer.parseInt(getIntent().getStringExtra("uDBAccount").toString())+Integer.parseInt(collectorSanction);
+        String creditedToDB=String.valueOf(Integer.parseInt(getIntent().getStringExtra("uCreditedToDB")+Integer.parseInt(collectorSanction)));
         String collectorSanctionAmount=Integer.toString(newAmount);
         String approved="yes";
         String spApproved="yes";
         status=collectorSanction+" Credited to DB Account";
-        updateData(aadharNumber,approved,status,collectorSanctionAmount,spApproved);
+        updateData(aadharNumber,approved,status,collectorSanctionAmount,spApproved,creditedToDB);
     }
     //
 //
     public void reject(View view) {
-        String collectorSanctionAmount="0";
+        String collectorSanctionAmount=getIntent().getStringExtra("uDBAccount").toString();
         String approved="no";
         String spApproved="NA";
+        String creditedToDB=String.valueOf(Integer.parseInt(getIntent().getStringExtra("uCreditedToDB").toString()));
         status= "Rejected By Collector: "+getIntent().getStringExtra("uStatus").toString();
-        updateData(aadharNumber,approved,status,collectorSanctionAmount,spApproved);
+        updateData(aadharNumber,approved,status,collectorSanctionAmount,spApproved,creditedToDB);
     }
-    private void updateData(String aadharNumber, String approved,String status,String collectorSanctionAmount,String spApproved) {
+    private void updateData(String aadharNumber, String approved,String status,String collectorSanctionAmount,String spApproved,String creditedToDB) {
         Map<String, Object> individualInfo = new HashMap<String, Object>();
         individualInfo.put("status", status);
         individualInfo.put("ctrApproved", approved);
         individualInfo.put("spApproved2", spApproved);
         individualInfo.put("dbAccount", collectorSanctionAmount);
+        individualInfo.put("creditedToDB", creditedToDB);
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

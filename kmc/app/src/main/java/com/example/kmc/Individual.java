@@ -56,6 +56,7 @@ public class Individual {
     String spNote;
     String constituency;
     String ctrBenApproved;
+    String creditedToDB;
 
     public String getSecOfficerUpload() {
         return secOfficerUpload;
@@ -83,7 +84,7 @@ public class Individual {
         this.ctrBenApproved = ctrBenApproved;
     }
 
-    public Individual(String ctrBenapproved, String constituency, String option_selected, String grounding_img, String vendorName, String vendorAccountNo, String vendorIFSC, String groundingStatus, String bankIFSC, String approvalAmount, String secOfficerApproved, String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district, String dbAccount, String sp_remarks, String so_remarks, String ctrApproved, String secOfficerUpload, String status, String individualAmountRequired, String spApproved2, String spAmountApproved, String psRequestedAmountToBeneficiary, String vendorAgency, String vendorBankName, String quotationImage, String DbBankName, String dbBankAccNo, String DbBankIFSC, String spApproved3, String soApproved, String so_quotation_amount, String ctrApproved2, String psApproved, String psApproved2, String psApproved3, String occupation, String rationcardnumber, String ctrNote1, String ctrNote2, String spNote) {
+    public Individual(String ctrBenapproved, String constituency, String option_selected, String grounding_img, String vendorName, String vendorAccountNo, String vendorIFSC, String groundingStatus, String bankIFSC, String approvalAmount, String secOfficerApproved, String name, String fatherName, String age, String houseNo, String aadhar, String phoneNo, String preferredUnit, String bankName, String bankAccNo, String psPDF, String spApproved, String village, String mandal, String district, String dbAccount, String sp_remarks, String so_remarks, String ctrApproved, String secOfficerUpload, String status, String individualAmountRequired, String spApproved2, String spAmountApproved, String psRequestedAmountToBeneficiary, String vendorAgency, String vendorBankName, String quotationImage, String DbBankName, String dbBankAccNo, String DbBankIFSC, String spApproved3, String soApproved, String so_quotation_amount, String ctrApproved2, String psApproved, String psApproved2, String psApproved3, String occupation, String rationcardnumber, String ctrNote1, String ctrNote2, String spNote,String creditedToDB) {
         this.ctrBenApproved = ctrBenApproved;
         this.option_selected = option_selected;
         this.name = name;
@@ -137,11 +138,20 @@ public class Individual {
         this.ctrNote2=ctrNote2;
         this.spNote = spNote;
         this.constituency = constituency;
+        this.creditedToDB=creditedToDB;
 
     }
 
     public void setOption_selected(String option_selected) {
         this.option_selected = option_selected;
+    }
+
+    public String getCreditedToDB() {
+        return creditedToDB;
+    }
+
+    public void setCreditedToDB(String creditedToDB) {
+        this.creditedToDB = creditedToDB;
     }
 
     public String getConstituency() {

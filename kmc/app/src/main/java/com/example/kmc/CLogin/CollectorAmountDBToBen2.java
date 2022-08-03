@@ -74,7 +74,6 @@ public class CollectorAmountDBToBen2 extends AppCompatActivity implements com.ex
     int noOfBen;
     String district;
     ArrayList<NoteElements> ne;
-
     myadapter4Collector3 adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

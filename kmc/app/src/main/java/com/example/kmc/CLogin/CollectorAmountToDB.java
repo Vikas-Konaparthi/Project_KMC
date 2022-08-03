@@ -452,20 +452,26 @@ public class CollectorAmountToDB extends AppCompatActivity implements com.exampl
 
     }
 
+
     public void checkAll(View view) {
         for(SelectionElements s:selected)
         {
-           updateData(s.getAadhar(),"yes",s.getApprovedAmount()+" Credited to DB Account",s.getApprovedAmount(),"yes");
+            String creditedToDB= String.valueOf(Integer.parseInt(s.getCreditedToDB())+Integer.parseInt(s.getApprovedAmount()));
+            String collectorSanction= String.valueOf(Integer.parseInt(s.getDbAccountAmount())+Integer.parseInt(s.getApprovedAmount()));
+            Toast.makeText(this, creditedToDB+" "+s.getApprovedAmount()+" "+s.getDbAccountAmount(), Toast.LENGTH_SHORT).show();
+            Log.d("Heloooooooooo",creditedToDB+" "+s.getApprovedAmount()+" "+s.getDbAccountAmount());
+            updateData(s.getAadhar(),"yes",s.getApprovedAmount()+" Credited to DB Account",collectorSanction,creditedToDB,"yes");
         }
         Toast.makeText(this, "Approved", Toast.LENGTH_SHORT).show();
         finish();
     }
-    private void updateData(String aadharNumber, String approved,String status,String collectorSanctionAmount,String spApproved) {
+    private void updateData(String aadharNumber, String approved,String status,String collectorSanctionAmount,String creditedToDB,String spApproved) {
         Map<String, Object> individualInfo = new HashMap<String, Object>();
         individualInfo.put("status", status);
         individualInfo.put("ctrApproved", approved);
         individualInfo.put("spApproved2", spApproved);
         individualInfo.put("dbAccount", collectorSanctionAmount);
+        individualInfo.put("creditedToDB", creditedToDB);
         Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
         db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -481,9 +487,9 @@ public class CollectorAmountToDB extends AppCompatActivity implements com.exampl
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(CollectorAmountToDB.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(CollectorAmountToDB.this, CollectorAmountToDB.class);
-                                    intent.putExtra("village",village);
-                                    startActivity(intent);
+//                                    Intent intent = new Intent(CollectorAmountToDB.this, CollectorAmountToDB.class);
+//                                    intent.putExtra("village",village);
+//                                    startActivity(intent);
                                     finish();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
@@ -494,7 +500,6 @@ public class CollectorAmountToDB extends AppCompatActivity implements com.exampl
                     });
 
                 }else{
-
                     Toast.makeText(CollectorAmountToDB.this, "Failed", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -503,11 +508,11 @@ public class CollectorAmountToDB extends AppCompatActivity implements com.exampl
 
     public void cancelAll(View view) {
         for(SelectionElements s:selected) {
-            String collectorSanctionAmount = "0";
+            String collectorSanctionAmount = s.getDbAccountAmount();
             String approved = "no";
             String spApproved = "NA";
             String status = "Rejected By Collector: " + s.getStatus();
-            updateData(s.getAadhar(), approved, status, collectorSanctionAmount, spApproved);
+            updateData(s.getAadhar(), approved, status, collectorSanctionAmount,s.getCreditedToDB(),spApproved);
         }
         Toast.makeText(this, "Rejected", Toast.LENGTH_SHORT).show();
         finish();

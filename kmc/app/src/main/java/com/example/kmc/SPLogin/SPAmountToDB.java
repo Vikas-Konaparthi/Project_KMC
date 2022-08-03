@@ -104,8 +104,6 @@ public class SPAmountToDB extends AppCompatActivity implements com.example.kmc.L
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
 
-
-
         db.collection("individuals").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -144,10 +142,69 @@ public class SPAmountToDB extends AppCompatActivity implements com.example.kmc.L
     }
 
     public void checkAll(View view) {
-
+        for(SelectionElements4 s:selected) {
+            String approved="yes";
+            String status=s.getApprovalAmount()+" approved by Special Officer to DB Account ";
+            String psApproved="yes";
+            if((Integer.parseInt(s.getApprovalAmount())+(Integer.parseInt(s.getBenAccountAmount())+(Integer.parseInt(s.getDbAccount()))))<=1000000)
+            {
+                updateData(s.getAadhar(),approved,status,psApproved,s.getApprovalAmount());
+            }else{
+                Toast.makeText(this, "Amount limit exceed.", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
     public void cancelAll(View view) {
+        for(SelectionElements4 s:selected) {
+            String approved="no";
+            String psApproved="NA";
+            String status= "Rejected By SP: "+s.getStatus();
+            updateData(s.getAadhar(),approved,status,psApproved,s.getBenAccountAmount());
+        }
+    }
+    private void updateData(String aadharNumber, String approved,String status,String psApproved,String spApprovedAmount) {
+        Map<String, Object> individualInfo = new HashMap<String, Object>();
+        individualInfo.put("spApproved2", approved.trim());
+        individualInfo.put("sp_remarks", "Approved");
+        individualInfo.put("ctrApproved", "NA");
+        individualInfo.put("spAmountApproved", spApprovedAmount);
+        individualInfo.put("psApproved", psApproved);
+        individualInfo.put("status", status);
+        individualInfo.put("ctrNote1", "NA");
+        Toast.makeText(this, aadharNumber, Toast.LENGTH_SHORT).show();
+        db.collection("individuals").whereEqualTo("aadhar",aadharNumber)
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful() && !task.getResult().isEmpty()){
+                    DocumentSnapshot documentSnapshot=task.getResult().getDocuments().get(0);
+                    String documentID=documentSnapshot.getId();
+                    db.collection("individuals")
+                            .document(documentID)
+                            .update(individualInfo)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                //    Toast.makeText(SPAmountToDB.this, "Status Approval: "+approved, Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(SPAmountToDB.this, SPAmountToDB.class);
+                                    intent.putExtra("village1",village1);
+                                    intent.putExtra("village2",village2);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(SPAmountToDB.this, "Error occured", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
+                }else{
+
+                    Toast.makeText(SPAmountToDB.this, "Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
 

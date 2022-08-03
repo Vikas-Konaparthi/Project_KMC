@@ -3,19 +3,25 @@ package com.example.kmc.CollectorAdapters;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kmc.CLogin.CollectorUserDetails;
 import com.example.kmc.Individual;
+import com.example.kmc.List;
 import com.example.kmc.R;
+import com.example.kmc.SelectionElements;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -23,11 +29,15 @@ import java.util.Locale;
 public class myadapter4 extends RecyclerView.Adapter<myadapter4.myviewholder>
 {
     ArrayList<Individual> datalist;
+    ArrayList<SelectionElements> dataAadhar=new ArrayList<>();
     String village;
+    private List list;
+    String t;
 
-    public myadapter4(ArrayList<Individual> datalist, String village) {
+    public myadapter4(ArrayList<Individual> datalist, String village, Context context, List l) {
         this.datalist = datalist;
         this.village=village;
+        this.list=l;
     }
 
     @NonNull
@@ -81,6 +91,26 @@ public class myadapter4 extends RecyclerView.Adapter<myadapter4.myviewholder>
                 ((Activity)holder.t1.getContext()).finish();
             }
         }) ;
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                holder.cardView.setCardBackgroundColor(Color.parseColor("#edbef7"));
+                t = datalist.get(position).getAadhar();
+                if (dataAadhar.contains(t)) {
+                    Toast.makeText(view.getContext(), t+"Already Selected", Toast.LENGTH_SHORT).show();
+                } else {
+                    SelectionElements s= new SelectionElements(datalist.get(position).getAadhar(),datalist.get(position).getSpAmountApproved(),datalist.get(position).getStatus(),datalist.get(position).getDbAccount(),datalist.get(position).getCtrBenApproved(),datalist.get(position).getCreditedToDB());
+                    dataAadhar.add(s);
+                    list.push(dataAadhar);
+                    Toast.makeText(view.getContext (), t+" Added", Toast.LENGTH_SHORT).show();
+                }
+
+                holder.check.setVisibility(View.VISIBLE);
+                return true;
+
+            }
+
+        });
 
         holder.t1.setText(datalist.get(position).getName());
         holder.t2.setText(datalist.get(position).getStatus());
@@ -199,6 +229,8 @@ public class myadapter4 extends RecyclerView.Adapter<myadapter4.myviewholder>
         TextView t3;
         TextView t4;
         TextView t5;
+        ImageView check;
+        CardView cardView;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
@@ -207,6 +239,8 @@ public class myadapter4 extends RecyclerView.Adapter<myadapter4.myviewholder>
             t3=itemView.findViewById(R.id.t3);
             t4=itemView.findViewById(R.id.t4);
             t5=itemView.findViewById(R.id.t5);
+            check=itemView.findViewById(R.id.check);
+            cardView=itemView.findViewById(R.id.cardview);
 
         }
     }

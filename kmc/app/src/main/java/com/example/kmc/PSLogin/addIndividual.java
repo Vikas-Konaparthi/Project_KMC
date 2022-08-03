@@ -293,6 +293,7 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("so_remarks", "NA");
             individualInfo.put("sp_remarks", "NA");
             individualInfo.put("grounding_img", "NA");
+            individualInfo.put("initial_grounding_img", "NA");
             individualInfo.put("status", "Waiting for Special Officer Approval");
             individualInfo.put("approvalAmount", "0");
             individualInfo.put("groundingStatus", "NA");
@@ -313,6 +314,7 @@ public class addIndividual extends AppCompatActivity {
             individualInfo.put("ctrNote2", "NA");
             individualInfo.put("spNote", "NA");
             individualInfo.put("ctrBenApproved","NA");
+            individualInfo.put("creditedToDB", "0");
 
             //
             db.collection("individuals").whereEqualTo("aadhar",aadharNumber.trim()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
