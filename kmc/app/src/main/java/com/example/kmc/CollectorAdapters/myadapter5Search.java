@@ -69,7 +69,7 @@ public class myadapter5Search extends RecyclerView.Adapter<myadapter5Search.myvi
                 i.putExtra("uCollectorApprovalAmount",datalist.get(position).getApprovalAmount());
                 i.putExtra("uDBAccount",datalist.get(position).getDbAccount());
                 i.putExtra("uBankIFSC",datalist.get(position).getBankIFSC());
-                i.putExtra("village",village);
+                i.putExtra("district",district);
                 i.putExtra("uVendorIFSC",datalist.get(position).getVendorIFSC());
                 i.putExtra("uVendorBankAccount",datalist.get(position).getVendorAccountNo());
                 i.putExtra("uVendorName",datalist.get(position).getVendorName());
