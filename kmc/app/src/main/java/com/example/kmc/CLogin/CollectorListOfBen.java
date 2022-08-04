@@ -94,7 +94,7 @@ public class CollectorListOfBen extends AppCompatActivity implements com.example
 
     }
     public void search(View view) {
-//        Intent i = new Intent(this, CollectorSearch.class);
+        Intent i = new Intent(this, CollectorSearch.class);
 //        i.putExtra("district",district);
 //        i.putExtra("village",village);
 //        startActivity(i);
@@ -169,6 +169,10 @@ public class CollectorListOfBen extends AppCompatActivity implements com.example
             checkAll.setVisibility(View.GONE);
             cancelAll.setVisibility(View.GONE);
         }
+    }
+
+    public void unitSearch(View view) {
+
     }
 }
 

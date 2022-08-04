@@ -510,4 +510,7 @@ public class CollectorAmountDBToBen extends AppCompatActivity implements com.exa
         Toast.makeText(this, "Rejected", Toast.LENGTH_SHORT).show();
         finish();
     }
+
+    public void unitSearch(View view) {
+    }
 }

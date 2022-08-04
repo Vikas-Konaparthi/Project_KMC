@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toolbar;
 
@@ -30,6 +31,7 @@ public class CollectorGrounding2 extends AppCompatActivity{
     ArrayList<Individual> datalist;
     FirebaseFirestore db;
     String village;
+    ImageButton unitsearch;
     String district;
     ProgressBar progressBar;
 
@@ -39,6 +41,8 @@ public class CollectorGrounding2 extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collecto_grounding);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        unitsearch=findViewById(R.id.unit_search);
+        unitsearch.setVisibility(View.VISIBLE);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         datalist=new ArrayList<>();
         Bundle extras = getIntent().getExtras();
@@ -76,9 +80,15 @@ public class CollectorGrounding2 extends AppCompatActivity{
         setActionBar(toolbar);
 
     }
+
     public void search(View view) {
         Intent i = new Intent(this, CollectorSearchGrounding.class);
-        i.putExtra("village",village);
+        i.putExtra("district",district);
+        startActivity(i);
+    }
+    public void UnitSearch(View view) {
+        Intent i = new Intent(this, CollectorUnitSearch5.class);
+        i.putExtra("district",district);
         startActivity(i);
     }
 }

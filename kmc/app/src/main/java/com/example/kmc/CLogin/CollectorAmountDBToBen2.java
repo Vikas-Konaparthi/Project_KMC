@@ -69,6 +69,7 @@ public class CollectorAmountDBToBen2 extends AppCompatActivity implements com.ex
     String today;
     ImageButton checkAll;
     ImageButton cancelAll;
+    ImageButton unitsearch;
     Individual obj;
     List<DocumentSnapshot> list;
     int totalAmount;
@@ -96,6 +97,8 @@ public class CollectorAmountDBToBen2 extends AppCompatActivity implements com.ex
         db=FirebaseFirestore.getInstance();
         checkAll=findViewById(R.id.checkAll);
         cancelAll=findViewById(R.id.cancelAll);
+        unitsearch=findViewById(R.id.unit_search);
+        unitsearch.setVisibility(View.VISIBLE);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
         ne=new ArrayList<>();
@@ -426,6 +429,12 @@ public class CollectorAmountDBToBen2 extends AppCompatActivity implements com.ex
         i.putExtra("district",district);
         startActivity(i);
     }
+    public void unitSearch(View view) {
+        Intent i = new Intent(this, CollectorUnitSearch4.class);
+        i.putExtra("district",district);
+        startActivity(i);
+        finish();
+    }
     @Override
     public void push(ArrayList<SelectionElements2> list) {
         selected=list;
@@ -453,6 +462,7 @@ public class CollectorAmountDBToBen2 extends AppCompatActivity implements com.ex
     }
     private void updateData(String aadharNumber, String approved,String status,String collectorSanctionAmount,String approvalAmount,String soApproved,String spApproved) {
         Map<String, Object> individualInfo = new HashMap<String, Object>();
+        individualInfo.put("status", status);
         individualInfo.put("status", status);
         individualInfo.put("ctrApproved2", approved);
         individualInfo.put("dbAccount", collectorSanctionAmount);

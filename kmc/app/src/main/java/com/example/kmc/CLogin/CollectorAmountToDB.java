@@ -517,4 +517,7 @@ public class CollectorAmountToDB extends AppCompatActivity implements com.exampl
         Toast.makeText(this, "Rejected", Toast.LENGTH_SHORT).show();
         finish();
     }
+
+    public void unitSearch(View view) {
+    }
 }

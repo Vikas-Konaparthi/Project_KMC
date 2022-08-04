@@ -69,6 +69,7 @@ public class CollectorAmountToDB2 extends AppCompatActivity implements com.examp
     Individual obj2;
     ImageButton checkAll;
     ImageButton cancelAll;
+    ImageButton unitsearch;
     int totalAmount;
     int noOfBen;
     String district;
@@ -86,6 +87,9 @@ public class CollectorAmountToDB2 extends AppCompatActivity implements com.examp
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         checkAll=findViewById(R.id.checkAll);
         cancelAll=findViewById(R.id.cancelAll);
+        unitsearch=findViewById(R.id.unit_search);
+        unitsearch.setVisibility(View.VISIBLE);
+
         datalist=new ArrayList<>();
         selected=new ArrayList<>();
         selected.clear();
@@ -436,6 +440,12 @@ public class CollectorAmountToDB2 extends AppCompatActivity implements com.examp
         Intent i = new Intent(this, CollectorSearchAmountToDB2.class);
         i.putExtra("district",district);
         startActivity(i);
+    }
+    public void unitSearch(View view) {
+        Intent i = new Intent(this, CollectorUnitSearch3.class);
+        i.putExtra("district",district);
+        startActivity(i);
+        finish();
     }
 
     @Override

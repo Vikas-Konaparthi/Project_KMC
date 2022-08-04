@@ -77,7 +77,7 @@ public class SoAmountDbtoBenSearch extends AppCompatActivity {
     }
     public void searchbutton(View view) {
         progressBar.setVisibility(View.VISIBLE);
-        db.collection("individuals").orderBy("name").startAt(searchText).endAt(searchText+"\uf8ff").get()
+        db.collection("individuals").orderBy("name").startAt(searchText.toLowerCase(Locale.ROOT)).endAt(searchText+"\uf8ff").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {

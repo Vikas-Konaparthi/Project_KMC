@@ -76,6 +76,7 @@ public class CollectorAction2 extends AppCompatActivity implements View.OnClickL
         }
         pendingAction1=0;
         pendingAction2=0;
+        pendingAction3=0;
         Toast.makeText(this, "Welcome Collector", Toast.LENGTH_SHORT).show();
 
         db.collection("individuals").get()
@@ -86,8 +87,11 @@ public class CollectorAction2 extends AppCompatActivity implements View.OnClickL
                         for(DocumentSnapshot d:list)
                         {
                             Individual obj=d.toObject(Individual.class);
-                            if(obj.getSpApproved().equals("yes")&& (!obj.getCtrBenApproved().equalsIgnoreCase("yes")&&obj.getSpApproved().equalsIgnoreCase("yes"))){
-                                pendingAction3 = pendingAction3+1;
+                            if(obj.getSpApproved().equals("yes"))
+                            {
+                                if( (!obj.getCtrBenApproved().equalsIgnoreCase("yes"))&& (!obj.getCtrApproved().equals("no"))){
+                                    pendingAction3 = pendingAction3+1;
+                                }
                             }
                                 if (obj.getSpApproved2().equals("yes")) {
                                     if (!obj.getCtrApproved().equals("yes") && !obj.getCtrApproved().equals("no")) {
@@ -114,6 +118,7 @@ public class CollectorAction2 extends AppCompatActivity implements View.OnClickL
         super.onRestart();
         pendingAction1=0;
         pendingAction2=0;
+        pendingAction3=0;
         //When BACK BUTTON is pressed, the activity on the stack is restarted
         //Do what you want on the refresh procedure here
         db.collection("individuals").get()
@@ -124,18 +129,23 @@ public class CollectorAction2 extends AppCompatActivity implements View.OnClickL
                         for(DocumentSnapshot d:list)
                         {
                             Individual obj=d.toObject(Individual.class);
-                            if(obj.getSpApproved().equals("yes")&& (!obj.getCtrBenApproved().equalsIgnoreCase("yes")&&obj.getSpApproved().equalsIgnoreCase("yes"))){
-                                pendingAction3 = pendingAction3+1;
-                            }
-                                if (obj.getSpApproved2().equals("yes")) {
-                                    if (!obj.getCtrApproved().equals("yes") && !obj.getCtrApproved().equals("no")) {
-                                        pendingAction1=pendingAction1+1;
-                                    }
+                            if(obj.getSpApproved().equals("yes"))
+                            {
+                                if( (!obj.getCtrBenApproved().equalsIgnoreCase("yes"))&& (!obj.getCtrApproved().equals("no"))){
+                                    pendingAction3 = pendingAction3+1;
                                 }
-                                if(obj.getSpApproved3().equals("yes") && obj.getSoApproved().equals("yes"))
-                                    if(!obj.getCtrApproved2().equals("yes") &&  !obj.getCtrApproved2().equals("no")) {
-                                        pendingAction2=pendingAction2+1;
-                                    }
+                            }
+
+                            if (obj.getSpApproved2().equals("yes")) {
+                                if (!obj.getCtrApproved().equals("yes") && !obj.getCtrApproved().equals("no")) {
+                                    pendingAction1=pendingAction1+1;
+                                }
+                            }
+
+                            if(obj.getSpApproved3().equals("yes") && obj.getSoApproved().equals("yes"))
+                                if(!obj.getCtrApproved2().equals("yes") &&  !obj.getCtrApproved2().equals("no")) {
+                                    pendingAction2=pendingAction2+1;
+                                }
                         }
                         pendingBadge1.setText(String.valueOf(pendingAction1));
                         pendingBadge2.setText(String.valueOf(pendingAction2));

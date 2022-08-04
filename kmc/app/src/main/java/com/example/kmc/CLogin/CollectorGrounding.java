@@ -81,4 +81,7 @@ public class CollectorGrounding extends AppCompatActivity {
         i.putExtra("village",village);
         startActivity(i);
     }
+
+    public void UnitSearch(View view) {
+    }
 }

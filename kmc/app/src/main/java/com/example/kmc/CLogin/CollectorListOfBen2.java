@@ -46,6 +46,7 @@ public class CollectorListOfBen2 extends AppCompatActivity implements com.exampl
     ImageButton checkAll;
     ImageButton cancelAll;
     myadapter5 adapter;
+    ImageButton unitsearch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,8 @@ public class CollectorListOfBen2 extends AppCompatActivity implements com.exampl
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         checkAll=findViewById(R.id.checkAll);
+        unitsearch=findViewById(R.id.unit_search);
+        unitsearch.setVisibility(View.VISIBLE);
         cancelAll=findViewById(R.id.cancelAll);
         datalist=new ArrayList<>();
         Bundle extras = getIntent().getExtras();
@@ -169,4 +172,13 @@ public class CollectorListOfBen2 extends AppCompatActivity implements com.exampl
             cancelAll.setVisibility(View.GONE);
         }
     }
+
+    public void unitSearch(View view) {
+        Intent i = new Intent(this, CollectorUnitSearch2.class);
+        i.putExtra("district",district);
+        //   i.putExtra("village",village);
+        startActivity(i);
+        finish();
+    }
 }
+

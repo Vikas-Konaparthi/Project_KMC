@@ -83,6 +83,19 @@
             android:src="@drawable/ic_baseline_check_24"
             android:textSize="20dp"
             />
+        <ImageButton
+            android:id="@+id/unit_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="unitSearch"
+            android:visibility="gone"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/ic_baseline_category_24"
+            android:textSize="20dp"
+            />
+
 
 
 

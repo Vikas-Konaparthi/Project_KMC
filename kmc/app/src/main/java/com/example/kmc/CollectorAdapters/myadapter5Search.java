@@ -3,6 +3,7 @@ package com.example.kmc.CollectorAdapters;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -18,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.kmc.CLogin.CollectorUserDetails;
 import com.example.kmc.CLogin.CollectorUserDetails2;
 import com.example.kmc.Individual;
+import com.example.kmc.List;
 import com.example.kmc.R;
 import com.example.kmc.SelectionElements;
 
@@ -30,9 +33,11 @@ public class myadapter5Search extends RecyclerView.Adapter<myadapter5Search.myvi
     ArrayList<SelectionElements> dataAadhar=new ArrayList<>();
     String district;
 
+
     public myadapter5Search(ArrayList<Individual> datalist, String district) {
         this.datalist = datalist;
         this.district=district;
+
     }
 
     @NonNull
@@ -86,6 +91,7 @@ public class myadapter5Search extends RecyclerView.Adapter<myadapter5Search.myvi
                 ((Activity)holder.t1.getContext()).finish();
             }
         }) ;
+
 
 
         holder.t1.setText(datalist.get(position).getName());

@@ -44,6 +44,15 @@
             android:onClick="search"
             android:src="@drawable/ic_search_white"/>
         <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
+            android:onClick="unitSearch"
+            android:src="@drawable/ic_baseline_category_24"
+            android:visibility="gone"
+            android:id="@+id/unit_search"/>
+
+        <ImageButton
             android:id="@+id/checkAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

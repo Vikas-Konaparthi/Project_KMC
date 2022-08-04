@@ -68,15 +68,14 @@ public class PsAddEditSearch extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                searchText=searchBox.getText().toString();
+                searchText=searchBox.getText().toString().toLowerCase(Locale.ROOT);
             }
         });
 
     }
     public void searchbutton(View view) {
         progressBar.setVisibility(View.VISIBLE);
-        Log.d("searchText",searchText);
-        db.collection("individuals").orderBy("name").startAt(searchText).endAt(searchText+"\uf8ff").get()
+        db.collection("individuals").orderBy("name").startAt(searchText.toLowerCase()).endAt(searchText+"\uf8ff").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {

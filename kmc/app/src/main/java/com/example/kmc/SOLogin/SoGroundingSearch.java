@@ -77,7 +77,7 @@ public class SoGroundingSearch extends AppCompatActivity {
     public void searchbutton(View view) {
         progressBar.setVisibility(View.VISIBLE);
 
-        db.collection("individuals").orderBy("name".toLowerCase(Locale.ROOT)).startAt(searchText).endAt(searchText+"\uf8ff").get();
+        db.collection("individuals").orderBy("name".toLowerCase(Locale.ROOT)).startAt(searchText.toLowerCase(Locale.ROOT)).endAt(searchText+"\uf8ff").get();
 
         db.collection("individuals").orderBy("name").startAt(searchText).endAt(searchText+"\uf8ff").get()
 
